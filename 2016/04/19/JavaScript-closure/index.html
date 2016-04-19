@@ -4,32 +4,28 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>HTML转义字符 | GCidea&#39;s blog</title>
+    <title>一个JavaScript中的闭包案例 | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="背景　　HTML转义字符又称字符实体。一些字符在HTML中有特殊的含义，比如小于号”&amp;lt;”已经用于定义HTML标签的开始。而这些标签在渲染出的html页面是不会显示出来的，如果我们希望浏览器正确地显示这些字符，我们必须在HTML源码中插入字符实体。　　字符实体有三部分,而且有两种写法：
-
-一个和号(&amp;amp;) + 一个实体名称 +　一个分号(;)
-一个和号与一个井号(&amp;amp;#) + 一个">
+    <meta name="description" content="背景　　闭包是JavaScript中的一个重要概念。　　JavaScript采用词法作用域，函数的执行依赖于变量作用域，这个作用域是在函数定义时决定的，而不是函数调用时决定的。函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内，这就是闭包的特性。
+实际场景　　在完成一个小demo时，正巧遇到了这个问题。先说一下这个demo要实现的基本功能吧。要求能让用户输入城市名称和对">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTML转义字符">
-<meta property="og:url" content="http://yoursite.com/2016/03/18/html-character-entity/index.html">
+<meta property="og:title" content="一个JavaScript中的闭包案例">
+<meta property="og:url" content="http://yoursite.com/2016/04/19/JavaScript-closure/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="背景　　HTML转义字符又称字符实体。一些字符在HTML中有特殊的含义，比如小于号”&amp;lt;”已经用于定义HTML标签的开始。而这些标签在渲染出的html页面是不会显示出来的，如果我们希望浏览器正确地显示这些字符，我们必须在HTML源码中插入字符实体。　　字符实体有三部分,而且有两种写法：
-
-一个和号(&amp;amp;) + 一个实体名称 +　一个分号(;)
-一个和号与一个井号(&amp;amp;#) + 一个">
-<meta property="og:updated_time" content="2016-03-18T07:07:57.958Z">
+<meta property="og:description" content="背景　　闭包是JavaScript中的一个重要概念。　　JavaScript采用词法作用域，函数的执行依赖于变量作用域，这个作用域是在函数定义时决定的，而不是函数调用时决定的。函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内，这就是闭包的特性。
+实际场景　　在完成一个小demo时，正巧遇到了这个问题。先说一下这个demo要实现的基本功能吧。要求能让用户输入城市名称和对">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/demo-index.png">
+<meta property="og:updated_time" content="2016-04-19T06:55:30.347Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTML转义字符">
-<meta name="twitter:description" content="背景　　HTML转义字符又称字符实体。一些字符在HTML中有特殊的含义，比如小于号”&amp;lt;”已经用于定义HTML标签的开始。而这些标签在渲染出的html页面是不会显示出来的，如果我们希望浏览器正确地显示这些字符，我们必须在HTML源码中插入字符实体。　　字符实体有三部分,而且有两种写法：
-
-一个和号(&amp;amp;) + 一个实体名称 +　一个分号(;)
-一个和号与一个井号(&amp;amp;#) + 一个">
+<meta name="twitter:title" content="一个JavaScript中的闭包案例">
+<meta name="twitter:description" content="背景　　闭包是JavaScript中的一个重要概念。　　JavaScript采用词法作用域，函数的执行依赖于变量作用域，这个作用域是在函数定义时决定的，而不是函数调用时决定的。函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内，这就是闭包的特性。
+实际场景　　在完成一个小demo时，正巧遇到了这个问题。先说一下这个demo要实现的基本功能吧。要求能让用户输入城市名称和对">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/demo-index.png">
 
     
     <link rel="alternative" href="/atom.xml" title="GCidea&#39;s blog" type="application/atom+xml">
@@ -89,14 +85,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/18/html-character-entity/" title="HTML转义字符" itemprop="url">HTML转义字符</a>
+      <a href="/2016/04/19/JavaScript-closure/" title="一个JavaScript中的闭包案例" itemprop="url">一个JavaScript中的闭包案例</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-18T05:29:59.000Z" itemprop="datePublished"> 发表于 2016-03-18</time>
+    <time datetime="2016-04-19T06:05:10.000Z" itemprop="datePublished"> 发表于 2016-04-19</time>
     
   </p>
 </header>
@@ -105,104 +101,20 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最常用的字符实体"><span class="toc-number">2.</span> <span class="toc-text">最常用的字符实体</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实际场景"><span class="toc-number">2.</span> <span class="toc-text">实际场景</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>　　HTML转义字符又称字符实体。一些字符在HTML中有特殊的含义，比如小于号”&lt;”已经用于定义HTML标签的开始。而这些标签在渲染出的html页面是不会显示出来的，如果我们希望浏览器正确地显示这些字符，我们必须在HTML源码中插入字符实体。<br>　　字符实体有三部分,而且有两种写法：</p>
-<ol>
-<li>一个和号(&amp;) + 一个实体名称 +　一个分号(;)</li>
-<li><p>一个和号与一个井号(&amp;#) + 一个实体编号 +　一个分号(;)</p>
-<p>比如，要在HTML文档中显示小于号，需要这样写：<code>&amp;lt;</code> 或者 <code>&amp;#60;</code></p>
+		<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>　　闭包是JavaScript中的一个重要概念。<br>　　JavaScript采用词法作用域，函数的执行依赖于变量作用域，这个作用域是在函数定义时决定的，而不是函数调用时决定的。函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内，这就是闭包的特性。</p>
+<h2 id="实际场景"><a href="#实际场景" class="headerlink" title="实际场景"></a>实际场景</h2><p>　　在完成一个小demo时，正巧遇到了这个问题。先说一下这个demo要实现的基本功能吧。要求能让用户输入城市名称和对应的空气质量指数（输入的名称和指数都要做表单验证），输入完成后点击确定，将合法的数据显示在本页的列表中，可以增加多条记录。并且已添加的数据可以逐条删除。这里仅从功能展示，没有使用css美化页面：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/demo-index.png" alt=""><br>　　在做删除功能时，按着想法先写了一遍，进行实际测试时候发现一个问题：对于最后一列的删除按钮，无论点击哪一个，都是列表中最后一条数据被删除了。<br>　　开始代码是这样写的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 渲染aqi-table表格</span><br><span class="line"> */</span><br><span class="line">function renderAqiList() &#123;</span><br><span class="line">    var aqiTable = document.getElementById(&quot;aqi-table&quot;);</span><br><span class="line">    aqiTable.innerHTML = &quot;&quot;;</span><br><span class="line">    var t_row = document.createElement(&quot;tr&quot;);</span><br><span class="line">    var t_city = document.createElement(&quot;td&quot;);</span><br><span class="line">    var t_score = document.createElement(&quot;td&quot;);</span><br><span class="line">    var t_oper = document.createElement(&quot;td&quot;);</span><br><span class="line">    t_city.innerHTML = &quot;城市&quot;;</span><br><span class="line">    t_score.innerHTML = &quot;空气质量&quot;;</span><br><span class="line">    t_oper.innerHTML = &quot;操作&quot;;</span><br><span class="line">    t_row.appendChild(t_city);</span><br><span class="line">    t_row.appendChild(t_score);</span><br><span class="line">    t_row.appendChild(t_oper);</span><br><span class="line">    aqiTable.appendChild(t_row);</span><br><span class="line">    //遍历对象中所有属性渲染表格</span><br><span class="line">    for (var name in aqiData)&#123;</span><br><span class="line">        var newLi = document.createElement(&quot;tr&quot;);</span><br><span class="line">        var cityName = document.createElement(&quot;td&quot;);</span><br><span class="line">        var score = document.createElement(&quot;td&quot;);</span><br><span class="line">        var oper = document.createElement(&quot;td&quot;);</span><br><span class="line">        var delBtn = document.createElement(&quot;button&quot;);</span><br><span class="line">        cityName.innerHTML = name;</span><br><span class="line">        score.innerHTML = aqiData[name];</span><br><span class="line">        delBtn.innerHTML = &quot;删除&quot;;</span><br><span class="line">        delBtn.setAttribute(&quot;city&quot;, name);</span><br><span class="line">        delBtn.onclick = function ()&#123;</span><br><span class="line">                delBtnHandle(name);</span><br><span class="line">        &#125;;</span><br><span class="line">        oper.appendChild(delBtn);</span><br><span class="line">        newLi.appendChild(cityName);</span><br><span class="line">        newLi.appendChild(score);</span><br><span class="line">        newLi.appendChild(oper);</span><br><span class="line">        aqiTable.appendChild(newLi);</span><br><span class="line">    &#125;</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　其中最关键的是给删除按钮绑定事件：</p>
 <blockquote>
-<p>使用实体名称的好处：名称相对来说更容易记忆。<br>使用实体名称的坏处：并不是所有的浏览器都支持最新的实体名称，然而几乎所有的浏览器对实体编号的支持都很好。<br>注意：实体对大小写敏感。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">delBtn.onclick = function ()&#123;</span><br><span class="line">        delBtnHandle(name);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </blockquote>
-</li>
-</ol>
-<h2 id="最常用的字符实体"><a href="#最常用的字符实体" class="headerlink" title="最常用的字符实体"></a>最常用的字符实体</h2><table>
-<thead>
-<tr>
-<th>显示</th>
-<th>说明</th>
-<th>实体名称</th>
-<th>实体编号</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>半方大的空白</td>
-<td><code>&amp;ensp;</code></td>
-<td><code>&amp;#8194;</code></td>
-</tr>
-<tr>
-<td></td>
-<td>全方大的空白</td>
-<td><code>&amp;emsp;</code></td>
-<td><code>&amp;#8195;</code></td>
-</tr>
-<tr>
-<td></td>
-<td>不断行的空白格</td>
-<td><code>&amp;nbsp;</code></td>
-<td><code>&amp;#160;</code></td>
-</tr>
-<tr>
-<td>&lt;</td>
-<td>小于</td>
-<td><code>&amp;lt;</code></td>
-<td><code>&amp;#60;</code></td>
-</tr>
-<tr>
-<td>&gt;</td>
-<td>大于</td>
-<td><code>&amp;gt;</code></td>
-<td><code>&amp;#62;</code></td>
-</tr>
-<tr>
-<td>&amp;</td>
-<td>&amp;符号</td>
-<td><code>&amp;amp;</code></td>
-<td><code>&amp;#38;</code></td>
-</tr>
-<tr>
-<td>“</td>
-<td>双引号</td>
-<td><code>&amp;quot;</code></td>
-<td><code>&amp;#34;</code></td>
-</tr>
-<tr>
-<td>©</td>
-<td>版权</td>
-<td><code>&amp;copy;</code></td>
-<td><code>&amp;#169;</code></td>
-</tr>
-<tr>
-<td>®</td>
-<td>已注册商标</td>
-<td><code>&amp;reg;</code></td>
-<td><code>&amp;#174;</code></td>
-</tr>
-<tr>
-<td>™</td>
-<td>商标（美国）</td>
-<td><code>&amp;trade;</code></td>
-<td><code>&amp;#8482;</code></td>
-</tr>
-<tr>
-<td>×</td>
-<td>乘号</td>
-<td><code>&amp;times;</code></td>
-<td><code>&amp;#215;</code></td>
-</tr>
-<tr>
-<td>÷</td>
-<td>除号</td>
-<td><code>&amp;divide;</code></td>
-<td><code>&amp;#247;</code></td>
-</tr>
-</tbody>
-</table>
+<p>　　这种做法想当然的认为，只要发生click事件时候，调用delBtnHandle()函数，并把要删除城市对应的name参数传递过去就好了，但在js中并不是这么执行的，这就要考虑到闭包的概念了。换做如下写法，问题就得到了解决。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/*难点：js闭包的运用，防止出现以下错误：for循环时动态绑定，使得onclick</span><br><span class="line"> 事件需要的name只能取到最后一个值而不是每一次遍历*/</span><br><span class="line">delBtn.onclick = function (asd) &#123;</span><br><span class="line">     return function ()&#123;</span><br><span class="line">     delBtnHandle(asd);</span><br><span class="line">　　　&#125;</span><br><span class="line">&#125;(name);</span><br></pre></td></tr></table></figure>
+</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -215,7 +127,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/03/18/html-character-entity/" data-title="HTML转义字符 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/04/19/JavaScript-closure/" data-title="一个JavaScript中的闭包案例 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -228,19 +140,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/04/19/JavaScript-closure/" title="一个JavaScript中的闭包案例">
-  <strong>上一篇：</strong><br/>
-  <span>
-  一个JavaScript中的闭包案例</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/03/16/2016-03-16-my-first-blog/"  title="【首篇】记录本博客www.gcidea.info的搭建过程">
+<a href="/2016/03/18/html-character-entity/"  title="HTML转义字符">
  <strong>下一篇：</strong><br/> 
- <span>【首篇】记录本博客www.gcidea.info的搭建过程
+ <span>HTML转义字符
 </span>
 </a>
 </div>
@@ -255,7 +159,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最常用的字符实体"><span class="toc-number">2.</span> <span class="toc-text">最常用的字符实体</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实际场景"><span class="toc-number">2.</span> <span class="toc-text">实际场景</span></a></li></ol>
  
   </div>
 
