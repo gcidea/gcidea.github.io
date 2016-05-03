@@ -25,11 +25,11 @@
     <link rel="alternative" href="/atom.xml" title="GCidea&#39;s blog" type="application/atom+xml">
     
     
-    <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/seal.png">
     
     
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon" href="/img/seal.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/seal.png">
     
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -40,7 +40,7 @@
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="GCidea&#39;s blog" title="GCidea&#39;s blog"/></a>
+				<a href="/"><img src="/img/seal.png" alt="GCidea&#39;s blog" title="GCidea&#39;s blog"/></a>
 			</div>
 			
 			<div id="textlogo">
@@ -74,6 +74,120 @@
     </header>
     <div id="container">
       <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/03/lamp/" title="记录在阿里云ECS上搭建完整LAMP的过程" itemprop="url">记录在阿里云ECS上搭建完整LAMP的过程</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-03T14:15:18.000Z" itemprop="datePublished"> 发表于 2016-05-03</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　为了顺利进行web开发，一套完整易用的开发环境是十分必要的，这可以大大提高团队的合作和开发效率。这里说的开发环境包括IDE，数据库，开发语言组件，版本控制工具等一系列内容。最近在使用的是比较流行的php开发架构，在windows下，无疑推荐WAMP，它集成了Apache、MySQL、PHP，可以免除许多安装配置的问题。这样的环境在具体开发中是没有什么问题的，但是当项目上线并且需要版本维护时，我们还是要在Linux系统上进行部署。<br>　　基于这样的需求，最近搭建了一套完整的LAMP环境并测试通过，可以实现代码版本控制，APP端API测试调用，项目自动化部署持续集成(CI)。包括的主要内容有：Apache组件；MariaDB组件（centos 7中替换掉了MySQL）；phpMyAdmin数据库管理组件；PHP组件；gitlab版本库的搭建；gitlab-ci的配置与使用。为了完整实现上述过程，过程中自然还需要一些其他组件的安装配置，比如node环境，git环境等等。<br>　　本文将详细记录整个开发环境的搭建过程，这个过程中确实遇到了不少问题，通过官方文档，一些论坛，博客等基本得到了解决或找到了其它的解决方式。对于持续集成部分，即gitlab-runner相关的内容，会在其他文章中单独详细讲述。<br>　　部署环境：阿里云ECS centos7.0 64位　　<br>　　远程连接：Xshell 5<br>　　文件传输：Xftp 5</p>
+<hr>
+<h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p><strong> LAMP | 部署 | Apache | MariaDB | PHP </strong></p>
+<hr>
+<h2 id="阿里云ECS（centos7）基本文件目录结构"><a href="#阿里云ECS（centos7）基本文件目录结构" class="headerlink" title="阿里云ECS（centos7）基本文件目录结构"></a>阿里云ECS（centos7）基本文件目录结构</h2><p>　　阿里云上的centos包含了基本的Linux系统的必需目录。具体如下：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/centos-dir.png" alt=""><br>  其中各个目录的主要作用有很多资料可以查阅，参考《Linux鸟哥的私房菜》。</p>
+<hr>
+<h2 id="Apache的安装与配置"><a href="#Apache的安装与配置" class="headerlink" title="Apache的安装与配置"></a>Apache的安装与配置</h2><p>Centos7默认已经安装httpd服务，只是没有启动。可以通过如下命令安装<br><code># yum install httpd</code></p>
+<blockquote>
+<p>httpd是Apache超文本传输协议(HTTP)服务器的主程序。被设计为一个独立运行的后台进程，它会建立一个处理请求的子进程或线程的池。</p>
+</blockquote>
+<p>具体安装过程如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/1.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/2.png" alt=""> </p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/LAMP，部署/">LAMP，部署</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/23/JavaScript-memory-leak/" title="JavaScript-memory-leak" itemprop="url">JavaScript-memory-leak</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-23T13:13:06.000Z" itemprop="datePublished"> 发表于 2016-04-23</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
 
    
     
@@ -452,6 +566,10 @@
 		
 			
 				<li><a href="/tags/记录/" title="记录">记录<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP，部署/" title="LAMP，部署">LAMP，部署<sup>1</sup></a></li>
 			
 		
 		</ul>
