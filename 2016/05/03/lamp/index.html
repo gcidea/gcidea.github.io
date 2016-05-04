@@ -34,14 +34,12 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/14.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/phpmyadmin.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/phpmyadmin-panel.png">
-<meta property="og:updated_time" content="2016-05-04T07:37:24.517Z">
+<meta property="og:updated_time" content="2016-05-04T09:10:46.046Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录在阿里云ECS上搭建完整LAMP开发环境的过程">
 <meta name="twitter:description" content="前言　　为了顺利进行web开发，一套完整易用的开发环境是十分必要的，这可以大大提高团队的合作和开发效率。这里说的开发环境包括IDE，数据库，开发语言组件，版本控制工具等一系列内容。最近在使用的是比较流行的php开发架构，在windows下，无疑推荐WAMP + MySQL-Front + phpStorm，WAMP集成了Apache、MySQL、PHP，可以免除许多安装配置的问题。这样的环境在具体">
 <meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/centos-dir.png">
 
-    
-    <link rel="alternative" href="/atom.xml" title="GCidea&#39;s blog" type="application/atom+xml">
     
     
     <link rel="icon" href="/img/seal.png">
@@ -118,7 +116,7 @@
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　为了顺利进行web开发，一套完整易用的开发环境是十分必要的，这可以大大提高团队的合作和开发效率。这里说的开发环境包括IDE，数据库，开发语言组件，版本控制工具等一系列内容。最近在使用的是比较流行的php开发架构，在windows下，无疑推荐WAMP + MySQL-Front + phpStorm，WAMP集成了Apache、MySQL、PHP，可以免除许多安装配置的问题。这样的环境在具体开发中是没有什么问题的，但是当项目上线并且需要版本维护时，我们还是要在Linux系统上进行部署。<br>　　基于这样的需求，最近搭建了一套完整的LAMP环境并测试通过，可以实现代码版本控制，APP端API测试调用，项目自动化部署持续集成(CI)。包括的主要内容有：<br>　　<strong>1.Apache组件；<br>　　2.MariaDB组件（Centos7中替换掉了MySQL）；<br>　　3.phpMyAdmin数据库管理组件；<br>　　4.PHP组件；<br>　　5.GitLab搭建；<br>　　6.GitLab-CI的配置与使用。</strong></p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　为了顺利进行web开发，一套完整易用的开发环境是十分必要的，这可以大大提高团队的合作和开发效率。这里说的开发环境包括IDE，数据库，开发语言组件，版本控制工具等一系列内容。最近在使用的是比较流行的php开发架构，在windows下，无疑推荐WAMP + MySQL-Front + phpStorm，WAMP集成了Apache、MySQL、PHP，可以免除许多安装配置的问题。这样的环境在具体开发中是没有什么问题的，但是当项目上线并且需要版本维护时，我们还是要在Linux系统上进行部署。<br>　　基于这样的需求，最近搭建了一套完整的LAMP环境并测试通过，可以实现代码版本控制，APP端API测试调用，项目自动化部署持续集成(CI)。包括的主要内容有：<br>  <a id="more"></a><br>　　<strong>1.Apache组件；<br>　　2.MariaDB组件（Centos7中替换掉了MySQL）；<br>　　3.phpMyAdmin数据库管理组件；<br>　　4.PHP组件；<br>　　5.GitLab搭建；<br>　　6.GitLab-CI的配置与使用。</strong></p>
 <p>　　为了完整实现上述过程，自然还需要一些其他组件的安装配置，比如node环境，git环境等等。<br>　　<font color="blue">本文将详细记录整个LAMP开发环境的搭建过程</font>，这个过程中确实遇到了不少问题，通过官方文档，一些论坛，博客等基本得到了解决或找到了其它的解决方式。<br>　　<font color="blue">对于版本控制和持续集成部分，即GitLab相关的内容，会在下一篇文章中单独详细讲述。</font></p>
 <hr>
 <h2 id="关键词"><a href="#关键词" class="headerlink" title="关键词"></a>关键词</h2><p><strong> LAMP | 部署 | Centos | Apache | MariaDB | PHP </strong></p>
@@ -196,7 +194,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/LAMP，部署/">LAMP，部署</a>
+  <span></span> <a href="/tags/搭建记录/">搭建记录</a><a href="/tags/LAMP/">LAMP</a><a href="/tags/部署/">部署</a>
   </div>
 
 </div>
@@ -263,15 +261,25 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/文章/" title="文章">文章<sup>1</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/记录/" title="记录">记录<sup>1</sup></a></li>
+				<li><a href="/tags/搭建记录/" title="搭建记录">搭建记录<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP，部署/" title="LAMP，部署">LAMP，部署<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/部署/" title="部署">部署<sup>1</sup></a></li>
+			
+		
+			
+		
+			
+		
 			
 		
 		</ul>
@@ -293,10 +301,6 @@
 
   
 
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
 
   <div class="weiboshow">
   <p class="asidetitle">新浪微博</p>

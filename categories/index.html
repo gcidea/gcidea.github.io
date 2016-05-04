@@ -1,10 +1,10 @@
 
-  <!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   
-    <title>标签 : 文章 | GCidea&#39;s blog</title>
+    <title>categories | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
@@ -13,16 +13,15 @@
     
     <meta name="description" content="gaochang | BUPT">
 <meta property="og:type" content="website">
-<meta property="og:title" content="GCidea's blog">
-<meta property="og:url" content="http://yoursite.com/tags/文章/index.html">
+<meta property="og:title" content="categories">
+<meta property="og:url" content="http://yoursite.com/categories/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="gaochang | BUPT">
+<meta property="og:updated_time" content="2016-05-04T11:40:51.864Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GCidea's blog">
+<meta name="twitter:title" content="categories">
 <meta name="twitter:description" content="gaochang | BUPT">
 
-    
-    <link rel="alternative" href="/atom.xml" title="GCidea&#39;s blog" type="application/atom+xml">
     
     
     <link rel="icon" href="/img/seal.png">
@@ -73,31 +72,15 @@
 </div>
       </header>
       <div id="container">
-        
-
+          
 <div class="archive-title" >
-  <h2 class="tag-icon">文章</h2>
-  
+<h2 class="category-icon">分类</h2>
+
 </div>
-<div id="main" class="archive-part clearfix">
-  <div id="archive-page">
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2016/03/16/2016-03-16-my-first-blog/" title="【首篇】记录本博客www.gcidea.info的搭建过程" itemprop="url">
-  
-
-    <time datetime="2016-03-16T07:49:41.000Z" itemprop="datePublished">2016-03-16</time>
-
-
-    <h1 itemprop="name">【首篇】记录本博客www.gcidea.info的搭建过程</h1>
-
-  </a>
-</section>
-
-
-  </div>
+<div id="main" class="archive-part">
+<div class="all-list-box"></div>
 </div>
+
 
       </div>
       <footer><div id="footer" >
@@ -204,6 +187,24 @@ $(document).ready(function(){
 
 
 
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var list    = $('.archive-title a'),
+      box     = $('.all-list-box'),
+      first   = $('.archive-title a:first-of-type');
+      box.load(first.attr('data-src').toString()+' #archive-page');
+      first.addClass('current');
+  list.each(function(){
+    $(this).click(function(){
+      var listSrc=$(this).attr('data-src').toString()+' #archive-page';
+      box.load(listSrc);
+      list.removeClass('current');
+      $(this).addClass('current');
+     });  
+    });
+  }); 
+</script>
 
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
