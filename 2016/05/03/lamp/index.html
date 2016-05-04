@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>记录在阿里云ECS上搭建完整LAMP开发环境的过程 | GCidea&#39;s blog</title>
+    <title>【阿里云ECS】LAMP开发环境的完整搭建配置过程 | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
@@ -13,7 +13,7 @@
     
     <meta name="description" content="前言　　为了顺利进行web开发，一套完整易用的开发环境是十分必要的，这可以大大提高团队的合作和开发效率。这里说的开发环境包括IDE，数据库，开发语言组件，版本控制工具等一系列内容。最近在使用的是比较流行的php开发架构，在windows下，无疑推荐WAMP + MySQL-Front + phpStorm，WAMP集成了Apache、MySQL、PHP，可以免除许多安装配置的问题。这样的环境在具体">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记录在阿里云ECS上搭建完整LAMP开发环境的过程">
+<meta property="og:title" content="【阿里云ECS】LAMP开发环境的完整搭建配置过程">
 <meta property="og:url" content="http://yoursite.com/2016/05/03/lamp/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　为了顺利进行web开发，一套完整易用的开发环境是十分必要的，这可以大大提高团队的合作和开发效率。这里说的开发环境包括IDE，数据库，开发语言组件，版本控制工具等一系列内容。最近在使用的是比较流行的php开发架构，在windows下，无疑推荐WAMP + MySQL-Front + phpStorm，WAMP集成了Apache、MySQL、PHP，可以免除许多安装配置的问题。这样的环境在具体">
@@ -34,9 +34,9 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/14.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/phpmyadmin.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/phpmyadmin-panel.png">
-<meta property="og:updated_time" content="2016-05-04T09:10:46.046Z">
+<meta property="og:updated_time" content="2016-05-04T15:35:59.192Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记录在阿里云ECS上搭建完整LAMP开发环境的过程">
+<meta name="twitter:title" content="【阿里云ECS】LAMP开发环境的完整搭建配置过程">
 <meta name="twitter:description" content="前言　　为了顺利进行web开发，一套完整易用的开发环境是十分必要的，这可以大大提高团队的合作和开发效率。这里说的开发环境包括IDE，数据库，开发语言组件，版本控制工具等一系列内容。最近在使用的是比较流行的php开发架构，在windows下，无疑推荐WAMP + MySQL-Front + phpStorm，WAMP集成了Apache、MySQL、PHP，可以免除许多安装配置的问题。这样的环境在具体">
 <meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/centos-dir.png">
 
@@ -95,7 +95,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/05/03/lamp/" title="记录在阿里云ECS上搭建完整LAMP开发环境的过程" itemprop="url">记录在阿里云ECS上搭建完整LAMP开发环境的过程</a>
+      <a href="/2016/05/03/lamp/" title="【阿里云ECS】LAMP开发环境的完整搭建配置过程" itemprop="url">【阿里云ECS】LAMP开发环境的完整搭建配置过程</a>
   </h1>
   <p class="article-author">By
        
@@ -202,7 +202,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/05/03/lamp/" data-title="记录在阿里云ECS上搭建完整LAMP开发环境的过程 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/05/03/lamp/" data-title="【阿里云ECS】LAMP开发环境的完整搭建配置过程 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -216,10 +216,10 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/05/04/gitlab-gitlab-ci/" title="阿里云ECS--GitLab的搭建配置和GitLab-CI服务的使用">
+ <a href="/2016/05/04/gitlab-gitlab-ci/" title="【阿里云ECS】GitLab的搭建配置过程和GitLab-CI服务的使用">
   <strong>上一篇：</strong><br/>
   <span>
-  阿里云ECS--GitLab的搭建配置和GitLab-CI服务的使用</span>
+  【阿里云ECS】GitLab的搭建配置过程和GitLab-CI服务的使用</span>
 </a>
 </div>
 
@@ -466,7 +466,7 @@ $(document).ready(function(){
   '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
   '<span title="Share to"></span>'
   ].join('');
-  $this.append(html);
+  /*$this.append(html);*/
 
   $('.hoverqrcode').hide();
 
