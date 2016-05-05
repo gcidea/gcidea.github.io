@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/14.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/phpmyadmin.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/phpmyadmin-panel.png">
-<meta property="og:updated_time" content="2016-05-04T15:35:59.192Z">
+<meta property="og:updated_time" content="2016-05-05T12:12:24.278Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【阿里云ECS】LAMP开发环境的完整搭建配置过程">
 <meta name="twitter:description" content="前言　　为了顺利进行web开发，一套完整易用的开发环境是十分必要的，这可以大大提高团队的合作和开发效率。这里说的开发环境包括IDE，数据库，开发语言组件，版本控制工具等一系列内容。最近在使用的是比较流行的php开发架构，在windows下，无疑推荐WAMP + MySQL-Front + phpStorm，WAMP集成了Apache、MySQL、PHP，可以免除许多安装配置的问题。这样的环境在具体">
@@ -179,7 +179,11 @@
 </li>
 </ol>
 <hr>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>　　至此，我们就建立了一套完整的LAMP开发环境，并具备了数据库管理工具。<br>　　现在我们就可以将新建的项目工程文件夹放在/var/www/html目录下，通过<code>http://主机ip:port/project/index.php</code>进行访问了。这样的环境有以下几个作用和好处：</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>　　至此，我们就建立了一套完整的LAMP开发环境，并具备了数据库管理工具。<br>　　现在我们就可以将新建的项目工程文件夹放在/var/www/html目录下，通过<code>http://主机ip:port/project/index.php</code>进行访问了。</p>
+<blockquote>
+<p>这时可能会遇到一个问题，就是访问后页面报错，在Linux系统下网站根目录权限755;权限不足导致访问失败。这时只要更该相关目录权限即可解决，主要&gt;是Application目录（使用thinkphp框架的工程中的一个目录），如果还不行可以尝试扩大更改权限的范围，但风险随之增大，应注意控制。</p>
+</blockquote>
+<p>这样的LAMP开发环境有以下几个作用和好处：</p>
 <ol>
 <li>开发阶段：使用GitLab进行版本控制</li>
 <li>测试阶段：为测试人员提供最新的版本进行问题跟踪与反馈；为APP端提供接口API测试环境</li>
@@ -193,7 +197,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/搭建记录/">搭建记录</a><a href="/tags/LAMP/">LAMP</a><a href="/tags/部署/">部署</a>
+  <span></span> <a href="/tags/搭建记录/">搭建记录</a><a href="/tags/部署/">部署</a><a href="/tags/LAMP/">LAMP</a>
   </div>
 
 </div>
@@ -268,19 +272,19 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>3</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/搭建记录/" title="搭建记录">搭建记录<sup>2</sup></a></li>
+				<li><a href="/tags/搭建记录/" title="搭建记录">搭建记录<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/部署/" title="部署">部署<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/部署/" title="部署">部署<sup>1</sup></a></li>
 			
 		
 		</ul>
