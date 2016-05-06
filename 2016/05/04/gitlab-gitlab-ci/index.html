@@ -49,7 +49,7 @@ GitLab-CI安装配置的">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-ci-yml.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/build-failed.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/build-success.png">
-<meta property="og:updated_time" content="2016-05-05T12:27:38.563Z">
+<meta property="og:updated_time" content="2016-05-06T03:36:11.552Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【阿里云ECS】GitLab的搭建配置过程和GitLab-CI服务的使用">
 <meta name="twitter:description" content="前言　　　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：
@@ -147,23 +147,24 @@ GitLab-CI安装配置的">
 <li>小结</li>
 </ol>
 <hr>
-<h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><p>　　部署环境：阿里云ECS Centos7.0 64bit,已具备完整LAMP环境<br>　　远程连接：Xshell 5<br>　　文件传输：Xftp 5</p>
+<h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><p>　　部署环境：阿里云ECS Centos7.0 64bit(已具备完整LAMP环境)<br>　　远程连接：Xshell 5<br>　　文件传输：Xftp 5</p>
 <hr>
-<h2 id="Git安装与使用"><a href="#Git安装与使用" class="headerlink" title="Git安装与使用"></a>Git安装与使用</h2><p>　　Git的安装是必要的，安装后我们可以在服务器上clone下来GitLab仓库中的最新代码进行开发维护。Centos7自带git，但是版本为1.8，考虑到使用新版本减少问题，决定升级至2.7.4。具体过程如下：</p>
+<h2 id="Git安装与使用"><a href="#Git安装与使用" class="headerlink" title="Git安装与使用"></a>Git安装与使用</h2><p>　　Git的安装是必要的，安装后我们可以从服务器clone下来GitLab仓库中的最新代码进行开发维护。Centos7自带Git，但是版本为1.8，考虑到使用新版本减少问题，决定升级至2.7.4。具体过程如下：</p>
 <ol>
 <li>卸载Centos7自带的Git1.8<br><code># yum remove git</code></li>
 <li>下载Git2.7.4<br><code># wget https://github.com/git/git/archive/v2.7.4.tar.gz</code></li>
 <li>解压该文件<br><code># tar zxvf v2.7.4.tar.gz</code></li>
-<li>【配置】configure，指定安装到 /usr/local/git，生成Makefile，为下一步的编译做准备<br><code># ./configure --prefix=/usr/local/git</code></li>
+<li>【配置】，configure用来生成Makefile，指定安装到 /usr/local/git，为下一步的编译做准备<br><code># ./configure --prefix=/usr/local/git</code></li>
 <li>【编译】，根据makefile的定义，调用源代码、函数库、编译器来编译<br><code># make configure</code></li>
 <li>【安装】<br><code># make install</code></li>
-<li>将git添加至环境变量中<br><code># echo &quot;export PATH=$PATH:/usr/local/git/bin&quot; &gt;&gt; /etc/bashrc</code></li>
+<li>将Git添加至环境变量中<br><code># echo &quot;export PATH=$PATH:/usr/local/git/bin&quot; &gt;&gt; /etc/bashrc</code></li>
 <li>在当前bash环境下读取并执行/etc/bashrc中的每一条命令，使之立刻生效<br><code># source /etc/bashrc</code></li>
 </ol>
-<p>经过以上过程，Git就安装完成了，我们可以查看Git的版本：<br>  <code># git --version</code><br>如下所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/git-version.png" alt=""></p>
-<p>具体git知识的学习与git使用，参见<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的git教程</a></p>
+<p>经过以上过程，Git就安装完成了，我们可以查看Git的版本：<br><code># git --version</code></p>
+<p>如下所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/git-version.png" alt=""></p>
+<p>具体git知识的学习与git使用，参见<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的git教程</a>。</p>
 <hr>
-<h2 id="GitLab相关知识介绍"><a href="#GitLab相关知识介绍" class="headerlink" title="GitLab相关知识介绍"></a>GitLab相关知识介绍</h2><p>　　首先，GitLab的官网是<a href="https://about.gitlab.com/gitlab-com/" target="_blank" rel="external">https://about.gitlab.com/gitlab-com/</a>，这里有最权威的文档与介绍。其次，GitLab中文社区<a href="http://www.gitlab.cc/" target="_blank" rel="external">http://www.gitlab.cc/</a>也比较活跃，可以在上面找找有没有类似的问题。<br>　　Gitlab是一个用Ruby on Rails开发的开源项目管理程序，可以通过WEB界面进行访问公开的或者私人项目。它和GitHub有类似的功能，能够浏览源代码，管理缺陷和注释。GitLab拥有Git仓库管理,code reviews(代码审查),issue tracking(问题跟踪),wikis等功能, GitLab搭配GitLab CI,能更简单的实现持续集成和自动部署。还可以使用issue,milestones,逐行code reviwe等功能进行团队协作，查看项目动态。GitLab可无缝集成Slack, Hipchat,LDAP,JIRA,Jenkins等其他流行的工具，提供了非常多的webhooks和完善的API。<br>　　GitLab社区版是开源的,可以免费下载使用。GitLab由超过1000人的社区维护。GitLab企业版提供深度的LDAP和Active Directory集成，以及Jira和Jenkins集成。<br>　　而无论是GitLab还是GitHub，都可以说是一种管理工具，其本质都是要学会Git的思想与使用。推荐<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的git教程</a><br>　　Gitlab官方文档对于Gitlab的原理和重要组件有详细的说明，这里就不再展开了，但要推荐<a href="http://www.jianshu.com/p/a22eaa1fcfe7" target="_blank" rel="external">一位学长的帖子</a>，他在帖子中讲述了一些对于Gitlab工作流程和重要组件的理解，值得一读。</p>
+<h2 id="GitLab相关知识介绍"><a href="#GitLab相关知识介绍" class="headerlink" title="GitLab相关知识介绍"></a>GitLab相关知识介绍</h2><p>　　首先，GitLab的官网是<a href="https://about.gitlab.com/gitlab-com/" target="_blank" rel="external">https://about.gitlab.com/gitlab-com/</a>，这里有最权威的文档与介绍。其次，GitLab中文社区<a href="http://www.gitlab.cc/" target="_blank" rel="external">http://www.gitlab.cc/</a>也比较活跃，可以在上面找找有没有类似的问题。<br>　　Gitlab是一个用Ruby on Rails开发的开源项目管理程序，可以通过WEB界面进行访问公开的或者私人项目。它和GitHub有类似的功能，能够浏览源代码，管理缺陷和注释。GitLab拥有Git仓库管理，code reviews(代码审查)，issue tracking(问题跟踪)，wikis等功能，GitLab搭配GitLab CI，能更简单的实现持续集成和自动部署。还可以使用issue，milestones，逐行code reviwe等功能进行团队协作，查看项目动态。GitLab可无缝集成Slack，Hipchat，LDAP，JIRA，Jenkins等其他流行的工具，提供了非常多的webhooks和完善的API。<br>　　GitLab社区版是开源的，可以免费下载使用。GitLab由超过1000人的社区维护。GitLab企业版提供深度的LDAP和Active Directory集成，以及Jira和Jenkins集成。<br>　　而无论是GitLab还是GitHub，都可以说是一种管理工具，其本质都是要学会Git的思想与使用。推荐<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的git教程</a>。<br>　　Gitlab官方文档对于Gitlab的原理和重要组件有详细的说明，这里就不再展开了，但要推荐<a href="http://www.jianshu.com/p/a22eaa1fcfe7" target="_blank" rel="external">一位学长的帖子</a>，他在帖子中讲述了一些对于Gitlab工作流程和重要组件的理解，值得一读。</p>
 <hr>
 <h2 id="GitLab搭建配置的完整过程"><a href="#GitLab搭建配置的完整过程" class="headerlink" title="GitLab搭建配置的完整过程"></a>GitLab搭建配置的完整过程</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>　　GitLab官网上有详细的安装说明，选择操作系统版本后按步骤操作即可。但是<strong>阿里云主机无法连接GitLab Yum源</strong>，因此选择rpm包安装方式。</p>
 <ol>
@@ -172,23 +173,24 @@ GitLab-CI安装配置的">
 </ol>
 <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>　　我们在<a href="http://gcidea.info/2016/05/03/lamp/" target="_blank" rel="external">上一篇文章</a>的“phpMyAdmin的安装与配置 3.测试”中提到，由于我的网站线上环境、GitLab都是搭建在一台服务器上的，因此在默认情况下会产生端口冲突。于是做出如下处理。</p>
 <ol>
-<li>修改Apache端口为4040<br>使用命令<br><code># cd etc/httpd/conf/</code><br><code># vi httpd.conf</code><br>注释掉Listen 80，改为Listen 4040<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/listen4040.png" alt=""></li>
-<li><p>配置GitLab<br>GitLab的配置文件默认位于/etc/gitlab/gitlab.rb<br>使用命令<br><code># cd /etc/gitlab</code><br><code># vi gitlab.rb</code><br>在文件的开始就有关于external_url的配置，这里我填的就是我的阿里云ECS主机的ip地址。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-port-conf.png" alt=""></p>
+<li>修改Apache端口为4040<br>使用命令：<br><code># cd etc/httpd/conf/</code><br><code># vi httpd.conf</code><br>注释掉Listen 80，改为Listen 4040<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/listen4040.png" alt=""></li>
+<li><p>配置GitLab<br>GitLab的配置文件默认位于/etc/gitlab/gitlab.rb<br>使用命令：<br><code># cd /etc/gitlab</code><br><code># vi gitlab.rb</code><br>在该文件的一开始就有关于external_url的配置，这里我填的就是我的阿里云ECS主机的ip地址。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-port-conf.png" alt=""></p>
 <p>这里注意，在配置url时直接指定一个未被占用的端口即可。如果不指定端口（仅填写域名或者IP地址），那么默认的是80端口，此时就必须保证Apache使用的不是80默认端口（修改方法见上述内容），否则冲突。<br>配置完成后，还要使用如下命令使之生效：<br><code># gitlab-ctl reconfigure</code></p>
 </li>
 </ol>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>　　按照上述过程，GitLab本身的基本配置就可以了，打开浏览器输入external_url地址访问GitLab，却出现了如下界面：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-502.png" alt=""><br><strong>原因</strong>：<br>查阅了相关资料，引起502的原因多样，比如设置的超时时间过短，而经过排查，我这里遇到这个问题是因为阿里云centos7默认的虚拟内存swap交换分区设置过小导致的。<br><strong>解决方法</strong>：<br>增加系统的swap分区：</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>　　按照上述过程，GitLab本身的基本配置就可以了。打开浏览器输入external_url地址访问GitLab，却出现了如下界面：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-502.png" alt=""><br><strong>原因</strong>：<br>查阅了相关资料，引起502的原因多样，比如设置的超时时间过短等。经过排查，我这里遇到这个问题是因为阿里云centos7默认的虚拟内存swap交换分区设置过小导致的。<br><strong>解决方法</strong>：<br>增加系统的swap分区：</p>
 <ol>
 <li>新建一个分区，创建/home/swap分区文件。文件的大小是1024000个block，1个block为1024，所以这里空间是1G<br><code># dd if=/dev/zero of=/home/swap/swap bs=1024 count=1024000</code></li>
 <li>将该分区格式化成swap分区，使其成为有效状态<br><code># swapon /home/swap/swap</code></li>
 <li>查看最新的分区情况：</li>
 </ol>
 <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/free.png" alt=""></p>
-<p>发现swap分区已经创建成功。但这里还有一个问题，<strong>当系统重启后，这块分区将会消失</strong>。为此，我们需要将新分区设置为开机自动挂载。/etc/fstab文件正是负责配置Linux开机时自动挂载分区的，对其进行修改。<br>使用命令：<br><code># cd /etc</code><br><code># vi fstab</code><br>在最后增加如下一句：<br>/swap/swap/swap swap swap defaults 0 0<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/fstab-swap.png" alt=""></p>
-<p>配置完分区后，再次访问external_url的地址，就可以看到正常的GitLab登录页，默认用户名：admin@local.host，密码5iveL!fe：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-ce.png" alt=""><br>GitLab的管理员面板如下，在这里我们可以新增成员，创建项目，新建分组，邀请成员进入项目，项目持续集成配置等等，具体的问题可以进行相应搜索。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-panel.png" alt=""></p>
+<p>发现swap分区已经创建成功。但这里还有一个问题，<strong>当系统重启后，这块分区将会消失</strong>。为此，我们需要将新分区设置为开机自动挂载。/etc/fstab文件正是负责配置Linux开机时自动挂载分区的，对其进行修改。<br>使用命令：<br><code># cd /etc</code><br><code># vi fstab</code><br>在最后增加如下一句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/swap/swap/swap swap swap defaults 0 0</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/fstab-swap.png" alt=""></p>
+<p>配置完分区后，再次访问external_url的地址，就可以看到正常的GitLab登录页。默认用户名：admin@local.host，密码5iveL!fe，登陆后可修改。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-ce.png" alt=""><br>GitLab的管理员面板(Admin area)如下，在这里我们可以新增成员，创建项目，新建分组，邀请成员进入项目，项目持续集成配置等等，具体的问题可以进行相应搜索。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-panel.png" alt=""></p>
 <p>至此，我们就成功搭建了GitLab~</p>
 <hr>
-<h2 id="GitLab-CI相关知识介绍"><a href="#GitLab-CI相关知识介绍" class="headerlink" title="GitLab-CI相关知识介绍"></a>GitLab-CI相关知识介绍</h2><p>　　目前，我们已经拥有了自己的GitLab仓库，可以进行正常的开发和版本控制了。我们现在需要考虑这样的场景：在团队合作开发中，每天每位成员都要做出很多修改，向GitHub仓库提交大量代码，且时间不定。版本库中代码虽是最新的，可是线上部署的却没有同时更新，如果测试人员需要及时跟进，或者比如APP端的同学需要调用最新的接口进行测试，就需要手动在线上进行部署，为了保证实时性一天可能就要部署很多次，烦。<br>　　这种场景，当然被很多人注意到了，CI–持续集成正是说的这样的问题。</p>
+<h2 id="GitLab-CI相关知识介绍"><a href="#GitLab-CI相关知识介绍" class="headerlink" title="GitLab-CI相关知识介绍"></a>GitLab-CI相关知识介绍</h2><p>　　目前，我们已经拥有了自己的GitLab仓库，可以进行正常的开发和版本控制了。我们现在需要考虑这样的场景：<font color="#2ca6cb">在团队合作开发中，每天每位成员都要做出很多修改，向GitHub仓库提交大量代码，且时间不定。版本库中代码虽是最新的，可是线上部署的却没有同时更新，如果测试人员需要及时跟进，或者比如APP端的同学需要调用最新的接口进行测试，就需要手动在线上进行部署，为了保证实时性一天可能就要部署很多次，烦。</font><br>　　这种场景，当然被很多人注意到了，CI–持续集成正是说的这样的问题。</p>
 <blockquote>
 <p>持续集成(Continuous integration)是一种软件开发实践，即团队开发成员经常集成它们的工作，通过每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
 </blockquote>
@@ -205,13 +207,24 @@ GitLab-CI安装配置的">
 <p>  这里，我是新建了一个Specific Runner，使用命令：<code># gitlab-ci-multi-runner register</code> 操作如下:<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/register.png" alt=""></p>
 <p>  注册成功后，我们可以在/etc/gitlab-runner/config.toml中看到runner的配置信息：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/toml.png" alt=""></p>
 <p>  但是这个配置信息在runner运行时候并没有起到实质作用，因为在接下来要讲到的运行runner中，命令中必须还要带上这个配置信息中的一些内容，可以说这个配置信息只是起到了一个记录作用。</p>
-<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>　　runner注册完成之后还必须让它运行起来，否则无法接收到GitLab-CI的通知或执行软件集成脚本。我们使用命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># gitlab-ci-multi-runner run-single --url http://***.***.***.***/ci --token ************** --executor shell</span><br></pre></td></tr></table></figure></p>
-<p>运行配置好的runner，其中–url、–token和–executor参数是必须的。其他参数可根据具体情况设置，使用命令<br><code># gitlab-ci-multi-runner run-single --help</code><br>可以查看更多。<br>　　当具有多个runner，可以使用<br><code># gitlab-ci-multi-runner run</code><br>命令，详情可通过<br><code># gitlab-ci-multi-runner run --help</code><br>查看更多。<br>　　目前还有一个问题，当runner运行后，它是保持在前台的，这时候terminal不能再做其他事情，这当然不行。因此我们要把runner运行这件事做成一个服务。<br>  使用命令：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># gitlab-ci-multi-runner install --service gitlab-runner --working-directory /home/gitlab-runner --config /etc/gitlab-runner/config.toml --user gitlab-runner</span><br></pre></td></tr></table></figure></p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>runner注册完成之后还必须让它运行起来，否则无法接收到GitLab-CI的通知或执行脚本。我们使用命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># gitlab-ci-multi-runner run-single --url http://***.***.***.***/ci --token ************** --executor shell</span><br></pre></td></tr></table></figure></p>
+<p>运行配置好的runner，其中–url、–token和–executor参数是必须的，具体值与配置文件中的相同。其他参数可根据具体情况设置。</p>
+<p>使用如下命令了解更多：<br><code># gitlab-ci-multi-runner run-single --help</code></p>
+<p>当具有多个runner，可以使用命令：<br><code># gitlab-ci-multi-runner run</code><br>来批量运行，使用如下命令了解更多：<br><code># gitlab-ci-multi-runner run --help</code></p>
+<p>目前还有一个问题，当runner运行后，它是保持在前台的，这时候terminal不能再做其他事情，这当然不行。因此我们要把runner运行这件事做成一个服务。<br>  使用命令：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># gitlab-ci-multi-runner install --service gitlab-runner --working-directory /home/gitlab-runner --config /etc/gitlab-runner/config.toml --user gitlab-runner</span><br></pre></td></tr></table></figure></p>
 <p>  将这个runner做成服务，并启动：<br>  <code># gitlab-ci-multi-runner start --service gitlab-runner</code><br>  这时候，在terminal中可以继续操作，查看后台进程：<br>  <code># ps -aux | grep gitlab-runner</code><br>  发现正常运行：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/ps-gitlab-runner.png" alt=""></p>
 <p>  至此，GitLab-CI和GitLab-Runner配置完成。</p>
 <hr>
 <h2 id="GitLab-CI持续集成服务的测试"><a href="#GitLab-CI持续集成服务的测试" class="headerlink" title="GitLab-CI持续集成服务的测试"></a>GitLab-CI持续集成服务的测试</h2><p>　　前文完成了GitLab-CI持续集成服务的配置，那么它是如何起作用的呢？<br>　　我们已知，我们针对我们项目的仓库已经建立了一个Specific Runner，并且将它运行起来了，runner就处于一种“监听状态”。当项目成员向仓库提交代码，runner检测到像git push这样的事件后，就会做出一些处理，实现项目的自动部署持续集成。具体的：<br>　　我们需要在根目录下建立一个名为.gitlab-ci.yml的文件。当整个项目进行git push的时候，runner会去检查这个文件，去执行里面的脚本。<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-ci-yml.png" alt=""></p>
-<p>　　我们想实现的效果是：每次提交的新代码都可以自动部署到/var/www/html目录下，这样访问网站或者API接口就可以获取最新情况。那么，其实就相当于删除原先该目录下的代码，将新提交的内容放在该目录下。这样就很清楚脚本怎么写了，只需要两句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  script:</span><br><span class="line">    - rm -rf /var/www/html/project_name</span><br><span class="line">    - cp -r ../backend /var/www/html/project_name</span><br></pre></td></tr></table></figure></p>
+<p>　　我们想实现的效果是：每次提交的新代码都可以自动部署到/var/www/html目录下，这样访问网站或者API接口就可以获取最新情况。那么，其实就相当于删除原先该目录下的代码，将新提交的内容放在该目录下。这样就很清楚脚本怎么写了，只需要两句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  script:</span><br><span class="line">    - rm -rf /var/www/html/project_name</span><br><span class="line">    - cp -r ../project_name /var/www/html/project_name</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>解释：</p>
+<ol>
+<li>使用rm命令加上-rf递归强制删除项目文件/var/www/html/project_name。</li>
+<li>使用命令cp加上-r参数递归复制相对于当前.gitlab-ci.yml文件的上一层目录的整个项目文件，复制到/var/www/html/project_name目录。</li>
+<li>之所以是复制../project_name目录，是因为runner检测到.gitlab-ci.yml文件时，是处于最新的工程文件夹的根目录下，这样的话../project_name就表示了最新的代码。(更多的，我们可以了解到项目文件其实是位于这个runner的子目录下的：<br>/home/gitlab-runner/builds/runner_name/0/root/project_name)</li>
+</ol>
+</blockquote>
 <p>　　实践一下，在工程中建立.gitlab-ci.yml文件，并对项目中代码做出一些修改（内容随意，主要是想看到修改效果），检查冲突后git push。这时在GitLab中该项目的控制面板的Builds菜单中监测，发现build失败了：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/build-failed.png" alt=""></p>
 <p>  查看以上日志可以发现是在删除时遇到了权限问题，没有写的权限，于是更改整个项目目录的权限为777，保证删除顺利。之后再次git push测试，发现build成功：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/build-success.png" alt=""></p>
 <p>  这时，去Apache配置的4040端口去查看网站的效果，发现已经是最新代码对应的效果，说明自动部署成功！</p>
@@ -227,7 +240,7 @@ GitLab-CI安装配置的">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/搭建记录/">搭建记录</a><a href="/tags/部署/">部署</a>
+  <span></span> <a href="/tags/搭建记录/">搭建记录</a><a href="/tags/学习笔记/">学习笔记</a><a href="/tags/部署/">部署</a>
   </div>
 
 </div>
