@@ -49,7 +49,7 @@ GitLab-CI安装配置的">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-ci-yml.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/build-failed.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/build-success.png">
-<meta property="og:updated_time" content="2016-05-06T03:36:11.552Z">
+<meta property="og:updated_time" content="2016-05-30T14:55:58.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【阿里云ECS】GitLab的搭建配置过程和GitLab-CI服务的使用">
 <meta name="twitter:description" content="前言　　　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：
@@ -226,7 +226,8 @@ GitLab-CI安装配置的">
 </ol>
 </blockquote>
 <p>　　实践一下，在工程中建立.gitlab-ci.yml文件，并对项目中代码做出一些修改（内容随意，主要是想看到修改效果），检查冲突后git push。这时在GitLab中该项目的控制面板的Builds菜单中监测，发现build失败了：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/build-failed.png" alt=""></p>
-<p>  查看以上日志可以发现是在删除时遇到了权限问题，没有写的权限，于是更改整个项目目录的权限为777，保证删除顺利。之后再次git push测试，发现build成功：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/build-success.png" alt=""></p>
+<p>  查看以上日志可以发现是在删除时遇到了权限问题，没有写的权限，于是更改整个项目目录的权限为777，保证删除顺利。<br>  之后再次git push测试，发现build成功：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/build-success.png" alt=""></p>
+<p>  (注：如果考虑直接将权限变为777这种比较暴力的方法的安全性问题，也可以采用更换文件夹所属用户组的方法，改owner为gitlab-runner：)<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># chown -R gitlab-runner /var/www/html/ebfinance</span><br></pre></td></tr></table></figure></p>
 <p>  这时，去Apache配置的4040端口去查看网站的效果，发现已经是最新代码对应的效果，说明自动部署成功！</p>
 <hr>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>　　至此，本文的主要内容就结束了。我们拥有了自己的项目仓库并且可以自动部署持续集成，这大大提高了我们的效率。同时，这套完整的配置过程中也可以学习到很多东西，踩了不少坑，积累了一些经验，明白了一些原理，总之还是收获很大的。</p>
@@ -240,7 +241,7 @@ GitLab-CI安装配置的">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/搭建记录/">搭建记录</a><a href="/tags/学习笔记/">学习笔记</a><a href="/tags/部署/">部署</a>
+  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/搭建记录/">搭建记录</a><a href="/tags/部署/">部署</a><a href="/tags/版本控制/">版本控制</a><a href="/tags/持续集成/">持续集成</a>
   </div>
 
 </div>
@@ -263,10 +264,10 @@ GitLab-CI安装配置的">
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/05/06/url-rewriting/" title="url-rewriting">
+ <a href="/2016/05/06/url-rewriting/" title="URL重写">
   <strong>上一篇：</strong><br/>
   <span>
-  url-rewriting</span>
+  URL重写</span>
 </a>
 </div>
 
@@ -294,7 +295,7 @@ GitLab-CI安装配置的">
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<!--<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>-->
 <aside class="clearfix">
 
   
@@ -315,7 +316,7 @@ GitLab-CI安装配置的">
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>5</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>14</sup></a></li>
 			
 		
 			
@@ -323,11 +324,75 @@ GitLab-CI安装配置的">
 			
 		
 			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/部署/" title="部署">部署<sup>2</sup></a></li>
 			
 		
 			
+				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cookie/" title="cookie">cookie<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/URL/" title="URL">URL<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记，资源汇总/" title="学习笔记，资源汇总">学习笔记，资源汇总<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/https/" title="https">https<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/URL重写/" title="URL重写">URL重写<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
 			
 		
 		</ul>

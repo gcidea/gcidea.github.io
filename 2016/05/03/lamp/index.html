@@ -32,9 +32,11 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/11.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/12.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/14.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/curlFile.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/php5-6.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/phpmyadmin.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/phpmyadmin-panel.png">
-<meta property="og:updated_time" content="2016-05-05T12:12:24.278Z">
+<meta property="og:updated_time" content="2016-05-30T15:11:35.828Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【阿里云ECS】LAMP开发环境的完整搭建配置过程">
 <meta name="twitter:description" content="前言　　为了顺利进行web开发，一套完整易用的开发环境是十分必要的，这可以大大提高团队的合作和开发效率。这里说的开发环境包括IDE，数据库，开发语言组件，版本控制工具等一系列内容。最近在使用的是比较流行的php开发架构，在windows下，无疑推荐WAMP + MySQL-Front + phpStorm，WAMP集成了Apache、MySQL、PHP，可以免除许多安装配置的问题。这样的环境在具体">
@@ -168,6 +170,9 @@
 </ol>
 <p>内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">  phpinfo();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 <p>4.在浏览器地址栏中输入<code>http://阿里云ECS主机ip/index.php</code>可以看到如下页面，说明安装配置成功。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/14.png" alt=""></p>
+<p>5.【可选】PHP的版本升级<br>　　如上图我们可以看到，PHP的版本是5.4.16。我在使用过程中，前期没有遇到什么问题。直到写图片上传服务之类的功能，在本地WAMPServer测试正常的代码部署到ECS后就会报错，错误如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/curlFile.png" alt=""><br>　　网上也查了一些解决方案，问题主要就是缺失curl这个类文件。提供的一些解决方案有单独编译安装这个类，再在php的配置文件中做extension，或者直接源码编译安装其他版本的PHP。感觉步骤较多，比较麻烦。因此选择了更换yum源直接升级高版本php(大于等于php5.5)：<br>  1.配置yum源:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># yum install epel-release</span><br><span class="line"># rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm</span><br></pre></td></tr></table></figure></p>
+<p>  2.安装php5.6:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># yum install --enablerepo=remi --enablerepo=remi-php56 php php-opcache php-devel php-mbstring php-mcrypt php-mysqlnd php-phpunit-PHPUnit php-pecl-xdebug php-pecl-xhprof</span><br></pre></td></tr></table></figure></p>
+<p>  3.查看php版本，看是否安装成功：<br>  <code># php -v</code><br>  结果如下图：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/php5-6.png" alt=""><br>  此时再在线上环境进行测试，图片服务已经可以正常使用。</p>
 <hr>
 <h2 id="phpMyAdmin的安装与配置"><a href="#phpMyAdmin的安装与配置" class="headerlink" title="phpMyAdmin的安装与配置"></a>phpMyAdmin的安装与配置</h2><p>　　至此，我们已经具备了一套基本的LAMP环境，通过在“L”上进行部署，“A”提供http服务，运行“P”的php后台代码，使用“M”提供数据存储，基本实现一个网站的功能。这里还有一个小问题，使用mariadb的命令行进行数据管理十分不便，我们可以安装phpMyAdmin进行可视化管理。</p>
 <ol>
@@ -229,9 +234,9 @@
 
 
 <div class="next">
-<a href="/2016/04/23/JavaScript-memory-leak/"  title="JavaScript-memory-leak">
+<a href="/2016/04/23/JavaScript-memory-leak/"  title="JavaScript内存泄漏">
  <strong>下一篇：</strong><br/> 
- <span>JavaScript-memory-leak
+ <span>JavaScript内存泄漏
 </span>
 </a>
 </div>
@@ -251,7 +256,7 @@
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<!--<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>-->
 <aside class="clearfix">
 
   
@@ -272,7 +277,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>5</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>14</sup></a></li>
 			
 		
 			
@@ -280,11 +285,75 @@
 			
 		
 			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/部署/" title="部署">部署<sup>2</sup></a></li>
 			
 		
 			
+				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cookie/" title="cookie">cookie<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/URL/" title="URL">URL<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记，资源汇总/" title="学习笔记，资源汇总">学习笔记，资源汇总<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/https/" title="https">https<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/URL重写/" title="URL重写">URL重写<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
 			
 		
 		</ul>
