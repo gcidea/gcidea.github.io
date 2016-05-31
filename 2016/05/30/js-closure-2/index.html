@@ -4,29 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>javascript闭包理解 | GCidea&#39;s blog</title>
+    <title>JavaScript的闭包案例---2 | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="前言　　接续上一例闭包，加深对《JavaScript权威指南》P187的理解。
+    <meta name="description" content="前言　　接续之前的一篇JavaScript的闭包案例—1，加深对《JavaScript权威指南》P187的理解。
 
-描述　　使用闭包，可以实现共享私有状态，实现私有存取器属性。本质上就是在同一个作用域链上定义了两个或多个闭包，来共享同样的私有变量。这是十分重要的一种应用，但是要十分小心因为这种做法将那些本不希望共享的变量共享给了其他闭包，这会造成严重的错误并让我们不解。　　假设有这样的需求：需要一个函数对象数组（数组每一项是一个函">
+描述　　使用闭包，可以实现共享私有状态，实现私有存取器属性。本质上就是在同一个作用域链上定义了两个或多个闭包，来共享同样的私有变量。这是十分重要的一种应用，但是要十分小心因为这种做法将那些本不希望共享的变量共享给了其他闭包，这会造成严重的错误并让我们不解。　　假设有这样的需求：需要一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript闭包理解">
+<meta property="og:title" content="JavaScript的闭包案例---2">
 <meta property="og:url" content="http://yoursite.com/2016/05/30/js-closure-2/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言　　接续上一例闭包，加深对《JavaScript权威指南》P187的理解。
+<meta property="og:description" content="前言　　接续之前的一篇JavaScript的闭包案例—1，加深对《JavaScript权威指南》P187的理解。
 
-描述　　使用闭包，可以实现共享私有状态，实现私有存取器属性。本质上就是在同一个作用域链上定义了两个或多个闭包，来共享同样的私有变量。这是十分重要的一种应用，但是要十分小心因为这种做法将那些本不希望共享的变量共享给了其他闭包，这会造成严重的错误并让我们不解。　　假设有这样的需求：需要一个函数对象数组（数组每一项是一个函">
-<meta property="og:updated_time" content="2016-05-30T15:40:34.934Z">
+描述　　使用闭包，可以实现共享私有状态，实现私有存取器属性。本质上就是在同一个作用域链上定义了两个或多个闭包，来共享同样的私有变量。这是十分重要的一种应用，但是要十分小心因为这种做法将那些本不希望共享的变量共享给了其他闭包，这会造成严重的错误并让我们不解。　　假设有这样的需求：需要一">
+<meta property="og:updated_time" content="2016-05-31T02:19:57.769Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript闭包理解">
-<meta name="twitter:description" content="前言　　接续上一例闭包，加深对《JavaScript权威指南》P187的理解。
+<meta name="twitter:title" content="JavaScript的闭包案例---2">
+<meta name="twitter:description" content="前言　　接续之前的一篇JavaScript的闭包案例—1，加深对《JavaScript权威指南》P187的理解。
 
-描述　　使用闭包，可以实现共享私有状态，实现私有存取器属性。本质上就是在同一个作用域链上定义了两个或多个闭包，来共享同样的私有变量。这是十分重要的一种应用，但是要十分小心因为这种做法将那些本不希望共享的变量共享给了其他闭包，这会造成严重的错误并让我们不解。　　假设有这样的需求：需要一个函数对象数组（数组每一项是一个函">
+描述　　使用闭包，可以实现共享私有状态，实现私有存取器属性。本质上就是在同一个作用域链上定义了两个或多个闭包，来共享同样的私有变量。这是十分重要的一种应用，但是要十分小心因为这种做法将那些本不希望共享的变量共享给了其他闭包，这会造成严重的错误并让我们不解。　　假设有这样的需求：需要一">
 
     
     
@@ -83,7 +83,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/05/30/js-closure-2/" title="javascript闭包理解" itemprop="url">javascript闭包理解</a>
+      <a href="/2016/05/30/js-closure-2/" title="JavaScript的闭包案例---2" itemprop="url">JavaScript的闭包案例---2</a>
   </h1>
   <p class="article-author">By
        
@@ -103,7 +103,7 @@
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　接续上一例闭包，加深对《JavaScript权威指南》P187的理解。</p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　接续之前的一篇<a href="http://gcidea.info/2016/04/19/JavaScript-closure/" target="_blank" rel="external">JavaScript的闭包案例—1</a>，加深对《JavaScript权威指南》P187的理解。</p>
 <hr>
 <h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>　　使用闭包，可以实现共享私有状态，实现私有存取器属性。本质上就是在同一个作用域链上定义了两个或多个闭包，来共享同样的私有变量。这是十分重要的一种应用，但是要十分小心因为这种做法将那些本不希望共享的变量共享给了其他闭包，这会造成严重的错误并让我们不解。<br>　　假设有这样的需求：需要一个函数对象数组（数组每一项是一个函数），对于某个确定的数组元素，调用之可以返回数组下标。<br>　　“看似正确”的做法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var funcs = [];</span><br><span class="line"></span><br><span class="line">for(var i=0;i&lt;10;i++)&#123;</span><br><span class="line">    funcs[i] = function()&#123;return i;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(funcs[5]()); //10</span><br></pre></td></tr></table></figure></p>
 <p>　　正如注释所写，很奇怪的，将打印输出10而并不是5。原因就在于：在循环中，定义了10个函数（对应有自己的作用域链），也就形成了10个闭包，这些闭包都是在同一个函数调用中定义的，因此共享作用域，共享变量i。for循环结束的条件是i&gt;=10。也就是说，当代码执行完成跳出for循环时，i的值是10。而这10个闭包的<code>return i;</code>所使用的正是这个共享的变量i，也就是10。因此，<code>funcs[0]();</code>~<code>funcs[9]();</code>执行的结果都是10。</p>
@@ -138,7 +138,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/05/30/js-closure-2/" data-title="javascript闭包理解 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/05/30/js-closure-2/" data-title="JavaScript的闭包案例---2 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -216,11 +216,11 @@
 			
 		
 			
-				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
 			
 		
 			
@@ -240,11 +240,27 @@
 			
 		
 			
+				<li><a href="/tags/URL重写/" title="URL重写">URL重写<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
+				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/http/" title="http">http<sup>1</sup></a></li>
 			
 		
 			
@@ -256,23 +272,7 @@
 			
 		
 			
-				<li><a href="/tags/URL重写/" title="URL重写">URL重写<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -285,7 +285,13 @@
         
           <li>
             
-            	<a href="http://bbs.byr.cn" target="_blank" title="北邮人的温馨家园">北邮人论坛-北邮人的温馨家园</a>
+            	<a href="http://bbs.byr.cn" target="_blank" title="">北邮人论坛-北邮人的温馨家园</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ebupt.com" target="_blank" title="东信北邮信息技术有限公司">东信北邮信息技术有限公司</a>
             
           </li>
         

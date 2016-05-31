@@ -11,16 +11,28 @@
     
 
     
-    <meta name="description" content="前言//TODO">
+    <meta name="description" content="前言　　本篇简单总结session的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且session相关是一个很大的话题，这里只是简单小结，主要包括：　　1.session相关介绍　　2.session安全性问题　　3.cookie与session的对比分析　　4.session在实际开发中的使用
+
+session相关介绍
+session安全性问题
+cooki">
 <meta property="og:type" content="article">
 <meta property="og:title" content="session相关总结">
 <meta property="og:url" content="http://yoursite.com/2016/05/08/session/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言//TODO">
-<meta property="og:updated_time" content="2016-05-30T15:42:42.429Z">
+<meta property="og:description" content="前言　　本篇简单总结session的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且session相关是一个很大的话题，这里只是简单小结，主要包括：　　1.session相关介绍　　2.session安全性问题　　3.cookie与session的对比分析　　4.session在实际开发中的使用
+
+session相关介绍
+session安全性问题
+cooki">
+<meta property="og:updated_time" content="2016-05-31T09:40:48.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="session相关总结">
-<meta name="twitter:description" content="前言//TODO">
+<meta name="twitter:description" content="前言　　本篇简单总结session的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且session相关是一个很大的话题，这里只是简单小结，主要包括：　　1.session相关介绍　　2.session安全性问题　　3.cookie与session的对比分析　　4.session在实际开发中的使用
+
+session相关介绍
+session安全性问题
+cooki">
 
     
     
@@ -93,11 +105,17 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session相关介绍"><span class="toc-number">2.</span> <span class="toc-text">session相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session安全性问题"><span class="toc-number">3.</span> <span class="toc-text">session安全性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie与session的对比分析"><span class="toc-number">4.</span> <span class="toc-text">cookie与session的对比分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session在实际开发中的使用"><span class="toc-number">5.</span> <span class="toc-text">session在实际开发中的使用</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>//TODO</p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本篇简单总结session的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且session相关是一个很大的话题，这里只是简单小结，主要包括：<br>　　1.session相关介绍<br>　　2.session安全性问题<br>　　3.cookie与session的对比分析<br>　　4.session在实际开发中的使用</p>
+<hr>
+<h2 id="session相关介绍"><a href="#session相关介绍" class="headerlink" title="session相关介绍"></a>session相关介绍</h2><hr>
+<h2 id="session安全性问题"><a href="#session安全性问题" class="headerlink" title="session安全性问题"></a>session安全性问题</h2><hr>
+<h2 id="cookie与session的对比分析"><a href="#cookie与session的对比分析" class="headerlink" title="cookie与session的对比分析"></a>cookie与session的对比分析</h2><hr>
+<h2 id="session在实际开发中的使用"><a href="#session在实际开发中的使用" class="headerlink" title="session在实际开发中的使用"></a>session在实际开发中的使用</h2><p>　　实际开发中使用了ThinkPHP框架，框架提供了Session管理和操作的完善支持，全部操作可以通过一个内置的session函数完成，该函数可以完成Session的设置、获取、删除和管理操作。Session初始化设置方法无需手动调用，在Think\App类的初始化工作结束后会自动调用，通常项目只需要配置SESSION_OPTIONS参数即可，SESSION_OPTIONS参数的设置是一个数组，支持的索引名和前面的session初始化参数相同。默认情况下，初始化之后系统会自动启动session，如果不希望系统自动启动session的话，可以设置SESSION_AUTO_START为false。<br>　　具体的：<br>1.在配置文件中写明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//session配置</span><br><span class="line">&apos;SESSION_OPTIONS&apos;  =&gt; array(</span><br><span class="line">    &apos;expire&apos; =&gt; 60,</span><br><span class="line">),</span><br></pre></td></tr></table></figure></p>
+<p>2.根据开发惯例结合ThinkPHP的写法，在MVC结构中，“C”即controller层应该有一个共用的基础controller即BaseController。考虑到用户会话保持是一个在访问整个网站中任意页面都需要的功能，因此session创建相关的内容非常合适（也只应该）放在BaseController中来完成。也就是说，BaseController应该具有全局（静态）方法is_login()用来判断用户是否登录，从而相应创建session，这样如果用户直接访问网站任意的子目录，由于继承了BaseController，都会做验证，保证了安全性。<br>　　但是，有一处比较特殊要注意，用户登录鉴权方法所在的controller（比如IndexController）是无法继承BaseController的</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -155,7 +173,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session相关介绍"><span class="toc-number">2.</span> <span class="toc-text">session相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session安全性问题"><span class="toc-number">3.</span> <span class="toc-text">session安全性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie与session的对比分析"><span class="toc-number">4.</span> <span class="toc-text">cookie与session的对比分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session在实际开发中的使用"><span class="toc-number">5.</span> <span class="toc-text">session在实际开发中的使用</span></a></li></ol>
  
   </div>
 
@@ -201,11 +219,11 @@
 			
 		
 			
-				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
 			
 		
 			
@@ -225,11 +243,27 @@
 			
 		
 			
+				<li><a href="/tags/URL重写/" title="URL重写">URL重写<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
+				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/http/" title="http">http<sup>1</sup></a></li>
 			
 		
 			
@@ -241,23 +275,7 @@
 			
 		
 			
-				<li><a href="/tags/URL重写/" title="URL重写">URL重写<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -270,7 +288,13 @@
         
           <li>
             
-            	<a href="http://bbs.byr.cn" target="_blank" title="北邮人的温馨家园">北邮人论坛-北邮人的温馨家园</a>
+            	<a href="http://bbs.byr.cn" target="_blank" title="">北邮人论坛-北邮人的温馨家园</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ebupt.com" target="_blank" title="东信北邮信息技术有限公司">东信北邮信息技术有限公司</a>
             
           </li>
         
