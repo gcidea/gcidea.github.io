@@ -11,28 +11,19 @@
     
 
     
-    <meta name="description" content="前言　　本篇简单总结session的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且session相关是一个很大的话题，这里只是简单小结，主要包括：　　1.session相关介绍　　2.session安全性问题　　3.cookie与session的对比分析　　4.session在实际开发中的使用
-
-session相关介绍
-session安全性问题
-cooki">
+    <meta name="description" content="前言　　本篇简单总结session的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且session相关是一个很大的话题，这里只是简单小结，主要包括以下几个大的方面：　　1.session相关介绍　　2.session安全性问题　　3.session的不同实现方式　　4.cookie与session的对比分析　　5.session在PHP开发中的使用　　6.s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="session相关总结">
 <meta property="og:url" content="http://yoursite.com/2016/05/08/session/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言　　本篇简单总结session的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且session相关是一个很大的话题，这里只是简单小结，主要包括：　　1.session相关介绍　　2.session安全性问题　　3.cookie与session的对比分析　　4.session在实际开发中的使用
-
-session相关介绍
-session安全性问题
-cooki">
-<meta property="og:updated_time" content="2016-05-31T09:40:48.107Z">
+<meta property="og:description" content="前言　　本篇简单总结session的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且session相关是一个很大的话题，这里只是简单小结，主要包括以下几个大的方面：　　1.session相关介绍　　2.session安全性问题　　3.session的不同实现方式　　4.cookie与session的对比分析　　5.session在PHP开发中的使用　　6.s">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/response-phpsessid.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/request-phpsessid.png">
+<meta property="og:updated_time" content="2016-05-31T15:29:51.476Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="session相关总结">
-<meta name="twitter:description" content="前言　　本篇简单总结session的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且session相关是一个很大的话题，这里只是简单小结，主要包括：　　1.session相关介绍　　2.session安全性问题　　3.cookie与session的对比分析　　4.session在实际开发中的使用
-
-session相关介绍
-session安全性问题
-cooki">
+<meta name="twitter:description" content="前言　　本篇简单总结session的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且session相关是一个很大的话题，这里只是简单小结，主要包括以下几个大的方面：　　1.session相关介绍　　2.session安全性问题　　3.session的不同实现方式　　4.cookie与session的对比分析　　5.session在PHP开发中的使用　　6.s">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/response-phpsessid.png">
 
     
     
@@ -105,16 +96,23 @@ cooki">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session相关介绍"><span class="toc-number">2.</span> <span class="toc-text">session相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session安全性问题"><span class="toc-number">3.</span> <span class="toc-text">session安全性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie与session的对比分析"><span class="toc-number">4.</span> <span class="toc-text">cookie与session的对比分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session在实际开发中的使用"><span class="toc-number">5.</span> <span class="toc-text">session在实际开发中的使用</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#直观感受"><span class="toc-number">2.</span> <span class="toc-text">直观感受</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session相关介绍"><span class="toc-number">3.</span> <span class="toc-text">session相关介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session的生成时间"><span class="toc-number">3.2.</span> <span class="toc-text">session的生成时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session的存储方式"><span class="toc-number">3.3.</span> <span class="toc-text">session的存储方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session的销毁时间"><span class="toc-number">3.4.</span> <span class="toc-text">session的销毁时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session的生存周期"><span class="toc-number">3.5.</span> <span class="toc-text">session的生存周期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session安全性问题"><span class="toc-number">4.</span> <span class="toc-text">session安全性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie与session的对比分析"><span class="toc-number">5.</span> <span class="toc-text">cookie与session的对比分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session在PHP开发中的使用"><span class="toc-number">6.</span> <span class="toc-text">session在PHP开发中的使用</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本篇简单总结session的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且session相关是一个很大的话题，这里只是简单小结，主要包括：<br>　　1.session相关介绍<br>　　2.session安全性问题<br>　　3.cookie与session的对比分析<br>　　4.session在实际开发中的使用</p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本篇简单总结session的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且session相关是一个很大的话题，这里只是简单小结，主要包括以下几个大的方面：<br>　　1.session相关介绍<br>　　2.session安全性问题<br>　　3.session的不同实现方式<br>　　4.cookie与session的对比分析<br>　　5.session在PHP开发中的使用<br>　　6.session在Java Web开发中的使用</p>
 <hr>
-<h2 id="session相关介绍"><a href="#session相关介绍" class="headerlink" title="session相关介绍"></a>session相关介绍</h2><hr>
+<h2 id="直观感受"><a href="#直观感受" class="headerlink" title="直观感受"></a>直观感受</h2><p>使用session进行状态保持的常用方法是服务端生成session对象的同时，在http响应报文首部通过set-cookie字段设置一个比如叫“PHPSESSID”的cookie进行标识，如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/response-phpsessid.png" alt=""></p>
+<p>当用户再次发起请求时，http请求报文首部携带这个cookie，用于服务端验证，如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/request-phpsessid.png" alt=""></p>
+<hr>
+<h2 id="session相关介绍"><a href="#session相关介绍" class="headerlink" title="session相关介绍"></a>session相关介绍</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>Session 允许通过将对象存储在 Web服务器的内存中在整个用户会话过程中保持任何对象。即“会话控制”。Session 对象存储特定用户会话所需的属性及配置信息。这样，当用户在应用程序的 Web 页之间跳转时，存储在 Session 对象中的变量将不会丢失，而是在整个用户会话中一直存在下去。当用户请求发起时，如果该用户还没有会话，则Web服务器将自动创建一个Session对象。当会话过期或被放弃后，服务器将终止该会话。Session对象最常见的一个用法就是存储用户的首选项。注意，会话状态仅在支持cookie的浏览器中保留。（这个的原因在“cookie相关总结”一文中cookie与session的对比分析中已经提到。）</p>
+</blockquote>
+<p>　　需要明确的是，与cookie相比，Session是用于保持状态的<font color="red">基于服务端</font>的解决方案。Session的工作机制是：为每个访客创建一个唯一的id(UID)，并基于这个UID来存储变量。UID或者存储在cookie中(在cookie的协助下共同完成会话状态保持)，或者通过URL进行传递(URL重写)。也就是说，session方案实现不是一定需要有cookie的协助，反之亦然，两者是独立的。</p>
+<h3 id="session的生成时间"><a href="#session的生成时间" class="headerlink" title="session的生成时间"></a>session的生成时间</h3><h3 id="session的存储方式"><a href="#session的存储方式" class="headerlink" title="session的存储方式"></a>session的存储方式</h3><h3 id="session的销毁时间"><a href="#session的销毁时间" class="headerlink" title="session的销毁时间"></a>session的销毁时间</h3><h3 id="session的生存周期"><a href="#session的生存周期" class="headerlink" title="session的生存周期"></a>session的生存周期</h3><hr>
 <h2 id="session安全性问题"><a href="#session安全性问题" class="headerlink" title="session安全性问题"></a>session安全性问题</h2><hr>
 <h2 id="cookie与session的对比分析"><a href="#cookie与session的对比分析" class="headerlink" title="cookie与session的对比分析"></a>cookie与session的对比分析</h2><hr>
-<h2 id="session在实际开发中的使用"><a href="#session在实际开发中的使用" class="headerlink" title="session在实际开发中的使用"></a>session在实际开发中的使用</h2><p>　　实际开发中使用了ThinkPHP框架，框架提供了Session管理和操作的完善支持，全部操作可以通过一个内置的session函数完成，该函数可以完成Session的设置、获取、删除和管理操作。Session初始化设置方法无需手动调用，在Think\App类的初始化工作结束后会自动调用，通常项目只需要配置SESSION_OPTIONS参数即可，SESSION_OPTIONS参数的设置是一个数组，支持的索引名和前面的session初始化参数相同。默认情况下，初始化之后系统会自动启动session，如果不希望系统自动启动session的话，可以设置SESSION_AUTO_START为false。<br>　　具体的：<br>1.在配置文件中写明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//session配置</span><br><span class="line">&apos;SESSION_OPTIONS&apos;  =&gt; array(</span><br><span class="line">    &apos;expire&apos; =&gt; 60,</span><br><span class="line">),</span><br></pre></td></tr></table></figure></p>
+<h2 id="session在PHP开发中的使用"><a href="#session在PHP开发中的使用" class="headerlink" title="session在PHP开发中的使用"></a>session在PHP开发中的使用</h2><p>　　实际开发中使用了ThinkPHP框架，框架提供了Session管理和操作的完善支持，全部操作可以通过一个内置的session函数完成，该函数可以完成Session的设置、获取、删除和管理操作。Session初始化设置方法无需手动调用，在Think\App类的初始化工作结束后会自动调用，通常项目只需要配置SESSION_OPTIONS参数即可，SESSION_OPTIONS参数的设置是一个数组，支持的索引名和前面的session初始化参数相同。默认情况下，初始化之后系统会自动启动session，如果不希望系统自动启动session的话，可以设置SESSION_AUTO_START为false。<br>　　具体的：<br>1.在配置文件中写明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//session配置</span><br><span class="line">&apos;SESSION_OPTIONS&apos;  =&gt; array(</span><br><span class="line">    &apos;expire&apos; =&gt; 60,</span><br><span class="line">),</span><br></pre></td></tr></table></figure></p>
 <p>2.根据开发惯例结合ThinkPHP的写法，在MVC结构中，“C”即controller层应该有一个共用的基础controller即BaseController。考虑到用户会话保持是一个在访问整个网站中任意页面都需要的功能，因此session创建相关的内容非常合适（也只应该）放在BaseController中来完成。也就是说，BaseController应该具有全局（静态）方法is_login()用来判断用户是否登录，从而相应创建session，这样如果用户直接访问网站任意的子目录，由于继承了BaseController，都会做验证，保证了安全性。<br>　　但是，有一处比较特殊要注意，用户登录鉴权方法所在的controller（比如IndexController）是无法继承BaseController的</p>
   
 	</div>
@@ -173,7 +171,7 @@ cooki">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session相关介绍"><span class="toc-number">2.</span> <span class="toc-text">session相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session安全性问题"><span class="toc-number">3.</span> <span class="toc-text">session安全性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie与session的对比分析"><span class="toc-number">4.</span> <span class="toc-text">cookie与session的对比分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session在实际开发中的使用"><span class="toc-number">5.</span> <span class="toc-text">session在实际开发中的使用</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#直观感受"><span class="toc-number">2.</span> <span class="toc-text">直观感受</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session相关介绍"><span class="toc-number">3.</span> <span class="toc-text">session相关介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session的生成时间"><span class="toc-number">3.2.</span> <span class="toc-text">session的生成时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session的存储方式"><span class="toc-number">3.3.</span> <span class="toc-text">session的存储方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session的销毁时间"><span class="toc-number">3.4.</span> <span class="toc-text">session的销毁时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session的生存周期"><span class="toc-number">3.5.</span> <span class="toc-text">session的生存周期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session安全性问题"><span class="toc-number">4.</span> <span class="toc-text">session安全性问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie与session的对比分析"><span class="toc-number">5.</span> <span class="toc-text">cookie与session的对比分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session在PHP开发中的使用"><span class="toc-number">6.</span> <span class="toc-text">session在PHP开发中的使用</span></a></li></ol>
  
   </div>
 
@@ -199,7 +197,7 @@ cooki">
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>14</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>16</sup></a></li>
 			
 		
 			
@@ -215,19 +213,23 @@ cooki">
 			
 		
 			
+				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SSL/" title="SSL">SSL<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/部署/" title="部署">部署<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/cookie/" title="cookie">cookie<sup>1</sup></a></li>
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
 			
 		
 			
@@ -235,19 +237,11 @@ cooki">
 			
 		
 			
-				<li><a href="/tags/URL/" title="URL">URL<sup>1</sup></a></li>
+				<li><a href="/tags/cookie/" title="cookie">cookie<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/学习笔记，资源汇总/" title="学习笔记，资源汇总">学习笔记，资源汇总<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/URL重写/" title="URL重写">URL重写<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
 			
 		
 			
@@ -255,7 +249,11 @@ cooki">
 			
 		
 			
-				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
+				<li><a href="/tags/URL/" title="URL">URL<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
 			
 		
 			
@@ -271,7 +269,7 @@ cooki">
 			
 		
 			
-				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+				<li><a href="/tags/学习笔记，资源汇总/" title="学习笔记，资源汇总">学习笔记，资源汇总<sup>1</sup></a></li>
 			
 		
 			
