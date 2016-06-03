@@ -11,16 +11,24 @@
     
 
     
-    <meta name="description" content="前言//TODO">
+    <meta name="description" content="前言　　HTTP本身是匿名/无状态的请求/响应协议，为了能够进行客户端识别，发展出了很多种解决方案，胖URL就是其中一种用户识别机制，它是一种在URL中嵌入识别信息的技术。
+
+定义　　服务端可以通过为每个用户生成特定版本的URL来追踪用户身份。通常的做法是在URL开始或结束的地方增加一些状态信息。用户浏览站点时，web服务器会动态生成一些超链，继续维护URL中的状态信息。这种改动后的URL就被称为">
 <meta property="og:type" content="article">
 <meta property="og:title" content="胖URL">
 <meta property="og:url" content="http://yoursite.com/2016/05/08/fat-url/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言//TODO">
-<meta property="og:updated_time" content="2016-05-30T15:41:52.011Z">
+<meta property="og:description" content="前言　　HTTP本身是匿名/无状态的请求/响应协议，为了能够进行客户端识别，发展出了很多种解决方案，胖URL就是其中一种用户识别机制，它是一种在URL中嵌入识别信息的技术。
+
+定义　　服务端可以通过为每个用户生成特定版本的URL来追踪用户身份。通常的做法是在URL开始或结束的地方增加一些状态信息。用户浏览站点时，web服务器会动态生成一些超链，继续维护URL中的状态信息。这种改动后的URL就被称为">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/fat-url-eq.png">
+<meta property="og:updated_time" content="2016-06-03T06:56:20.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="胖URL">
-<meta name="twitter:description" content="前言//TODO">
+<meta name="twitter:description" content="前言　　HTTP本身是匿名/无状态的请求/响应协议，为了能够进行客户端识别，发展出了很多种解决方案，胖URL就是其中一种用户识别机制，它是一种在URL中嵌入识别信息的技术。
+
+定义　　服务端可以通过为每个用户生成特定版本的URL来追踪用户身份。通常的做法是在URL开始或结束的地方增加一些状态信息。用户浏览站点时，web服务器会动态生成一些超链，继续维护URL中的状态信息。这种改动后的URL就被称为">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/fat-url-eq.png">
 
     
     
@@ -93,11 +101,17 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-number">2.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机制"><span class="toc-number">3.</span> <span class="toc-text">机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺点"><span class="toc-number">4.</span> <span class="toc-text">缺点</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>//TODO</p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　HTTP本身是匿名/无状态的请求/响应协议，为了能够进行客户端识别，发展出了很多种解决方案，胖URL就是其中一种用户识别机制，它是一种在URL中嵌入识别信息的技术。</p>
+<hr>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>　　服务端可以通过为每个用户生成特定版本的URL来追踪用户身份。通常的做法是在URL开始或结束的地方增加一些状态信息。用户浏览站点时，web服务器会动态生成一些超链，继续维护URL中的状态信息。这种改动后的URL就被称为胖URL（fat url）。以下是《HTTP权威指南》中给出的一个例子：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/fat-url-eq.png" alt=""><br>其中粗体的002-1145265-8016838就是一种特定的标识码。</p>
+<hr>
+<h2 id="机制"><a href="#机制" class="headerlink" title="机制"></a>机制</h2><p>　　通过胖url，可以将服务器上若干个独立的HTTP事务捆绑成一个“会话”或者“访问”。用户首次访问时，会生成一个唯一的id，用服务器可以识别的方式将这个id添加到url中，然后服务器就会将浏览器重定向至这个新的url，不管什么时候，只要服务端接收到了对该胖URL的请求，就可以去查找那个用户相关的状态。</p>
+<hr>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>1.丑陋的URL<br>　　一串冗长的标识码破坏了url的基本结构。<br>2.无法共享URL<br>　　胖URL中包含了用户相关的信息，因此如果将URL共享给别人，就有可能泄露个人信息。<br>3.破坏缓存<br>　　为每个用户生成特定版本的URL意味着不再有可供公共访问的URL需要缓存了。<br>4.额外的服务器负荷<br>　　主要指重写URL的负荷。<br>5.逃逸口<br>　　当用户访问一个其他站点时，就很容易在无意之中“逃离”胖URL会话。只有用户严格追随预先修改过的链接时，胖URL才会工作。<br>6.在会话期间非持久<br>　　除非用户收藏了特定胖URL，否则用户退出登录时，所有信息将会丢失。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -155,7 +169,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-number">2.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机制"><span class="toc-number">3.</span> <span class="toc-text">机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺点"><span class="toc-number">4.</span> <span class="toc-text">缺点</span></a></li></ol>
  
   </div>
 
@@ -197,7 +211,7 @@
 			
 		
 			
-				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>2</sup></a></li>
+				<li><a href="/tags/部署/" title="部署">部署<sup>2</sup></a></li>
 			
 		
 			
@@ -205,31 +219,11 @@
 			
 		
 			
+				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/SSL/" title="SSL">SSL<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/部署/" title="部署">部署<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/cookie/" title="cookie">cookie<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
 			
 		
 			
@@ -237,11 +231,31 @@
 			
 		
 			
-				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记，资源汇总/" title="学习笔记，资源汇总">学习笔记，资源汇总<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
 			
 		
 			
@@ -253,11 +267,11 @@
 			
 		
 			
-				<li><a href="/tags/学习笔记，资源汇总/" title="学习笔记，资源汇总">学习笔记，资源汇总<sup>1</sup></a></li>
+				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/URL重写/" title="URL重写">URL重写<sup>1</sup></a></li>
 			
 		
 		</ul>

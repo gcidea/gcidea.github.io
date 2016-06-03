@@ -26,10 +26,13 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/cookie-example.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/setcookie.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/cookie.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/cookie-session-1.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/cookie-session-2.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/cookie-session-3.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/setcookieapi.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/setcookiefalse.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/setcookietrue.png">
-<meta property="og:updated_time" content="2016-05-31T09:39:57.763Z">
+<meta property="og:updated_time" content="2016-06-03T07:05:10.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cookie相关总结">
 <meta name="twitter:description" content="前言　　本篇简单总结cookie的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且cookie相关是一个很大的话题，这里只是简单小结，主要包括：　　1.cookie相关介绍　　2.cookie安全性问题　　3.javascript对cookie的操作与使用　　4.cookie与session的对比分析　　5.cookie在实际开发中的使用
@@ -108,7 +111,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#直观感受"><span class="toc-number">2.</span> <span class="toc-text">直观感受</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie相关介绍"><span class="toc-number">3.</span> <span class="toc-text">cookie相关介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准"><span class="toc-number">3.2.</span> <span class="toc-text">标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编码"><span class="toc-number">3.3.</span> <span class="toc-text">编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性"><span class="toc-number">3.4.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限制"><span class="toc-number">3.5.</span> <span class="toc-text">限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输"><span class="toc-number">3.6.</span> <span class="toc-text">传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改"><span class="toc-number">3.7.</span> <span class="toc-text">修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用"><span class="toc-number">3.8.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">3.9.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie安全性问题"><span class="toc-number">4.</span> <span class="toc-text">cookie安全性问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#httpOnly"><span class="toc-number">4.1.</span> <span class="toc-text">httpOnly</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对cookie的操作与使用"><span class="toc-number">5.</span> <span class="toc-text">JavaScript对cookie的操作与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#应用场景"><span class="toc-number">5.1.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS设置cookie"><span class="toc-number">5.2.</span> <span class="toc-text">JS设置cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS获取cookie"><span class="toc-number">5.3.</span> <span class="toc-text">JS获取cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS删除cookie"><span class="toc-number">5.4.</span> <span class="toc-text">JS删除cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS检查cookie"><span class="toc-number">5.5.</span> <span class="toc-text">JS检查cookie</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie与session的对比分析"><span class="toc-number">6.</span> <span class="toc-text">cookie与session的对比分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie在实际开发中的使用"><span class="toc-number">7.</span> <span class="toc-text">cookie在实际开发中的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#直观感受"><span class="toc-number">2.</span> <span class="toc-text">直观感受</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie相关介绍"><span class="toc-number">3.</span> <span class="toc-text">cookie相关介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准"><span class="toc-number">3.2.</span> <span class="toc-text">标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编码"><span class="toc-number">3.3.</span> <span class="toc-text">编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性"><span class="toc-number">3.4.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">3.5.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限制"><span class="toc-number">3.6.</span> <span class="toc-text">限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输"><span class="toc-number">3.7.</span> <span class="toc-text">传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例"><span class="toc-number">3.8.</span> <span class="toc-text">案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改"><span class="toc-number">3.9.</span> <span class="toc-text">修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用"><span class="toc-number">3.10.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">3.11.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie安全性问题"><span class="toc-number">4.</span> <span class="toc-text">cookie安全性问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#httpOnly"><span class="toc-number">4.1.</span> <span class="toc-text">httpOnly</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对cookie的操作与使用"><span class="toc-number">5.</span> <span class="toc-text">JavaScript对cookie的操作与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#应用场景"><span class="toc-number">5.1.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS设置cookie"><span class="toc-number">5.2.</span> <span class="toc-text">JS设置cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS获取cookie"><span class="toc-number">5.3.</span> <span class="toc-text">JS获取cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS删除cookie"><span class="toc-number">5.4.</span> <span class="toc-text">JS删除cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS检查cookie"><span class="toc-number">5.5.</span> <span class="toc-text">JS检查cookie</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie与session的对比分析"><span class="toc-number">6.</span> <span class="toc-text">cookie与session的对比分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie在实际开发中的使用"><span class="toc-number">7.</span> <span class="toc-text">cookie在实际开发中的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
 		
 		</div>
 		
@@ -129,6 +132,15 @@
 <p>　(5)<code>domain</code>:子域，指定在该子域下才可以访问Cookie，例如要让Cookie在a.test.com下可以访问，但在b.test.com下不能访问，则可将domain设置成a.test.com。</p>
 <p>　(6)<code>secure</code>:安全性，指定Cookie是否只能通过https协议访问，一般的Cookie使用HTTP协议即可访问，如果设置了secure，则只有当使用https协议连接时cookie才可以被页面访问。</p>
 <p>　(7)<code>httpOnly</code>:如果在Cookie中设置了”HttpOnly”属性，那么通过程序(JS脚本、Applet等)将无法读取到Cookie信息。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>cookie主要可以分为以下两类：</p>
+<blockquote>
+<p>Session cookies - these are temporary and are erased when you close your browser at the end of your surfing session. The next time you visit that particular site it will not recognise you and will treat you as a completely new visitor as there is nothing in your browser to let the site know that you have visited before.</p>
+</blockquote>
+<p>会话cookie—这类cookie是短暂性的，是位于客户端所在系统的内存中的，当你的会话结束，关闭浏览器时，这类cookie将会被清空。当你下一次再访问该网站时，服务端并不能识别出你而是将你当做一个全新的用户，因为你的浏览器中没有任何可以让服务端判断你之前访问过的信息。（在设置了Discard参数(该参数是指当客户端程序运行结束时丢弃这个cookie。是RFC2965中新增字段，允许浏览器在退出时，不考虑过期时间，将cookie强制销毁)，或者没有明确设置的expires或Max-Age的情况下，创建的是一个会话cookie。）主要作用：根据名字也容易看出，主要是为了配合服务端session机制对用户进行标识。</p>
+<blockquote>
+<p>Persistent cookies - these remain on your hard drive until you erase them or they expire. How long a cookie remains on your browser depends on how long the visited website has programmed the cookie to last.</p>
+</blockquote>
+<p>持久cookie—这类cookie将保存在客户端所在设备的硬盘上（具体位置见本文开头直观感受部分），除非你主动删除它们或者它们过期了。这类cookie能在你的浏览器中保持有效多长时间，取决于你所访问网站为之设定的有效期。主要作用：持久化cookie则主要是进行用户特征的追踪，比如记录用户最初访问时间，用户习惯等。</p>
 <h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p>　　大多数浏览器支持最大为4096字节的 Cookie。浏览器还限制站点可以在用户计算机上存储的Cookie的数量。大多数浏览器只允许每个站点存储20个Cookie；注意这里的20个是指主键值，也就是20条Cookies记录，但是每个Cookies记录还可以包含若干子键。如果试图存储更多Cookie，则最旧的Cookie便会被丢弃。有些浏览器还会对它们将接受的来自所有站点的Cookie总数作出绝对限制，通常为300个。</p>
 <h3 id="传输"><a href="#传输" class="headerlink" title="传输"></a>传输</h3><p>　　cookie信息在浏览器（客户端）和服务器端的传递是通过http报文头部来实现的。<br>　　HTTP请求报文的首部字段有“请求首部字段”，“通用首部字段”，“实体首部字段”3种；HTTP响应报文的首部字段有“响应首部字段”，“通用首部字段”，“实体首部字段”3种。具体到这里：为cookie服务的首部字段有：</p>
 <table>
@@ -191,9 +203,10 @@
 </table>
 <p><b>Cookie</b><br>示例：请求报文中的一段<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/cookie.png" alt=""></p>
 <p>首部字段Cookie会告知服务器，当客服端想获得HTTP状态管理支持时，就会在请求头包含从服务器接收到的cookie。</p>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p>　　下面是《HTTP权威指南》中给出的一个关于“cookie与会话跟踪”的例子：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/cookie-session-1.png" alt=""><br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/cookie-session-2.png" alt=""><br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/cookie-session-3.png" alt=""></p>
 <h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>　　其实cookie是不存在真正意义上的修改、删除操作的。要想修改，只需要在服务端新建一个同名cookie，填入http响应报文覆盖原来的cookie即可；要想删除，则只要在服务端新建一个同名cookie，并且设置maxAge为0，填入http响应报文覆盖原来的cookie即可。</p>
 <h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>　　cookie的作用主要在于“绑定一种状态”，其工作机制是用户识别及状态管理。比如购物网站中，一定时间内可以直接登录，免去输入用户名密码的繁琐；可以根据浏览记录精准推荐感兴趣的商品；正确记录购物车中已有商品等等。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>　　简单来讲，关于cookie记住3句话：<br>1.首次由服务端生成，放入set-cookie字段传回给客户端；<br>2.客户端请求报文首部加入该cookie；<br>3.服务端识别该cookie，从而确定用户身份。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>简单来讲，关于cookie记住3句话：<br>　1.首次由服务端生成，放入set-cookie字段传回给客户端；<br>　2.客户端请求报文首部加入该cookie；<br>　3.服务端识别该cookie，从而确定用户身份。</p>
 <hr>
 <h2 id="cookie安全性问题"><a href="#cookie安全性问题" class="headerlink" title="cookie安全性问题"></a>cookie安全性问题</h2><p>　　cookie在提供便利的同时，确实存在安全性问题，它可能被非法使用冒充身份。Cookie记录了用户的帐户ID、密码之类的信息，通常使用MD5方法加密后在网上传递。但是，Cookie以纯文本的形式在浏览器和服务器之间传送，很容易被他人非法截获和利用。并且截获者不需要知道这些字符串的含义，只要把别人的Cookie向服务器提交，且能够通过验证，就可以冒充受害人的身份登陆网站，这种行为就叫做Cookie欺骗。</p>
 <h3 id="httpOnly"><a href="#httpOnly" class="headerlink" title="httpOnly"></a>httpOnly</h3><p>　　上述cookie属性中的httpOnly是安全性的解决方案之一。设置为true后，JavaScript是无法获取cookie的，可防止XSS（跨站脚本攻击）等。详见如下演示：<br>1.测试程序如下：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace Home\Controller;</span><br><span class="line">use Think\Controller;</span><br><span class="line">class IndexController extends Controller &#123;</span><br><span class="line">    public function index()&#123;</span><br><span class="line">        setcookie(&quot;sid&quot;, &quot;this is a cookie test&quot;, NULL, NULL, NULL, NULL, false);</span><br><span class="line">        $this-&gt;display();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -290,7 +303,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#直观感受"><span class="toc-number">2.</span> <span class="toc-text">直观感受</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie相关介绍"><span class="toc-number">3.</span> <span class="toc-text">cookie相关介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准"><span class="toc-number">3.2.</span> <span class="toc-text">标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编码"><span class="toc-number">3.3.</span> <span class="toc-text">编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性"><span class="toc-number">3.4.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限制"><span class="toc-number">3.5.</span> <span class="toc-text">限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输"><span class="toc-number">3.6.</span> <span class="toc-text">传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改"><span class="toc-number">3.7.</span> <span class="toc-text">修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用"><span class="toc-number">3.8.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">3.9.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie安全性问题"><span class="toc-number">4.</span> <span class="toc-text">cookie安全性问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#httpOnly"><span class="toc-number">4.1.</span> <span class="toc-text">httpOnly</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对cookie的操作与使用"><span class="toc-number">5.</span> <span class="toc-text">JavaScript对cookie的操作与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#应用场景"><span class="toc-number">5.1.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS设置cookie"><span class="toc-number">5.2.</span> <span class="toc-text">JS设置cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS获取cookie"><span class="toc-number">5.3.</span> <span class="toc-text">JS获取cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS删除cookie"><span class="toc-number">5.4.</span> <span class="toc-text">JS删除cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS检查cookie"><span class="toc-number">5.5.</span> <span class="toc-text">JS检查cookie</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie与session的对比分析"><span class="toc-number">6.</span> <span class="toc-text">cookie与session的对比分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie在实际开发中的使用"><span class="toc-number">7.</span> <span class="toc-text">cookie在实际开发中的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#直观感受"><span class="toc-number">2.</span> <span class="toc-text">直观感受</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie相关介绍"><span class="toc-number">3.</span> <span class="toc-text">cookie相关介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准"><span class="toc-number">3.2.</span> <span class="toc-text">标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编码"><span class="toc-number">3.3.</span> <span class="toc-text">编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性"><span class="toc-number">3.4.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">3.5.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限制"><span class="toc-number">3.6.</span> <span class="toc-text">限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输"><span class="toc-number">3.7.</span> <span class="toc-text">传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例"><span class="toc-number">3.8.</span> <span class="toc-text">案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改"><span class="toc-number">3.9.</span> <span class="toc-text">修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用"><span class="toc-number">3.10.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">3.11.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie安全性问题"><span class="toc-number">4.</span> <span class="toc-text">cookie安全性问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#httpOnly"><span class="toc-number">4.1.</span> <span class="toc-text">httpOnly</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对cookie的操作与使用"><span class="toc-number">5.</span> <span class="toc-text">JavaScript对cookie的操作与使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#应用场景"><span class="toc-number">5.1.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS设置cookie"><span class="toc-number">5.2.</span> <span class="toc-text">JS设置cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS获取cookie"><span class="toc-number">5.3.</span> <span class="toc-text">JS获取cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS删除cookie"><span class="toc-number">5.4.</span> <span class="toc-text">JS删除cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS检查cookie"><span class="toc-number">5.5.</span> <span class="toc-text">JS检查cookie</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie与session的对比分析"><span class="toc-number">6.</span> <span class="toc-text">cookie与session的对比分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie在实际开发中的使用"><span class="toc-number">7.</span> <span class="toc-text">cookie在实际开发中的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
  
   </div>
 
@@ -332,7 +345,7 @@
 			
 		
 			
-				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>2</sup></a></li>
+				<li><a href="/tags/部署/" title="部署">部署<sup>2</sup></a></li>
 			
 		
 			
@@ -340,31 +353,11 @@
 			
 		
 			
+				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/SSL/" title="SSL">SSL<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/部署/" title="部署">部署<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/cookie/" title="cookie">cookie<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
 			
 		
 			
@@ -372,11 +365,31 @@
 			
 		
 			
-				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记，资源汇总/" title="学习笔记，资源汇总">学习笔记，资源汇总<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
 			
 		
 			
@@ -388,11 +401,11 @@
 			
 		
 			
-				<li><a href="/tags/学习笔记，资源汇总/" title="学习笔记，资源汇总">学习笔记，资源汇总<sup>1</sup></a></li>
+				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/URL重写/" title="URL重写">URL重写<sup>1</sup></a></li>
 			
 		
 		</ul>
