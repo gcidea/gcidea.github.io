@@ -1,0 +1,563 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>JavaScript的闭包案例---1 | GCidea&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Gao Chang">
+    
+
+    
+    <meta name="description" content="背景　　闭包是JavaScript中的一个重要概念。　　JavaScript采用词法作用域，函数的执行依赖于变量作用域，这个作用域是在函数定义时决定的，而不是函数调用时决定的。函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内，这就是闭包的特性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript的闭包案例---1">
+<meta property="og:url" content="http://yoursite.com/2016/04/16/JavaScript-closure/index.html">
+<meta property="og:site_name" content="GCidea's blog">
+<meta property="og:description" content="背景　　闭包是JavaScript中的一个重要概念。　　JavaScript采用词法作用域，函数的执行依赖于变量作用域，这个作用域是在函数定义时决定的，而不是函数调用时决定的。函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内，这就是闭包的特性。">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/demo-index.png">
+<meta property="og:updated_time" content="2016-06-05T05:30:52.525Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript的闭包案例---1">
+<meta name="twitter:description" content="背景　　闭包是JavaScript中的一个重要概念。　　JavaScript采用词法作用域，函数的执行依赖于变量作用域，这个作用域是在函数定义时决定的，而不是函数调用时决定的。函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内，这就是闭包的特性。">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/demo-index.png">
+
+    
+    
+    <link rel="icon" href="/img/seal.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/seal.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/seal.png">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/seal.png" alt="GCidea&#39;s blog" title="GCidea&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="GCidea&#39;s blog">GCidea&#39;s blog</a></h1>
+				<h2 class="blog-motto">gaochang | BUPT</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+                  <form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+                  <label>Search</label>
+                  <input type="text" id="search" class="st-default-search-input" maxlength="20" placeholder="搜索" />
+                  </form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/04/16/JavaScript-closure/" title="JavaScript的闭包案例---1" itemprop="url">JavaScript的闭包案例---1</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-04-16T06:05:10.000Z" itemprop="datePublished"> 发表于 2016-04-16</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实际场景"><span class="toc-number">2.</span> <span class="toc-text">实际场景</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>　　闭包是JavaScript中的一个重要概念。<br>　　JavaScript采用词法作用域，函数的执行依赖于变量作用域，这个作用域是在函数定义时决定的，而不是函数调用时决定的。函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内，这就是闭包的特性。<br>  <a id="more"></a></p>
+<h2 id="实际场景"><a href="#实际场景" class="headerlink" title="实际场景"></a>实际场景</h2><p>　　在完成一个小demo时，正巧遇到了这个问题。先说一下这个demo要实现的基本功能吧。要求能让用户输入城市名称和对应的空气质量指数（输入的名称和指数都要做表单验证），输入完成后点击确定，将合法的数据显示在本页的列表中，可以增加多条记录。并且已添加的数据可以逐条删除。这里仅从功能展示，没有使用css美化页面：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/demo-index.png" alt=""><br>　　在做删除功能时，按着想法先写了一遍，进行实际测试时候发现一个问题：对于最后一列的删除按钮，无论点击哪一个，都是列表中最后一条数据被删除了。<br>　　开始代码是这样写的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 渲染aqi-table表格</span><br><span class="line"> */</span><br><span class="line">function renderAqiList() &#123;</span><br><span class="line">    var aqiTable = document.getElementById(&quot;aqi-table&quot;);</span><br><span class="line">    aqiTable.innerHTML = &quot;&quot;;</span><br><span class="line">    var t_row = document.createElement(&quot;tr&quot;);</span><br><span class="line">    var t_city = document.createElement(&quot;td&quot;);</span><br><span class="line">    var t_score = document.createElement(&quot;td&quot;);</span><br><span class="line">    var t_oper = document.createElement(&quot;td&quot;);</span><br><span class="line">    t_city.innerHTML = &quot;城市&quot;;</span><br><span class="line">    t_score.innerHTML = &quot;空气质量&quot;;</span><br><span class="line">    t_oper.innerHTML = &quot;操作&quot;;</span><br><span class="line">    t_row.appendChild(t_city);</span><br><span class="line">    t_row.appendChild(t_score);</span><br><span class="line">    t_row.appendChild(t_oper);</span><br><span class="line">    aqiTable.appendChild(t_row);</span><br><span class="line">    //遍历对象中所有属性渲染表格</span><br><span class="line">    for (var name in aqiData)&#123;</span><br><span class="line">        var newLi = document.createElement(&quot;tr&quot;);</span><br><span class="line">        var cityName = document.createElement(&quot;td&quot;);</span><br><span class="line">        var score = document.createElement(&quot;td&quot;);</span><br><span class="line">        var oper = document.createElement(&quot;td&quot;);</span><br><span class="line">        var delBtn = document.createElement(&quot;button&quot;);</span><br><span class="line">        cityName.innerHTML = name;</span><br><span class="line">        score.innerHTML = aqiData[name];</span><br><span class="line">        delBtn.innerHTML = &quot;删除&quot;;</span><br><span class="line">        delBtn.setAttribute(&quot;city&quot;, name);</span><br><span class="line">        delBtn.onclick = function ()&#123;</span><br><span class="line">                delBtnHandle(name);</span><br><span class="line">        &#125;;</span><br><span class="line">        oper.appendChild(delBtn);</span><br><span class="line">        newLi.appendChild(cityName);</span><br><span class="line">        newLi.appendChild(score);</span><br><span class="line">        newLi.appendChild(oper);</span><br><span class="line">        aqiTable.appendChild(newLi);</span><br><span class="line">    &#125;</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　其中最关键的是给删除按钮绑定事件：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">delBtn.onclick = function ()&#123;</span><br><span class="line">        delBtnHandle(name);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>　　这种做法想当然的认为，只要发生click事件时候，调用delBtnHandle()函数，并把要删除城市对应的name参数传递过去就好了，但在js中并不是这么执行的，这就要考虑到闭包的概念了。换做如下写法，问题就得到了解决。</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/*难点：js闭包的运用，防止出现以下错误：for循环时动态绑定，使得onclick</span><br><span class="line"> 事件需要的name只能取到最后一个值而不是每一次遍历*/</span><br><span class="line">delBtn.onclick = function (asd) &#123;</span><br><span class="line">     return function ()&#123;</span><br><span class="line">     delBtnHandle(asd);</span><br><span class="line">　　　&#125;</span><br><span class="line">&#125;(name);</span><br></pre></td></tr></table></figure>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/JavaScript/">JavaScript</a><a href="/tags/闭包/">闭包</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/04/16/JavaScript-closure/" data-title="JavaScript的闭包案例---1 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/04/26/js-closure-2/" title="JavaScript的闭包案例---2">
+  <strong>上一篇：</strong><br/>
+  <span>
+  JavaScript的闭包案例---2</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/04/07/JavaScript-memory-leak/"  title="JavaScript内存泄漏">
+ <strong>下一篇：</strong><br/> 
+ <span>JavaScript内存泄漏
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实际场景"><span class="toc-number">2.</span> <span class="toc-text">实际场景</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<!--<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>-->
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="gcidea" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/搭建记录/" title="搭建记录">搭建记录<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SSL/" title="SSL">SSL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/部署/" title="部署">部署<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cookie/" title="cookie">cookie<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/URL/" title="URL">URL<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/http/" title="http">http<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/https/" title="https">https<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://bbs.byr.cn" target="_blank" title="">北邮人论坛-北邮人的温馨家园</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ebupt.com" target="_blank" title="东信北邮信息技术有限公司">东信北邮信息技术有限公司</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2180985772&verifier=e539de77&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Gao Chang in BUPT. <br/>
+			Where there is a will there is a way.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2180985772" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/gcidea" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/gcidea" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		
+		<a href="http://www.zhihu.com/people/gcidea" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:gaochang@ebupt.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Gao Chang">Gao Chang</a>
+		
+		
+		</p>
+    
+    
+    <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','t_xFiUzPf_dy2au4WGJx','2.0.0');
+</script>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  /*$this.append(html);*/
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad03ecfd99432fefa83cbc4dea96fac4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

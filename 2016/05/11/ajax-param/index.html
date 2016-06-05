@@ -1,0 +1,656 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>jQuery的ajax()方法详细分析 | GCidea&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Gao Chang">
+    
+
+    
+    <meta name="description" content="前言　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。
+
+核心　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery的ajax()方法详细分析">
+<meta property="og:url" content="http://yoursite.com/2016/05/11/ajax-param/index.html">
+<meta property="og:site_name" content="GCidea's blog">
+<meta property="og:description" content="前言　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。
+
+核心　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对象">
+<meta property="og:updated_time" content="2016-06-05T17:07:00.730Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery的ajax()方法详细分析">
+<meta name="twitter:description" content="前言　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。
+
+核心　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对象">
+
+    
+    
+    <link rel="icon" href="/img/seal.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/seal.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/seal.png">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/seal.png" alt="GCidea&#39;s blog" title="GCidea&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="GCidea&#39;s blog">GCidea&#39;s blog</a></h1>
+				<h2 class="blog-motto">gaochang | BUPT</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<li>
+ 					
+                  <form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+                  <label>Search</label>
+                  <input type="text" id="search" class="st-default-search-input" maxlength="20" placeholder="搜索" />
+                  </form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/11/ajax-param/" title="jQuery的ajax()方法详细分析" itemprop="url">jQuery的ajax()方法详细分析</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-11T09:23:24.000Z" itemprop="datePublished"> 发表于 2016-05-11</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心"><span class="toc-number">2.</span> <span class="toc-text">核心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类"><span class="toc-number">3.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#全局Ajax事件处理函数（Global-Ajax-Event-Handlers）"><span class="toc-number">3.1.</span> <span class="toc-text">全局Ajax事件处理函数（Global Ajax Event Handlers）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#辅助函数（Helper-Functions）"><span class="toc-number">3.2.</span> <span class="toc-text">辅助函数（Helper Functions）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础接口（Low-Level-Interface）"><span class="toc-number">3.3.</span> <span class="toc-text">基础接口（Low-Level Interface）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速写函数（Shorthand-Methods）"><span class="toc-number">3.4.</span> <span class="toc-text">速写函数（Shorthand Methods）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ajax-详细介绍"><span class="toc-number">4.</span> <span class="toc-text">$.ajax()详细介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#描述：使用该方法可发起一个异步HTTP请求。"><span class="toc-number">4.1.</span> <span class="toc-text">描述：使用该方法可发起一个异步HTTP请求。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#version1-5-格式：jQuery-ajax-url-settings"><span class="toc-number">4.2.</span> <span class="toc-text">version1.5 格式：jQuery.ajax( url [, settings ] )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#version1-0-格式：jQuery-ajax-settings"><span class="toc-number">4.3.</span> <span class="toc-text">version1.0 格式：jQuery.ajax( [ settings ] )</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">5.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jqXHR对象"><span class="toc-number">6.</span> <span class="toc-text">jqXHR对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#几个例子"><span class="toc-number">7.</span> <span class="toc-text">几个例子</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。</p>
+<hr>
+<h2 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h2><p>　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对象。通过以下jQuery源码片段可以看出(jquery-2.2.0)：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jQuery.ajaxSettings.xhr = function() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        return new window.XMLHttpRequest();</span><br><span class="line">    &#125; catch ( e ) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  关于XMLHttpRequest的更多属性、方法和演示，可以参考<a href="http://www.w3school.com.cn/xmldom/dom_http.asp" target="_blank" rel="external">W3School XML DOM - XMLHttpRequest 对象</a>。</p>
+<hr>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>　　其实，$.ajax只是jQuery对异步加载封装的函数之一。jQuery对Ajax相关内容分为了4类：</p>
+<h3 id="全局Ajax事件处理函数（Global-Ajax-Event-Handlers）"><a href="#全局Ajax事件处理函数（Global-Ajax-Event-Handlers）" class="headerlink" title="全局Ajax事件处理函数（Global Ajax Event Handlers）"></a>全局Ajax事件处理函数（Global Ajax Event Handlers）</h3><p>　　说明：这些函数定义了页面上任何特定ajax事件（比如初始化或完成）触发时将会被调用的处理程序。有：</p>
+<ul>
+<li>.ajaxComplete()<br>　　当ajax请求执行完成时触发，与.ajaxSuccess()不同，通过ajaxComplete()方法规定的函数会在请求完成时运行，即使请求并未成功。</li>
+<li>.ajaxError()<br>　　当ajax请求执行错误时触发。</li>
+<li>.ajaxSend()<br>　　当ajax请求将要发送时触发。</li>
+<li>.ajaxStart()<br>　　当ajax请求将要发送时，jQuery将会检查此时是否有其他ajax请求正在进行。如果进程中没有，那么jQuery将会触发.ajaxStart()事件。</li>
+<li>.ajaxStop()<br>　　当一个ajax请求执行完成时，jQuery将会检查此时是否还有其他ajax请求。如果没有了，jQuery将会触发.ajaxStop()事件。另外，如果上一个ajax请求的beforeSend()回调函数的返回值为false，也会触发.ajaxStop()事件。</li>
+<li>.ajaxSuccess()<br>　　当ajax请求成功完成（无论何时）触发。此时，由.ajaxSuccess()方法定义的任何函数都会被执行。</li>
+</ul>
+<blockquote>
+<p>注：jQuery ajax中各个事件执行顺序如下：<br>1.ajaxStart(全局事件)<br>2.beforeSend<br>3.ajaxSend(全局事件)<br>4.success<br>5.ajaxSuccess(全局事件)<br>6.error<br>7.ajaxError (全局事件)<br>8.complete<br>9.ajaxComplete(全局事件)<br>10.ajaxStop(全局事件)</p>
+</blockquote>
+<h3 id="辅助函数（Helper-Functions）"><a href="#辅助函数（Helper-Functions）" class="headerlink" title="辅助函数（Helper Functions）"></a>辅助函数（Helper Functions）</h3><p>　　说明：这些函数在执行ajax任务时起到辅助作用，对参数变量等进行一些转化处理。</p>
+<ul>
+<li>.param()<br>　　这个函数是内部用来将表单元素值转换为序列化字符串表达式的。使用该函数将会把一个数组，空对象或者jQuery对象序列化成适合于URL查询或者ajax请求的形式。（键值对形式）</li>
+<li>.serialize()<br>　　使用该方法将会得到标准URL编码格式的字符串，可作用于已选择（或填写）确定值的jQuery对象。</li>
+<li>.serializeArray()<br>　　该方法会返回JavaScript对象数组，可用于编码成JSON字符串，可作用于jQuery表单对象集合。</li>
+</ul>
+<h3 id="基础接口（Low-Level-Interface）"><a href="#基础接口（Low-Level-Interface）" class="headerlink" title="基础接口（Low-Level Interface）"></a>基础接口（Low-Level Interface）</h3><p>　　说明：这些方法可用于编写任意的ajax请求。</p>
+<ul>
+<li>.ajax()<br>　　使用该方法可发起一个异步HTTP请求。<font color="red">具体内容是本文重点，稍后单独描述</font>。</li>
+<li>.ajaxPrefilter()<br>　　该函数在请求被发出及执行$.ajax过程前，可定制ajax请求的选项或修改已有选项。</li>
+<li>.ajaxSetup()<br>　　该函数用于定制后续将要使用的ajax请求的参数的默认值。该方法目前已不推荐使用。</li>
+<li>.ajaxTransport()<br>　　该函数用于创建实际承载ajax数据传输的对象。</li>
+</ul>
+<h3 id="速写函数（Shorthand-Methods）"><a href="#速写函数（Shorthand-Methods）" class="headerlink" title="速写函数（Shorthand Methods）"></a>速写函数（Shorthand Methods）</h3><p>　　说明：这些函数将更加常用的ajax请求抽出来，从而可以使用更简短的名字调用更明确的方法。</p>
+<ul>
+<li>.get()<br>　　使用HTTP的GET请求从服务器获取数据。</li>
+<li>.getJSON()<br>　　使用HTTP的GET请求从服务器获取JSON格式编码的数据。</li>
+<li>.getScript()<br>　　使用HTTP的GET请求从服务器获取一个JavaScript文件，然后执行之。</li>
+<li>.post()<br>　　使用HTTP的POST请求从服务器获取数据。</li>
+<li>.load()<br>　　从服务器获取数据并且将返回的HTML代码放在匹配的元素中。</li>
+</ul>
+<hr>
+<h2 id="ajax-详细介绍"><a href="#ajax-详细介绍" class="headerlink" title="$.ajax()详细介绍"></a>$.ajax()详细介绍</h2><h3 id="描述：使用该方法可发起一个异步HTTP请求。"><a href="#描述：使用该方法可发起一个异步HTTP请求。" class="headerlink" title="描述：使用该方法可发起一个异步HTTP请求。"></a>描述：使用该方法可发起一个异步HTTP请求。</h3><h3 id="version1-5-格式：jQuery-ajax-url-settings"><a href="#version1-5-格式：jQuery-ajax-url-settings" class="headerlink" title="version1.5 格式：jQuery.ajax( url [, settings ] )"></a>version1.5 格式：jQuery.ajax( url [, settings ] )</h3><p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。<br><strong>settings</strong><br>　　类型：PlainObject（PlainObject是一种包含0个或多个键值对的JavaScript对象，换句话说，就是“对象的对象”。之所以被称为“PlainObject”，是为了和其他类型的JavaScript对象作区分：比如说，null，用户自定义数组，或者宿主对象-document/window。这些对象使用typeof方法都会得到“Object”返回值。而对于PlainObject，则可以使用jQuery.isPlainObject()来判断是否成立。）<br>　　settings中一系列的键值对集合配置了一个ajax请求。所有设置都是可选的。默认设置可以使用之前提到的.ajaxSetup()。下面的内容则针对所有的setting选项给出了详细解释。</p>
+<h3 id="version1-0-格式：jQuery-ajax-settings"><a href="#version1-0-格式：jQuery-ajax-settings" class="headerlink" title="version1.0 格式：jQuery.ajax( [ settings ] )"></a>version1.0 格式：jQuery.ajax( [ settings ] )</h3><p>settings的所有可选项：<br><strong>1.accepts</strong>(缺省：取决于DataType)<br>　　类型：PlainObject<br>　　是键值对的集合，将一种给定的dataType转化为对应的MIME type(MIME类型就是设定某种扩展名的文件用一种应用程序来打开的方式类型)。它将会在请求头中发送。这个头告诉服务器它需要什么类型的返回值。比如说，下面就定义了一种自定义类型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  accepts: &#123;</span><br><span class="line">    mycustomtype: &apos;application/x-some-custom-type&apos;</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">  // Instructions for how to deserialize a `mycustomtype`</span><br><span class="line">  converters: &#123;</span><br><span class="line">    &apos;text mycustomtype&apos;: function(result) &#123;</span><br><span class="line">      // Do Stuff</span><br><span class="line">      return newresult;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">  // Expect a `mycustomtype` back from server</span><br><span class="line">  dataType: &apos;mycustomtype&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：为了让accepts正常工作，必须配套声明converters。</p>
+</blockquote>
+<p><strong>2.async</strong>(缺省：true)<br>　　类型：Boolean<br>　　默认情况下，所有请求都是异步传送的，如果想要一个同步的请求，可以把该参数设置为false。跨域请求以及dataType为“jsonp”的请求不支持同步选项。值得注意的是，同步请求可能造成浏览器短时的“锁定”，在请求执行期间无法做出任何其他响应。在jQuery1.8版本中，对jqXHR使用async: false会引起过时声明；并且，你不能使用jqXHR的jqXHR.done()或者jqXHR.success()方法，相应的要使用success/error/complete回调参数选项才行。</p>
+<p><strong>3.beforeSend</strong><br>　　类型：Function( jqXHR jqXHR, PlainObject settings )<br>　　这是一个请求前回调函数，可以用来在请求发送之前修改jqXHR(在jQuery1.4.x版本中是XMLHTTPRequest对象)。如果返回值为false，将会取消该次请求。在jQuery1.5中，无论什么请求类型，beforeSend函数都会被调用。</p>
+<p><strong>4.cache</strong>(缺省：true，但当dataType为“script”或者“jsonp”时候，缺省值是false)<br>　　类型：Boolean<br>  如果设置为false，将会强制浏览器不缓存请求的页面。<font color="red">注意：设置为false时，只在HEAD或者GET请求下能正确工作</font>。它的工作方式是在GET请求参数后面拼接上“_={timestamp}”。</p>
+<p><strong>5.complete</strong><br>　　类型：Function( jqXHR jqXHR, String textStatus )<br>　　当一个请求完成后将会调用该函数（<font color="red">特别注意：是当success或者error回调函数执行完成后才调用该函数</font>）。参数中的textStatus有”success”, “notmodified”, “nocontent”, “error”, “timeout”, “abort”, “parsererror” 这些种类。在jQuery1.5版本中，该选项还可以接收函数数组，其中的各个函数将会按顺序调用。</p>
+<p><strong>6.contents</strong><br>　　类型：PlainObject<br>　　这个对象是“字符串/正则表达式”这样的键值对的集合，这决定了jQuery如何解析返回值，一般是鉴定content type。</p>
+<p><strong>7.contentType</strong>(缺省：’application/x-www-form-urlencoded; charset=UTF-8’)<br>　　类型：String<br>　　当给服务器发送数据时会使用这个参数指定的类型。默认值能很好地适用于大多数情况。如果你在$.ajax()中显示地写明了该参数，那么即使没有数据，也会给服务器发送数据。在jQuery1.6中，可以通过设置为false来告诉jQuery不要设置http请求头中的content type参数。注意：W3C的XMLHttpRequest规范规定，字符集总是UTF-8。因此指定其他字符集不会让浏览器强制转换编码方式。还要注意：对于跨域请求，如果contentType设置的不是application/x-www-form-urlencoded, multipart/form-data, or text/plain这三个中的一个，将会触发浏览器向服务器发送一个含有预检功能HTTP-OPTIONS方法的请求，用以判断实际发送的请求是否安全。</p>
+<p><strong>8.context</strong><br>　　类型：PlainObject<br>　　这个参数指定的对象是ajax相关的所有回调函数的作用域。默认情况下，是一个代表着在调用中使用的ajax配置项的对象。比如，指定一个DOM元素作为context将会使得它（这个元素）成为complete这个回调函数的上下文环境（作用域），如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: &quot;test.html&quot;,</span><br><span class="line">  context: document.body</span><br><span class="line">&#125;).done(function() &#123;</span><br><span class="line">  $( this ).addClass( &quot;done&quot; );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>9.converters</strong>(缺省：{“* text”: window.String, “text html”: true, “text json”: jQuery.parseJSON, “text xml”: jQuery.parseXML})<br>　　类型：PlainObject<br>　　这是一个数据类型到数据类型转换的配置项，每个值都是一个函数，它返回响应值转换好的值。以上默认值表示：</p>
+<ul>
+<li>“* text”: window.String—调用String方法将任意内容转换为字符串。</li>
+<li>“text html”: true—文本转换为HTML（true表示不需要转换，直接返回）。</li>
+<li>“text json”: jQuery.parseJSON—调用jQuery.parseJSON方法将文本转换为JSON。</li>
+<li>“text xml”: jQuery.parseXML—调用jQuery.parseXML方法将文本转换为XML。</li>
+</ul>
+<p><strong>10.crossDomain</strong>(缺省：同域请求为false，跨域请求为true)<br>　　类型：Boolean<br>　　设置为true后将允许服务端重定向至另一个域名。</p>
+<p><strong>11.data</strong><br>　　类型：PlainObject 或 String 或 Array<br>　　这里设置的是将要发送给服务端的数据。如果不是一个字符串，将会被转换成查询字符串的形式。对于GET请求，它将会被添加在url尾部。可以参考“processData”这个选项来阻止这个自动的过程。给data设置的值必须是键值对形式。如果data的类型是array，那么如果序列化同键多值的元素，将取决于“traditional”这个配置项（下面将会讲述）。</p>
+<p><strong>12.url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>13.dataFilter</strong><br>　　类型：Function( String data, String type ) =&gt; Anything<br>　　这个是用来处理XMLHttpRequest原生响应数据的函数。有预处理净化响应的功能。你应该返回净化后的数据。函数接收两个参数，一个是服务器返回的原生数据，另一个是dataType参数指定的内容。</p>
+<p><strong>14.dataType</strong>(缺省：Intelligent Guess (xml, json, script, or html))<br>　　类型：String<br>　　该参数指定你想要从服务器获取的数据类型。如果你没有指定，那么jQuery会尝试根据响应的MIME类型来推断。 (XML MIME type 将会输出XML, 在jQuery1.4中JSON将会输出一个JavaScript对象, script将会执行一段脚本, 其他任何类型将会作为字符串返回)，可选项（同时也是下面将要提到的success回调函数的第一个参数）有：</p>
+<ul>
+<li>“xml”:返回一个jQuery能够处理的XML文档。</li>
+<li>“html”:将HTML作为纯文本返回，其中包含的<script></script>标签将会在插入DOM元素时起作用。</li>
+<li>“script”:将响应结果视为js代码执行，并且返回纯文本。默认情况下会通过在URL中附加查询字符串“_=[TIMESTAMP]”的方式来禁用缓存结果，除非显式设置了cache参数为true。注意: 在远程请求时(不在同一个域下)，所有POST请求都将转为GET请求。</li>
+<li>“json”:将响应结果视为JSON进行解析，并且返回一个JavaScript对象。除非在请求参数中显式声明<code>jsonp: false</code>，否则跨域时写为“json”都会被转化为“jsonp”。JSON数据将会以严格方式进行解析，任何格式有误的JSON都会被拒绝并抛出错误。另外，在jQuery1.9中，空的返回值也是不被允许的，取而代之地，服务端必须返回一个null或者{}</li>
+<li>“jsonp”:以 JSONP 的方式载入 JSON 数据块。会自动在所请求的URL最后添加”?callback=?”。默认情况下会通过在URL中附加查询字符串“_=[TIMESTAMP]”的方式来禁用缓存结果，除非显式设置了cache参数为true。</li>
+<li><p>“text”: 指定返回纯文本字符串。</p>
+<blockquote>
+<p>注：一种“多样，以空格分隔”的写法—在jQuery1.5中，jQuery可以对dataType进行转化，从请求头中Content-Type转化成你需要的形式。比如，如果你想让一个text响应被视作XML进行处理，那么dataType这个参数就可以写为”text xml”。再有，你也可以让一个返回JSONP类型数据的请求的响应被视为text进行接收，并且视为XML进行解析：”jsonp text xml”。类似的，可以使用”jsonp xml”简写,首先会尝试从jsonp到xml的转换，如果转换失败，就先将jsonp转换成text, 然后再由 text转换成xml。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。</p>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><hr>
+<h2 id="jqXHR对象"><a href="#jqXHR对象" class="headerlink" title="jqXHR对象"></a>jqXHR对象</h2><hr>
+<h2 id="几个例子"><a href="#几个例子" class="headerlink" title="几个例子"></a>几个例子</h2>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/ajax/">ajax</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/05/11/ajax-param/" data-title="jQuery的ajax()方法详细分析 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/05/11/fat-url/" title="胖URL">
+  <strong>上一篇：</strong><br/>
+  <span>
+  胖URL</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/05/10/bower-npm/"  title="包管理工具Bower与npm的简单对比分析">
+ <strong>下一篇：</strong><br/> 
+ <span>包管理工具Bower与npm的简单对比分析
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心"><span class="toc-number">2.</span> <span class="toc-text">核心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类"><span class="toc-number">3.</span> <span class="toc-text">分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#全局Ajax事件处理函数（Global-Ajax-Event-Handlers）"><span class="toc-number">3.1.</span> <span class="toc-text">全局Ajax事件处理函数（Global Ajax Event Handlers）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#辅助函数（Helper-Functions）"><span class="toc-number">3.2.</span> <span class="toc-text">辅助函数（Helper Functions）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础接口（Low-Level-Interface）"><span class="toc-number">3.3.</span> <span class="toc-text">基础接口（Low-Level Interface）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速写函数（Shorthand-Methods）"><span class="toc-number">3.4.</span> <span class="toc-text">速写函数（Shorthand Methods）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ajax-详细介绍"><span class="toc-number">4.</span> <span class="toc-text">$.ajax()详细介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#描述：使用该方法可发起一个异步HTTP请求。"><span class="toc-number">4.1.</span> <span class="toc-text">描述：使用该方法可发起一个异步HTTP请求。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#version1-5-格式：jQuery-ajax-url-settings"><span class="toc-number">4.2.</span> <span class="toc-text">version1.5 格式：jQuery.ajax( url [, settings ] )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#version1-0-格式：jQuery-ajax-settings"><span class="toc-number">4.3.</span> <span class="toc-text">version1.0 格式：jQuery.ajax( [ settings ] )</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">5.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jqXHR对象"><span class="toc-number">6.</span> <span class="toc-text">jqXHR对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#几个例子"><span class="toc-number">7.</span> <span class="toc-text">几个例子</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<!--<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>-->
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="gcidea" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>16</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/搭建记录/" title="搭建记录">搭建记录<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SSL/" title="SSL">SSL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/部署/" title="部署">部署<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cookie/" title="cookie">cookie<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/URL/" title="URL">URL<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/http/" title="http">http<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/https/" title="https">https<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://bbs.byr.cn" target="_blank" title="">北邮人论坛-北邮人的温馨家园</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ebupt.com" target="_blank" title="东信北邮信息技术有限公司">东信北邮信息技术有限公司</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2180985772&verifier=e539de77&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Gao Chang in BUPT. <br/>
+			Where there is a will there is a way.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2180985772" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/gcidea" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/gcidea" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		
+		<a href="http://www.zhihu.com/people/gcidea" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:gaochang@ebupt.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Gao Chang">Gao Chang</a>
+		
+		
+		</p>
+    
+    
+    <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','t_xFiUzPf_dy2au4WGJx','2.0.0');
+</script>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  /*$this.append(html);*/
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad03ecfd99432fefa83cbc4dea96fac4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
