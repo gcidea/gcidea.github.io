@@ -13,56 +13,22 @@
     
     <meta name="description" content="前言　　本篇集中对常见CSS布局进行总结。
 
-两列右侧自适应布局
-两列左侧自适应布局
-两列定宽布局
-三列中间自适应布局
-三列左侧自适应布局
-三列右侧自适应布局
-多列等分布局
-九宫格布局
-上中下三栏自适应高度全屏布局
-瀑布流布局
-圣杯布局
-双飞翼布局
-响应式布局">
+布局分类　　CSS布局可以分为固定宽度布局，流式布局，弹性布局3类。为讨论这三种布局，先创建以下简单的HTML结构：12345678910111213141516171819202122232425&amp;lt;!DOCTYPE&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS布局问题总结">
 <meta property="og:url" content="http://yoursite.com/2016/06/01/css-layout-sum-up/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　本篇集中对常见CSS布局进行总结。
 
-两列右侧自适应布局
-两列左侧自适应布局
-两列定宽布局
-三列中间自适应布局
-三列左侧自适应布局
-三列右侧自适应布局
-多列等分布局
-九宫格布局
-上中下三栏自适应高度全屏布局
-瀑布流布局
-圣杯布局
-双飞翼布局
-响应式布局">
-<meta property="og:updated_time" content="2016-06-05T05:33:05.216Z">
+布局分类　　CSS布局可以分为固定宽度布局，流式布局，弹性布局3类。为讨论这三种布局，先创建以下简单的HTML结构：12345678910111213141516171819202122232425&amp;lt;!DOCTYPE&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-fluid-eq.png">
+<meta property="og:updated_time" content="2016-06-06T16:28:35.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS布局问题总结">
 <meta name="twitter:description" content="前言　　本篇集中对常见CSS布局进行总结。
 
-两列右侧自适应布局
-两列左侧自适应布局
-两列定宽布局
-三列中间自适应布局
-三列左侧自适应布局
-三列右侧自适应布局
-多列等分布局
-九宫格布局
-上中下三栏自适应高度全屏布局
-瀑布流布局
-圣杯布局
-双飞翼布局
-响应式布局">
+布局分类　　CSS布局可以分为固定宽度布局，流式布局，弹性布局3类。为讨论这三种布局，先创建以下简单的HTML结构：12345678910111213141516171819202122232425&amp;lt;!DOCTYPE&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-fluid-eq.png">
 
     
     
@@ -135,12 +101,22 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两列右侧自适应布局"><span class="toc-number">2.</span> <span class="toc-text">两列右侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两列左侧自适应布局"><span class="toc-number">3.</span> <span class="toc-text">两列左侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两列定宽布局"><span class="toc-number">4.</span> <span class="toc-text">两列定宽布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三列中间自适应布局"><span class="toc-number">5.</span> <span class="toc-text">三列中间自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三列左侧自适应布局"><span class="toc-number">6.</span> <span class="toc-text">三列左侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三列右侧自适应布局"><span class="toc-number">7.</span> <span class="toc-text">三列右侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多列等分布局"><span class="toc-number">8.</span> <span class="toc-text">多列等分布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九宫格布局"><span class="toc-number">9.</span> <span class="toc-text">九宫格布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#上中下三栏自适应高度全屏布局"><span class="toc-number">10.</span> <span class="toc-text">上中下三栏自适应高度全屏布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#瀑布流布局"><span class="toc-number">11.</span> <span class="toc-text">瀑布流布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#圣杯布局"><span class="toc-number">12.</span> <span class="toc-text">圣杯布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双飞翼布局"><span class="toc-number">13.</span> <span class="toc-text">双飞翼布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应式布局"><span class="toc-number">14.</span> <span class="toc-text">响应式布局</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#布局分类"><span class="toc-number">2.</span> <span class="toc-text">布局分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两列右侧自适应布局"><span class="toc-number">3.</span> <span class="toc-text">两列右侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两列左侧自适应布局"><span class="toc-number">4.</span> <span class="toc-text">两列左侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两列定宽布局"><span class="toc-number">5.</span> <span class="toc-text">两列定宽布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三列中间自适应布局"><span class="toc-number">6.</span> <span class="toc-text">三列中间自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三列左侧自适应布局"><span class="toc-number">7.</span> <span class="toc-text">三列左侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三列右侧自适应布局"><span class="toc-number">8.</span> <span class="toc-text">三列右侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多列等分布局"><span class="toc-number">9.</span> <span class="toc-text">多列等分布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九宫格布局"><span class="toc-number">10.</span> <span class="toc-text">九宫格布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#上中下三栏自适应高度全屏布局"><span class="toc-number">11.</span> <span class="toc-text">上中下三栏自适应高度全屏布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#瀑布流布局"><span class="toc-number">12.</span> <span class="toc-text">瀑布流布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#圣杯布局"><span class="toc-number">13.</span> <span class="toc-text">圣杯布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双飞翼布局"><span class="toc-number">14.</span> <span class="toc-text">双飞翼布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应式布局"><span class="toc-number">15.</span> <span class="toc-text">响应式布局</span></a></li></ol>
 		
 		</div>
 		
 		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本篇集中对常见CSS布局进行总结。</p>
 <hr>
+<h2 id="布局分类"><a href="#布局分类" class="headerlink" title="布局分类"></a>布局分类</h2><p>　　CSS布局可以分为固定宽度布局，流式布局，弹性布局3类。为讨论这三种布局，先创建以下简单的HTML结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;code style&lt;/title&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;content&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;primary&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;sec_1&quot;&gt;</span><br><span class="line">                主div---第一列</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            &lt;div class=&quot;sec_2&quot;&gt;</span><br><span class="line">                主div---第二列</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;secondary&quot;&gt;</span><br><span class="line">                次div</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>固定宽度布局<br>　　元素宽度以具体像素值为单位的布局类型就是固定宽度布局。固定宽度布局中，可以清楚地知道每个元素的具体宽度，从而精确排版布局。但是，在响应式设计为王的今天，这种设计就显得捉襟见肘，无法适配各种类型的屏幕。导致行长不合适，文本易读性查，排版仅能在某些指定浏览器中正常显示等等问题。</li>
+<li>流式布局<br>　　在流式布局中，尺寸是用百分数而非像素值设定的。这使得元素能够相对于浏览器窗口进行伸缩。但是要注意，当浏览器窗口宽度很小时，行变得很窄，流式布局也会产生难以阅读的问题。因此，有必要添加以像素或者em为单位的min-width，防止布局变得过窄，但也要注意如果min-width设置的过大的话也会出现固定宽度布局中出现的问题。<br>　　同理，当浏览器宽度变得过宽时，流式布局会出现文本显示在一行，行长过长，不易阅读的问题。此时可以考虑不要让元素横跨整个浏览器窗口，而是只占比如80%的比例，或者为父级容器设置最大宽度。或者该元素添加以百分比为单位的内边距或者外边距。这样当浏览器窗口增加时，元素的内外边距也会按照百分比增加，这样元素的内容宽度就不会增加的过快。比如：<br>　　设计时按照元素宽度960px进行，假设大部分使用者的屏幕宽度为1250px,那么最外层父级元素的宽度可以设置为(960/1250)&times;100% = 76.8%。再比如，一个父级元素宽度920px，如果要在这个父级元素内部分为主次两列布局，主div宽度670px,次div宽度230px（每个元素留白20Px）,那么可以计算出主div设置宽度为(670/920)&times;100% = 72.82%，次div宽度为(230/920)&times;100% = 25%。<br>　　再接着考虑主div（宽度670px），假如我们要在里面设置两列布局，第一列宽度400px,第二列宽度230px（每个元素留白20Px），那么主div则设置为(400/670)*100% = 59.7%,次div则设置为(230/670)&times;100% = 34.33%。<br>　　最后，我们再考虑加上一个min-width来应对窗口过小的情况。<code>min-width = 62em;</code><br>上述过程的css代码为：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">.wrapper &#123;</span><br><span class="line">    width: 76.8%;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">    text-align: left;</span><br><span class="line">    border: 1px solid lightgray;</span><br><span class="line">    border-radius: 5px;</span><br><span class="line">    background-color: papayawhip;</span><br><span class="line">    min-height: 50%;</span><br><span class="line">    min-width: 62em;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.primary &#123;</span><br><span class="line">    width: 72.82%;</span><br><span class="line">    float: right;</span><br><span class="line">    display: inline;</span><br><span class="line">    border: 1px solid lightgray;</span><br><span class="line">    border-radius: 5px;</span><br><span class="line">    background-color: deepskyblue;</span><br><span class="line">    min-height: 40%;</span><br><span class="line">    margin:auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.secondary &#123;</span><br><span class="line">    width: 25%;</span><br><span class="line">    float: left;</span><br><span class="line">    display: inline;</span><br><span class="line">    border: 1px solid lightgray;</span><br><span class="line">    border-radius: 5px;</span><br><span class="line">    background-color: lightseagreen;</span><br><span class="line">    min-height: 40%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.sec_1 &#123;</span><br><span class="line">    width: 59.7%;</span><br><span class="line">    float: left;</span><br><span class="line">    display: inline;</span><br><span class="line">    border: 1px solid lightgray;</span><br><span class="line">    border-radius: 5px;</span><br><span class="line">    background-color: ghostwhite;</span><br><span class="line">    min-height: 30%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.sec_2 &#123;</span><br><span class="line">    width: 34.33%;</span><br><span class="line">    float: right;</span><br><span class="line">    padding-right: 2.63%;</span><br><span class="line">    display: inline;</span><br><span class="line">    border: 1px solid lightgray;</span><br><span class="line">    border-radius: 5px;</span><br><span class="line">    background-color: ghostwhite;</span><br><span class="line">    min-height: 30%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>简单效果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-fluid-eq.png" alt=""></p>
+<ul>
+<li>弹性布局</li>
+</ul>
 <h2 id="两列右侧自适应布局"><a href="#两列右侧自适应布局" class="headerlink" title="两列右侧自适应布局"></a>两列右侧自适应布局</h2><hr>
 <h2 id="两列左侧自适应布局"><a href="#两列左侧自适应布局" class="headerlink" title="两列左侧自适应布局"></a>两列左侧自适应布局</h2><hr>
 <h2 id="两列定宽布局"><a href="#两列定宽布局" class="headerlink" title="两列定宽布局"></a>两列定宽布局</h2><hr>
@@ -210,7 +186,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两列右侧自适应布局"><span class="toc-number">2.</span> <span class="toc-text">两列右侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两列左侧自适应布局"><span class="toc-number">3.</span> <span class="toc-text">两列左侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两列定宽布局"><span class="toc-number">4.</span> <span class="toc-text">两列定宽布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三列中间自适应布局"><span class="toc-number">5.</span> <span class="toc-text">三列中间自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三列左侧自适应布局"><span class="toc-number">6.</span> <span class="toc-text">三列左侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三列右侧自适应布局"><span class="toc-number">7.</span> <span class="toc-text">三列右侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多列等分布局"><span class="toc-number">8.</span> <span class="toc-text">多列等分布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九宫格布局"><span class="toc-number">9.</span> <span class="toc-text">九宫格布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#上中下三栏自适应高度全屏布局"><span class="toc-number">10.</span> <span class="toc-text">上中下三栏自适应高度全屏布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#瀑布流布局"><span class="toc-number">11.</span> <span class="toc-text">瀑布流布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#圣杯布局"><span class="toc-number">12.</span> <span class="toc-text">圣杯布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双飞翼布局"><span class="toc-number">13.</span> <span class="toc-text">双飞翼布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应式布局"><span class="toc-number">14.</span> <span class="toc-text">响应式布局</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#布局分类"><span class="toc-number">2.</span> <span class="toc-text">布局分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两列右侧自适应布局"><span class="toc-number">3.</span> <span class="toc-text">两列右侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两列左侧自适应布局"><span class="toc-number">4.</span> <span class="toc-text">两列左侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两列定宽布局"><span class="toc-number">5.</span> <span class="toc-text">两列定宽布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三列中间自适应布局"><span class="toc-number">6.</span> <span class="toc-text">三列中间自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三列左侧自适应布局"><span class="toc-number">7.</span> <span class="toc-text">三列左侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三列右侧自适应布局"><span class="toc-number">8.</span> <span class="toc-text">三列右侧自适应布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多列等分布局"><span class="toc-number">9.</span> <span class="toc-text">多列等分布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九宫格布局"><span class="toc-number">10.</span> <span class="toc-text">九宫格布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#上中下三栏自适应高度全屏布局"><span class="toc-number">11.</span> <span class="toc-text">上中下三栏自适应高度全屏布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#瀑布流布局"><span class="toc-number">12.</span> <span class="toc-text">瀑布流布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#圣杯布局"><span class="toc-number">13.</span> <span class="toc-text">圣杯布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#双飞翼布局"><span class="toc-number">14.</span> <span class="toc-text">双飞翼布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#响应式布局"><span class="toc-number">15.</span> <span class="toc-text">响应式布局</span></a></li></ol>
  
   </div>
 
@@ -276,15 +252,15 @@
 			
 		
 			
-				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/URL重写/" title="URL重写">URL重写<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
 			
 		
 			
