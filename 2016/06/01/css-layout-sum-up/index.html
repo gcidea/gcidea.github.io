@@ -22,7 +22,10 @@
 
 布局分类　　CSS布局可以分为固定宽度布局，流式布局，弹性布局3类。为讨论这三种布局，先创建以下简单的HTML结构：12345678910111213141516171819202122232425&amp;lt;!DOCTYPE&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-fluid-eq.png">
-<meta property="og:updated_time" content="2016-06-06T16:28:35.699Z">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-tanxing-gundongtiao.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-fluid-1.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-fluid-2.png">
+<meta property="og:updated_time" content="2016-06-07T07:21:55.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS布局问题总结">
 <meta name="twitter:description" content="前言　　本篇集中对常见CSS布局进行总结。
@@ -115,8 +118,11 @@
 </ul>
 <p>简单效果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-fluid-eq.png" alt=""></p>
 <ul>
-<li>弹性布局</li>
+<li>弹性布局<br>　　流式布局可以充分利用空间，但是在大屏幕上行长还是过长，相反，在窄窗口中行又会变得非常短。对于此问题，弹性布局可能是更好的解决方案。<br>　　弹性布局是相对于字号（而不是浏览器宽度）来设置元素宽度的。以em为单位设置宽度（关于em等单位的分析可以参考这篇文章<a href="http://gcidea.info/2016/06/07/conventional-unit/" target="_blank" rel="external">CSS相关单位(pt,px,PPI,DPI,em,rem)</a>）。这样可以确保在字号增加时整个布局随之扩大。<br>　　根据默认情况下em和px的关系，1em = 16px,为了便于计算，将body的font-size设置为62.5%，从而有1em = 10px，在此基础上，对流式布局中的css代码做如下修改：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    font-size: 62.5%;</span><br><span class="line">    text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.wrapper &#123;</span><br><span class="line">    width: 92em;</span><br><span class="line">    margin: 0 auto;</span><br><span class="line">    text-align: left;</span><br><span class="line">    border: 1px solid lightgray;</span><br><span class="line">    border-radius: 5px;</span><br><span class="line">    background-color: papayawhip;</span><br><span class="line">    min-height: 50%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.primary &#123;</span><br><span class="line">    width: 72.82%;</span><br><span class="line">    float: right;</span><br><span class="line">    display: inline;</span><br><span class="line">    border: 1px solid lightgray;</span><br><span class="line">    border-radius: 5px;</span><br><span class="line">    background-color: deepskyblue;</span><br><span class="line">    min-height: 40%;</span><br><span class="line">    margin:auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.secondary &#123;</span><br><span class="line">    width: 25%;</span><br><span class="line">    float: left;</span><br><span class="line">    display: inline;</span><br><span class="line">    border: 1px solid lightgray;</span><br><span class="line">    border-radius: 5px;</span><br><span class="line">    background-color: lightseagreen;</span><br><span class="line">    min-height: 40%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.sec_1 &#123;</span><br><span class="line">    width: 59.7%;</span><br><span class="line">    float: left;</span><br><span class="line">    display: inline;</span><br><span class="line">    border: 1px solid lightgray;</span><br><span class="line">    border-radius: 5px;</span><br><span class="line">    background-color: ghostwhite;</span><br><span class="line">    min-height: 30%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.sec_2 &#123;</span><br><span class="line">    width: 34.33%;</span><br><span class="line">    float: right;</span><br><span class="line">    padding-right: 2.63%;</span><br><span class="line">    display: inline;</span><br><span class="line">    border: 1px solid lightgray;</span><br><span class="line">    border-radius: 5px;</span><br><span class="line">    background-color: ghostwhite;</span><br><span class="line">    min-height: 30%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<p>这样就创建了一个弹性布局，但是要注意，弹性布局也会有一些问题，当字号增大整个布局增大时，有可能会比浏览器窗口宽导致出现水平滚动条（这个问题和固定布局类似）。如下所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-tanxing-gundongtiao.png" alt=""></p>
+<p>为了防止这个问题，可以在外层包裹容器(.wrapper)上添加<code>max-width:100%</code>的限制。<br>这样就可以获得一个能较好适应各种尺寸的布局：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-fluid-1.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-fluid-2.png" alt=""></p>
 <h2 id="两列右侧自适应布局"><a href="#两列右侧自适应布局" class="headerlink" title="两列右侧自适应布局"></a>两列右侧自适应布局</h2><hr>
 <h2 id="两列左侧自适应布局"><a href="#两列左侧自适应布局" class="headerlink" title="两列左侧自适应布局"></a>两列左侧自适应布局</h2><hr>
 <h2 id="两列定宽布局"><a href="#两列定宽布局" class="headerlink" title="两列定宽布局"></a>两列定宽布局</h2><hr>
@@ -212,7 +218,19 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>16</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>20</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>3</sup></a></li>
 			
 		
 			
@@ -220,11 +238,7 @@
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>3</sup></a></li>
 			
 		
 			
@@ -232,11 +246,11 @@
 			
 		
 			
-				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>2</sup></a></li>
+				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
 			
 		
 			
@@ -244,15 +258,7 @@
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/URL/" title="URL">URL<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/URL重写/" title="URL重写">URL重写<sup>1</sup></a></li>
+				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
 			
 		
 			
@@ -260,27 +266,11 @@
 			
 		
 			
-				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/http/" title="http">http<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/https/" title="https">https<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
 			
 		
 			
@@ -288,7 +278,23 @@
 			
 		
 			
-				<li><a href="/tags/cookie/" title="cookie">cookie<sup>1</sup></a></li>
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SSH协议/" title="SSH协议">SSH协议<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
 			
 		
 		</ul>

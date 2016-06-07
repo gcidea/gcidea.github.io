@@ -11,24 +11,24 @@
     
 
     
-    <meta name="description" content="前言　　　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：
+    <meta name="description" content="前言　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：
 
 Git安装与使用
 GitLab相关知识介绍
 GitLab搭建配置的完整过程
 GitLab-CI相关知识介绍
-GitLab-CI安装配置的">
+GitLab-CI安装配置的完整">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【阿里云ECS】GitLab的搭建配置过程和GitLab-CI服务的使用">
 <meta property="og:url" content="http://yoursite.com/2016/05/05/gitlab-gitlab-ci/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言　　　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：
+<meta property="og:description" content="前言　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：
 
 Git安装与使用
 GitLab相关知识介绍
 GitLab搭建配置的完整过程
 GitLab-CI相关知识介绍
-GitLab-CI安装配置的">
+GitLab-CI安装配置的完整">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/git-version.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab%E5%AE%89%E8%A3%85.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/listen4040.png">
@@ -49,16 +49,16 @@ GitLab-CI安装配置的">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-ci-yml.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/build-failed.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/build-success.png">
-<meta property="og:updated_time" content="2016-06-05T05:31:27.525Z">
+<meta property="og:updated_time" content="2016-06-07T06:17:52.696Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【阿里云ECS】GitLab的搭建配置过程和GitLab-CI服务的使用">
-<meta name="twitter:description" content="前言　　　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：
+<meta name="twitter:description" content="前言　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：
 
 Git安装与使用
 GitLab相关知识介绍
 GitLab搭建配置的完整过程
 GitLab-CI相关知识介绍
-GitLab-CI安装配置的">
+GitLab-CI安装配置的完整">
 <meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/git-version.png">
 
     
@@ -136,7 +136,7 @@ GitLab-CI安装配置的">
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　<br>　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：</p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：</p>
 <ol>
 <li>Git安装与使用</li>
 <li>GitLab相关知识介绍</li>
@@ -241,7 +241,7 @@ GitLab-CI安装配置的">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/搭建记录/">搭建记录</a><a href="/tags/部署/">部署</a><a href="/tags/版本控制/">版本控制</a><a href="/tags/持续集成/">持续集成</a>
+  <span></span> <a href="/tags/搭建记录/">搭建记录</a><a href="/tags/部署/">部署</a><a href="/tags/版本控制/">版本控制</a><a href="/tags/持续集成CI/">持续集成CI</a>
   </div>
 
 </div>
@@ -316,7 +316,19 @@ GitLab-CI安装配置的">
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>16</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>20</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>3</sup></a></li>
 			
 		
 			
@@ -324,11 +336,7 @@ GitLab-CI安装配置的">
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>3</sup></a></li>
 			
 		
 			
@@ -336,11 +344,11 @@ GitLab-CI安装配置的">
 			
 		
 			
-				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>2</sup></a></li>
+				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
 			
 		
 			
@@ -348,15 +356,7 @@ GitLab-CI安装配置的">
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/URL/" title="URL">URL<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/URL重写/" title="URL重写">URL重写<sup>1</sup></a></li>
+				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
 			
 		
 			
@@ -364,27 +364,11 @@ GitLab-CI安装配置的">
 			
 		
 			
-				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/http/" title="http">http<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/https/" title="https">https<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/学习笔记，包管理工具/" title="学习笔记，包管理工具">学习笔记，包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
 			
 		
 			
@@ -392,7 +376,23 @@ GitLab-CI安装配置的">
 			
 		
 			
-				<li><a href="/tags/cookie/" title="cookie">cookie<sup>1</sup></a></li>
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SSH协议/" title="SSH协议">SSH协议<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
 			
 		
 		</ul>
