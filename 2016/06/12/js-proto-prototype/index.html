@@ -4,29 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>JavaScript的闭包案例---2 | GCidea&#39;s blog</title>
+    <title>JavaScript中__proto__和prototype的对比分析 | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="前言　　接续之前的一篇JavaScript的闭包案例—1，加深对《JavaScript权威指南》P187的理解。
-
-描述　　使用闭包，可以实现共享私有状态，实现私有存取器属性。本质上就是在同一个作用域链上定义了两个或多个闭包，来共享同样的私有变量。这是十分重要的一种应用，但是要十分小心因为这种做法将那些本不希望共享的变量共享给了其他闭包，这会造成严重的错误并让我们不解。　　假设有这样的需求：需要一">
+    <meta name="description" content="gaochang | BUPT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript的闭包案例---2">
-<meta property="og:url" content="http://yoursite.com/2016/04/26/js-closure-2/index.html">
+<meta property="og:title" content="JavaScript中__proto__和prototype的对比分析">
+<meta property="og:url" content="http://yoursite.com/2016/06/12/js-proto-prototype/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言　　接续之前的一篇JavaScript的闭包案例—1，加深对《JavaScript权威指南》P187的理解。
-
-描述　　使用闭包，可以实现共享私有状态，实现私有存取器属性。本质上就是在同一个作用域链上定义了两个或多个闭包，来共享同样的私有变量。这是十分重要的一种应用，但是要十分小心因为这种做法将那些本不希望共享的变量共享给了其他闭包，这会造成严重的错误并让我们不解。　　假设有这样的需求：需要一">
-<meta property="og:updated_time" content="2016-06-07T06:24:23.432Z">
+<meta property="og:description" content="gaochang | BUPT">
+<meta property="og:updated_time" content="2016-06-12T04:59:30.391Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript的闭包案例---2">
-<meta name="twitter:description" content="前言　　接续之前的一篇JavaScript的闭包案例—1，加深对《JavaScript权威指南》P187的理解。
-
-描述　　使用闭包，可以实现共享私有状态，实现私有存取器属性。本质上就是在同一个作用域链上定义了两个或多个闭包，来共享同样的私有变量。这是十分重要的一种应用，但是要十分小心因为这种做法将那些本不希望共享的变量共享给了其他闭包，这会造成严重的错误并让我们不解。　　假设有这样的需求：需要一">
+<meta name="twitter:title" content="JavaScript中__proto__和prototype的对比分析">
+<meta name="twitter:description" content="gaochang | BUPT">
 
     
     
@@ -86,14 +80,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/04/26/js-closure-2/" title="JavaScript的闭包案例---2" itemprop="url">JavaScript的闭包案例---2</a>
+      <a href="/2016/06/12/js-proto-prototype/" title="JavaScript中__proto__和prototype的对比分析" itemprop="url">JavaScript中__proto__和prototype的对比分析</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-26T14:29:34.000Z" itemprop="datePublished"> 发表于 2016-04-26</time>
+    <time datetime="2016-06-12T04:52:56.000Z" itemprop="datePublished"> 发表于 2016-06-12</time>
     
   </p>
 </header>
@@ -102,29 +96,11 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">2.</span> <span class="toc-text">描述</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　接续之前的一篇<a href="http://gcidea.info/2016/04/19/JavaScript-closure/" target="_blank" rel="external">JavaScript的闭包案例—1</a>，加深对《JavaScript权威指南》P187的理解。</p>
-<hr>
-<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>　　使用闭包，可以实现共享私有状态，实现私有存取器属性。本质上就是在同一个作用域链上定义了两个或多个闭包，来共享同样的私有变量。这是十分重要的一种应用，但是要十分小心因为这种做法将那些本不希望共享的变量共享给了其他闭包，这会造成严重的错误并让我们不解。<br>　　假设有这样的需求：需要一个函数对象数组（数组每一项是一个函数），对于某个确定的数组元素，调用之可以返回数组下标。<br>　　“看似正确”的做法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var funcs = [];</span><br><span class="line"></span><br><span class="line">for(var i=0;i&lt;10;i++)&#123;</span><br><span class="line">    funcs[i] = function()&#123;return i;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(funcs[5]()); //10</span><br></pre></td></tr></table></figure></p>
-<p>　　正如注释所写，很奇怪的，将打印输出10而并不是5。原因就在于：在循环中，定义了10个函数（对应有自己的作用域链），也就形成了10个闭包，这些闭包都是在同一个函数调用中定义的，因此共享作用域，共享变量i。for循环结束的条件是i&gt;=10。也就是说，当代码执行完成跳出for循环时，i的值是10。而这10个闭包的<code>return i;</code>所使用的正是这个共享的变量i，也就是10。因此，<code>funcs[0]();</code>~<code>funcs[9]();</code>执行的结果都是10。</p>
-<p>　　对此，引用书上一句话进行总结：</p>
-<blockquote>
-<p>关联到闭包的作用域链都是活动的，记住这一点非常重要。嵌套的函数不会将作用域内的私有成员复制一份，也不会对所绑定的变量生成静态快照（static snapshot）—而是共享了作用域变量。</p>
-</blockquote>
-<p>对于上述需求，可采用以下两种方式解决：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Created by gaochang on 2016/5/30.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">var funcs = [];</span><br><span class="line"></span><br><span class="line">for(var i=0;i&lt;10;i++)&#123;</span><br><span class="line">    funcs[i] = (function(v)&#123;</span><br><span class="line">        return function ()&#123;</span><br><span class="line">            return v;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;(i));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(funcs[5]()); //5</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>以上方法用到了JavaScript中的“立即执行函数”的概念。注意这里<code>funcs[i] = (function(v){</code>这行的function左边的(括号是非常重要的。如果不写这个左圆括号，JavaScript解释器会尝试将关键字function解析为函数声明语句。只有用了左圆括号，才会正确将其解析为函数定义表达式，这在区分概念上很重要（注：试了一下，其实不写圆括号，结果也是对的，，但是尽管有时候没有必要也不应省略，这是习惯用法。）而一旦正确解析为函数定义表达式，也就相当于创建了新的闭包。匿名函数内的v外界不可访问，是独立的作用域，此时写为立即执行函数（传入i并执行），返回值就是正确无误的i,而不会是上述的10。</p>
-</blockquote>
-<p>或者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Created by gaochang on 2016/5/30.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">function constfunc(v)&#123;</span><br><span class="line">    return function ()&#123;</span><br><span class="line">        return v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var funcs = [];</span><br><span class="line"></span><br><span class="line">for(var i=0;i&lt;10;i++)&#123;</span><br><span class="line">    funcs[i] = constfunc(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(funcs[5]());</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这种写法中，将对数组每个元素进行赋值的函数抽离出来，结构清晰的同时，也实现了函数作用域的转化（不在for循环内），也就是闭包范围的变化。这样，每次调用函数时，就创建了一个新的作用域链和新的私有变量，互相不会影响。</p>
-</blockquote>
-  
+		  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -132,7 +108,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/JavaScript/">JavaScript</a><a href="/tags/闭包/">闭包</a>
+  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/JavaScript/">JavaScript</a>
   </div>
 
 </div>
@@ -141,7 +117,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/04/26/js-closure-2/" data-title="JavaScript的闭包案例---2 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/06/12/js-proto-prototype/" data-title="JavaScript中__proto__和prototype的对比分析 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -155,18 +131,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/05/03/lamp/" title="【阿里云ECS】LAMP开发环境的完整搭建配置过程">
+ <a href="/2016/06/12/js-constructor-prototype/" title="JavaScript对象及其constructor属性和prototype属性">
   <strong>上一篇：</strong><br/>
   <span>
-  【阿里云ECS】LAMP开发环境的完整搭建配置过程</span>
+  JavaScript对象及其constructor属性和prototype属性</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/04/16/JavaScript-closure/"  title="JavaScript的闭包案例---1">
+<a href="/2016/06/10/js-definitive-guide-error-p-204/"  title="《JavaScript权威指南》中文版P204纠错">
  <strong>下一篇：</strong><br/> 
- <span>JavaScript的闭包案例---1
+ <span>《JavaScript权威指南》中文版P204纠错
 </span>
 </a>
 </div>
@@ -181,7 +157,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">2.</span> <span class="toc-text">描述</span></a></li></ol>
+ 
  
   </div>
 
