@@ -11,16 +11,28 @@
     
 
     
-    <meta name="description" content="gaochang | BUPT">
+    <meta name="description" content="前言　　JavaScript中的函数其实就是一种对象。函数对象也有自己的很多方法。其中，call()方法和apply()方法就是两个用来间接调用函数的方法。两个方法都允许显式地指明调用时的上下文环境（即this的值）。也就是说，这给我们提供了一种自由-任何函数可以作为任何对象的方法来进行调用。并且，两个方法也都允许显式地指明调用时需要用到的实参。
+
+call()方法参数　　f.call(o, va">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript的call()方法和apply()方法对比总结">
 <meta property="og:url" content="http://yoursite.com/2016/06/09/js-call-apply/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="gaochang | BUPT">
-<meta property="og:updated_time" content="2016-06-10T05:48:54.283Z">
+<meta property="og:description" content="前言　　JavaScript中的函数其实就是一种对象。函数对象也有自己的很多方法。其中，call()方法和apply()方法就是两个用来间接调用函数的方法。两个方法都允许显式地指明调用时的上下文环境（即this的值）。也就是说，这给我们提供了一种自由-任何函数可以作为任何对象的方法来进行调用。并且，两个方法也都允许显式地指明调用时需要用到的实参。
+
+call()方法参数　　f.call(o, va">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-call-1.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-call-2.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-3.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-1.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-2.png">
+<meta property="og:updated_time" content="2016-06-13T08:50:05.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript的call()方法和apply()方法对比总结">
-<meta name="twitter:description" content="gaochang | BUPT">
+<meta name="twitter:description" content="前言　　JavaScript中的函数其实就是一种对象。函数对象也有自己的很多方法。其中，call()方法和apply()方法就是两个用来间接调用函数的方法。两个方法都允许显式地指明调用时的上下文环境（即this的值）。也就是说，这给我们提供了一种自由-任何函数可以作为任何对象的方法来进行调用。并且，两个方法也都允许显式地指明调用时需要用到的实参。
+
+call()方法参数　　f.call(o, va">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-call-1.png">
 
     
     
@@ -96,11 +108,22 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call-方法"><span class="toc-number">2.</span> <span class="toc-text">call()方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply-方法"><span class="toc-number">3.</span> <span class="toc-text">apply()方法</span></a></li></ol>
 		
 		</div>
 		
-		  
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　JavaScript中的函数其实就是一种对象。函数对象也有自己的很多方法。其中，call()方法和apply()方法就是两个用来间接调用函数的方法。两个方法都允许显式地指明调用时的上下文环境（即this的值）。也就是说，这给我们提供了一种自由-任何函数可以作为任何对象的方法来进行调用。并且，两个方法也都允许显式地指明调用时需要用到的实参。</p>
+<hr>
+<h2 id="call-方法"><a href="#call-方法" class="headerlink" title="call()方法"></a>call()方法</h2><p><strong>参数</strong><br>　　<code>f.call(o, value1, value2, ...)</code><br>　　f： 想要调用的方法<br>　　o： 想要调用的方法的作用域（也就是在哪个对象上调用该方法）<br>　　value1, value2, …： 调用方法时传入的一系列参数<br><strong>使用示例</strong><br>1.简单调用call()方法，作用在当前this对象（浏览器对象）上<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-call-1.png" alt=""></p>
+<p>2.调用call()方法给自定义对象新增属性<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-call-2.png" alt=""></p>
+<hr>
+<h2 id="apply-方法"><a href="#apply-方法" class="headerlink" title="apply()方法"></a>apply()方法</h2><p><strong>参数</strong><br>　　<code>f.apply(o, [value1, value2, ...])</code><br>　　f： 想要调用的方法<br>　　o： 想要调用的方法的作用域（也就是在哪个对象上调用该方法）<br>　　[value1, value2, …]： 调用方法时传入的一个参数数组<br><strong>说明</strong><br>　　给apply()传入的参数数组可以是真正的数组，也可以是类数组对象</p>
+<blockquote>
+<p>类数组对象<br>  它不是真正的数组对象，却有着很多与数组类似的特性。很多数组算法针对类数组对象的优化做的很好，就像针对真正的数组一样。下面是一个简单的类数组对象创建的过程：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-3.png" alt=""></p>
+</blockquote>
+<p><strong>使用示例</strong><br>Math.max()本来是可以接受任意个参数来判断最大值，但如果给它传入一个数组，是不能正确返回最大值的：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-1.png" alt=""></p>
+<p>如果使用apply()方法，按照参数要求是接收一个数组，那么此时是可以给Math.max()传入一个数组的：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-2.png" alt=""></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -157,7 +180,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call-方法"><span class="toc-number">2.</span> <span class="toc-text">call()方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply-方法"><span class="toc-number">3.</span> <span class="toc-text">apply()方法</span></a></li></ol>
  
   </div>
 
@@ -223,11 +246,15 @@
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
+				<li><a href="/tags/包管理工具/" title="包管理工具">包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
@@ -235,7 +262,15 @@
 			
 		
 			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 			
@@ -247,19 +282,7 @@
 			
 		
 			
-				<li><a href="/tags/包管理工具/" title="包管理工具">包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 		</ul>
