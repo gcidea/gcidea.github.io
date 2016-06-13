@@ -11,16 +11,31 @@
     
 
     
-    <meta name="description" content="gaochang | BUPT">
+    <meta name="description" content="前言　　说到这两个类型，首先应该从整体上明确一下JavaScript中提供的数据类型。　　JavaScript中的数据类型分为两类：原始类型和对象类型。　　其中，原始类型又可以细分为如下5类：数字，字符串，布尔值，null，undefined。　　null和undefined都表示一种“空缺”的意思，但具体还有很多细节不同。
+
+null类型检测对null使用typeof检测，可得：
+说明　　由以上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript的null和undefined对比总结">
 <meta property="og:url" content="http://yoursite.com/2016/06/09/js-null-undefined/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="gaochang | BUPT">
-<meta property="og:updated_time" content="2016-06-10T05:48:56.882Z">
+<meta property="og:description" content="前言　　说到这两个类型，首先应该从整体上明确一下JavaScript中提供的数据类型。　　JavaScript中的数据类型分为两类：原始类型和对象类型。　　其中，原始类型又可以细分为如下5类：数字，字符串，布尔值，null，undefined。　　null和undefined都表示一种“空缺”的意思，但具体还有很多细节不同。
+
+null类型检测对null使用typeof检测，可得：
+说明　　由以上">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-null-1.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-undefined-1.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-null-undefined-1.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-null-undefined-2.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-null-undefined-3.png">
+<meta property="og:updated_time" content="2016-06-13T12:59:34.393Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript的null和undefined对比总结">
-<meta name="twitter:description" content="gaochang | BUPT">
+<meta name="twitter:description" content="前言　　说到这两个类型，首先应该从整体上明确一下JavaScript中提供的数据类型。　　JavaScript中的数据类型分为两类：原始类型和对象类型。　　其中，原始类型又可以细分为如下5类：数字，字符串，布尔值，null，undefined。　　null和undefined都表示一种“空缺”的意思，但具体还有很多细节不同。
+
+null类型检测对null使用typeof检测，可得：
+说明　　由以上">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-null-1.png">
 
     
     
@@ -96,11 +111,29 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">null</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型检测"><span class="toc-number">2.1.</span> <span class="toc-text">类型检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">2.2.</span> <span class="toc-text">说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">undefined</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型检测-1"><span class="toc-number">3.1.</span> <span class="toc-text">类型检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-1"><span class="toc-number">3.2.</span> <span class="toc-text">说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综合分析"><span class="toc-number">4.</span> <span class="toc-text">综合分析</span></a></li></ol>
 		
 		</div>
 		
-		  
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　说到这两个类型，首先应该从整体上明确一下JavaScript中提供的数据类型。<br>　　JavaScript中的数据类型分为两类：原始类型和对象类型。<br>　　其中，原始类型又可以细分为如下5类：数字，字符串，布尔值，null，undefined。<br>　　null和undefined都表示一种“空缺”的意思，但具体还有很多细节不同。</p>
+<hr>
+<h2 id="null"><a href="#null" class="headerlink" title="null"></a>null</h2><h3 id="类型检测"><a href="#类型检测" class="headerlink" title="类型检测"></a>类型检测</h3><p>对<code>null</code>使用<code>typeof</code>检测，可得：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-null-1.png" alt=""></p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>　　由以上结果可以看出，可以认为null是一种特殊的对象，表明了“非对象”这种概念。</p>
+<hr>
+<h2 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h2><h3 id="类型检测-1"><a href="#类型检测-1" class="headerlink" title="类型检测"></a>类型检测</h3><p>对<code>undefined</code>使用<code>typeof</code>检测，可得：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-undefined-1.png" alt=""></p>
+<h3 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h3><p>　　undefined表明变量没有初始化。有以下几种常见情况的返回值是undefined：</p>
+<ol>
+<li>如果一个元素不存在，那么在查询这个元素时会返回undefined。</li>
+<li>如果一个函数没有返回值，那么默认返回的是undefined。</li>
+<li>如果引用一个函数的某个形参值，但是这个形参却没有被赋予一个实参，那么会返回undefined。</li>
+</ol>
+<hr>
+<h2 id="综合分析"><a href="#综合分析" class="headerlink" title="综合分析"></a>综合分析</h2><ol>
+<li>相等运算符认为二者是一样的：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-null-undefined-1.png" alt=""></li>
+<li>严格相等运算符才能看出二者不同：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-null-undefined-2.png" alt=""></li>
+<li>这两个类型是没有属性或者方法的：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-null-undefined-3.png" alt=""></li>
+</ol>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -157,7 +190,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">null</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型检测"><span class="toc-number">2.1.</span> <span class="toc-text">类型检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">2.2.</span> <span class="toc-text">说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">undefined</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型检测-1"><span class="toc-number">3.1.</span> <span class="toc-text">类型检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-1"><span class="toc-number">3.2.</span> <span class="toc-text">说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综合分析"><span class="toc-number">4.</span> <span class="toc-text">综合分析</span></a></li></ol>
  
   </div>
 
@@ -207,15 +240,7 @@
 			
 		
 			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/部署/" title="部署">部署<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/SSL/" title="SSL">SSL<sup>2</sup></a></li>
 			
 		
 			
@@ -223,19 +248,11 @@
 			
 		
 			
-				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/包管理工具/" title="包管理工具">包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
+				<li><a href="/tags/SSL/" title="SSL">SSL<sup>2</sup></a></li>
 			
 		
 			
@@ -243,7 +260,7 @@
 			
 		
 			
-				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
+				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
 			
 		
 			
@@ -251,7 +268,11 @@
 			
 		
 			
-				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
+				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/包管理工具/" title="包管理工具">包管理工具<sup>1</sup></a></li>
 			
 		
 			
@@ -259,7 +280,19 @@
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 		</ul>
