@@ -26,7 +26,7 @@ call()方法参数　　f.call(o, va">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-3.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-1.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-2.png">
-<meta property="og:updated_time" content="2016-06-13T08:50:05.678Z">
+<meta property="og:updated_time" content="2016-06-13T09:09:31.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript的call()方法和apply()方法对比总结">
 <meta name="twitter:description" content="前言　　JavaScript中的函数其实就是一种对象。函数对象也有自己的很多方法。其中，call()方法和apply()方法就是两个用来间接调用函数的方法。两个方法都允许显式地指明调用时的上下文环境（即this的值）。也就是说，这给我们提供了一种自由-任何函数可以作为任何对象的方法来进行调用。并且，两个方法也都允许显式地指明调用时需要用到的实参。
@@ -108,7 +108,7 @@ call()方法参数　　f.call(o, va">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call-方法"><span class="toc-number">2.</span> <span class="toc-text">call()方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply-方法"><span class="toc-number">3.</span> <span class="toc-text">apply()方法</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call-方法"><span class="toc-number">2.</span> <span class="toc-text">call()方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply-方法"><span class="toc-number">3.</span> <span class="toc-text">apply()方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">4.</span> <span class="toc-text">注意事项</span></a></li></ol>
 		
 		</div>
 		
@@ -123,6 +123,9 @@ call()方法参数　　f.call(o, va">
 </blockquote>
 <p><strong>使用示例</strong><br>Math.max()本来是可以接受任意个参数来判断最大值，但如果给它传入一个数组，是不能正确返回最大值的：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-1.png" alt=""></p>
 <p>如果使用apply()方法，按照参数要求是接收一个数组，那么此时是可以给Math.max()传入一个数组的：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-2.png" alt=""></p>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>1.在ECMAScript5严格模式中，call()和apply()的第一个实参都会变为this的值，哪怕传入的实参是原始值甚至是null或undefined。而在ECMAScript3非严格模式中，传入的null或者undefined则会被全局对象代替，而原始值则会变成相应的包装对象。</p>
+<p>2.<font color="red">为什么会存在call()和apply()这两个方法？</font>—为了动态改变函数执行的环境。有时候，我们可能想在某个对象的作用域（上下文环境）A内调用一个方法—也就是要使用这个对象内的属性和值，但是这个对象内可能没有这个方法。此时，如果别处（全局函数或者其他对象的函数）有我们需要的方法F，那么我们就可以使用call()或apply()将需要的方法F和作用域A关联起来，从而实现目的。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -180,7 +183,7 @@ call()方法参数　　f.call(o, va">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call-方法"><span class="toc-number">2.</span> <span class="toc-text">call()方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply-方法"><span class="toc-number">3.</span> <span class="toc-text">apply()方法</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call-方法"><span class="toc-number">2.</span> <span class="toc-text">call()方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply-方法"><span class="toc-number">3.</span> <span class="toc-text">apply()方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">4.</span> <span class="toc-text">注意事项</span></a></li></ol>
  
   </div>
 
@@ -222,11 +225,11 @@ call()方法参数　　f.call(o, va">
 			
 		
 			
-				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>3</sup></a></li>
+				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>3</sup></a></li>
+				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>3</sup></a></li>
 			
 		
 			
@@ -238,31 +241,11 @@ call()方法参数　　f.call(o, va">
 			
 		
 			
-				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/SSL/" title="SSL">SSL<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/包管理工具/" title="包管理工具">包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
+				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
 			
 		
 			
@@ -274,7 +257,15 @@ call()方法参数　　f.call(o, va">
 			
 		
 			
-				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
+				<li><a href="/tags/包管理工具/" title="包管理工具">包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
 			
 		
 			
@@ -282,7 +273,19 @@ call()方法参数　　f.call(o, va">
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 		</ul>
