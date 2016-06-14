@@ -16,7 +16,7 @@ Write a function that takes a string as input and returns the string reversed.
 Example:Given s = “hello”, return “olleh”.
 
 
-解决方案1234567891011public class Solution &amp;#123;    public String reverseStr">
+解决方案1234567public class Solution &amp;#123;    public String reverseString(St">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode [#344]">
 <meta property="og:url" content="http://yoursite.com/2016/06/14/leetcode-344/index.html">
@@ -26,8 +26,8 @@ Write a function that takes a string as input and returns the string reversed.
 Example:Given s = “hello”, return “olleh”.
 
 
-解决方案1234567891011public class Solution &amp;#123;    public String reverseStr">
-<meta property="og:updated_time" content="2016-06-14T12:45:45.883Z">
+解决方案1234567public class Solution &amp;#123;    public String reverseString(St">
+<meta property="og:updated_time" content="2016-06-14T12:54:33.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode [#344]">
 <meta name="twitter:description" content="题目
@@ -35,7 +35,7 @@ Write a function that takes a string as input and returns the string reversed.
 Example:Given s = “hello”, return “olleh”.
 
 
-解决方案1234567891011public class Solution &amp;#123;    public String reverseStr">
+解决方案1234567public class Solution &amp;#123;    public String reverseString(St">
 
     
     
@@ -120,9 +120,9 @@ Example:Given s = “hello”, return “olleh”.
 <p><strong>Example</strong>:<br>Given s = “hello”, return “olleh”.</p>
 </blockquote>
 <hr>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public String reverseString(String s) &#123;</span><br><span class="line">        int length = s.length();</span><br><span class="line">        char[] s2array = s.toCharArray();</span><br><span class="line">        String result = &quot;&quot;;</span><br><span class="line">        for(int k = length-1; k&gt;=0; k--)&#123;</span><br><span class="line">            result += s2array[k];</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public String reverseString(String s) &#123;</span><br><span class="line">        StringBuilder handler = new StringBuilder(s);</span><br><span class="line">        handler.reverse();</span><br><span class="line">        return handler.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>以下这种写法可以得到正确答案，但是会超时。原因是String一旦创建就不可修改，因此遍历中每次为result衔接新增的部分都会创建新对象并将引用指向result，增大了开销。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    Stack stack = new Stack();</span><br><span class="line">    int length = s.length();</span><br><span class="line">    for(int i = 0; i &lt; length; i++)&#123;</span><br><span class="line">        stack.push(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    String result = &quot;&quot;;</span><br><span class="line">    while(!stack.empty())&#123;</span><br><span class="line">        result += stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>以下这种写法可以得到正确答案，但是会超时，无法通过。原因是String一旦创建就不可修改，因此遍历中每次为result衔接新增的部分都会创建新对象并将引用指向result，增大了开销。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    Stack stack = new Stack();</span><br><span class="line">    int length = s.length();</span><br><span class="line">    for(int i = 0; i &lt; length; i++)&#123;</span><br><span class="line">        stack.push(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    String result = &quot;&quot;;</span><br><span class="line">    while(!stack.empty())&#123;</span><br><span class="line">        result += stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -266,7 +266,7 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>1</sup></a></li>
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
 			
 		
 			
