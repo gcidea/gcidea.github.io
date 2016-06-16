@@ -17,10 +17,30 @@
 <meta property="og:url" content="http://yoursite.com/2016/06/12/js-constructor-prototype/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感">
-<meta property="og:updated_time" content="2016-06-14T12:48:22.118Z">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-1.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-2.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-3.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-4.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-5.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-6.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-1.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-2.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-3.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-4.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-5.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-6.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-7.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-8.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-9.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-10.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-11.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-12.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-13.png">
+<meta property="og:updated_time" content="2016-06-16T08:52:33.563Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中的对象、constructor属性、prototype属性对比分析">
 <meta name="twitter:description" content="前言　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-1.png">
 
     
     
@@ -55,6 +75,8 @@
 						<li><a href="/">首页 | Home</a></li>
 					
 						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/categories">分类 | Categories</a></li>
 					
 						<li><a href="/about">简介 | About</a></li>
 					
@@ -96,19 +118,162 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对象简述"><span class="toc-number">2.</span> <span class="toc-text">JavaScript对象简述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript中类的概念"><span class="toc-number">3.</span> <span class="toc-text">JavaScript中类的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对象创建方式"><span class="toc-number">4.</span> <span class="toc-text">JavaScript对象创建方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript的继承机制"><span class="toc-number">5.</span> <span class="toc-text">JavaScript的继承机制</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对象简述"><span class="toc-number">2.</span> <span class="toc-text">JavaScript对象简述　</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性类型"><span class="toc-number">2.2.</span> <span class="toc-text">属性类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象共有的“特性”"><span class="toc-number">2.3.</span> <span class="toc-text">对象共有的“特性”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对象创建方式"><span class="toc-number">3.</span> <span class="toc-text">JavaScript对象创建方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象-构造函数模式（constructor属性相关）"><span class="toc-number">4.</span> <span class="toc-text">创建对象-构造函数模式（constructor属性相关）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂模式与构造函数模式的对比"><span class="toc-number">4.1.</span> <span class="toc-text">工厂模式与构造函数模式的对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象的constructor属性"><span class="toc-number">4.2.</span> <span class="toc-text">对象的constructor属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数模式存在的缺陷"><span class="toc-number">4.3.</span> <span class="toc-text">构造函数模式存在的缺陷</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象-原型模式（prototype属性相关）"><span class="toc-number">5.</span> <span class="toc-text">创建对象-原型模式（prototype属性相关）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原型模式的案例"><span class="toc-number">5.1.</span> <span class="toc-text">原型模式的案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解原型对象（prototype属性）"><span class="toc-number">5.2.</span> <span class="toc-text">理解原型对象（prototype属性）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型链操作"><span class="toc-number">5.3.</span> <span class="toc-text">原型链操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#某个属性属于谁？（实例-or-原型？）"><span class="toc-number">5.4.</span> <span class="toc-text">某个属性属于谁？（实例 or 原型？）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型对象的重写"><span class="toc-number">5.5.</span> <span class="toc-text">原型对象的重写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型对象的动态性"><span class="toc-number">5.6.</span> <span class="toc-text">原型对象的动态性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原生对象的原型"><span class="toc-number">5.7.</span> <span class="toc-text">原生对象的原型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感觉。因为三者的关系并不是简单的“constructor和prototype是对象的两个属性”，并且“到底把constructor看作属性还是构造函数对象”，“到底把prototype看作属性还是原型对象”，这些问题并没有一个固定答案，它们有着互相渗透的关系。更多地我们应该关注这些名词到底想要描述怎样的问题。本文我就结合《JavaScript权威指南》和《JavaScript高级程序设计》两书进行总结和分析，可能有一些还不正确的理解，需要进一步探究。<br>　　另外，要说明的是，不可能只是干巴巴地描述这3个概念，因为它们本质上涉及的是JavaScript面向对象编程中的“类与对象”、“类的继承”等问题，因此本文是从这些方面进行组织的。</p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感觉。因为三者的关系并不是简单的“constructor和prototype是对象的两个属性”，并且“到底把constructor看作属性还是构造函数对象”，“到底把prototype看作属性还是原型对象”，这些问题并没有一个固定答案，它们有着互相渗透的关系。更多地我们应该关注这些名词到底想要描述怎样的问题。本文我就结合《JavaScript权威指南》和《JavaScript高级程序设计》两书进行总结和分析，可能有一些还不正确的理解，需要进一步探究。<br>　　另外，要说明的是，不可能只是干巴巴地描述这3个概念，因为它们本质上涉及的是JavaScript面向对象编程中的“类与对象”、“类的继承”等问题，因此本文是从这些方面进行组织的，constructor属性、prototype属性。</p>
 <hr>
-<h2 id="JavaScript对象简述"><a href="#JavaScript对象简述" class="headerlink" title="JavaScript对象简述"></a>JavaScript对象简述</h2><hr>
-<h2 id="JavaScript中类的概念"><a href="#JavaScript中类的概念" class="headerlink" title="JavaScript中类的概念"></a>JavaScript中类的概念</h2><hr>
-<h2 id="JavaScript对象创建方式"><a href="#JavaScript对象创建方式" class="headerlink" title="JavaScript对象创建方式"></a>JavaScript对象创建方式</h2><hr>
-<h2 id="JavaScript的继承机制"><a href="#JavaScript的继承机制" class="headerlink" title="JavaScript的继承机制"></a>JavaScript的继承机制</h2>  
+<h2 id="JavaScript对象简述"><a href="#JavaScript对象简述" class="headerlink" title="JavaScript对象简述　"></a>JavaScript对象简述　</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>　　在之前关于null和undefined的讨论中提到过，JavaScript中的数据类型分为两类：原始类型和对象类型。本篇主要要总结的就是对象类型。对象是JavaScript中十分重要且常用的概念。<br>　　对象是一种复合值：是多个属性的集合，每个属性都以键/值对的形式体现。其中对于属性值为函数的属性，一般将其称作方法。函数、数组等数据组织形式都是对象的一种特殊表现形式。</p>
+<h3 id="属性类型"><a href="#属性类型" class="headerlink" title="属性类型"></a>属性类型</h3><p>　　既然对象是属性的集合，那么有必要对属性进行分类。具体如下：<br>1.数据属性</p>
+<blockquote>
+<p>示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var student = &#123;</span><br><span class="line">    name: &quot;gaochang&quot;,</span><br><span class="line">    university: &quot;BUPT&quot; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>　　以上对象中的name和university两个属性就是数据属性，对它们可以进行数据的读取和写入。对于这类属性而言，它们又具备4个“特性”：</p>
+<ul>
+<li><strong>configurable</strong>：可配置性。<br>　　是指：能否通过delete删除属性，能否对该属性的这些特性进行修改，能否把数据属性修改成访问器属性（访问器属性稍候会提到）。默认<code>true</code>。</li>
+<li><strong>enumerable</strong>：可枚举性。<br>　　是指：该数据属性能否通过<code>for-in</code>循环遍历到。默认为<code>true</code>。</li>
+<li><strong>writable</strong>：可写性。<br>　　是指：是否能够修改该属性的属性值。默认为<code>true</code>。</li>
+<li><strong>value</strong>：值。<br>　　是指： 该属性的具体属性值，比如name属性的value：”gaochang”。</li>
+</ul>
+<p>2.访问器属性</p>
+<blockquote>
+<p>示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;</span><br><span class="line">    name: &quot;Professional JavaScript for Web Developers&quot;,</span><br><span class="line">    _isbn: &quot;978-7-115-27579-0&quot; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(book, &quot;isbn&quot;, &#123;</span><br><span class="line">    get: function() &#123;</span><br><span class="line">        return this._isbn;</span><br><span class="line">    &#125;</span><br><span class="line">    set: function(str) &#123;</span><br><span class="line">        this._isbn = str;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>　　以上对象中的_isbn属性就是访问器属性（前缀下划线表示是内部属性）。特别地，访问器属性不能直接定义，必须借助<code>Object.defineProperty()</code>方法。对于这类属性而言，它们又具备4个“特性”：</p>
+<ul>
+<li><strong>configurable</strong>：可配置性。<br>　　是指：能否通过delete删除属性，能否对该属性的这些特性进行修改，能否把数据属性修改成访问器属性（访问器属性稍候会提到）。默认<code>true</code>。</li>
+<li><strong>enumerable</strong>：可枚举性。<br>　　是指：该数据属性能否通过<code>for-in</code>循环遍历到。默认为<code>true</code>。</li>
+<li><strong>get</strong>：取值。<br>　　是指：读取属性时调用。</li>
+<li><strong>set</strong>：赋值。<br>　　是指：赋值时调用。</li>
+</ul>
+<h3 id="对象共有的“特性”"><a href="#对象共有的“特性”" class="headerlink" title="对象共有的“特性”"></a>对象共有的“特性”</h3><p>　　除了属性之外，每个对象还具有3个“特性”：</p>
+<ul>
+<li>原型（prototype）：可以理解成一个指针，指向另一个对象-原型对象，后面将做详细讨论。</li>
+<li>类（class）：是一个标识对象类型的字符串。</li>
+<li>扩展标记（extensible flag）：ES5新增，表明是否可以向该对象添加新属性。</li>
+</ul>
+<hr>
+<h2 id="JavaScript对象创建方式"><a href="#JavaScript对象创建方式" class="headerlink" title="JavaScript对象创建方式"></a>JavaScript对象创建方式</h2><p>　　了解了对象的基本概念后，就可以进一步分析对象的创建方式。在《JavaScript高级程序设计》中具体分为7种：</p>
+<ul>
+<li>工厂模式</li>
+<li>构造函数模式</li>
+<li>原型模式</li>
+<li>组合模式（构造函数+原型）</li>
+<li>动态原型模式</li>
+<li>寄生构造函数模式</li>
+<li>稳妥构造模式</li>
+</ul>
+<p>　　而在《JavaScript权威指南》中，对象创建方式分为3种：</p>
+<ul>
+<li>对象字面量创建（<code>var obj = {}</code>）</li>
+<li>关键字<code>new</code>构造函数创建</li>
+<li><code>Object.create()</code>基于原型创建</li>
+</ul>
+<p>　　分为这3类，虽说内容和上面的基本一致，但考虑问题的角度不同，个人感觉没有层层递进（《JavaScript权威指南》的分类标准是从本质上区分了创建对象的3种方式，但不利于初次理解）。因此建议理解的过程按照《JavaScript高级程序设计》进行，之后可以再看《JavaScript权威指南》补缺。本文也是按照《JavaScript高级程序设计》进行总结。<br>　　对于7种分类的方式而言，其基础还是“构造函数模式”和“原型模式”两种，其他的都是因为解决之前的某种缺陷而逐步演进得来的，因此下面重点分析这两个。
+　　</p>
+<hr>
+<h2 id="创建对象-构造函数模式（constructor属性相关）"><a href="#创建对象-构造函数模式（constructor属性相关）" class="headerlink" title="创建对象-构造函数模式（constructor属性相关）"></a>创建对象-构造函数模式（constructor属性相关）</h2><h3 id="工厂模式与构造函数模式的对比"><a href="#工厂模式与构造函数模式的对比" class="headerlink" title="工厂模式与构造函数模式的对比"></a>工厂模式与构造函数模式的对比</h3><p>　　在看构造函数模式之前，先看一个工厂模式的例子，从而和构造函数模式进行对比。</p>
+<blockquote>
+<p>使用工厂模式创建对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function createNews(title, subtitle)&#123;</span><br><span class="line">    var o = new Object();</span><br><span class="line">    o.title = title;</span><br><span class="line">    o.subtitle = subtitle;</span><br><span class="line">    o.release = function() &#123;</span><br><span class="line">        alert(o.title + &quot;--&quot; + o.subtitle);</span><br><span class="line">    &#125;</span><br><span class="line">    return o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var firstNews = createNews(&quot;important news&quot;, &quot;strategy&quot;);</span><br><span class="line">var secondNews = createNews(&quot;interesting news&quot;, &quot;strategy&quot;);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>　　接下来看看用构造函数模式如何重构上述代码：</p>
+<blockquote>
+<p>使用构造函数模式创建对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function News(title, subtitle)&#123;</span><br><span class="line">    this.title = title;</span><br><span class="line">    this.subtitle = subtitle;</span><br><span class="line">    this.release = function() &#123;</span><br><span class="line">        alert(this.title + &quot;--&quot; + this.subtitle);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var firstNews = new News(&quot;important news&quot;, &quot;strategy&quot;);</span><br><span class="line">var secondNews = new News(&quot;interesting news&quot;, &quot;strategy&quot;);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>　　对比可得构造函数模式的特点：</p>
+<ol>
+<li>函数名一般首字母大写，代表这是一类特殊的函数-构造函数；</li>
+<li>构造函数内并不直接新建对象，所以自然也不会返回初始化好的对象；</li>
+<li>使用构造函数时明确要用<code>new</code>关键字，具体的调用经历了如下四个步骤：</li>
+</ol>
+<ul>
+<li><code>new</code>创建一个新对象</li>
+<li>将构造函数的作用域赋给这个新对象</li>
+<li>执行构造函数中的代码，添加属性</li>
+<li>得到初始化好的新对象</li>
+</ul>
+<p>　　</p>
+<h3 id="对象的constructor属性"><a href="#对象的constructor属性" class="headerlink" title="对象的constructor属性"></a>对象的constructor属性</h3><p>　　以上构造函数模式代码中的firstNews和secondNews两个对象分别保存着News的一个实例（是不同的）。<font color="red">这里就要提到constructor了。firstNews和secondNews两个对象各自有一个constructor属性-构造函数属性。</font>如下所示：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-1.png" alt=""></p>
+<p>　　换句话说，<strong>由构造函数创建的对象</strong>，它有一个constructor属性，属性值为构造函数本身（指向构造函数），如下所示：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-2.png" alt=""></p>
+<p>　　而对于<strong>使用工厂模式创建的对象</strong>，也具有constructor属性，只不过直接指向“最高层”的对象Object，如下所示：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-3.png" alt=""></p>
+<p>　　对于<strong>字面量直接创建的对象</strong>，也具有constructor属性，也是直接指向“最高层”的对象Object，如下所示：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-4.png" alt=""></p>
+<p>　　对于<strong><code>Object.create()</code>方法创建的对象</strong>，也具有constructor属性，也是直接指向“最高层”的对象Object，如下所示：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-5.png" alt=""></p>
+<p>　　以上内容可总结如下：</p>
+<ol>
+<li><p>任何对象都具有constructor属性。</p>
+<blockquote>
+<p>注意，这里顺便说一下，即便是原始类型的数据，也可以调用constructor属性，原因应该是，JavaScript自动将其转换为对应的包装类型（对象），再调用相应包装类型的constructor属性（对象），如下图所示：（当然，null和undefined没有属性和方法，也就不用讨论了）<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-6.png" alt=""></p>
+</blockquote>
+</li>
+<li><p>使用构造函数模式创建的对象，其constructor指向创建该对象的构造函数</p>
+</li>
+<li>其他各类对象，其constructor指向Object()函数</li>
+</ol>
+<h3 id="构造函数模式存在的缺陷"><a href="#构造函数模式存在的缺陷" class="headerlink" title="构造函数模式存在的缺陷"></a>构造函数模式存在的缺陷</h3><p>　　相比于工厂模式，构造函数模式有其优点—它可以准确识别创建的对象的类型。但是，它本身也存在问题：构造函数中的方法，在每个新创建的对象上都要重新实例化一次，也就是说每个对象的该方法都不是同一个实例，然而它们的作用却是相同的，这就增大了开销。<br>　　为了解决这个问题，可以采取的方法是：把构造函数中的方法单独剥离出来，提出全局作用域上的函数，而在构造函数内部仅保留对这个全局函数的引用。这样，通过构造函数创建的所有实例都是共享了同一个函数。<strong>但是，这又产生了新的问题：</strong>如果构造函数中需要很多方法，全部都提到全局作用域中，就破坏了封装性，结构很不好。对于此问题，则需要采用下面提到的原型模式了。</p>
+<hr>
+<h2 id="创建对象-原型模式（prototype属性相关）"><a href="#创建对象-原型模式（prototype属性相关）" class="headerlink" title="创建对象-原型模式（prototype属性相关）"></a>创建对象-原型模式（prototype属性相关）</h2><h3 id="原型模式的案例"><a href="#原型模式的案例" class="headerlink" title="原型模式的案例"></a>原型模式的案例</h3><blockquote>
+<p>使用原型模式模式创建对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function News()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">News.prototype.title = &quot;important news&quot;;</span><br><span class="line">News.prototype.subtitle = &quot;strategy&quot;;</span><br><span class="line">News.prototype.release = function() &#123;</span><br><span class="line">    alert(this.title + &quot;--&quot; + this.subtitle);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var firstNews = new News();</span><br><span class="line">firstNews.title;        //&quot;important news&quot;</span><br><span class="line">var secondNews = new News();</span><br><span class="line">secondNews.subtitle;    //&quot;strategy&quot;</span><br><span class="line"></span><br><span class="line">firstNews.title = &quot;interesting news&quot;;</span><br><span class="line">firstNews.title;        //&quot;interesting news&quot;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>　　每个函数其实都有一个prototype（原型）属性，这个属性是一个指针，指向一个对象-原型对象，而这个对象的作用是包含好可以由特定类型的实例所共享的属性和方法。因此，如上所示，构造函数是空的也可以（但必须有这个构造函数），需要共享的内容写在prototype对象上就好了。</p>
+<h3 id="理解原型对象（prototype属性）"><a href="#理解原型对象（prototype属性）" class="headerlink" title="理解原型对象（prototype属性）"></a>理解原型对象（prototype属性）</h3><p>　　到底什么是原型对象呢？<br>　　首先，我们看看上述例子中通过原型模式创建的对象实例firstNews的原型对象是什么：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-1.png" alt=""></p>
+<p>　　这里发现显示的结果是<code>undefined</code>？原型对象没有定义吗？不是这样的。是因为在JavaScript中，prototype是一个内部属性，没有提供标准的直接访问方式，但是在各个主流浏览器的实现中，为我们提供了<code>__proto__</code>属性，可以帮我们“窥探”一个对象的原型对象。如下所示：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-2.png" alt=""></p>
+<p>  从上图我们能清楚地看到firstNews的原型对象的结构，<font color="red">并且和constructor联系起来了</font>：</p>
+<ol>
+<li>原型对象有一个constructor属性，它反过来指向了创建该实例的构造函数</li>
+<li>原型对象本身有我们自定义的两个属性title、subtitle和一个方法release()</li>
+<li><p>从另一个角度（“继承”的角度，稍后分析），原型对象自己可以看做是一个实例对象，它自己也有prototype属性（指向它的原型对象），并且通过<code>__proto__</code>表现出来。</p>
+<p>其次，上述是创建了函数对象，那么对于其他几种方式创建的对象呢？我们来看看：</p>
+</li>
+</ol>
+<p><strong>通过字面量直接创建对象</strong><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-3.png" alt=""></p>
+<p>可以看出，对象的prototype属性时存在的，并且由于没有构造函数，它的constructor属性直接指向了Object,也就是说字面量对象是由Object()直接创建的。</p>
+<p><strong>通过<code>Object.create()</code>创建对象</strong><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-4.png" alt=""></p>
+<p>可以看出，实例对象o的原型对象是{x:1, y:2}，并且不带任何诸如constructor之类的属性。原因是，根据API<code>Object.create((proto [, propertiesObject ]))</code>，传入的参数就是要创建的对象的原型proto。传入的是{x:1, y:2}，因此<code>__proto__</code>的结果自然也就是{x:1, y:2}。</p>
+<p>通过以上分析，可作总结：<br>1.任何时候，只要创建一个对象，就会有prototype属性，并且大多数情况通过<code>__proto__</code>进行展现<br>2.在此基础上，通过构造函数创建对象稍有特殊（因为constructor不会直接指向Object）。只要创建了一个新的函数对象，就会根据一组特定规则为函数创建一个prototype属性，这个属性指向函数的原型对象。并且，默认的这个原型对象又会自动获取一个constructor属性，反过来指向prototype属性所在的函数（也就是构造函数）。通过以下实验可以很好理解这一点：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-5.png" alt=""></p>
+<p>　　值得说明的是，根据之前提到的，prototype是内部属性不能直接访问（否则会报错），用<code>__proto__</code>可以间接访问，所以上图是通过<code>firstNews.__proto__.constructor</code>来测试的。但实际上我们要讨论的是<code>firstNews.prototype.constructor</code>，即prototype和constructor的关系，要特别注意这一点。</p>
+<p>3.可以通过下图更好地理解prototype和constructor的关系。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-6.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-7.png" alt="">
+　　</p>
+<h3 id="原型链操作"><a href="#原型链操作" class="headerlink" title="原型链操作"></a>原型链操作</h3><p>　　每次执行对象属性的读取操作时，其实就是执行了一次搜索。搜索会从实例对象本身开始，如果找到了该属性，则返回该属性的值；如果没有找到，则会根据实例对象的prototype指针找到该实例对象的原型对象，在原型对象上执行搜索。如果找到了，则返回该属性的值；如果没找到，则继续向上，根据原型对象的prototype指针向上查找… …，这样就形成了“链式结构”，也就是原型链。<br>　　关于原型链操作必须明确的是：<font color="red">只有在查询属性值的操作中才会感觉到原型链的存在，在修改属性值的过程中是没有原型链的概念的，也就是说修改属性值只会在实例对象中对原有属性进行覆盖，但并不会影响原型链上上层对象中的属性。</font>通过如下过程可以理解：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-8.png" alt=""></p>
+<h3 id="某个属性属于谁？（实例-or-原型？）"><a href="#某个属性属于谁？（实例-or-原型？）" class="headerlink" title="某个属性属于谁？（实例 or 原型？）"></a>某个属性属于谁？（实例 or 原型？）</h3><p>　　根据原型链操作的分析，对象属性在实例中和原型中的表现可能是不一样的，但自然就产生了这样的需求：某个属性是属于实例还是原型？<br>　　JavaScript主要提供了以下几种方式来解决这个问题：</p>
+<ol>
+<li><p>单独使用<code>in</code>操作符<br>　　格式：<code>&quot;title&quot; in firstNews;</code></p>
+<blockquote>
+<p><code>in</code>操作符能筛选出一个属性，无论它是在实例中还是原型中。</p>
+</blockquote>
+</li>
+<li><p>使用<code>for-in</code>循环<br>　　格式：<code>for(var prop in firstNews){}</code></p>
+<blockquote>
+<p><code>for-in</code>循环会返回所有可枚举的属性，无论它是在实例中还是原型中。</p>
+</blockquote>
+</li>
+<li><p>使用<code>Object.keys()</code><br>　　格式：<code>Object.keys(obj)</code></p>
+<blockquote>
+<p><code>Object.keys()</code>会返回所有可枚举的属性，仅来自实例对象。</p>
+</blockquote>
+</li>
+<li><p>使用<code>Object.getOwnPropertyNames()</code><br>　　格式：<code>Object.getOwnPropertyNames(obj)</code></p>
+<blockquote>
+<p><code>Object.keys()</code>会返回所有属性（无论是否可枚举），仅来自实例对象。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="原型对象的重写"><a href="#原型对象的重写" class="headerlink" title="原型对象的重写"></a>原型对象的重写</h3><p>　　写法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function News()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">News.prototype = &#123;</span><br><span class="line">    title: &quot;important news&quot;,</span><br><span class="line">    subtitle: &quot;strategy&quot;,</span><br><span class="line">    release: function() &#123;</span><br><span class="line">        alert(this.title + &quot;--&quot; + this.subtitle);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var firstNews = new News();</span><br></pre></td></tr></table></figure></p>
+<p>　　这样的写法不是另一种模式，只是为了说明一个问题。根据之前的分析，我们知道<code>firstNews.constructor</code>会指向构造函数本身，也就是<code>function News(){}</code>。那么在现在这样的写法中，<code>firstNews.constructor</code>还是指向<code>function News(){}</code>吗？答案是否定的，如下：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-9.png" alt=""><br>　　可以发现现在指向了<code>function Object()</code>，为什么呢？<br>　　原因是，在这种写法中，直接将一个”{}”对象赋给了<code>News.prototype</code>，本质上是完全重写了<code>News.prototype</code>，而不是像之前只是给<code>News.prototype</code>添加属性，比如<code>News.prototype.title</code>。因此，<code>News.prototype</code>的constructor属性也就发生了变化，变成了新的”{}”对象的constructor属性，而新对象”{}”是字面量直接对象，根据之前的分析知道它的constructor属性指向<code>function Object()</code>，所以现在的<code>firstNews.constructor</code>指向了<code>function Object()</code>。<br>　　如果想恢复到原来的状态，可以显式声明prototype对象的constructor属性：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-10.png" alt=""></p>
+<h3 id="原型对象的动态性"><a href="#原型对象的动态性" class="headerlink" title="原型对象的动态性"></a>原型对象的动态性</h3><p>　　根据原型链操作的分析，每一次属性获取都是一次查询，因此可以动态向原型中添加属性，并且可以立即反映出来。<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-11.png" alt=""></p>
+<p>　　但是，如果是重写整个原型对象，情况就不同了：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-12.png" alt=""><br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-13.png" alt=""></p>
+<h3 id="原生对象的原型"><a href="#原生对象的原型" class="headerlink" title="原生对象的原型"></a>原生对象的原型</h3><p>　　原生对象是指String()、Number()、Boolean()等包装类型产生的对象，它们的原型对象也是可以自定义的。但是，并不应该直接去修改这些内置类型的原型，因为可能会产生命名空间冲突，移植性差。</p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>　　通过上述过程，详细分析了JavaScript中对象创建的相关方法和极其重要的两个属性constructor和prototype。关于JavaScript中的“类的继承”将会在后续单独讨论（以此篇为基础）。</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+</div>
 
 
   <div class="article-tags">
@@ -162,7 +327,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对象简述"><span class="toc-number">2.</span> <span class="toc-text">JavaScript对象简述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript中类的概念"><span class="toc-number">3.</span> <span class="toc-text">JavaScript中类的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对象创建方式"><span class="toc-number">4.</span> <span class="toc-text">JavaScript对象创建方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript的继承机制"><span class="toc-number">5.</span> <span class="toc-text">JavaScript的继承机制</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对象简述"><span class="toc-number">2.</span> <span class="toc-text">JavaScript对象简述　</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性类型"><span class="toc-number">2.2.</span> <span class="toc-text">属性类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象共有的“特性”"><span class="toc-number">2.3.</span> <span class="toc-text">对象共有的“特性”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对象创建方式"><span class="toc-number">3.</span> <span class="toc-text">JavaScript对象创建方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象-构造函数模式（constructor属性相关）"><span class="toc-number">4.</span> <span class="toc-text">创建对象-构造函数模式（constructor属性相关）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂模式与构造函数模式的对比"><span class="toc-number">4.1.</span> <span class="toc-text">工厂模式与构造函数模式的对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象的constructor属性"><span class="toc-number">4.2.</span> <span class="toc-text">对象的constructor属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数模式存在的缺陷"><span class="toc-number">4.3.</span> <span class="toc-text">构造函数模式存在的缺陷</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象-原型模式（prototype属性相关）"><span class="toc-number">5.</span> <span class="toc-text">创建对象-原型模式（prototype属性相关）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原型模式的案例"><span class="toc-number">5.1.</span> <span class="toc-text">原型模式的案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解原型对象（prototype属性）"><span class="toc-number">5.2.</span> <span class="toc-text">理解原型对象（prototype属性）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型链操作"><span class="toc-number">5.3.</span> <span class="toc-text">原型链操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#某个属性属于谁？（实例-or-原型？）"><span class="toc-number">5.4.</span> <span class="toc-text">某个属性属于谁？（实例 or 原型？）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型对象的重写"><span class="toc-number">5.5.</span> <span class="toc-text">原型对象的重写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型对象的动态性"><span class="toc-number">5.6.</span> <span class="toc-text">原型对象的动态性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原生对象的原型"><span class="toc-number">5.7.</span> <span class="toc-text">原生对象的原型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>
  
   </div>
 
@@ -181,6 +346,45 @@
 
 
   
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/CSS/" title="CSS">CSS<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTML/" title="HTML">HTML<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTP/" title="HTTP">HTTP<sup>9</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>13</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SSH/" title="SSH">SSH<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端工具/" title="前端工具">前端工具<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/搭建配置/" title="搭建配置">搭建配置<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
 
   
 <div class="tagslist">
@@ -312,7 +516,7 @@
 	
 	<section class="info">
 		<p> Hello ,I&#39;m Gao Chang in BUPT. <br/>
-			Where there is a will there is a way.</p>
+			The relentless pursuit of perfection.</p>
 	</section>
 	 
 	<div class="social-font" class="clearfix">
