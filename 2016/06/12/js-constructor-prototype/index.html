@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-11.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-12.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-13.png">
-<meta property="og:updated_time" content="2016-06-16T08:52:33.563Z">
+<meta property="og:updated_time" content="2016-06-16T13:39:12.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中的对象、constructor属性、prototype属性对比分析">
 <meta name="twitter:description" content="前言　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感">
@@ -122,7 +122,7 @@
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感觉。因为三者的关系并不是简单的“constructor和prototype是对象的两个属性”，并且“到底把constructor看作属性还是构造函数对象”，“到底把prototype看作属性还是原型对象”，这些问题并没有一个固定答案，它们有着互相渗透的关系。更多地我们应该关注这些名词到底想要描述怎样的问题。本文我就结合《JavaScript权威指南》和《JavaScript高级程序设计》两书进行总结和分析，可能有一些还不正确的理解，需要进一步探究。<br>　　另外，要说明的是，不可能只是干巴巴地描述这3个概念，因为它们本质上涉及的是JavaScript面向对象编程中的“类与对象”、“类的继承”等问题，因此本文是从这些方面进行组织的，constructor属性、prototype属性。</p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感觉。因为三者的关系并不是简单的“constructor和prototype是对象的两个属性”，并且“到底把constructor看作属性还是构造函数对象”，“到底把prototype看作属性还是原型对象”，这些问题并没有一个固定答案，它们有着互相渗透的关系。更多地我们应该关注这些名词到底想要描述怎样的问题。本文我就结合《JavaScript权威指南》和《JavaScript高级程序设计》两书进行总结和分析，可能有一些还不正确的理解，需要进一步探究。<br>　　另外，要说明的是，不可能只是干巴巴地描述这3个概念，因为它们本质上涉及的是JavaScript面向对象编程中的“类与对象”、“类的继承”等问题，因此本文是从这些方面进行组织的，constructor属性、prototype属性的分析包含其中。</p>
 <hr>
 <h2 id="JavaScript对象简述"><a href="#JavaScript对象简述" class="headerlink" title="JavaScript对象简述　"></a>JavaScript对象简述　</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>　　在之前关于null和undefined的讨论中提到过，JavaScript中的数据类型分为两类：原始类型和对象类型。本篇主要要总结的就是对象类型。对象是JavaScript中十分重要且常用的概念。<br>　　对象是一种复合值：是多个属性的集合，每个属性都以键/值对的形式体现。其中对于属性值为函数的属性，一般将其称作方法。函数、数组等数据组织形式都是对象的一种特殊表现形式。</p>
 <h3 id="属性类型"><a href="#属性类型" class="headerlink" title="属性类型"></a>属性类型</h3><p>　　既然对象是属性的集合，那么有必要对属性进行分类。具体如下：<br>1.数据属性</p>
@@ -363,7 +363,7 @@
 		  
 		
 		  
-			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>13</sup></a></li>
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>15</sup></a></li>
 		  
 		
 		  
@@ -375,11 +375,15 @@
 		  
 		
 		  
-			<li><a href="/categories/搭建配置/" title="搭建配置">搭建配置<sup>3</sup></a></li>
+			<li><a href="/categories/搭建部署/" title="搭建部署">搭建部署<sup>2</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>1</sup></a></li>
+			<li><a href="/categories/搭建配置/" title="搭建配置">搭建配置<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>2</sup></a></li>
 		  
 		
 		</ul>
@@ -392,11 +396,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>30</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>32</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>12</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>14</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>6</sup></a></li>
 			
 		
 			
@@ -404,27 +412,7 @@
 			
 		
 			
-				<li><a href="/tags/HTTPS/" title="HTTPS">HTTPS<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/搭建记录/" title="搭建记录">搭建记录<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/SSL/" title="SSL">SSL<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/部署/" title="部署">部署<sup>2</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>3</sup></a></li>
 			
 		
 			
@@ -432,15 +420,11 @@
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/自动构建/" title="自动构建">自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>2</sup></a></li>
 			
 		
 			
@@ -452,11 +436,15 @@
 			
 		
 			
-				<li><a href="/tags/ajax/" title="ajax">ajax<sup>1</sup></a></li>
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/包管理工具/" title="包管理工具">包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
@@ -464,11 +452,27 @@
 			
 		
 			
-				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
 			
 		
 		</ul>
