@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>leetcode [#344] | GCidea&#39;s blog</title>
+    <title>leetcode [#104] | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
@@ -12,30 +12,30 @@
 
     
     <meta name="description" content="题目
-Write a function that takes a string as input and returns the string reversed.
-Example:Given s = “hello”, return “olleh”.
+Given a binary tree, find its maximum depth.
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
 
 
-解决方案1234567public class Solution &amp;#123;    public String reverseString(St">
+解决方案1234567891011121314151617181920">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode [#344]">
-<meta property="og:url" content="http://yoursite.com/2016/06/14/leetcode-344/index.html">
+<meta property="og:title" content="leetcode [#104]">
+<meta property="og:url" content="http://yoursite.com/2016/06/17/leetcode-104/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="题目
-Write a function that takes a string as input and returns the string reversed.
-Example:Given s = “hello”, return “olleh”.
+Given a binary tree, find its maximum depth.
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
 
 
-解决方案1234567public class Solution &amp;#123;    public String reverseString(St">
-<meta property="og:updated_time" content="2016-06-14T15:28:06.084Z">
+解决方案1234567891011121314151617181920">
+<meta property="og:updated_time" content="2016-06-17T08:42:43.276Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode [#344]">
+<meta name="twitter:title" content="leetcode [#104]">
 <meta name="twitter:description" content="题目
-Write a function that takes a string as input and returns the string reversed.
-Example:Given s = “hello”, return “olleh”.
+Given a binary tree, find its maximum depth.
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
 
 
-解决方案1234567public class Solution &amp;#123;    public String reverseString(St">
+解决方案1234567891011121314151617181920">
 
     
     
@@ -97,14 +97,14 @@ Example:Given s = “hello”, return “olleh”.
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/06/14/leetcode-344/" title="leetcode [#344]" itemprop="url">leetcode [#344]</a>
+      <a href="/2016/06/17/leetcode-104/" title="leetcode [#104]" itemprop="url">leetcode [#104]</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-06-14T09:26:39.000Z" itemprop="datePublished"> 发表于 2016-06-14</time>
+    <time datetime="2016-06-17T08:28:20.000Z" itemprop="datePublished"> 发表于 2016-06-17</time>
     
   </p>
 </header>
@@ -118,13 +118,13 @@ Example:Given s = “hello”, return “olleh”.
 		</div>
 		
 		<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
-<p>Write a function that takes a string as input and returns the string reversed.</p>
-<p><strong>Example</strong>:<br>Given s = “hello”, return “olleh”.</p>
+<p>Given a binary tree, find its maximum depth.</p>
+<p>The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.</p>
 </blockquote>
 <hr>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public String reverseString(String s) &#123;</span><br><span class="line">        StringBuilder handler = new StringBuilder(s);</span><br><span class="line">        handler.reverse();</span><br><span class="line">        return handler.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for a binary tree node.</span><br><span class="line"> * public class TreeNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     TreeNode left;</span><br><span class="line"> *     TreeNode right;</span><br><span class="line"> *     TreeNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public int maxDepth(TreeNode root) &#123;</span><br><span class="line">        int depth = 0;</span><br><span class="line">        if(root == null)&#123;</span><br><span class="line">            return depth;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            int l = 0;</span><br><span class="line">            int r = 0;</span><br><span class="line">            if(root.left != null)&#123;</span><br><span class="line">                l = maxDepth(root.left);</span><br><span class="line">            &#125;</span><br><span class="line">            if(root.right != null)&#123;</span><br><span class="line">                r = maxDepth(root.right);</span><br><span class="line">            &#125;</span><br><span class="line">            depth = l &gt; r ? l : r;</span><br><span class="line">            return depth + 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>以下这种写法可以得到正确答案，但是会超时，无法通过。原因是String一旦创建就不可修改，因此遍历中每次为result衔接新增的部分都会创建新对象并将引用指向result，增大了开销。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    Stack stack = new Stack();</span><br><span class="line">    int length = s.length();</span><br><span class="line">    for(int i = 0; i &lt; length; i++)&#123;</span><br><span class="line">        stack.push(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    String result = &quot;&quot;;</span><br><span class="line">    while(!stack.empty())&#123;</span><br><span class="line">        result += stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>　　思路是递归，根据二叉树的结构，某个子节点是其子树的根节点，则不断反复进行递归直到找到叶子节点，返回为零，其余不断加1，累计总长度（左右子节点均相同处理）。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -147,7 +147,7 @@ Example:Given s = “hello”, return “olleh”.
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/06/14/leetcode-344/" data-title="leetcode [#344] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/06/17/leetcode-104/" data-title="leetcode [#104] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -160,19 +160,11 @@ Example:Given s = “hello”, return “olleh”.
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/06/16/js-cross-domain/" title="JavaScript跨域问题总结">
-  <strong>上一篇：</strong><br/>
-  <span>
-  JavaScript跨域问题总结</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/06/12/js-constructor-prototype/"  title="JavaScript中的对象、constructor属性、prototype属性对比分析">
+<a href="/2016/06/17/fe-dns-prefetch/"  title="前端优化：[dns-prefetch] DNS预解析">
  <strong>下一篇：</strong><br/> 
- <span>JavaScript中的对象、constructor属性、prototype属性对比分析
+ <span>前端优化：[dns-prefetch] DNS预解析
 </span>
 </a>
 </div>
@@ -219,7 +211,7 @@ Example:Given s = “hello”, return “olleh”.
 		  
 		
 		  
-			<li><a href="/categories/HTTP/" title="HTTP">HTTP<sup>9</sup></a></li>
+			<li><a href="/categories/HTTP/" title="HTTP">HTTP<sup>10</sup></a></li>
 		  
 		
 		  
@@ -235,15 +227,11 @@ Example:Given s = “hello”, return “olleh”.
 		  
 		
 		  
-			<li><a href="/categories/搭建部署/" title="搭建部署">搭建部署<sup>2</sup></a></li>
+			<li><a href="/categories/搭建部署/" title="搭建部署">搭建部署<sup>3</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/搭建配置/" title="搭建配置">搭建配置<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>2</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
 		  
 		
 		</ul>
@@ -256,7 +244,7 @@ Example:Given s = “hello”, return “olleh”.
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>32</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>33</sup></a></li>
 			
 		
 			
@@ -264,7 +252,7 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>6</sup></a></li>
+				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>7</sup></a></li>
 			
 		
 			
@@ -276,35 +264,15 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
+				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML/" title="HTML">HTML<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
@@ -316,6 +284,34 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
@@ -324,15 +320,7 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
 			
 		
 		</ul>

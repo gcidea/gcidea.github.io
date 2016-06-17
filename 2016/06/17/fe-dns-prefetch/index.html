@@ -4,35 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>JavaScript的call()方法和apply()方法对比总结 | GCidea&#39;s blog</title>
+    <title>前端优化：[dns-prefetch] DNS预解析 | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="前言　　JavaScript中的函数其实就是一种对象。函数对象也有自己的很多方法。其中，call()方法和apply()方法就是两个用来间接调用函数的方法。两个方法都允许显式地指明调用时的上下文环境（即this的值）。也就是说，这给我们提供了一种自由-任何函数可以作为任何对象的方法来进行调用。并且，两个方法也都允许显式地指明调用时需要用到的实参。
-
-call()方法参数　　f.call(o, va">
+    <meta name="description" content="gaochang | BUPT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript的call()方法和apply()方法对比总结">
-<meta property="og:url" content="http://yoursite.com/2016/06/09/js-call-apply/index.html">
+<meta property="og:title" content="前端优化：[dns-prefetch] DNS预解析">
+<meta property="og:url" content="http://yoursite.com/2016/06/17/fe-dns-prefetch/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言　　JavaScript中的函数其实就是一种对象。函数对象也有自己的很多方法。其中，call()方法和apply()方法就是两个用来间接调用函数的方法。两个方法都允许显式地指明调用时的上下文环境（即this的值）。也就是说，这给我们提供了一种自由-任何函数可以作为任何对象的方法来进行调用。并且，两个方法也都允许显式地指明调用时需要用到的实参。
-
-call()方法参数　　f.call(o, va">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-call-1.png">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-call-2.png">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-3.png">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-1.png">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-2.png">
-<meta property="og:updated_time" content="2016-06-14T15:27:06.733Z">
+<meta property="og:description" content="gaochang | BUPT">
+<meta property="og:updated_time" content="2016-06-17T08:32:57.327Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript的call()方法和apply()方法对比总结">
-<meta name="twitter:description" content="前言　　JavaScript中的函数其实就是一种对象。函数对象也有自己的很多方法。其中，call()方法和apply()方法就是两个用来间接调用函数的方法。两个方法都允许显式地指明调用时的上下文环境（即this的值）。也就是说，这给我们提供了一种自由-任何函数可以作为任何对象的方法来进行调用。并且，两个方法也都允许显式地指明调用时需要用到的实参。
-
-call()方法参数　　f.call(o, va">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-call-1.png">
+<meta name="twitter:title" content="前端优化：[dns-prefetch] DNS预解析">
+<meta name="twitter:description" content="gaochang | BUPT">
 
     
     
@@ -94,14 +82,14 @@ call()方法参数　　f.call(o, va">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/06/09/js-call-apply/" title="JavaScript的call()方法和apply()方法对比总结" itemprop="url">JavaScript的call()方法和apply()方法对比总结</a>
+      <a href="/2016/06/17/fe-dns-prefetch/" title="前端优化：[dns-prefetch] DNS预解析" itemprop="url">前端优化：[dns-prefetch] DNS预解析</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-06-09T03:27:31.000Z" itemprop="datePublished"> 发表于 2016-06-09</time>
+    <time datetime="2016-06-17T08:27:56.000Z" itemprop="datePublished"> 发表于 2016-06-17</time>
     
   </p>
 </header>
@@ -110,38 +98,24 @@ call()方法参数　　f.call(o, va">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call-方法"><span class="toc-number">2.</span> <span class="toc-text">call()方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply-方法"><span class="toc-number">3.</span> <span class="toc-text">apply()方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">4.</span> <span class="toc-text">注意事项</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　JavaScript中的函数其实就是一种对象。函数对象也有自己的很多方法。其中，call()方法和apply()方法就是两个用来间接调用函数的方法。两个方法都允许显式地指明调用时的上下文环境（即this的值）。也就是说，这给我们提供了一种自由-任何函数可以作为任何对象的方法来进行调用。并且，两个方法也都允许显式地指明调用时需要用到的实参。</p>
-<hr>
-<h2 id="call-方法"><a href="#call-方法" class="headerlink" title="call()方法"></a>call()方法</h2><p><strong>参数</strong><br>　　<code>f.call(o, value1, value2, ...)</code><br>　　f： 想要调用的方法<br>　　o： 想要调用的方法的作用域（也就是在哪个对象上调用该方法）<br>　　value1, value2, …： 调用方法时传入的一系列参数<br><strong>使用示例</strong><br>1.简单调用call()方法，作用在当前this对象（浏览器对象）上<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-call-1.png" alt=""></p>
-<p>2.调用call()方法给自定义对象新增属性<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-call-2.png" alt=""></p>
-<hr>
-<h2 id="apply-方法"><a href="#apply-方法" class="headerlink" title="apply()方法"></a>apply()方法</h2><p><strong>参数</strong><br>　　<code>f.apply(o, [value1, value2, ...])</code><br>　　f： 想要调用的方法<br>　　o： 想要调用的方法的作用域（也就是在哪个对象上调用该方法）<br>　　[value1, value2, …]： 调用方法时传入的一个参数数组<br><strong>说明</strong><br>　　给apply()传入的参数数组可以是真正的数组，也可以是类数组对象</p>
-<blockquote>
-<p>类数组对象<br>  它不是真正的数组对象，却有着很多与数组类似的特性。很多数组算法针对类数组对象的优化做的很好，就像针对真正的数组一样。下面是一个简单的类数组对象创建的过程：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-3.png" alt=""></p>
-</blockquote>
-<p><strong>使用示例</strong><br>Math.max()本来是可以接受任意个参数来判断最大值，但如果给它传入一个数组，是不能正确返回最大值的：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-1.png" alt=""></p>
-<p>如果使用apply()方法，按照参数要求是接收一个数组，那么此时是可以给Math.max()传入一个数组的：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-apply-2.png" alt=""></p>
-<hr>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>1.在ECMAScript5严格模式中，call()和apply()的第一个实参都会变为this的值，哪怕传入的实参是原始值甚至是null或undefined。而在ECMAScript3非严格模式中，传入的null或者undefined则会被全局对象代替，而原始值则会变成相应的包装对象。</p>
-<p>2.<font color="red">为什么会存在call()和apply()这两个方法？</font>—为了动态改变函数执行的环境。有时候，我们可能想在某个对象的作用域（上下文环境）A内调用一个方法—也就是要使用这个对象内的属性和值，但是这个对象内可能没有这个方法。此时，如果别处（全局函数或者其他对象的函数）有我们需要的方法F，那么我们就可以使用call()或apply()将需要的方法F和作用域A关联起来，从而实现目的。</p>
-  
+		  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  <a class="article-category-link" href="/categories/HTTP/">HTTP</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/JavaScript/">JavaScript</a>
+  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/HTTP/">HTTP</a>
   </div>
 
 </div>
@@ -150,7 +124,7 @@ call()方法参数　　f.call(o, va">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/06/09/js-call-apply/" data-title="JavaScript的call()方法和apply()方法对比总结 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/06/17/fe-dns-prefetch/" data-title="前端优化：[dns-prefetch] DNS预解析 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -164,18 +138,18 @@ call()方法参数　　f.call(o, va">
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/06/09/js-caller-callee/" title="JavaScript的caller属性和callee属性对比总结">
+ <a href="/2016/06/17/leetcode-104/" title="leetcode [#104]">
   <strong>上一篇：</strong><br/>
   <span>
-  JavaScript的caller属性和callee属性对比总结</span>
+  leetcode [#104]</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/06/09/js-null-undefined/"  title="JavaScript的null和undefined对比总结">
+<a href="/2016/06/16/js-two-way-selector/"  title="JavaScript双向选择器的实现">
  <strong>下一篇：</strong><br/> 
- <span>JavaScript的null和undefined对比总结
+ <span>JavaScript双向选择器的实现
 </span>
 </a>
 </div>
@@ -190,7 +164,7 @@ call()方法参数　　f.call(o, va">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#call-方法"><span class="toc-number">2.</span> <span class="toc-text">call()方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apply-方法"><span class="toc-number">3.</span> <span class="toc-text">apply()方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">4.</span> <span class="toc-text">注意事项</span></a></li></ol>
+ 
  
   </div>
 

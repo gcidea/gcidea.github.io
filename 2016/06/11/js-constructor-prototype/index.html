@@ -14,7 +14,7 @@
     <meta name="description" content="前言　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript中的对象、constructor属性、prototype属性对比分析">
-<meta property="og:url" content="http://yoursite.com/2016/06/12/js-constructor-prototype/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/06/11/js-constructor-prototype/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-1.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-11.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-12.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-13.png">
-<meta property="og:updated_time" content="2016-06-16T13:39:12.816Z">
+<meta property="og:updated_time" content="2016-06-17T08:43:35.515Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中的对象、constructor属性、prototype属性对比分析">
 <meta name="twitter:description" content="前言　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感">
@@ -102,14 +102,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/06/12/js-constructor-prototype/" title="JavaScript中的对象、constructor属性、prototype属性对比分析" itemprop="url">JavaScript中的对象、constructor属性、prototype属性对比分析</a>
+      <a href="/2016/06/11/js-constructor-prototype/" title="JavaScript中的对象、constructor属性、prototype属性对比分析" itemprop="url">JavaScript中的对象、constructor属性、prototype属性对比分析</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-06-12T15:13:37.000Z" itemprop="datePublished"> 发表于 2016-06-12</time>
+    <time datetime="2016-06-11T15:13:37.000Z" itemprop="datePublished"> 发表于 2016-06-11</time>
     
   </p>
 </header>
@@ -287,7 +287,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/06/12/js-constructor-prototype/" data-title="JavaScript中的对象、constructor属性、prototype属性对比分析 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/06/11/js-constructor-prototype/" data-title="JavaScript中的对象、constructor属性、prototype属性对比分析 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -301,18 +301,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/06/14/leetcode-344/" title="leetcode [#344]">
+ <a href="/2016/06/12/js-proto-prototype/" title="JavaScript中__proto__和prototype的对比分析">
   <strong>上一篇：</strong><br/>
   <span>
-  leetcode [#344]</span>
+  JavaScript中__proto__和prototype的对比分析</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/06/12/js-proto-prototype/"  title="JavaScript中__proto__和prototype的对比分析">
+<a href="/2016/06/10/js-definitive-guide-error-p-204/"  title="《JavaScript权威指南》中文版P204纠错">
  <strong>下一篇：</strong><br/> 
- <span>JavaScript中__proto__和prototype的对比分析
+ <span>《JavaScript权威指南》中文版P204纠错
 </span>
 </a>
 </div>
@@ -359,7 +359,7 @@
 		  
 		
 		  
-			<li><a href="/categories/HTTP/" title="HTTP">HTTP<sup>9</sup></a></li>
+			<li><a href="/categories/HTTP/" title="HTTP">HTTP<sup>10</sup></a></li>
 		  
 		
 		  
@@ -375,15 +375,11 @@
 		  
 		
 		  
-			<li><a href="/categories/搭建部署/" title="搭建部署">搭建部署<sup>2</sup></a></li>
+			<li><a href="/categories/搭建部署/" title="搭建部署">搭建部署<sup>3</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/搭建配置/" title="搭建配置">搭建配置<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>2</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
 		  
 		
 		</ul>
@@ -396,7 +392,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>32</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>33</sup></a></li>
 			
 		
 			
@@ -404,7 +400,7 @@
 			
 		
 			
-				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>6</sup></a></li>
+				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>7</sup></a></li>
 			
 		
 			
@@ -416,35 +412,15 @@
 			
 		
 			
+				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/转载/" title="转载">转载<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML/" title="HTML">HTML<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
@@ -456,6 +432,34 @@
 			
 		
 			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
@@ -464,15 +468,7 @@
 			
 		
 			
-				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
 			
 		
 		</ul>
