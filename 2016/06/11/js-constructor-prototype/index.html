@@ -28,6 +28,7 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-3.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-4.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-5.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-14.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-6.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-7.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-8.png">
@@ -36,7 +37,7 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-11.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-12.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-13.png">
-<meta property="og:updated_time" content="2016-06-17T08:43:35.515Z">
+<meta property="og:updated_time" content="2016-06-18T03:49:04.548Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中的对象、constructor属性、prototype属性对比分析">
 <meta name="twitter:description" content="前言　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感">
@@ -222,7 +223,7 @@
 <ol>
 <li>原型对象有一个constructor属性，它反过来指向了创建该实例的构造函数</li>
 <li>原型对象本身有我们自定义的两个属性title、subtitle和一个方法release()</li>
-<li><p>从另一个角度（“继承”的角度，稍后分析），原型对象自己可以看做是一个实例对象，它自己也有prototype属性（指向它的原型对象），并且通过<code>__proto__</code>表现出来。</p>
+<li><p>从另一个角度（“继承”的角度），原型对象自己可以看做是一个实例对象，它自己也有prototype属性（指向它的原型对象），并且通过<code>__proto__</code>表现出来。</p>
 <p>其次，上述是创建了函数对象，那么对于其他几种方式创建的对象呢？我们来看看：</p>
 </li>
 </ol>
@@ -232,7 +233,11 @@
 <p>可以看出，实例对象o的原型对象是{x:1, y:2}，并且不带任何诸如constructor之类的属性。原因是，根据API<code>Object.create((proto [, propertiesObject ]))</code>，传入的参数就是要创建的对象的原型proto。传入的是{x:1, y:2}，因此<code>__proto__</code>的结果自然也就是{x:1, y:2}。</p>
 <p>通过以上分析，可作总结：<br>1.任何时候，只要创建一个对象，就会有prototype属性，并且大多数情况通过<code>__proto__</code>进行展现<br>2.在此基础上，通过构造函数创建对象稍有特殊（因为constructor不会直接指向Object）。只要创建了一个新的函数对象，就会根据一组特定规则为函数创建一个prototype属性，这个属性指向函数的原型对象。并且，默认的这个原型对象又会自动获取一个constructor属性，反过来指向prototype属性所在的函数（也就是构造函数）。通过以下实验可以很好理解这一点：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-5.png" alt=""></p>
 <p>　　值得说明的是，根据之前提到的，prototype是内部属性不能直接访问（否则会报错），用<code>__proto__</code>可以间接访问，所以上图是通过<code>firstNews.__proto__.constructor</code>来测试的。但实际上我们要讨论的是<code>firstNews.prototype.constructor</code>，即prototype和constructor的关系，要特别注意这一点。</p>
-<p>3.可以通过下图更好地理解prototype和constructor的关系。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-6.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-7.png" alt="">
+<p>3.<font color="red"><strong>但是，要特别注意</strong>,以上所说的<code>prototype</code>是内部属性无法访问，是针对创建的实例对象。而对于函数对象，是可以直接访问<code>prototype</code>属性的</font>，如下所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-14.png" alt=""></p>
+<blockquote>
+<p><code>prototype</code>和<code>__proto__</code>还有更多区别，详见这篇文章<a href="http://gcidea.info/2016/06/12/js-proto-prototype/" target="_blank" rel="external">JavaScript中<code>__proto__</code>和<code>prototype</code>的对比分析</a></p>
+</blockquote>
+<p>4.可以通过下图更好地理解prototype和constructor的关系。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-6.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-7.png" alt="">
 　　</p>
 <h3 id="原型链操作"><a href="#原型链操作" class="headerlink" title="原型链操作"></a>原型链操作</h3><p>　　每次执行对象属性的读取操作时，其实就是执行了一次搜索。搜索会从实例对象本身开始，如果找到了该属性，则返回该属性的值；如果没有找到，则会根据实例对象的prototype指针找到该实例对象的原型对象，在原型对象上执行搜索。如果找到了，则返回该属性的值；如果没找到，则继续向上，根据原型对象的prototype指针向上查找… …，这样就形成了“链式结构”，也就是原型链。<br>　　关于原型链操作必须明确的是：<font color="red">只有在查询属性值的操作中才会感觉到原型链的存在，在修改属性值的过程中是没有原型链的概念的，也就是说修改属性值只会在实例对象中对原有属性进行覆盖，但并不会影响原型链上上层对象中的属性。</font>通过如下过程可以理解：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-8.png" alt=""></p>
 <h3 id="某个属性属于谁？（实例-or-原型？）"><a href="#某个属性属于谁？（实例-or-原型？）" class="headerlink" title="某个属性属于谁？（实例 or 原型？）"></a>某个属性属于谁？（实例 or 原型？）</h3><p>　　根据原型链操作的分析，对象属性在实例中和原型中的表现可能是不一样的，但自然就产生了这样的需求：某个属性是属于实例还是原型？<br>　　JavaScript主要提供了以下几种方式来解决这个问题：</p>
@@ -432,7 +437,7 @@
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
 			
 		
 			
@@ -448,7 +453,7 @@
 			
 		
 			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 			
