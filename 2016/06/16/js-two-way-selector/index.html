@@ -11,16 +11,30 @@
     
 
     
-    <meta name="description" content="gaochang | BUPT">
+    <meta name="description" content="前言　　双向选择器是网站中经常使用的一种组件，适合于要求用户输入固定的一个或多个标签内容的场景，这种格式比普通input输入框的交互方式更加友好，而且可以防止因用户输入的随意性而导致的其他多余工作（比如表单验证）甚至错误。
+
+效果　　在说具体细节之前，可以先看一下效果，下图中就实现了一个最基本的双向选择器。  
+
+注意事项1.以上组件的编写没有基于原生的CSS，而是引入了AmazeUI框架，利用了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript双向选择器的实现">
 <meta property="og:url" content="http://yoursite.com/2016/06/16/js-two-way-selector/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="gaochang | BUPT">
-<meta property="og:updated_time" content="2016-06-16T14:35:00.539Z">
+<meta property="og:description" content="前言　　双向选择器是网站中经常使用的一种组件，适合于要求用户输入固定的一个或多个标签内容的场景，这种格式比普通input输入框的交互方式更加友好，而且可以防止因用户输入的随意性而导致的其他多余工作（比如表单验证）甚至错误。
+
+效果　　在说具体细节之前，可以先看一下效果，下图中就实现了一个最基本的双向选择器。  
+
+注意事项1.以上组件的编写没有基于原生的CSS，而是引入了AmazeUI框架，利用了">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-two-way-select-1.gif">
+<meta property="og:updated_time" content="2016-06-20T02:46:30.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript双向选择器的实现">
-<meta name="twitter:description" content="gaochang | BUPT">
+<meta name="twitter:description" content="前言　　双向选择器是网站中经常使用的一种组件，适合于要求用户输入固定的一个或多个标签内容的场景，这种格式比普通input输入框的交互方式更加友好，而且可以防止因用户输入的随意性而导致的其他多余工作（比如表单验证）甚至错误。
+
+效果　　在说具体细节之前，可以先看一下效果，下图中就实现了一个最基本的双向选择器。  
+
+注意事项1.以上组件的编写没有基于原生的CSS，而是引入了AmazeUI框架，利用了">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-two-way-select-1.gif">
 
     
     
@@ -98,11 +112,22 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果"><span class="toc-number">2.</span> <span class="toc-text">效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML结构"><span class="toc-number">4.</span> <span class="toc-text">HTML结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript控制逻辑"><span class="toc-number">5.</span> <span class="toc-text">JavaScript控制逻辑</span></a></li></ol>
 		
 		</div>
 		
-		  
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　双向选择器是网站中经常使用的一种组件，适合于要求用户输入固定的一个或多个标签内容的场景，这种格式比普通input输入框的交互方式更加友好，而且可以防止因用户输入的随意性而导致的其他多余工作（比如表单验证）甚至错误。</p>
+<hr>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>　　在说具体细节之前，可以先看一下效果，下图中就实现了一个最基本的双向选择器。<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-two-way-select-1.gif" alt=""></p>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>1.以上组件的编写没有基于原生的CSS，而是引入了AmazeUI框架，利用了框架提供的布局等样式，以下html代码中看到的以“am-”为前缀的class均是如此，具体的含义和使用方法可以参考<a href="http://amazeui.org/css/" target="_blank" rel="external">AmazeUI官方文档</a>。<br>2.实际使用中，我们往往需要左侧的待选项可以动态可变，那就不能在页面上写死，应该在双向选择器渲染生成之前向后台请求数据，获取最新的待选项即可。而如下代码中仅作为示例，固定写了几个选项。</p>
+<hr>
+<h2 id="HTML结构"><a href="#HTML结构" class="headerlink" title="HTML结构"></a>HTML结构</h2><p>　　主要文档结构如下：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;am-g&quot;&gt;</span><br><span class="line">&lt;div class=&quot;am-form-group am-u-sm-4 am-margin-left-sm am-margin-right-0 am-padding-right-0&quot;&gt;</span><br><span class="line">    &lt;label&gt;待选项列表&lt;/label&gt;&lt;br /&gt;</span><br><span class="line">    &lt;select multiple id=&quot;for-select&quot; style=&quot;height: 300px;&quot;&gt;</span><br><span class="line">        &lt;option&gt;选项1&lt;/option&gt;</span><br><span class="line">        &lt;option&gt;选项2&lt;/option&gt;</span><br><span class="line">        &lt;option&gt;选项3&lt;/option&gt;</span><br><span class="line">        &lt;option&gt;选项4&lt;/option&gt;</span><br><span class="line">        &lt;option&gt;选项5&lt;/option&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;am-form-group am-u-sm-1&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;am-text-center am-text-middle&quot;&gt;</span><br><span class="line">        &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;</span><br><span class="line">        &lt;a id=&quot;to-right&quot; style=&quot;cursor: pointer;&quot;&gt;&lt;i class=&quot;am-icon-angle-right am-icon-md&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;</span><br><span class="line">        &lt;a id=&quot;to-right-double&quot; style=&quot;cursor: pointer;&quot;&gt;&lt;i class=&quot;am-icon-angle-double-right am-icon-md&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;</span><br><span class="line">        &lt;a id=&quot;to-left&quot; style=&quot;cursor: pointer;&quot;&gt;&lt;i class=&quot;am-icon-angle-left am-icon-md&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;</span><br><span class="line">        &lt;a id=&quot;to-left-double&quot; style=&quot;cursor: pointer;&quot;&gt;&lt;i class=&quot;am-icon-angle-double-left am-icon-md&quot;&gt;&lt;/i&gt;&lt;/a&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;am-form-group am-u-sm-4 am-u-end am-margin-horizontal-0 am-padding-horizontal-0&quot;&gt;</span><br><span class="line">    &lt;label&gt;已选项列表&lt;/label&gt;&lt;br /&gt;</span><br><span class="line">    &lt;select multiple id=&quot;has-selected&quot; style=&quot;height: 300px;&quot;&gt;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="JavaScript控制逻辑"><a href="#JavaScript控制逻辑" class="headerlink" title="JavaScript控制逻辑"></a>JavaScript控制逻辑</h2><p>　　控制逻辑完整如下，基本的思想就是监听两个列表中每一项的点击事件，当触发点击事件后，遍历另一个列表中的选项，当无重复的情况下，将其从本列表中移除，添加至另一个列表中。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">$(function()&#123;</span><br><span class="line">    var leftSel = $(&quot;#&quot; + &quot;for-select&quot;);</span><br><span class="line">    var rightSel = $(&quot;#&quot; + &quot;has-selected&quot;);</span><br><span class="line"></span><br><span class="line">    //逐个向右</span><br><span class="line">    $(&quot;#&quot; + &quot;to-right&quot;).bind(&quot;click&quot;,function()&#123;</span><br><span class="line">        leftSel.find(&quot;option:selected&quot;).each(function()&#123;</span><br><span class="line">            var tmp = $(this).val();</span><br><span class="line">            var lthis = $(this);</span><br><span class="line">            var right = rightSel.find(&quot;option&quot;);</span><br><span class="line">            var flag = 0;</span><br><span class="line">            for(var i=0;i&lt;right.length;i++)&#123;</span><br><span class="line">                if(tmp !== right[i].label)&#123;</span><br><span class="line">                    flag++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(flag == right.length)&#123;</span><br><span class="line">                lthis.remove().appendTo(rightSel);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //全部向右</span><br><span class="line">    $(&quot;#&quot; + &quot;to-right-double&quot;).bind(&quot;click&quot;,function()&#123;</span><br><span class="line">        leftSel.find(&quot;option&quot;).each(function()&#123;</span><br><span class="line">            var tmp = $(this).val();</span><br><span class="line">            var lthis = $(this);</span><br><span class="line">            var right = rightSel.find(&quot;option&quot;);</span><br><span class="line">            var flag = 0;</span><br><span class="line">            for(var i=0;i&lt;right.length;i++)&#123;</span><br><span class="line">                if(tmp !== right[i].label)&#123;</span><br><span class="line">                    flag++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(flag == right.length)&#123;</span><br><span class="line">                lthis.remove().appendTo(rightSel);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //逐个向左</span><br><span class="line">    $(&quot;#&quot; + &quot;to-left&quot;).bind(&quot;click&quot;,function()&#123;</span><br><span class="line">        rightSel.find(&quot;option:selected&quot;).each(function()&#123;</span><br><span class="line">            var tmp = $(this).val();</span><br><span class="line">            var rthis = $(this);</span><br><span class="line">            var left = leftSel.find(&quot;option&quot;);</span><br><span class="line">            var flag = 0;</span><br><span class="line">            for(var i=0;i&lt;left.length;i++)&#123;</span><br><span class="line">                if(tmp !== left[i].label)&#123;</span><br><span class="line">                    flag++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(flag == left.length)&#123;</span><br><span class="line">                rthis.remove().appendTo(leftSel);</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                rthis.remove();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //全部向左</span><br><span class="line">    $(&quot;#&quot; + &quot;to-left-double&quot;).bind(&quot;click&quot;,function()&#123;</span><br><span class="line">        rightSel.find(&quot;option&quot;).each(function()&#123;</span><br><span class="line">            var tmp = $(this).val();</span><br><span class="line">            var rthis = $(this);</span><br><span class="line">            var left = leftSel.find(&quot;option&quot;);</span><br><span class="line">            var flag = 0;</span><br><span class="line">            for(var i=0;i&lt;left.length;i++)&#123;</span><br><span class="line">                if(tmp !== left[i].label)&#123;</span><br><span class="line">                    flag++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(flag == left.length)&#123;</span><br><span class="line">                rthis.remove().appendTo(leftSel);</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                rthis.remove();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //左侧待选记录的双击事件</span><br><span class="line">    leftSel.dblclick(function()&#123;</span><br><span class="line">        leftSel.find(&quot;option:selected&quot;).each(function()&#123;</span><br><span class="line">            var tmp = $(this).val();</span><br><span class="line">            var lthis = $(this);</span><br><span class="line">            var right = rightSel.find(&quot;option&quot;);</span><br><span class="line">            var flag = 0;</span><br><span class="line">            for(var i=0;i&lt;right.length;i++)&#123;</span><br><span class="line">                if(tmp !== right[i].label)&#123;</span><br><span class="line">                    flag++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(flag == right.length)&#123;</span><br><span class="line">                lthis.remove().appendTo(rightSel);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    //右侧已选记录的双击事件</span><br><span class="line">    rightSel.dblclick(function()&#123;</span><br><span class="line">        rightSel.find(&quot;option:selected&quot;).each(function()&#123;</span><br><span class="line">            var tmp = $(this).val();</span><br><span class="line">            var rthis = $(this);</span><br><span class="line">            var left = leftSel.find(&quot;option&quot;);</span><br><span class="line">            var flag = 0;</span><br><span class="line">            for(var i=0;i&lt;left.length;i++)&#123;</span><br><span class="line">                if(tmp !== left[i].label)&#123;</span><br><span class="line">                    flag++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(flag == left.length)&#123;</span><br><span class="line">                rthis.remove().appendTo(leftSel);</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                rthis.remove();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -164,7 +189,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果"><span class="toc-number">2.</span> <span class="toc-text">效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML结构"><span class="toc-number">4.</span> <span class="toc-text">HTML结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript控制逻辑"><span class="toc-number">5.</span> <span class="toc-text">JavaScript控制逻辑</span></a></li></ol>
  
   </div>
 
@@ -269,7 +294,11 @@
 			
 		
 			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
 			
 		
 			
@@ -277,19 +306,11 @@
 			
 		
 			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/HTML/" title="HTML">HTML<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
 			
 		
 			
@@ -297,15 +318,19 @@
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
 			
 		
 		</ul>
