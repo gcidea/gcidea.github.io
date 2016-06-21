@@ -4,23 +4,50 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>JavaScript跨域问题总结 | GCidea&#39;s blog</title>
+    <title>JavaScript跨域问题主要方法总结 | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="gaochang | BUPT">
+    <meta name="description" content="前言
+通过CORS实现
+通过JSONP实现
+通过图像Ping实现
+通过document.domain实现
+通过window.name实现
+通过iframe实现
+通过script标签实现
+通过window.postMessage实现（HTML5新增）
+通过后端处理实现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript跨域问题总结">
+<meta property="og:title" content="JavaScript跨域问题主要方法总结">
 <meta property="og:url" content="http://yoursite.com/2016/06/14/js-cross-domain/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="gaochang | BUPT">
-<meta property="og:updated_time" content="2016-06-17T08:44:23.414Z">
+<meta property="og:description" content="前言
+通过CORS实现
+通过JSONP实现
+通过图像Ping实现
+通过document.domain实现
+通过window.name实现
+通过iframe实现
+通过script标签实现
+通过window.postMessage实现（HTML5新增）
+通过后端处理实现">
+<meta property="og:updated_time" content="2016-06-21T14:39:31.564Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript跨域问题总结">
-<meta name="twitter:description" content="gaochang | BUPT">
+<meta name="twitter:title" content="JavaScript跨域问题主要方法总结">
+<meta name="twitter:description" content="前言
+通过CORS实现
+通过JSONP实现
+通过图像Ping实现
+通过document.domain实现
+通过window.name实现
+通过iframe实现
+通过script标签实现
+通过window.postMessage实现（HTML5新增）
+通过后端处理实现">
 
     
     
@@ -82,7 +109,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/06/14/js-cross-domain/" title="JavaScript跨域问题总结" itemprop="url">JavaScript跨域问题总结</a>
+      <a href="/2016/06/14/js-cross-domain/" title="JavaScript跨域问题主要方法总结" itemprop="url">JavaScript跨域问题主要方法总结</a>
   </h1>
   <p class="article-author">By
        
@@ -98,11 +125,20 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过CORS实现"><span class="toc-number">2.</span> <span class="toc-text">通过CORS实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过JSONP实现"><span class="toc-number">3.</span> <span class="toc-text">通过JSONP实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过图像Ping实现"><span class="toc-number">4.</span> <span class="toc-text">通过图像Ping实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过document-domain实现"><span class="toc-number">5.</span> <span class="toc-text">通过document.domain实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过window-name实现"><span class="toc-number">6.</span> <span class="toc-text">通过window.name实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过iframe实现"><span class="toc-number">7.</span> <span class="toc-text">通过iframe实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过script标签实现"><span class="toc-number">8.</span> <span class="toc-text">通过script标签实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过window-postMessage实现（HTML5新增）"><span class="toc-number">9.</span> <span class="toc-text">通过window.postMessage实现（HTML5新增）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过后端处理实现"><span class="toc-number">10.</span> <span class="toc-text">通过后端处理实现</span></a></li></ol>
 		
 		</div>
 		
-		  
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><hr>
+<h2 id="通过CORS实现"><a href="#通过CORS实现" class="headerlink" title="通过CORS实现"></a>通过CORS实现</h2><hr>
+<h2 id="通过JSONP实现"><a href="#通过JSONP实现" class="headerlink" title="通过JSONP实现"></a>通过JSONP实现</h2><hr>
+<h2 id="通过图像Ping实现"><a href="#通过图像Ping实现" class="headerlink" title="通过图像Ping实现"></a>通过图像Ping实现</h2><hr>
+<h2 id="通过document-domain实现"><a href="#通过document-domain实现" class="headerlink" title="通过document.domain实现"></a>通过document.domain实现</h2><hr>
+<h2 id="通过window-name实现"><a href="#通过window-name实现" class="headerlink" title="通过window.name实现"></a>通过window.name实现</h2><hr>
+<h2 id="通过iframe实现"><a href="#通过iframe实现" class="headerlink" title="通过iframe实现"></a>通过iframe实现</h2><hr>
+<h2 id="通过script标签实现"><a href="#通过script标签实现" class="headerlink" title="通过script标签实现"></a>通过script标签实现</h2><hr>
+<h2 id="通过window-postMessage实现（HTML5新增）"><a href="#通过window-postMessage实现（HTML5新增）" class="headerlink" title="通过window.postMessage实现（HTML5新增）"></a>通过window.postMessage实现（HTML5新增）</h2><hr>
+<h2 id="通过后端处理实现"><a href="#通过后端处理实现" class="headerlink" title="通过后端处理实现"></a>通过后端处理实现</h2>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -124,7 +160,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/06/14/js-cross-domain/" data-title="JavaScript跨域问题总结 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/06/14/js-cross-domain/" data-title="JavaScript跨域问题主要方法总结 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -164,7 +200,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过CORS实现"><span class="toc-number">2.</span> <span class="toc-text">通过CORS实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过JSONP实现"><span class="toc-number">3.</span> <span class="toc-text">通过JSONP实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过图像Ping实现"><span class="toc-number">4.</span> <span class="toc-text">通过图像Ping实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过document-domain实现"><span class="toc-number">5.</span> <span class="toc-text">通过document.domain实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过window-name实现"><span class="toc-number">6.</span> <span class="toc-text">通过window.name实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过iframe实现"><span class="toc-number">7.</span> <span class="toc-text">通过iframe实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过script标签实现"><span class="toc-number">8.</span> <span class="toc-text">通过script标签实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过window-postMessage实现（HTML5新增）"><span class="toc-number">9.</span> <span class="toc-text">通过window.postMessage实现（HTML5新增）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过后端处理实现"><span class="toc-number">10.</span> <span class="toc-text">通过后端处理实现</span></a></li></ol>
  
   </div>
 
@@ -216,7 +252,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>3</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>4</sup></a></li>
 		  
 		
 		</ul>
@@ -245,11 +281,11 @@
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>3</sup></a></li>
+				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>3</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>3</sup></a></li>
 			
 		
 			
@@ -269,7 +305,7 @@
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
@@ -281,7 +317,7 @@
 			
 		
 			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 			
@@ -289,11 +325,11 @@
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
