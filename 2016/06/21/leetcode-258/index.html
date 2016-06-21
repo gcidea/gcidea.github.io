@@ -4,50 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>《JavaScript 权威指南》P147的一处分析 | GCidea&#39;s blog</title>
+    <title>leetcode [#258] | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="情景　　在《JavaScript权威指南 第六版 中文版》P147，讲到稀疏数组时，书中给出如下的分析和例子：　　读完后感觉第一个红框和第二个红框中的表述不是很清楚，有些矛盾。于是在chrome浏览器的控制台进行测试，结果如下：
-
-第一个红框对应结果
-第二个红框对应结果
-第三个红框对应结果也就是说实测结果与书中第一个红框中的蓝色小框表述相反：0 in a1输出的值是false。
-
-
-分析　　以下是">
+    <meta name="description" content="题目
+Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
+For example:
+Given num = 38, the process is like: 3 + 8 = 11, 1 + 1 = 2. Since 2 has only one di">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《JavaScript 权威指南》P147的一处分析">
-<meta property="og:url" content="http://yoursite.com/2016/05/07/js-definitive-guide-p-147/index.html">
+<meta property="og:title" content="leetcode [#258]">
+<meta property="og:url" content="http://yoursite.com/2016/06/21/leetcode-258/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="情景　　在《JavaScript权威指南 第六版 中文版》P147，讲到稀疏数组时，书中给出如下的分析和例子：　　读完后感觉第一个红框和第二个红框中的表述不是很清楚，有些矛盾。于是在chrome浏览器的控制台进行测试，结果如下：
-
-第一个红框对应结果
-第二个红框对应结果
-第三个红框对应结果也就是说实测结果与书中第一个红框中的蓝色小框表述相反：0 in a1输出的值是false。
-
-
-分析　　以下是">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-147-cn.png">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/eq1.png">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/eq2.png">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/eq3.png">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-147-en.png">
-<meta property="og:updated_time" content="2016-06-14T15:27:33.413Z">
+<meta property="og:description" content="题目
+Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
+For example:
+Given num = 38, the process is like: 3 + 8 = 11, 1 + 1 = 2. Since 2 has only one di">
+<meta property="og:updated_time" content="2016-06-21T15:24:09.477Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《JavaScript 权威指南》P147的一处分析">
-<meta name="twitter:description" content="情景　　在《JavaScript权威指南 第六版 中文版》P147，讲到稀疏数组时，书中给出如下的分析和例子：　　读完后感觉第一个红框和第二个红框中的表述不是很清楚，有些矛盾。于是在chrome浏览器的控制台进行测试，结果如下：
-
-第一个红框对应结果
-第二个红框对应结果
-第三个红框对应结果也就是说实测结果与书中第一个红框中的蓝色小框表述相反：0 in a1输出的值是false。
-
-
-分析　　以下是">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-147-cn.png">
+<meta name="twitter:title" content="leetcode [#258]">
+<meta name="twitter:description" content="题目
+Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.
+For example:
+Given num = 38, the process is like: 3 + 8 = 11, 1 + 1 = 2. Since 2 has only one di">
 
     
     
@@ -109,14 +91,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/05/07/js-definitive-guide-p-147/" title="《JavaScript 权威指南》P147的一处分析" itemprop="url">《JavaScript 权威指南》P147的一处分析</a>
+      <a href="/2016/06/21/leetcode-258/" title="leetcode [#258]" itemprop="url">leetcode [#258]</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-05-07T11:41:01.000Z" itemprop="datePublished"> 发表于 2016-05-07</time>
+    <time datetime="2016-06-21T15:20:31.000Z" itemprop="datePublished"> 发表于 2016-06-21</time>
     
   </p>
 </header>
@@ -125,24 +107,19 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#情景"><span class="toc-number">1.</span> <span class="toc-text">情景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">3.</span> <span class="toc-text">结论</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="情景"><a href="#情景" class="headerlink" title="情景"></a>情景</h2><p>　　在《JavaScript权威指南 第六版 中文版》P147，讲到稀疏数组时，书中给出如下的分析和例子：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-147-cn.png" alt=""><br>　　读完后感觉第一个红框和第二个红框中的表述不是很清楚，有些矛盾。于是在chrome浏览器的控制台进行测试，结果如下：</p>
-<ol>
-<li>第一个红框对应结果<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/eq1.png" alt=""></li>
-<li>第二个红框对应结果<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/eq2.png" alt=""></li>
-<li>第三个红框对应结果<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/eq3.png" alt=""><br>也就是说实测结果与书中第一个红框中的蓝色小框表述相反：0 in a1输出的值是false。</li>
-</ol>
+		<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given a non-negative integer num, repeatedly add all its digits until the result has only one digit.</p>
+<p>For example:</p>
+<p>Given num = 38, the process is like: 3 + 8 = 11, 1 + 1 = 2. Since 2 has only one digit, return it.</p>
+</blockquote>
 <hr>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>　　以下是《JavaScript: The Definitive Guide》原书第六版对应地方的原文：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-147-en.png" alt=""><br>由此可以看出，原书中只有中文版截图中的第一个红框中的内容，而中文版在翻译时译者加上了后面两段话。猜测可能译者在浏览器中得到的结果也与原书不同，因而补上了两段话加以说明。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int addDigits(int num) &#123;</span><br><span class="line">        int result;</span><br><span class="line">        if (num &lt; 10) &#123;</span><br><span class="line">            result = num;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            String num2str = Integer.toString(num);</span><br><span class="line">            int newNum = 0;</span><br><span class="line">            for(int k = 0; k&lt; num2str.length(); k++)&#123;</span><br><span class="line">                newNum += Integer.parseInt(String.valueOf(num2str.charAt(k)));</span><br><span class="line">            &#125;</span><br><span class="line">            result = addDigits(newNum);</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
-<li>中文版截图中，第二个红框中的运行结果是译者在新版浏览器环境中测试得出的。即对于最新的情况：当省略数组直接量中的值时，得到的数组也是稀疏数组，并且省略掉的值是不存在的。</li>
-<li>中文版截图中，第三个红框中的说明表明：经译者测试，在旧版本浏览器中，[1,,3]和[1,undefined,3]是一样的，且对于省略的值，认为其是存在的（为undefined），因而作者写作时候用的是旧版浏览器，测试得出的结果是true。</li>
-<li>只记这个结论：省略数组直接量中的值（写连续的逗号）与显式写明undefined是不同的—前者认为在该索引处没有元素，后者认为在该索引处有一个undefined元素。</li>
-</ol>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>　　判断数字是否小于10（即是否是1位的数字），如果不是，将数字转为字符串，遍历取出每个字符，再转为对应数字，求和后用得到的结果递归调用addDigits()方法。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -150,13 +127,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/JavaScript/">JavaScript</a>
+  <span></span> <a href="/tags/算法-leetcode/">算法/leetcode</a>
   </div>
 
 </div>
@@ -165,7 +142,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/05/07/js-definitive-guide-p-147/" data-title="《JavaScript 权威指南》P147的一处分析 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/06/21/leetcode-258/" data-title="leetcode [#258] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -178,19 +155,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/05/08/grunt-gulp/" title="自动构建工具Grunt与Gulp的简单对比分析">
-  <strong>上一篇：</strong><br/>
-  <span>
-  自动构建工具Grunt与Gulp的简单对比分析</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/05/06/url-rewriting/"  title="URL重写">
+<a href="/2016/06/21/leetcode-226/"  title="leetcode [#226]">
  <strong>下一篇：</strong><br/> 
- <span>URL重写
+ <span>leetcode [#226]
 </span>
 </a>
 </div>
@@ -205,7 +174,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#情景"><span class="toc-number">1.</span> <span class="toc-text">情景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">3.</span> <span class="toc-text">结论</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
  
   </div>
 
