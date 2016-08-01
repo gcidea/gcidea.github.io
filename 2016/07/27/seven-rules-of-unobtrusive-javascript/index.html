@@ -1,0 +1,706 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【转·译】编写不唐突的JavaScript(unobtrusive-javascript)的七条准则 | GCidea&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Gao Chang">
+    
+
+    
+    <meta name="description" content="前言　　“unobtrusive javascript—不唐突的JavaScript”最早是从《JavaScript权威指南》中看到，13.2节最先出现了这个概念。我认为也可以描述成“优雅的JavaScript”，指的是那些拥有良好的编码规范，易于维护的JavaScript写法和注意事项。进而在网上看到了这篇“编写不唐突的JavaScript(unobtrusive-javascript)的七条准">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转·译】编写不唐突的JavaScript(unobtrusive-javascript)的七条准则">
+<meta property="og:url" content="http://yoursite.com/2016/07/27/seven-rules-of-unobtrusive-javascript/index.html">
+<meta property="og:site_name" content="GCidea's blog">
+<meta property="og:description" content="前言　　“unobtrusive javascript—不唐突的JavaScript”最早是从《JavaScript权威指南》中看到，13.2节最先出现了这个概念。我认为也可以描述成“优雅的JavaScript”，指的是那些拥有良好的编码规范，易于维护的JavaScript写法和注意事项。进而在网上看到了这篇“编写不唐突的JavaScript(unobtrusive-javascript)的七条准">
+<meta property="og:updated_time" content="2016-07-31T16:08:44.037Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转·译】编写不唐突的JavaScript(unobtrusive-javascript)的七条准则">
+<meta name="twitter:description" content="前言　　“unobtrusive javascript—不唐突的JavaScript”最早是从《JavaScript权威指南》中看到，13.2节最先出现了这个概念。我认为也可以描述成“优雅的JavaScript”，指的是那些拥有良好的编码规范，易于维护的JavaScript写法和注意事项。进而在网上看到了这篇“编写不唐突的JavaScript(unobtrusive-javascript)的七条准">
+
+    
+    
+    <link rel="icon" href="/img/author.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/author.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/author.png">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/author.png" alt="GCidea&#39;s blog" title="GCidea&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="GCidea&#39;s blog">GCidea&#39;s blog</a></h1>
+				<h2 class="blog-motto">gaochang | BUPT</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页 | Home</a></li>
+					
+						<li><a href="/archives">归档 | Archives</a></li>
+					
+						<li><a href="/categories">分类 | Categories</a></li>
+					
+						<li><a href="/about">简介 | About</a></li>
+					
+					<!--<li>
+ 					
+						<form class="search">
+							<label>Search</label>
+						<input type="text" id="ts-search-input" name="q" size="33" placeholder="ss"><br>
+						</form>
+
+                        
+                        
+					
+					</li>-->
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/27/seven-rules-of-unobtrusive-javascript/" title="【转·译】编写不唐突的JavaScript(unobtrusive-javascript)的七条准则" itemprop="url">【转·译】编写不唐突的JavaScript(unobtrusive-javascript)的七条准则</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-27T09:09:38.000Z" itemprop="datePublished"> 发表于 2016-07-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原文内容"><span class="toc-number">2.</span> <span class="toc-text">原文内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不要做任何假设（JavaScript是一个不可靠的助手）"><span class="toc-number">2.1.</span> <span class="toc-text">不要做任何假设（JavaScript是一个不可靠的助手）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#找出钩子和节点关系（HTML是脚本的基石）"><span class="toc-number">2.2.</span> <span class="toc-text">找出钩子和节点关系（HTML是脚本的基石）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#把遍历交给专家来做-（CSS，更快地遍历DOM）"><span class="toc-number">2.3.</span> <span class="toc-text">把遍历交给专家来做 （CSS，更快地遍历DOM）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解浏览器和用户（在既有的使用模式上创建你所需要的东西）"><span class="toc-number">2.4.</span> <span class="toc-text">理解浏览器和用户（在既有的使用模式上创建你所需要的东西）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解事件（事件处理会引起改变）"><span class="toc-number">2.5.</span> <span class="toc-text">理解事件（事件处理会引起改变）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为他人着想（命名空间，作用域和模式）"><span class="toc-number">2.6.</span> <span class="toc-text">为他人着想（命名空间，作用域和模式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为接手的开发者考虑（使维护更加容易）"><span class="toc-number">2.7.</span> <span class="toc-text">为接手的开发者考虑（使维护更加容易）</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　“unobtrusive javascript—不唐突的JavaScript”最早是从《JavaScript权威指南》中看到，13.2节最先出现了这个概念。我认为也可以描述成“优雅的JavaScript”，指的是那些拥有良好的编码规范，易于维护的JavaScript写法和注意事项。进而在网上看到了这篇“编写不唐突的JavaScript(unobtrusive-javascript)的七条准则”，做以记录和分享。</p>
+<hr>
+<h2 id="原文内容"><a href="#原文内容" class="headerlink" title="原文内容"></a>原文内容</h2><h3 id="不要做任何假设（JavaScript是一个不可靠的助手）"><a href="#不要做任何假设（JavaScript是一个不可靠的助手）" class="headerlink" title="不要做任何假设（JavaScript是一个不可靠的助手）"></a>不要做任何假设（JavaScript是一个不可靠的助手）</h3><ul>
+<li>不要假设JavaScript是可用的，你最好认为它很有可能是不可用的，而不是直接依赖于它。</li>
+<li>在你经过测试确认一些方法和属性可以使用之前，不要假设浏览器支持它们。</li>
+<li>不要假设HTML代码如你想象的那样正确，每次都要进行检查，并且当其不可用的时候就什么也不要做。</li>
+<li>让JavaScript的功能独立于输入设备。</li>
+<li>要记住其他的脚本可能会影响你的JavaScript的功能，所以要保证你的脚本的作用域尽可能地安全。</li>
+</ul>
+<p>在开始设计你的脚本之前，要考虑的第一件事情就是检查一下你要为其编写脚本的HTML代码，看看有什么东西可以帮助你达到目的。</p>
+<hr>
+<h3 id="找出钩子和节点关系（HTML是脚本的基石）"><a href="#找出钩子和节点关系（HTML是脚本的基石）" class="headerlink" title="找出钩子和节点关系（HTML是脚本的基石）"></a>找出钩子和节点关系（HTML是脚本的基石）</h3><p>　　在开始编写脚本之前，要先看一下你要为之编写JavaScript的HTML。如果HTML是未经组织的或者未知的，那么你几乎不可能有一个好的脚本编写方案——很可能就会出现下面的情况：要么是会用JavaScript创建太多标记，要么就是应用太依赖于JavaScript。<br>　　在HTML中有一些东西需要考虑，那就是钩子和节点关系。<br>(1) HTML 钩子<br>　　HTML最初的和最重要的钩子就是ID，而且ID可以通过最快的DOM方法——getElementById访问到。如果在一个有效的HTML文档中所有的ID都是独一无二的话（在IE中关于name和ID有一个bug，不过有些好的类库解决了这个问题），使用ID就是安全可靠的，并且易于测试，而且如果直接用name来作为对象进行操作，在FF下是无效的，会报此对象未定义的错误。<br>　　其他一些钩子就是是HTML元素和CSS类，HTML元素可以通过getElementsByTagName方法访问，而在多数浏览器中都还不能通过原生的DOM方法来访问CSS类。不过，有很多外部类库提供了可以访问CSS类名（类似于 getElementsByClassName） 的方法。</p>
+<p>(2) HTML 节点关系<br>　　关于HTML的另外比较有意思的一点就是标记之间的关系，思考下面的问题：</p>
+<ul>
+<li>要怎样才可以最容易地、通过最少的DOM遍历来到达目标节点？</li>
+<li>通过修改什么标记，可以尽可能多地访问到需要修改的子节点？</li>
+<li>一个给定的元素有什么属性或信息可以用来到达另外一个元素？</li>
+</ul>
+<p>遍历DOM很耗资源而且速度很慢，这就是为什么要尽量使用浏览器中已经在使用的技术来做这件事情。</p>
+<hr>
+<h3 id="把遍历交给专家来做-（CSS，更快地遍历DOM）"><a href="#把遍历交给专家来做-（CSS，更快地遍历DOM）" class="headerlink" title="把遍历交给专家来做 （CSS，更快地遍历DOM）"></a>把遍历交给专家来做 （CSS，更快地遍历DOM）</h3><p>　　有关DOM的脚本和使用方法或属性（getElementsByTagName, nextSibling, previousSibling,parentNode以及其它）来遍历DOM似乎迷惑了很多人，这点很有意思。而有趣的是，我们其实早已经通过另外一种技术—CSS—做了这些事情。<br>　　CSS是这样一种技术，它使用CSS选择器，通过遍历DOM来访问目标元素并改变它们的视觉属性。一段复杂的使用DOM的JavaScript可以用一个CSS选择器取代：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var n = document.getElementById(&apos;nav&apos;);  </span><br><span class="line">if(n)&#123;  </span><br><span class="line">    var as = n.getElementsByTagName(&apos;a&apos;);  </span><br><span class="line">    if(as.length &gt; 0)&#123;  </span><br><span class="line">        for(var i=0;as[i];i++)&#123;  </span><br><span class="line">            as[i].style.color = &apos;#369&apos;;  </span><br><span class="line">            as[i].style.textDecoration = &apos;none&apos;;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"> </span><br><span class="line">/* 下面的代码与上面功能一样 */ </span><br><span class="line"> </span><br><span class="line">#nav a&#123;  </span><br><span class="line">    color:#369;  </span><br><span class="line">    text-decoration:none;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这是一个可以好好利用的很强大的技巧。你可以通过动态为DOM中高层的元素添加class或者更改元素ID来实现这一点。如果你使用DOM为文档的body添加了一个CSS类，那么设计师就很可以容易地定义文档的静态版本和动态版本。如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">JavaScript:  </span><br><span class="line"> </span><br><span class="line">var dynamicClass = &apos;js&apos;;  </span><br><span class="line">var b = document.body;  </span><br><span class="line">b.className = b.className ? b.className + &apos; js&apos; : &apos;js&apos;;  </span><br><span class="line"> </span><br><span class="line">CSS:  </span><br><span class="line"> </span><br><span class="line">/* 静态版本 */ </span><br><span class="line"> </span><br><span class="line">#nav &#123;  </span><br><span class="line">...</span><br><span class="line">&#125;  </span><br><span class="line"> </span><br><span class="line">/* 动态版本 */ </span><br><span class="line"> </span><br><span class="line">body.js #nav &#123;  </span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="理解浏览器和用户（在既有的使用模式上创建你所需要的东西）"><a href="#理解浏览器和用户（在既有的使用模式上创建你所需要的东西）" class="headerlink" title="理解浏览器和用户（在既有的使用模式上创建你所需要的东西）"></a>理解浏览器和用户（在既有的使用模式上创建你所需要的东西）</h3><p>　　理解浏览器是如何工作的（尤其是浏览器是如何崩溃的）以及用户期望的是什么。不考虑浏览器你也可以很容易地使用JavaScript创建一个完全不同的界面。拖拽界面，折叠区域，滚动条和滑动块都可以使用JavaScript创建，但是这个问题并不是个简单的技术问题，你需要思考下面的问题：</p>
+<ul>
+<li>这个新界面可以独立于输入设备么？如果不能，那么可以依赖哪些东西？</li>
+<li>我创建的这个新界面是否遵循了浏览器或者其它富界面的准则（你可以通过鼠标在多级菜单中直接切换吗？还是需要使用tab键？）</li>
+<li>我需要提供什么功能但是这个功能是依赖于JavaScript的?</li>
+</ul>
+<p>　　最后一个问题其实不是问题，因为如果需要你就可以使用DOM来凭空创建HTML。关于这点的一个例子就是“打印”链接，由于浏览器没有提供一个非JavaScript的打印文档功能，所以你需要使用DOM来创建这类链接。同样地，一个实现了展开和收缩内容模块的、可以点击的标题栏也属于这种情况。标题栏不能被键盘激活，但是链接可以。所以为了创建一个可以点击的标题栏你需要使用JavaScript将链接加入进去，然后所有使用键盘的用户就可以收缩和展开内容模块了。解决这类问题的极好的资源就是设计模式库。至于要知道浏览器中的哪些东西是独立于输入设备的，那就要靠经验的积累了。首先你要理解的就是事件处理机制。</p>
+<hr>
+<h3 id="理解事件（事件处理会引起改变）"><a href="#理解事件（事件处理会引起改变）" class="headerlink" title="理解事件（事件处理会引起改变）"></a>理解事件（事件处理会引起改变）</h3><p>　　事件处理是走向不唐突的JavaScript的第二步。重点不是让所有的东西都变得可以拖拽、可以点击或者为它们添加内联处理，而是理解事件处理是一个可以完全分离出来的东西。我们已经将HTML，CSS和JavaScript分离开来，但是在事件处理的分离方面却没有走得很远。<br>　　事件处理器会监听发生在文档中元素上的变化，如果有事件发生，处理器就会找到一个很奇妙的对象（一般会是一个名为e的参数），这个对象会告诉元素发生了什么以及可以用它做什么。<br>　　对于大多数事件处理来说，真正有趣的是它不止发生在你想要访问的元素上，还会在DOM中较高层级的所有元素上发生（即事件冒泡，但是并不是所有的事件都是这样，focus和blur事件是例外）。举例来说，利用这个特性你可以为一个导航列表只添加一个事件处理器，并且使用事件处理器的方法来获取真正触发事件的元素。这种技术叫做事件委托，它有几点好处：</p>
+<ul>
+<li>你只需要检查一个元素是否存在，而不需要检查每个元素 </li>
+<li>你可以动态地添加或者删除子节点而并不需要删除相应的事件处理器 </li>
+<li>你可以在不同的元素上对相同的事件做出响应 </li>
+</ul>
+<p>　　需要记住的另一件事是，在事件向父元素传播的时候你可以停止它而且你可以覆写掉HTML元素（比如链接）的缺省行为。不过，有时候这并不是个好主意，因为浏览器赋予HTML元素那些行为是有原因的。举个例子，链接可能会指向页面内的某个目标，不去修改它们能确保用户可以将页面当前的脚本状态也加入书签。</p>
+<hr>
+<h3 id="为他人着想（命名空间，作用域和模式）"><a href="#为他人着想（命名空间，作用域和模式）" class="headerlink" title="为他人着想（命名空间，作用域和模式）"></a>为他人着想（命名空间，作用域和模式）</h3><p>　　你的代码几乎从来不会是文档中的唯一的脚本代码。所以保证你的代码里没有其它脚本可以覆盖的全局函数或者全局变量就显得尤为重要。有一些可用的模式可以来避免这个问题，最基础的一点就是要使用<code>var</code>关键字来初始化所有的变量。假设我们编写了下面的脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var nav = document.getElementById(&apos;nav&apos;);  </span><br><span class="line">function init()&#123;  </span><br><span class="line">    show();  </span><br><span class="line">    if(nav.className === &apos;show&apos;)&#123;  </span><br><span class="line">        reset();  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;  </span><br><span class="line">function show()&#123;  </span><br><span class="line">// do stuff  </span><br><span class="line">&#125;  </span><br><span class="line">function reset()&#123;  </span><br><span class="line">// do stuff  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码中包含了一个叫做nav的全局变量和名字分别为 init,show 和 reset 的三个函数。这些函数都可以访问到nav这个变量并且可以通过函数名互相访问:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var nav = document.getElementById(&apos;nav&apos;);  </span><br><span class="line">function init()&#123;  </span><br><span class="line">    show();  </span><br><span class="line">    if(nav.className === &apos;show&apos;)&#123;  </span><br><span class="line">    reset();  </span><br><span class="line">    &#125;  </span><br><span class="line">    // do stuff  </span><br><span class="line">&#125;  </span><br><span class="line">function show()&#123;  </span><br><span class="line">    var c = nav.className;  </span><br><span class="line">    // do stuff  </span><br><span class="line">&#125;  </span><br><span class="line">function reset()&#123;  </span><br><span class="line">    // do stuff  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>你可以将代码封装到一个对象中来避免上面的那种全局式编码，这样就可以将函数变成对象中的方法，将全局变量变成对象中的属性。你需要使用“名字+冒号”的方式来定义方法和属性，并且需要在每个属性或方法后面加上逗号作为分割符。如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var myScript = &#123;  </span><br><span class="line">    nav: document.getElementById(&apos;nav&apos;),  </span><br><span class="line">    init: function()&#123;  </span><br><span class="line">    // do stuff  </span><br><span class="line">    &#125;,  </span><br><span class="line">    show: function()&#123;  </span><br><span class="line">    // do stuff  </span><br><span class="line">    &#125;,  </span><br><span class="line">    reset: function()&#123;  </span><br><span class="line">    // do stuff  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所有的方法和属性都可以通过使用“类名+点操作符”的方式从外部和内部访问到。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var myScript = &#123;  </span><br><span class="line">    nav: document.getElementById(&apos;nav&apos;),  </span><br><span class="line">    init: function()&#123;  </span><br><span class="line">        myScript.show();  </span><br><span class="line">        if(myScript.nav.className === &apos;show&apos;)&#123;  </span><br><span class="line">            myScript.reset();  </span><br><span class="line">        &#125;  </span><br><span class="line">        // do stuff  </span><br><span class="line">    &#125;,  </span><br><span class="line">    show:function()&#123;  </span><br><span class="line">        var c = myScript.nav.className;  </span><br><span class="line">        // do stuff  </span><br><span class="line">    &#125;,  </span><br><span class="line">    reset:function()&#123;  </span><br><span class="line">        // do stuff  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这种模式的缺点就是，你每次从一个方法中访问其它方法或属性都必须在前面加上对象的名字，而且对象中的所有东西都是可以从外部访问的。如果你只是想要部分代码可以被文档中的其他脚本访问，可以考虑下面的模块（module）模式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var myScript = function()&#123;  </span><br><span class="line">    //这些都是私有方法和属性  </span><br><span class="line">    var nav = document.getElementById(&apos;nav&apos;);  </span><br><span class="line">    function init()&#123;  </span><br><span class="line">    // do stuff  </span><br><span class="line">    &#125;  </span><br><span class="line">    function show()&#123;  </span><br><span class="line">    // do stuff  </span><br><span class="line">    &#125;  </span><br><span class="line">    function reset()&#123;  </span><br><span class="line">    // do stuff  </span><br><span class="line">    &#125;  </span><br><span class="line">    </span><br><span class="line">    //公有的方法和属性被使用对象语法包装在return 语句里面  </span><br><span class="line">    return &#123;</span><br><span class="line">        public:function()&#123;</span><br><span class="line"></span><br><span class="line">        &#125;,</span><br><span class="line">        foo:&apos;bar&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure></p>
+<p>你可以使用和前面的代码同样的方式访问返回的公有的属性和方法，在本示例中可以这么访问：myScript.public() 和 myScript.foo 。但是这里还有一点让人觉得不舒服：当你想要从外部或者从内部的一个私有方法中访问公有方法的时候，还是要写一个冗长的名字（对象的名字可以非常长）。为了避免这一点，你需要将它们定义为私有的并且在return语句中只返回一个别名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var myScript = function()&#123;  </span><br><span class="line">    // 这些都是私有方法和属性  </span><br><span class="line">    var nav = document.getElementById(&apos;nav&apos;);  </span><br><span class="line">    function init()&#123;  </span><br><span class="line">        // do stuff  </span><br><span class="line">    &#125;  </span><br><span class="line">    function show()&#123;  </span><br><span class="line">        // do stuff  </span><br><span class="line">    &#125;  </span><br><span class="line">    function reset()&#123;  </span><br><span class="line">        // do stuff  </span><br><span class="line">    &#125;  </span><br><span class="line">    var foo = &apos;bar&apos;;  </span><br><span class="line">    function public()&#123;  </span><br><span class="line"></span><br><span class="line">    &#125;  </span><br><span class="line">    //只返回指向那些你想要访问的私有方法和属性的指针 </span><br><span class="line">    return &#123;  </span><br><span class="line">        public:public,  </span><br><span class="line">        foo:foo  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure></p>
+<p>这就保证了代码风格一致性，并且你可以使用短一点的别名来访问其中的方法或属性。 </p>
+<p>如果你不想对外部暴露任何的方法或属性，你可以将所有的代码封装到一个匿名方法中，并在它的定义结束后立刻执行它：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(function()&#123;  </span><br><span class="line">    // these are all private methods and properties  </span><br><span class="line">    var nav = document.getElementById(&apos;nav&apos;);  </span><br><span class="line">    function init()&#123;  </span><br><span class="line">        // do stuff  </span><br><span class="line">        show(); // 这里不需要类名前缀  </span><br><span class="line">    &#125;  </span><br><span class="line">    function show()&#123;  </span><br><span class="line">        // do stuff  </span><br><span class="line">    &#125;  </span><br><span class="line">    function reset()&#123;  </span><br><span class="line">        // do stuff  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>对于那些只执行一次并且对其它函数没有依赖的代码模块来说，这种模式非常好。 </p>
+<p>通过遵循上面的那些规则，你的代码更好地为用户工作，也可以使你的代码在机器上更好地运行并与其他开发者的代码和睦相处。不过，还有一个群体需要考虑到。 </p>
+<hr>
+<h3 id="为接手的开发者考虑（使维护更加容易）"><a href="#为接手的开发者考虑（使维护更加容易）" class="headerlink" title="为接手的开发者考虑（使维护更加容易）"></a>为接手的开发者考虑（使维护更加容易）</h3><p>使你的脚本真正地unobtrusive的最后一步是在编写完代码之后仔细检查一遍，并且要照顾到一旦脚本上线之后要接手你的代码的开发者。考虑下面的问题： </p>
+<ul>
+<li>所有的变量和函数名字是否合理并且易于理解？ </li>
+<li>代码是否经过了合理的组织？从头到尾都很流畅吗？ </li>
+<li>所有的依赖都显而易见吗？ </li>
+<li>在那些可能引起混淆的地方都添加了注释吗？ </li>
+</ul>
+<p>最重要的一点是：要认识到文档中的HTML和CSS代码相对于JavaScript来说更有可能被改变（因为它们负责视觉效果）。所以不要在脚本代码中包含任何可以让终端用户看到的class和ID，而是要将它们分离出来放到一个保存配置信息的对象中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">myscript = function()&#123;  </span><br><span class="line">    var config = &#123;  </span><br><span class="line">        navigationID:&apos;nav&apos;,  </span><br><span class="line">        visibleClass:&apos;show&apos;  </span><br><span class="line">    &#125;;  </span><br><span class="line">    var nav = document.getElementById(config.navigationID);  </span><br><span class="line">    function init()&#123;  </span><br><span class="line">        show();  </span><br><span class="line">        if(nav.className === config.visibleClass)&#123;  </span><br><span class="line">        reset();  </span><br><span class="line">        &#125;;  </span><br><span class="line">        // do stuff  </span><br><span class="line">    &#125;;  </span><br><span class="line">    function show()&#123;  </span><br><span class="line">        var c = nav.className;  </span><br><span class="line">        // do stuff  </span><br><span class="line">    &#125;;  </span><br><span class="line">    function reset()&#123;  </span><br><span class="line">        // do stuff  </span><br><span class="line">    &#125;;  </span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure></p>
+<p>这样维护者就知道去哪里修改这些属性，而不需要改动其他代码，这一点对于大量版本迭代维护十分重要。 </p>
+<hr>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/JavaScript/">JavaScript</a><a href="/tags/转载/">转载</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/07/27/seven-rules-of-unobtrusive-javascript/" data-title="【转·译】编写不唐突的JavaScript(unobtrusive-javascript)的七条准则 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/07/28/url-encoding/" title="URL编码探究">
+  <strong>上一篇：</strong><br/>
+  <span>
+  URL编码探究</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/07/26/base64/"  title="Base64编码探究">
+ <strong>下一篇：</strong><br/> 
+ <span>Base64编码探究
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原文内容"><span class="toc-number">2.</span> <span class="toc-text">原文内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不要做任何假设（JavaScript是一个不可靠的助手）"><span class="toc-number">2.1.</span> <span class="toc-text">不要做任何假设（JavaScript是一个不可靠的助手）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#找出钩子和节点关系（HTML是脚本的基石）"><span class="toc-number">2.2.</span> <span class="toc-text">找出钩子和节点关系（HTML是脚本的基石）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#把遍历交给专家来做-（CSS，更快地遍历DOM）"><span class="toc-number">2.3.</span> <span class="toc-text">把遍历交给专家来做 （CSS，更快地遍历DOM）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解浏览器和用户（在既有的使用模式上创建你所需要的东西）"><span class="toc-number">2.4.</span> <span class="toc-text">理解浏览器和用户（在既有的使用模式上创建你所需要的东西）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解事件（事件处理会引起改变）"><span class="toc-number">2.5.</span> <span class="toc-text">理解事件（事件处理会引起改变）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为他人着想（命名空间，作用域和模式）"><span class="toc-number">2.6.</span> <span class="toc-text">为他人着想（命名空间，作用域和模式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为接手的开发者考虑（使维护更加容易）"><span class="toc-number">2.7.</span> <span class="toc-text">为接手的开发者考虑（使维护更加容易）</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<!--<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>-->
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="gcidea" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/AngularJs/" title="AngularJs">AngularJs<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CSS/" title="CSS">CSS<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/FE/" title="FE">FE<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTML/" title="HTML">HTML<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/HTTP/" title="HTTP">HTTP<sup>12</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>27</sup></a></li>
+		  
+		
+		  
+		
+		  
+			<li><a href="/categories/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/SSH/" title="SSH">SSH<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/jQuery/" title="jQuery">jQuery<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/搭建部署/" title="搭建部署">搭建部署<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/正则表达式/" title="正则表达式">正则表达式<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/算法/" title="算法">算法<sup>6</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/综合/" title="综合">综合<sup>4</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>73</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>33</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>10</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://bbs.byr.cn" target="_blank" title="">北邮人论坛-北邮人的温馨家园</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ebupt.com" target="_blank" title="东信北邮信息技术有限公司">东信北邮信息技术有限公司</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2180985772&verifier=e539de77&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Gao Chang in BUPT. <br/>
+			The relentless pursuit of perfection.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2180985772" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/gcidea" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		<a href="https://www.linkedin.com/in/gcidea" target="_blank" class="icon-linkedin" title="linkedin"></a>
+		
+		
+		
+		<a href="http://www.zhihu.com/people/gcidea" target="_blank" class="icon-zhihu" title="知乎"></a>
+		
+		
+		
+		<a href="mailto:gaochang@ebupt.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Gao Chang">Gao Chang</a>
+		
+		
+		</p>
+    
+    
+    <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','t_xFiUzPf_dy2au4WGJx','2.0.0');
+</script>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  /*$this.append(html);*/
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad03ecfd99432fefa83cbc4dea96fac4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
