@@ -11,16 +11,40 @@
     
 
     
-    <meta name="description" content="前言　　本篇集中对CSS中的各种居中问题进行总结。">
+    <meta name="description" content="前言　　本篇集中对CSS中的各种居中问题进行总结。整体上需要居中的元素可以分为两大类-内联元素和块级元素，而居中方式又要考虑水平和垂直两个方向。
+
+内联元素居中水平居中1.使用text-align:center
+根据以下W3C的官方文档：
+属性“text-align”用于描述块级元素中的行内内容如何布局。我们知道，块级元素的显示占据一整行，而行内元素可以在一行内并列显示，常用的行内元素有&amp;lt;i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS居中问题总结">
 <meta property="og:url" content="http://yoursite.com/2016/06/03/css-center/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言　　本篇集中对CSS中的各种居中问题进行总结。">
-<meta property="og:updated_time" content="2016-06-14T15:24:38.983Z">
+<meta property="og:description" content="前言　　本篇集中对CSS中的各种居中问题进行总结。整体上需要居中的元素可以分为两大类-内联元素和块级元素，而居中方式又要考虑水平和垂直两个方向。
+
+内联元素居中水平居中1.使用text-align:center
+根据以下W3C的官方文档：
+属性“text-align”用于描述块级元素中的行内内容如何布局。我们知道，块级元素的显示占据一整行，而行内元素可以在一行内并列显示，常用的行内元素有&amp;lt;i">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/w3c-css-text-align.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-1.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-2.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-3.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-3-0.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-4.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-5.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-6.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-7.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-8.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-9.png">
+<meta property="og:updated_time" content="2016-08-04T08:09:15.926Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS居中问题总结">
-<meta name="twitter:description" content="前言　　本篇集中对CSS中的各种居中问题进行总结。">
+<meta name="twitter:description" content="前言　　本篇集中对CSS中的各种居中问题进行总结。整体上需要居中的元素可以分为两大类-内联元素和块级元素，而居中方式又要考虑水平和垂直两个方向。
+
+内联元素居中水平居中1.使用text-align:center
+根据以下W3C的官方文档：
+属性“text-align”用于描述块级元素中的行内内容如何布局。我们知道，块级元素的显示占据一整行，而行内元素可以在一行内并列显示，常用的行内元素有&amp;lt;i">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/w3c-css-text-align.png">
 
     
     
@@ -98,13 +122,38 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内联元素居中"><span class="toc-number">2.</span> <span class="toc-text">内联元素居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中"><span class="toc-number">2.1.</span> <span class="toc-text">水平居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中"><span class="toc-number">2.2.</span> <span class="toc-text">垂直居中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块级元素居中"><span class="toc-number">3.</span> <span class="toc-text">块级元素居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-1"><span class="toc-number">3.1.</span> <span class="toc-text">水平居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中-1"><span class="toc-number">3.2.</span> <span class="toc-text">垂直居中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap居中方法探究"><span class="toc-number">4.</span> <span class="toc-text">Bootstrap居中方法探究</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本篇集中对CSS中的各种居中问题进行总结。</p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本篇集中对CSS中的各种居中问题进行总结。整体上需要居中的元素可以分为两大类-内联元素和块级元素，而居中方式又要考虑水平和垂直两个方向。</p>
 <hr>
-  
+<h2 id="内联元素居中"><a href="#内联元素居中" class="headerlink" title="内联元素居中"></a>内联元素居中</h2><h3 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h3><p>1.使用<code>text-align:center</code></p>
+<p>根据以下W3C的官方文档：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/w3c-css-text-align.png" alt=""></p>
+<p>属性“text-align”用于描述块级元素中的行内内容如何布局。我们知道，块级元素的显示占据一整行，而行内元素可以在一行内并列显示，常用的行内元素有<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;label&gt;</code>等。默认地，块级元素中的行内元素是左对齐显示的，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;span&gt;CSS行内元素居中测试&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>效果如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-1.png" alt=""></p>
+<p>　　这种情况下我们想对行内元素<span>标签中的内容进行居中显示，则可以使用“text-align: center”。要注意的是，这个属性是用来决定行内元素的位置的，没错，但是该属性并不是写在行内元素上，而是要写在行内元素的父级元素，即块级元素这个“container”上，以此来决定内部文本的对齐方式。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #block-center &#123;</span><br><span class="line">            text-align: center;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;block-center&quot;&gt;</span><br><span class="line">    &lt;span&gt;CSS行内元素居中测试&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></span></p>
+<p>效果如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-2.png" alt=""></p>
+<p>2.使用CSS3弹性盒模型flexbox中的<code>justify-content:center</code></p>
+<p>　　关于CSS3弹性盒模型flexbox这里不过多介绍，可以参考另外一篇-<a href="http://gcidea.info/2016/07/14/css3-flexbox/" target="_blank" rel="external">CSS3的弹性盒模型FlexBox</a>。<br>　　和<code>text-align</code>一样的是，justify-content也适用于父类容器上，用于设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式。当属性值为“center”时，弹性盒子元素将向行中间位置对齐。该行的子元素将相互对齐并在行中居中对齐，同时第一个元素与行的主起始位置的边距等同于最后一个元素与行的主结束位置的边距（如果剩余空间是负数，则保持两端相等长度的溢出）。<br>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #block-center &#123;</span><br><span class="line">            display: flex; /*注意此处要指明flex布局*/</span><br><span class="line">            justify-content: center;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;block-center&quot;&gt;</span><br><span class="line">    &lt;span&gt;CSS行内元素居中测试(此处使用justify-content)&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>效果如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-3.png" alt=""></p>
+<p>3.使用<code>display: table-cell</code><br>　　<code>display: table</code>的CSS声明能够让一个HTML元素和它的子节点像table元素一样。使用基于表格的CSS布局，使我们能够轻松定义一个单元格的边界、背景等样式，而不会产生因为使用了table标签所导致的语义化问题。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #block &#123;</span><br><span class="line">            display: table;</span><br><span class="line">            width: 100%;</span><br><span class="line">            border: 1px solid black;</span><br><span class="line">        &#125;</span><br><span class="line">        #block-center &#123;</span><br><span class="line">            display: table-cell;</span><br><span class="line">            text-align: center;</span><br><span class="line">            border: 1px solid orangered;</span><br><span class="line">        &#125;</span><br><span class="line">        #inline-1 &#123;</span><br><span class="line">            height: 40px;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;block&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;block-center&quot;&gt;</span><br><span class="line">        &lt;img src=&quot;2.jpg&quot; id=&quot;inline-1&quot;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>效果如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-3-0.png" alt=""></p>
+<h3 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h3><p>1.默认情况<br>　　对于上述已经水平居中的文本来说，相对于父级元素的垂直居中是默认的，不需要特殊声明，比如下面两张图，修改文本字号，它们始终处于父级div的垂直方向的中间（为了看得清楚，给父级元素加上了边框）。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-4.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-5.png" alt=""></p>
+<p>2.行内元素互相之间的垂直居中<br>　　如果一个父级元素中有多个行内元素，那么默认它们是在父元素的基线上进行对齐排列，也就是<code>vertical-align: baseline;</code>，以行内元素-图片为例，代码为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #block-center &#123;</span><br><span class="line">            text-align: center;</span><br><span class="line">            border: 1px solid orangered;</span><br><span class="line">        &#125;</span><br><span class="line">        #inline-1 &#123;</span><br><span class="line">            height: 40px;</span><br><span class="line">        &#125;</span><br><span class="line">        #inline-2 &#123;</span><br><span class="line">            height: 60px;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;block-center&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;2.jpg&quot; id=&quot;inline-1&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;3.jpg&quot; id=&quot;inline-2&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>效果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-6.png" alt=""></p>
+<p>　　此时如果不想让这些行内元素“底部对齐”呢，而是想让它们互相居中对齐，也就是图片的中线在同一条水平线上呢？那就要对行内元素本身使用<code>vertical-align: middle;</code>，代码为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #block-center &#123;</span><br><span class="line">            text-align: center;</span><br><span class="line">            border: 1px solid orangered;</span><br><span class="line">        &#125;</span><br><span class="line">        #inline-1 &#123;</span><br><span class="line">            vertical-align: middle;</span><br><span class="line">            height: 40px;</span><br><span class="line">        &#125;</span><br><span class="line">        #inline-2 &#123;</span><br><span class="line">            vertical-align: middle;</span><br><span class="line">            height: 60px;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;block-center&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;2.jpg&quot; id=&quot;inline-1&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;3.jpg&quot; id=&quot;inline-2&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>效果如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-7.png" alt=""></p>
+<hr>
+<h2 id="块级元素居中"><a href="#块级元素居中" class="headerlink" title="块级元素居中"></a>块级元素居中</h2><h3 id="水平居中-1"><a href="#水平居中-1" class="headerlink" title="水平居中"></a>水平居中</h3><p>1.使用<code>margin: 0 auto</code></p>
+<p>　　我们以最常见的块级元素-div为例，看一下居中的过程。首先创建一个div，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #block &#123;</span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            background-color: orangered;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;block&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>效果如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-8.png" alt=""></p>
+<p>　　对块级元素本身添加<code>margin: 0 auto</code>可使其水平居中，即左右的外边距margin是auto的，会根据实际屏幕大小进行自动适配。修改上述style部分：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    #block &#123;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 100px;</span><br><span class="line">        background-color: orangered;</span><br><span class="line">        margin: 0 auto;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<p>效果如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-center-9.png" alt=""></p>
+<p>2.使用CSS3弹性盒模型flexbox中的<code>justify-content:center</code><br>　　<code>justify-content:center</code>不仅可以用来处理行内元素，也可以处理块级元素，为达到与上述方法相同的效果，代码为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #block &#123;</span><br><span class="line">            display: flex;</span><br><span class="line">            justify-content: center;</span><br><span class="line">        &#125;</span><br><span class="line">        #block-core &#123;</span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            background-color: orangered;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;block&quot;&gt;</span><br><span class="line">    &lt;div id=&quot;block-core&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>效果图与上面的相同。</p>
+<h3 id="垂直居中-1"><a href="#垂直居中-1" class="headerlink" title="垂直居中"></a>垂直居中</h3><hr>
+<h2 id="Bootstrap居中方法探究"><a href="#Bootstrap居中方法探究" class="headerlink" title="Bootstrap居中方法探究"></a>Bootstrap居中方法探究</h2>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -166,7 +215,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内联元素居中"><span class="toc-number">2.</span> <span class="toc-text">内联元素居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中"><span class="toc-number">2.1.</span> <span class="toc-text">水平居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中"><span class="toc-number">2.2.</span> <span class="toc-text">垂直居中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#块级元素居中"><span class="toc-number">3.</span> <span class="toc-text">块级元素居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-1"><span class="toc-number">3.1.</span> <span class="toc-text">水平居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中-1"><span class="toc-number">3.2.</span> <span class="toc-text">垂直居中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap居中方法探究"><span class="toc-number">4.</span> <span class="toc-text">Bootstrap居中方法探究</span></a></li></ol>
  
   </div>
 
@@ -210,7 +259,7 @@
 		  
 		
 		  
-			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>27</sup></a></li>
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>28</sup></a></li>
 		  
 		
 		  
@@ -251,11 +300,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>74</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>75</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>33</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>34</sup></a></li>
 			
 		
 			
@@ -283,10 +332,6 @@
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>3</sup></a></li>
 			
 		
@@ -299,15 +344,7 @@
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>3</sup></a></li>
 			
 		
 			
@@ -315,7 +352,23 @@
 			
 		
 			
+				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
 			
 		
 			
@@ -323,11 +376,11 @@
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 			
@@ -335,7 +388,7 @@
 			
 		
 			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
@@ -352,10 +405,6 @@
 		
 			
 				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 		</ul>
