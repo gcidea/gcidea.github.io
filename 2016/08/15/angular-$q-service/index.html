@@ -11,16 +11,16 @@
     
 
     
-    <meta name="description" content="gaochang | BUPT">
+    <meta name="description" content="前言　　$q服务的实现与ES6(ES2015)中的promise十分相似，这种方式改变了传统长期使用的JavaScript异步编程方式-处理回调函数。试想一下，如果有这样的业务逻辑：我们需要根据某个异步ajax请求的结果是否符合要求，再发起一个异步请求，在回调函数中对响应数据进行请求后再发起异步请求… …当出现这样的异步嵌套逻辑，代码结构就会变得很差。promise正是改变了这种情况，以一种流式的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AngularJs中$q服务(service)的使用">
 <meta property="og:url" content="http://yoursite.com/2016/08/15/angular-$q-service/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="gaochang | BUPT">
-<meta property="og:updated_time" content="2016-08-09T07:08:50.693Z">
+<meta property="og:description" content="前言　　$q服务的实现与ES6(ES2015)中的promise十分相似，这种方式改变了传统长期使用的JavaScript异步编程方式-处理回调函数。试想一下，如果有这样的业务逻辑：我们需要根据某个异步ajax请求的结果是否符合要求，再发起一个异步请求，在回调函数中对响应数据进行请求后再发起异步请求… …当出现这样的异步嵌套逻辑，代码结构就会变得很差。promise正是改变了这种情况，以一种流式的">
+<meta property="og:updated_time" content="2016-08-09T15:21:27.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AngularJs中$q服务(service)的使用">
-<meta name="twitter:description" content="gaochang | BUPT">
+<meta name="twitter:description" content="前言　　$q服务的实现与ES6(ES2015)中的promise十分相似，这种方式改变了传统长期使用的JavaScript异步编程方式-处理回调函数。试想一下，如果有这样的业务逻辑：我们需要根据某个异步ajax请求的结果是否符合要求，再发起一个异步请求，在回调函数中对响应数据进行请求后再发起异步请求… …当出现这样的异步嵌套逻辑，代码结构就会变得很差。promise正是改变了这种情况，以一种流式的">
 
     
     
@@ -98,11 +98,22 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综述"><span class="toc-number">2.</span> <span class="toc-text">综述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#q构造函数"><span class="toc-number">3.</span> <span class="toc-text">$q构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deferred-API"><span class="toc-number">4.</span> <span class="toc-text">Deferred API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-API"><span class="toc-number">5.</span> <span class="toc-text">Promise API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链式promises"><span class="toc-number">6.</span> <span class="toc-text">链式promises</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kris-Kowal’s-Q和-q的区别"><span class="toc-number">7.</span> <span class="toc-text">Kris Kowal’s Q和$q的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用格式"><span class="toc-number">8.</span> <span class="toc-text">使用格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提供的方法"><span class="toc-number">9.</span> <span class="toc-text">提供的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用案例"><span class="toc-number">10.</span> <span class="toc-text">使用案例</span></a></li></ol>
 		
 		</div>
 		
-		  
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　$q服务的实现与ES6(ES2015)中的promise十分相似，这种方式改变了传统长期使用的JavaScript异步编程方式-处理回调函数。试想一下，如果有这样的业务逻辑：我们需要根据某个异步ajax请求的结果是否符合要求，再发起一个异步请求，在回调函数中对响应数据进行请求后再发起异步请求… …当出现这样的异步嵌套逻辑，代码结构就会变得很差。promise正是改变了这种情况，以一种流式的方式对异步请求进行声明和处理，表现出顺序的编码结构。本篇对$q服务的常用内容进行总结，而对于promise的学习，推荐<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">阮一峰的ES6标准入门</a>。</p>
+<hr>
+<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><hr>
+<h2 id="q构造函数"><a href="#q构造函数" class="headerlink" title="$q构造函数"></a>$q构造函数</h2><p>　　根据AngularJs的官方文档，$q构造函数的典型使用如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// for the purpose of this example let&apos;s assume that variables `$q` and `okToGreet`</span><br><span class="line">// are available in the current lexical scope (they could have been injected or passed in).</span><br><span class="line"></span><br><span class="line">function asyncGreet(name) &#123;</span><br><span class="line">  // perform some asynchronous operation, resolve or reject the promise when appropriate.</span><br><span class="line">  return $q(function(resolve, reject) &#123;</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">      if (okToGreet(name)) &#123;</span><br><span class="line">        resolve(&apos;Hello, &apos; + name + &apos;!&apos;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(&apos;Greeting &apos; + name + &apos; is not allowed.&apos;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var promise = asyncGreet(&apos;Robin Hood&apos;);</span><br><span class="line">promise.then(function(greeting) &#123;</span><br><span class="line">  alert(&apos;Success: &apos; + greeting);</span><br><span class="line">&#125;, function(reason) &#123;</span><br><span class="line">  alert(&apos;Failed: &apos; + reason);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="Deferred-API"><a href="#Deferred-API" class="headerlink" title="Deferred API"></a>Deferred API</h2><hr>
+<h2 id="Promise-API"><a href="#Promise-API" class="headerlink" title="Promise API"></a>Promise API</h2><hr>
+<h2 id="链式promises"><a href="#链式promises" class="headerlink" title="链式promises"></a>链式promises</h2><hr>
+<h2 id="Kris-Kowal’s-Q和-q的区别"><a href="#Kris-Kowal’s-Q和-q的区别" class="headerlink" title="Kris Kowal’s Q和$q的区别"></a>Kris Kowal’s Q和$q的区别</h2><hr>
+<h2 id="使用格式"><a href="#使用格式" class="headerlink" title="使用格式"></a>使用格式</h2><hr>
+<h2 id="提供的方法"><a href="#提供的方法" class="headerlink" title="提供的方法"></a>提供的方法</h2><hr>
+<h2 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h2>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -156,7 +167,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综述"><span class="toc-number">2.</span> <span class="toc-text">综述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#q构造函数"><span class="toc-number">3.</span> <span class="toc-text">$q构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deferred-API"><span class="toc-number">4.</span> <span class="toc-text">Deferred API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-API"><span class="toc-number">5.</span> <span class="toc-text">Promise API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链式promises"><span class="toc-number">6.</span> <span class="toc-text">链式promises</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kris-Kowal’s-Q和-q的区别"><span class="toc-number">7.</span> <span class="toc-text">Kris Kowal’s Q和$q的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用格式"><span class="toc-number">8.</span> <span class="toc-text">使用格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提供的方法"><span class="toc-number">9.</span> <span class="toc-text">提供的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用案例"><span class="toc-number">10.</span> <span class="toc-text">使用案例</span></a></li></ol>
  
   </div>
 
@@ -257,19 +268,15 @@
 			
 		
 			
-				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>6</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
+				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>4</sup></a></li>
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
 			
 		
 			
@@ -281,7 +288,7 @@
 			
 		
 			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
+				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>4</sup></a></li>
 			
 		
 			
@@ -289,11 +296,11 @@
 			
 		
 			
-				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
 			
 		
 			
@@ -301,7 +308,7 @@
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
 			
 		
 			
@@ -309,7 +316,11 @@
 			
 		
 			
-				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
 			
 		
 			
@@ -317,15 +328,11 @@
 			
 		
 			
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 			
@@ -337,11 +344,11 @@
 			
 		
 			
-				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
 			
 		
 			
@@ -350,6 +357,10 @@
 		
 			
 				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 		</ul>

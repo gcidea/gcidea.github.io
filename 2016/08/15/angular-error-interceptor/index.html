@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/15/angular-error-interceptor/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　在web开发的各种业务场景中，http请求无疑是家常便饭，任何前后端交互数据都需要通过http请求进行传输。同时我们知道，HTTP响应有很多状态码，对应着很多种不同的服务处理结果。在这种情况下，如果项目中每一处http请求中我们都要对各种响应结果做以判断的话，那么整个工程中就会出现大量重复代码，这样做会带来不少问题，比如：重复劳动，代码结构不清晰、核心逻辑不明确，一旦对错误处理的需求变更就">
-<meta property="og:updated_time" content="2016-08-09T08:41:35.492Z">
+<meta property="og:updated_time" content="2016-08-09T12:10:21.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AngularJs中使用拦截器interceptor对全局HTTP错误进行统一处理">
 <meta name="twitter:description" content="前言　　在web开发的各种业务场景中，http请求无疑是家常便饭，任何前后端交互数据都需要通过http请求进行传输。同时我们知道，HTTP响应有很多状态码，对应着很多种不同的服务处理结果。在这种情况下，如果项目中每一处http请求中我们都要对各种响应结果做以判断的话，那么整个工程中就会出现大量重复代码，这样做会带来不少问题，比如：重复劳动，代码结构不清晰、核心逻辑不明确，一旦对错误处理的需求变更就">
@@ -126,8 +126,7 @@
 </ul>
 <h3 id="AngularJs的-httpProvider"><a href="#AngularJs的-httpProvider" class="headerlink" title="AngularJs的$httpProvider"></a>AngularJs的$httpProvider</h3><p>　　$httpProvider是用来修改AngularJs中$http服务的默认行为的。它有两个属性：defaults和interceptors。<br>　　其中，defaults是一个包含了全局$http服务请求的参数值的对象，主要有这几个属性：<br><code>defaults.cache</code><br><code>defaults.xsrfCookieName</code><br><code>defaults.xsrfHeaderName</code><br><code>defaults.headers</code><br><code>defaults.paramSerializer</code><br>　　而interceptors则是一个数组，是一个服务工厂的数组。它包含了所有的同步/异步$http中对请求进行预处理或者对响应进行后处理的服务工厂。</p>
 <h3 id="AngularJs模块加载前的配置config"><a href="#AngularJs模块加载前的配置config" class="headerlink" title="AngularJs模块加载前的配置config()"></a>AngularJs模块加载前的配置config()</h3><p>　　在模块的加载阶段，AngularJS会在提供者注册和配置的过程中对模块进行配置。在整个AngularJS的工作流中，这个阶段是唯一能够在应用启动前进行修改的部分。<br>　　config()函数接受一个参数：configFunction（函数）：AngularJS在模块加载时会执行这个函数。如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&apos;myApp&apos;, [])</span><br><span class="line">.config(function($routeProvider) &#123;</span><br><span class="line">	$routeProvider.when(&apos;/&apos;, &#123;</span><br><span class="line">		controller: &apos;WelcomeController&apos;,</span><br><span class="line">		template: &apos;views/welcome.html&apos;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<h3 id="AngularJs的-q服务"><a href="#AngularJs的-q服务" class="headerlink" title="AngularJs的$q服务"></a>AngularJs的$q服务</h3><p>　　$q是AngularJs中的一个服务，可以用来异步执行函数，并在异步请求执行完成时使用返回的结果。$q的使用和ES6(ES2015)中的promise很类似。关于promise的学习，推荐<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">阮一峰的ES6标准入门</a>。<br>　　根据AngularJs的官方文档，$q构造函数的典型使用如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// for the purpose of this example let&apos;s assume that variables `$q` and `okToGreet`</span><br><span class="line">// are available in the current lexical scope (they could have been injected or passed in).</span><br><span class="line"></span><br><span class="line">function asyncGreet(name) &#123;</span><br><span class="line">  // perform some asynchronous operation, resolve or reject the promise when appropriate.</span><br><span class="line">  return $q(function(resolve, reject) &#123;</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">      if (okToGreet(name)) &#123;</span><br><span class="line">        resolve(&apos;Hello, &apos; + name + &apos;!&apos;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(&apos;Greeting &apos; + name + &apos; is not allowed.&apos;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var promise = asyncGreet(&apos;Robin Hood&apos;);</span><br><span class="line">promise.then(function(greeting) &#123;</span><br><span class="line">  alert(&apos;Success: &apos; + greeting);</span><br><span class="line">&#125;, function(reason) &#123;</span><br><span class="line">  alert(&apos;Failed: &apos; + reason);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>在拦截到HTTP后，我们需要使用$q服务通过返回一个rejection来阻止下一步。</p>
+<h3 id="AngularJs的-q服务"><a href="#AngularJs的-q服务" class="headerlink" title="AngularJs的$q服务"></a>AngularJs的$q服务</h3><p>　　$q是AngularJs中的一个服务，可以用来异步执行函数，并在异步请求执行完成时使用返回的结果。$q的使用和ES6(ES2015)中的promise很类似。关于promise的学习，推荐<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">阮一峰的ES6标准入门</a>。关于$q服务的详细信息，参考这一篇<a href="http://gcidea.info/2016/08/15/angular-$q-service/" target="_blank" rel="external">AngularJs中$q服务(service)的使用</a>，这里不过多介绍。<br>　　在拦截到HTTP后，我们需要使用$q服务通过返回一个rejection来阻止下一步的默认行为。</p>
 <h3 id="AngularJs的-on服务"><a href="#AngularJs的-on服务" class="headerlink" title="AngularJs的$on服务"></a>AngularJs的$on服务</h3><p>　　$on用于监听事件变化，比如状态改变事件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$scope.$on(&apos;$stateChangeStart&apos;,</span><br><span class="line">function(evt, toState, roParams, fromState, fromParams) &#123;</span><br><span class="line">// 可以阻止这一状态完成</span><br><span class="line">evt.preventDefault();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>我们可以通过如上方法自定义监听事件，第一个字符串参数是事件名称，第二个是监听事件发生时的回调函数。我们使用这种监听，当拦截到http错误时，向下broadcast广播这个事件，从而触发一些其他事件（比如使用弹窗提醒错误信息）。关于$broadcast和$emit，参考这一篇<a href="http://gcidea.info/2016/08/08/angular-emit-broadcast/" target="_blank" rel="external">AngularJs的$emit和$broadcast事件分析</a>。</p>
 <h3 id="AngularJs的运行块run-方法"><a href="#AngularJs的运行块run-方法" class="headerlink" title="AngularJs的运行块run()方法"></a>AngularJs的运行块run()方法</h3><p>　　它是所有AngularJS应用中第一个被执行的方法。运行块是AngularJS中与平时所说“main()方法”最接近的概念。运行块通常用来注册全局的事件监听器。例如，我们会在.run()块中设置路由事件的监听器以及过滤未经授权的请求。假设我们需要在每次路由发生变化时，都执行一个函数来验证用户的权限，放置这个功能唯一合理的地方就是run方法。<br>　　在拦截HTTP请求的过程中，我们在整个应用的module上注册一个这样的运行块，通过拦截，将错误信息保存到$rootScope，并由Box组件负责展示。</p>
@@ -301,19 +300,15 @@
 			
 		
 			
-				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>6</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
+				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>4</sup></a></li>
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
 			
 		
 			
@@ -325,7 +320,7 @@
 			
 		
 			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
+				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>4</sup></a></li>
 			
 		
 			
@@ -333,11 +328,11 @@
 			
 		
 			
-				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
 			
 		
 			
@@ -345,7 +340,7 @@
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
 			
 		
 			
@@ -353,7 +348,11 @@
 			
 		
 			
-				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
 			
 		
 			
@@ -361,15 +360,11 @@
 			
 		
 			
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 			
@@ -381,11 +376,11 @@
 			
 		
 			
-				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
 			
 		
 			
@@ -394,6 +389,10 @@
 		
 			
 				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 		</ul>
