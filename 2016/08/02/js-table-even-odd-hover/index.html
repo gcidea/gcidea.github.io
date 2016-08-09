@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>使用JavaScript实现表格奇偶行区分显示以及hover效果 | GCidea&#39;s blog</title>
+    <title>使用CSS3实现斑马线表格和hover效果 | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
@@ -13,13 +13,13 @@
     
     <meta name="description" content="前言原理HTML文档基本结构CSS样式控制JavaScript主要逻辑实际效果">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用JavaScript实现表格奇偶行区分显示以及hover效果">
+<meta property="og:title" content="使用CSS3实现斑马线表格和hover效果">
 <meta property="og:url" content="http://yoursite.com/2016/08/02/js-table-even-odd-hover/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言原理HTML文档基本结构CSS样式控制JavaScript主要逻辑实际效果">
-<meta property="og:updated_time" content="2016-07-31T03:45:43.980Z">
+<meta property="og:updated_time" content="2016-08-09T03:48:56.950Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用JavaScript实现表格奇偶行区分显示以及hover效果">
+<meta name="twitter:title" content="使用CSS3实现斑马线表格和hover效果">
 <meta name="twitter:description" content="前言原理HTML文档基本结构CSS样式控制JavaScript主要逻辑实际效果">
 
     
@@ -82,7 +82,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/02/js-table-even-odd-hover/" title="使用JavaScript实现表格奇偶行区分显示以及hover效果" itemprop="url">使用JavaScript实现表格奇偶行区分显示以及hover效果</a>
+      <a href="/2016/08/02/js-table-even-odd-hover/" title="使用CSS3实现斑马线表格和hover效果" itemprop="url">使用CSS3实现斑马线表格和hover效果</a>
   </h1>
   <p class="article-author">By
        
@@ -109,13 +109,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  <a class="article-category-link" href="/categories/CSS3/">CSS3</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/JavaScript/">JavaScript</a>
+  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/CSS3/">CSS3</a>
   </div>
 
 </div>
@@ -124,7 +124,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/08/02/js-table-even-odd-hover/" data-title="使用JavaScript实现表格奇偶行区分显示以及hover效果 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/08/02/js-table-even-odd-hover/" data-title="使用CSS3实现斑马线表格和hover效果 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -188,11 +188,15 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/AngularJs/" title="AngularJs">AngularJs<sup>4</sup></a></li>
+			<li><a href="/categories/AngularJs/" title="AngularJs">AngularJs<sup>6</sup></a></li>
 		  
 		
 		  
 			<li><a href="/categories/CSS/" title="CSS">CSS<sup>7</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/CSS3/" title="CSS3">CSS3<sup>1</sup></a></li>
 		  
 		
 		  
@@ -208,7 +212,7 @@
 		  
 		
 		  
-			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>28</sup></a></li>
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>27</sup></a></li>
 		  
 		
 		  
@@ -249,11 +253,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>75</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>77</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>34</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>35</sup></a></li>
 			
 		
 			
@@ -265,15 +269,15 @@
 			
 		
 			
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>6</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>4</sup></a></li>
+				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>4</sup></a></li>
 			
 		
 			
@@ -281,11 +285,7 @@
 			
 		
 			
-				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>4</sup></a></li>
 			
 		
 			
@@ -297,11 +297,7 @@
 			
 		
 			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
 			
 		
 			
@@ -309,7 +305,7 @@
 			
 		
 			
-				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>2</sup></a></li>
 			
 		
 			
@@ -317,11 +313,15 @@
 			
 		
 			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
 			
 		
 			
@@ -333,7 +333,7 @@
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 			
@@ -341,11 +341,11 @@
 			
 		
 			
-				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>1</sup></a></li>
 			
 		
 			
@@ -353,7 +353,11 @@
 			
 		
 			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 		</ul>
