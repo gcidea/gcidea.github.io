@@ -4,23 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>CSS3的颜色空间-RGB、RGBA、HSL、HSLA | GCidea&#39;s blog</title>
+    <title>CSS的颜色空间-Color Name、HEX、RGB、RGBA、HSL、HSLA | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="gaochang | BUPT">
+    <meta name="description" content="前言　　通过CSS指定元素颜色是经常遇到的操作。在CSS中有多种表示颜色的方式。其中，RGBA、HSL、HSLA这三个是CSS3中新增的颜色表示方法。CSS提供了很多和color相关的属性，常用的主要有color、background-color、border-color、text-decoration-color等。下面的说明，均以对background-color的赋值为例。
+
+Color N">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS3的颜色空间-RGB、RGBA、HSL、HSLA">
+<meta property="og:title" content="CSS的颜色空间-Color Name、HEX、RGB、RGBA、HSL、HSLA">
 <meta property="og:url" content="http://yoursite.com/2016/08/14/css3-rgb-rgba-hsl-hsla/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="gaochang | BUPT">
-<meta property="og:updated_time" content="2016-08-03T07:53:34.590Z">
+<meta property="og:description" content="前言　　通过CSS指定元素颜色是经常遇到的操作。在CSS中有多种表示颜色的方式。其中，RGBA、HSL、HSLA这三个是CSS3中新增的颜色表示方法。CSS提供了很多和color相关的属性，常用的主要有color、background-color、border-color、text-decoration-color等。下面的说明，均以对background-color的赋值为例。
+
+Color N">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webstorm-color-tip1.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-color-1.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-color-2.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-color-3.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-color-4.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css3-hsl.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-color-5.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/css-color-6.png">
+<meta property="og:updated_time" content="2016-08-11T13:53:50.726Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS3的颜色空间-RGB、RGBA、HSL、HSLA">
-<meta name="twitter:description" content="gaochang | BUPT">
+<meta name="twitter:title" content="CSS的颜色空间-Color Name、HEX、RGB、RGBA、HSL、HSLA">
+<meta name="twitter:description" content="前言　　通过CSS指定元素颜色是经常遇到的操作。在CSS中有多种表示颜色的方式。其中，RGBA、HSL、HSLA这三个是CSS3中新增的颜色表示方法。CSS提供了很多和color相关的属性，常用的主要有color、background-color、border-color、text-decoration-color等。下面的说明，均以对background-color的赋值为例。
+
+Color N">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webstorm-color-tip1.png">
 
     
     
@@ -82,7 +97,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/14/css3-rgb-rgba-hsl-hsla/" title="CSS3的颜色空间-RGB、RGBA、HSL、HSLA" itemprop="url">CSS3的颜色空间-RGB、RGBA、HSL、HSLA</a>
+      <a href="/2016/08/14/css3-rgb-rgba-hsl-hsla/" title="CSS的颜色空间-Color Name、HEX、RGB、RGBA、HSL、HSLA" itemprop="url">CSS的颜色空间-Color Name、HEX、RGB、RGBA、HSL、HSLA</a>
   </h1>
   <p class="article-author">By
        
@@ -98,11 +113,40 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Color-Name"><span class="toc-number">2.</span> <span class="toc-text">Color Name</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式"><span class="toc-number">2.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">2.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例"><span class="toc-number">2.3.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HEX"><span class="toc-number">3.</span> <span class="toc-text">HEX</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式-1"><span class="toc-number">3.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-1"><span class="toc-number">3.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例-1"><span class="toc-number">3.3.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RGB"><span class="toc-number">4.</span> <span class="toc-text">RGB</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式-2"><span class="toc-number">4.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-2"><span class="toc-number">4.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例-2"><span class="toc-number">4.3.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RGBA"><span class="toc-number">5.</span> <span class="toc-text">RGBA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式-3"><span class="toc-number">5.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-3"><span class="toc-number">5.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例-3"><span class="toc-number">5.3.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HSL"><span class="toc-number">6.</span> <span class="toc-text">HSL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式-4"><span class="toc-number">6.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-4"><span class="toc-number">6.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例-4"><span class="toc-number">6.3.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HSLA"><span class="toc-number">7.</span> <span class="toc-text">HSLA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式-5"><span class="toc-number">7.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-5"><span class="toc-number">7.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例-5"><span class="toc-number">7.3.</span> <span class="toc-text">案例</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		  
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　通过CSS指定元素颜色是经常遇到的操作。在CSS中有多种表示颜色的方式。其中，RGBA、HSL、HSLA这三个是CSS3中新增的颜色表示方法。CSS提供了很多和color相关的属性，常用的主要有<code>color</code>、<code>background-color</code>、<code>border-color</code>、<code>text-decoration-color</code>等。<strong>下面的说明，均以对<code>background-color</code>的赋值为例</strong>。</p>
+<hr>
+<h2 id="Color-Name"><a href="#Color-Name" class="headerlink" title="Color Name"></a>Color Name</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p><code>background-color: Color Name</code></p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>直接指定颜色英文名称。在webstorm中，我们只需要输入red/green/blue/yellow这样常见的颜色单词，IDE会提示我们相关颜色，可以通过预览进行选择，如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webstorm-color-tip1.png" alt=""></p>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p>指定一组div元素的背景色：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #i1 &#123;</span><br><span class="line">            border-radius: 50%;</span><br><span class="line">            background-color: red;</span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            float: left;</span><br><span class="line">            margin-left: 20px;</span><br><span class="line">        &#125;</span><br><span class="line">        #i2 &#123;</span><br><span class="line">            border-radius: 50%;</span><br><span class="line">            background-color: blue;</span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            float: left;</span><br><span class="line">            margin-left: 20px;</span><br><span class="line">        &#125;</span><br><span class="line">        #i3 &#123;</span><br><span class="line">            border-radius: 50%;</span><br><span class="line">            background-color: yellow;</span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            float: left;</span><br><span class="line">            margin-left: 20px;</span><br><span class="line">        &#125;</span><br><span class="line">        #i4 &#123;</span><br><span class="line">            border-radius: 50%;</span><br><span class="line">            background-color: green;</span><br><span class="line">            width: 100px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            float: left;</span><br><span class="line">            margin-left: 20px;</span><br><span class="line">        &#125;</span><br><span class="line">        #i5 &#123;</span><br><span class="line">             border-radius: 50%;</span><br><span class="line">             background-color: gray;</span><br><span class="line">             width: 100px;</span><br><span class="line">             height: 100px;</span><br><span class="line">             float: left;</span><br><span class="line">            margin-left: 20px;</span><br><span class="line">         &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id=&quot;color-preview&quot;&gt;</span><br><span class="line">        &lt;div id=&quot;i1&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;i2&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;i3&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;i4&quot;&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div id=&quot;i5&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>结果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-color-1.png" alt=""></p>
+<hr>
+<h2 id="HEX"><a href="#HEX" class="headerlink" title="HEX"></a>HEX</h2><h3 id="格式-1"><a href="#格式-1" class="headerlink" title="格式"></a>格式</h3><p><code>background-color: #RRGGBB 或 #RGB</code></p>
+<h3 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h3><p>可以用如上的十六进制法表示颜色，其中RR、GG、BB或者R、G、B分别代表红(R)、绿(G)、蓝(B)三个颜色通道的变化用它们相互之间的叠加来得到各式各样的颜色。6位或者3位，每一位是一个十六进制数字（其中字母大小写均可），取值范围0~F。表示时必须是两位数，对于只有一位的，应在前面补零。如果每个参数各自在两位上的数字都相同，那么本单位也可缩写为 #RGB 的方式。例如：#FF8800 可以缩写为 #F80。注意此色彩模式与RGB色彩模式不同。</p>
+<h3 id="案例-1"><a href="#案例-1" class="headerlink" title="案例"></a>案例</h3><p>将上述代码中background-color分别替换为：”#0A8”、”#4a226d”、”#ee5f5b”、”#2b542c”、”#4f74cd”，结果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-color-2.png" alt=""></p>
+<hr>
+<h2 id="RGB"><a href="#RGB" class="headerlink" title="RGB"></a>RGB</h2><h3 id="格式-2"><a href="#格式-2" class="headerlink" title="格式"></a>格式</h3><p><code>background-color: rgb(R,G,B)</code></p>
+<h3 id="说明-2"><a href="#说明-2" class="headerlink" title="说明"></a>说明</h3><p>R：<br>红色值。正整数 | 百分数<br>G：<br>绿色值。正整数 | 百分数<br>B：<br>蓝色值。正整数 | 百分数</p>
+<p>以上三个参数，正整数值的取值范围为：0 - 255。百分数值的取值范围为：0.0% - 100.0%。超出范围的数值将被截至其最接近的取值极限。如：rgb(300,0,0)会被解析为rgb(255,0,0)正整数值255对应百分比数值100%，如：rgb(255,255,255) = rgb(100%,100%,100%) = #FFFFFF = #FFF。此RGB色彩模式与#RRGGBB/#RGB(HEX)不同。</p>
+<h3 id="案例-2"><a href="#案例-2" class="headerlink" title="案例"></a>案例</h3><p>将上述代码中background-color分别替换为：”rgb(255,255,0)”、”rgb(0,0,255)”、”rgb(0,255,0)”、”rgb(255,0,0)”、”rgb(0,0,0)”，结果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-color-3.png" alt=""></p>
+<hr>
+<h2 id="RGBA"><a href="#RGBA" class="headerlink" title="RGBA"></a>RGBA</h2><h3 id="格式-3"><a href="#格式-3" class="headerlink" title="格式"></a>格式</h3><p><code>background-color: rgb(R,G,B,A)</code></p>
+<h3 id="说明-3"><a href="#说明-3" class="headerlink" title="说明"></a>说明</h3><p>R：<br>红色值。正整数 | 百分数<br>G：<br>绿色值。正整数 | 百分数<br>B：<br>蓝色值。正整数 | 百分数<br>A：<br>Alpha透明度。取值0~1之间。</p>
+<p>此色彩模式与RGB相同，只是在RGB模式上新增了Alpha透明度。0是完全透明，1是完全不透明。</p>
+<h3 id="案例-3"><a href="#案例-3" class="headerlink" title="案例"></a>案例</h3><p>将上述代码中background-color分别替换为：”rgba(0,255,0,0.1)”、”rgba(0,255,0,0.3)”、”rgba(0,255,0,0.5)”、”rgba(0,255,0,0.7)”、”rgba(0,255,0,1)”，结果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-color-4.png" alt=""></p>
+<hr>
+<h2 id="HSL"><a href="#HSL" class="headerlink" title="HSL"></a>HSL</h2><h3 id="格式-4"><a href="#格式-4" class="headerlink" title="格式"></a>格式</h3><p><code>background-color: HSL(H,S,L)</code></p>
+<h3 id="说明-4"><a href="#说明-4" class="headerlink" title="说明"></a>说明</h3><p>H：<br>Hue(色调)。0(或360)表示红色，120表示绿色，240表示蓝色，也可取其他数值来指定颜色。取值为：0 - 360<br>S：<br>Saturation(饱和度)。取值为：0.0% - 100.0%。饱和度可定义为彩度除以明度，与彩度同样表征彩色偏离同亮度灰色的程度。饱和度是指色彩的鲜艳程度，也称色彩的纯度。饱和度取决于该色中含色成分和消色成分（灰色）的比例。含色成分越大，饱和度越大；消色成分越大，饱和度越小。纯的颜色都是高度饱和的，如鲜红，鲜绿。混杂上白色，灰色或其他色调的颜色，是不饱和的颜色，如绛紫，粉红，黄褐等。<br>L：<br>Lightness(亮度)。取值为：0.0% - 100.0%。在白色背景下，当亮度达到100.0%，表现出的效果就是完全看不到。</p>
+<p>从网上找了一张HSL的色轮图如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css3-hsl.png" alt=""></p>
+<h3 id="案例-4"><a href="#案例-4" class="headerlink" title="案例"></a>案例</h3><p>将上述代码中background-color分别替换为：”HSL(0,40.0%,50.0%)”、”HSL(0,70.0%,50.0%)”、”HSL(0,100.0%,50.0%)”、”HSL(0,100.0%,70.0%)”、”HSL(0,100.0%,90.0%)”。前三个侧重比较在相同的亮度下，饱和度对颜色表现的影响；后三个侧重比较在相同的饱和度下，亮度对颜色表现的影响。结果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-color-5.png" alt=""></p>
+<hr>
+<h2 id="HSLA"><a href="#HSLA" class="headerlink" title="HSLA"></a>HSLA</h2><h3 id="格式-5"><a href="#格式-5" class="headerlink" title="格式"></a>格式</h3><p><code>background-color: HSLA(H,S,L,A)</code></p>
+<h3 id="说明-5"><a href="#说明-5" class="headerlink" title="说明"></a>说明</h3><p>H：<br>Hue(色调)。0(或360)表示红色，120表示绿色，240表示蓝色，也可取其他数值来指定颜色。取值为：0 - 360<br>S：<br>Saturation(饱和度)。取值为：0.0% - 100.0%<br>L：<br>Lightness(亮度)。取值为：0.0% - 100.0%<br>A：<br>Alpha透明度。取值0~1之间。HSLA与HSL在颜色表现方式上相同，不同就在于多了这个透明度参数，0是完全透明，1是完全不透明。</p>
+<h3 id="案例-5"><a href="#案例-5" class="headerlink" title="案例"></a>案例</h3><p>将上述代码中background-color分别替换为：”HSLA(220,100.0%,50.0%,0.1)”、”HSLA(220,100.0%,50.0%,0.3)”、”HSLA(220,100.0%,50.0%,0.5)”、<br>“HSLA(220,100.0%,50.0%,0.7)”、”HSLA(220,100.0%,50.0%,1)”，结果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/css-color-6.png" alt=""></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -124,7 +168,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/08/14/css3-rgb-rgba-hsl-hsla/" data-title="CSS3的颜色空间-RGB、RGBA、HSL、HSLA | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/08/14/css3-rgb-rgba-hsl-hsla/" data-title="CSS的颜色空间-Color Name、HEX、RGB、RGBA、HSL、HSLA | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -164,7 +208,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Color-Name"><span class="toc-number">2.</span> <span class="toc-text">Color Name</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式"><span class="toc-number">2.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">2.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例"><span class="toc-number">2.3.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HEX"><span class="toc-number">3.</span> <span class="toc-text">HEX</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式-1"><span class="toc-number">3.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-1"><span class="toc-number">3.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例-1"><span class="toc-number">3.3.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RGB"><span class="toc-number">4.</span> <span class="toc-text">RGB</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式-2"><span class="toc-number">4.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-2"><span class="toc-number">4.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例-2"><span class="toc-number">4.3.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RGBA"><span class="toc-number">5.</span> <span class="toc-text">RGBA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式-3"><span class="toc-number">5.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-3"><span class="toc-number">5.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例-3"><span class="toc-number">5.3.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HSL"><span class="toc-number">6.</span> <span class="toc-text">HSL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式-4"><span class="toc-number">6.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-4"><span class="toc-number">6.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例-4"><span class="toc-number">6.3.</span> <span class="toc-text">案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HSLA"><span class="toc-number">7.</span> <span class="toc-text">HSLA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式-5"><span class="toc-number">7.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-5"><span class="toc-number">7.2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例-5"><span class="toc-number">7.3.</span> <span class="toc-text">案例</span></a></li></ol></li></ol>
  
   </div>
 
@@ -265,15 +309,19 @@
 			
 		
 			
-				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>6</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>6</sup></a></li>
 			
 		
 			
+				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>6</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
 			
 		
 			
@@ -285,7 +333,7 @@
 			
 		
 			
-				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
 			
 		
 			
@@ -294,14 +342,6 @@
 		
 			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -317,6 +357,10 @@
 			
 		
 			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
 			
 		
@@ -325,15 +369,15 @@
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 			
@@ -341,7 +385,7 @@
 			
 		
 			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
@@ -353,11 +397,11 @@
 			
 		
 			
-				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
 			
 		
 		</ul>
