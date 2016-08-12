@@ -4,38 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>leetcode [#344] | GCidea&#39;s blog</title>
+    <title>使用Node.js实现基于TCP协议的简单聊天室程序 | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="题目
-Write a function that takes a string as input and returns the string reversed.
-Example:Given s = “hello”, return “olleh”.
-
-
-解决方案1234567public class Solution &amp;#123;    public String reverseString(St">
+    <meta name="description" content="gaochang | BUPT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode [#344]">
-<meta property="og:url" content="http://yoursite.com/2016/06/13/leetcode-344/index.html">
+<meta property="og:title" content="使用Node.js实现基于TCP协议的简单聊天室程序">
+<meta property="og:url" content="http://yoursite.com/2016/08/16/nodejs-chatting-room/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="题目
-Write a function that takes a string as input and returns the string reversed.
-Example:Given s = “hello”, return “olleh”.
-
-
-解决方案1234567public class Solution &amp;#123;    public String reverseString(St">
-<meta property="og:updated_time" content="2016-06-17T08:43:57.674Z">
+<meta property="og:description" content="gaochang | BUPT">
+<meta property="og:updated_time" content="2016-08-12T15:18:17.374Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode [#344]">
-<meta name="twitter:description" content="题目
-Write a function that takes a string as input and returns the string reversed.
-Example:Given s = “hello”, return “olleh”.
-
-
-解决方案1234567public class Solution &amp;#123;    public String reverseString(St">
+<meta name="twitter:title" content="使用Node.js实现基于TCP协议的简单聊天室程序">
+<meta name="twitter:description" content="gaochang | BUPT">
 
     
     
@@ -97,14 +82,14 @@ Example:Given s = “hello”, return “olleh”.
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/06/13/leetcode-344/" title="leetcode [#344]" itemprop="url">leetcode [#344]</a>
+      <a href="/2016/08/16/nodejs-chatting-room/" title="使用Node.js实现基于TCP协议的简单聊天室程序" itemprop="url">使用Node.js实现基于TCP协议的简单聊天室程序</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-06-13T09:26:39.000Z" itemprop="datePublished"> 发表于 2016-06-13</time>
+    <time datetime="2016-08-16T03:32:20.000Z" itemprop="datePublished"> 发表于 2016-08-16</time>
     
   </p>
 </header>
@@ -113,32 +98,24 @@ Example:Given s = “hello”, return “olleh”.
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
-<p>Write a function that takes a string as input and returns the string reversed.</p>
-<p><strong>Example</strong>:<br>Given s = “hello”, return “olleh”.</p>
-</blockquote>
-<hr>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public String reverseString(String s) &#123;</span><br><span class="line">        StringBuilder handler = new StringBuilder(s);</span><br><span class="line">        handler.reverse();</span><br><span class="line">        return handler.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>以下这种写法可以得到正确答案，但是会超时，无法通过。原因是String一旦创建就不可修改，因此遍历中每次为result衔接新增的部分都会创建新对象并将引用指向result，增大了开销。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    Stack stack = new Stack();</span><br><span class="line">    int length = s.length();</span><br><span class="line">    for(int i = 0; i &lt; length; i++)&#123;</span><br><span class="line">        stack.push(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    String result = &quot;&quot;;</span><br><span class="line">    while(!stack.empty())&#123;</span><br><span class="line">        result += stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-  
+		  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/算法/">算法</a>
+  <a class="article-category-link" href="/categories/NodeJs/">NodeJs</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/算法-leetcode/">算法/leetcode</a>
+  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/JavaScript/">JavaScript</a><a href="/tags/NodeJs/">NodeJs</a>
   </div>
 
 </div>
@@ -147,7 +124,7 @@ Example:Given s = “hello”, return “olleh”.
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/06/13/leetcode-344/" data-title="leetcode [#344] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/08/16/nodejs-chatting-room/" data-title="使用Node.js实现基于TCP协议的简单聊天室程序 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -161,18 +138,18 @@ Example:Given s = “hello”, return “olleh”.
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/06/14/js-cross-domain/" title="JavaScript跨域问题总结">
+ <a href="/2016/08/17/angular-component/" title="AngularJs中组件component的相关总结">
   <strong>上一篇：</strong><br/>
   <span>
-  JavaScript跨域问题总结</span>
+  AngularJs中组件component的相关总结</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/06/12/js-proto-prototype/"  title="JavaScript中__proto__和prototype的对比分析">
+<a href="/2016/08/15/angular-$q-service/"  title="AngularJs中$q服务(service)的使用">
  <strong>下一篇：</strong><br/> 
- <span>JavaScript中__proto__和prototype的对比分析
+ <span>AngularJs中$q服务(service)的使用
 </span>
 </a>
 </div>
@@ -187,7 +164,7 @@ Example:Given s = “hello”, return “olleh”.
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
+ 
  
   </div>
 
