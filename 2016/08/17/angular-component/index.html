@@ -4,23 +4,31 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>AngularJs中组件component的相关总结 | GCidea&#39;s blog</title>
+    <title>AngularJs中组件---component的相关总结 | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="gaochang | BUPT">
+    <meta name="description" content="前言　　组件component是AngularJs中一个非常重要的概念，一个项目的前端代码结构可以完全以组件component为单位进行实现，也就是说项目的不同页面（比如列表页、详情页、编辑页）或者通用功能（比如表格渲染组件、分页组件）都可以设计为一个独立的component，再通过路由配置关联起来，实现功能需求。本篇以AngularJs官方文档为根据，对组件相关内容进行总结。
+
+综述　　在Ang">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AngularJs中组件component的相关总结">
+<meta property="og:title" content="AngularJs中组件---component的相关总结">
 <meta property="og:url" content="http://yoursite.com/2016/08/17/angular-component/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="gaochang | BUPT">
-<meta property="og:updated_time" content="2016-08-12T15:22:32.722Z">
+<meta property="og:description" content="前言　　组件component是AngularJs中一个非常重要的概念，一个项目的前端代码结构可以完全以组件component为单位进行实现，也就是说项目的不同页面（比如列表页、详情页、编辑页）或者通用功能（比如表格渲染组件、分页组件）都可以设计为一个独立的component，再通过路由配置关联起来，实现功能需求。本篇以AngularJs官方文档为根据，对组件相关内容进行总结。
+
+综述　　在Ang">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/angular-component.png">
+<meta property="og:updated_time" content="2016-08-14T08:16:29.024Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AngularJs中组件component的相关总结">
-<meta name="twitter:description" content="gaochang | BUPT">
+<meta name="twitter:title" content="AngularJs中组件---component的相关总结">
+<meta name="twitter:description" content="前言　　组件component是AngularJs中一个非常重要的概念，一个项目的前端代码结构可以完全以组件component为单位进行实现，也就是说项目的不同页面（比如列表页、详情页、编辑页）或者通用功能（比如表格渲染组件、分页组件）都可以设计为一个独立的component，再通过路由配置关联起来，实现功能需求。本篇以AngularJs官方文档为根据，对组件相关内容进行总结。
+
+综述　　在Ang">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/angular-component.png">
 
     
     
@@ -82,7 +90,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/17/angular-component/" title="AngularJs中组件component的相关总结" itemprop="url">AngularJs中组件component的相关总结</a>
+      <a href="/2016/08/17/angular-component/" title="AngularJs中组件---component的相关总结" itemprop="url">AngularJs中组件---component的相关总结</a>
   </h1>
   <p class="article-author">By
        
@@ -98,11 +106,171 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综述"><span class="toc-number">2.</span> <span class="toc-text">综述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建并配置component组件"><span class="toc-number">3.</span> <span class="toc-text">创建并配置component组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于component组件的应用程序结构"><span class="toc-number">4.</span> <span class="toc-text">基于component组件的应用程序结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用component组件作为路由模板"><span class="toc-number">5.</span> <span class="toc-text">使用component组件作为路由模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部component组件间的通信"><span class="toc-number">6.</span> <span class="toc-text">内部component组件间的通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对作为controller控制器的组件component进行单元测试"><span class="toc-number">7.</span> <span class="toc-text">对作为controller控制器的组件component进行单元测试</span></a></li></ol>
 		
 		</div>
 		
-		  
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　组件component是AngularJs中一个非常重要的概念，一个项目的前端代码结构可以完全以组件component为单位进行实现，也就是说项目的不同页面（比如列表页、详情页、编辑页）或者通用功能（比如表格渲染组件、分页组件）都可以设计为一个独立的component，再通过路由配置关联起来，实现功能需求。本篇以AngularJs官方文档为根据，对组件相关内容进行总结。</p>
+<hr>
+<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>　　在Angular中，component是一种特殊的指令（directive），相比于directive，它的配置要更简单，这很适合于基于组件的应用程序结构，也使得使用类似于Web Components或者Angular 2风格的应用程序结构来编写代码要更容易。</p>
+<p><strong>组件component的优点</strong></p>
+<ul>
+<li>比原生指令（directive）配置更加简单</li>
+<li>提供了更加健全的默认设置和最佳实践</li>
+<li>可以优化基于component的应用结构</li>
+<li>编写component这种directive使得升级到Angular 2更加容易</li>
+</ul>
+<p><strong>什么时候不要用component</strong></p>
+<ul>
+<li>对那些依赖于DOM元素操作和绑定监听事件的指令不要使用，因为在component中是不能直接编译链接函数的。</li>
+<li>当需要定义配置一些更高级的directive选项时不要使用，选项比如：priority, terminal, multi-element。</li>
+<li>当你想通过一个属性或者CSS类来触发一个指令，而不是通过一个元素来触发时，不要使用。</li>
+</ul>
+<hr>
+<h2 id="创建并配置component组件"><a href="#创建并配置component组件" class="headerlink" title="创建并配置component组件"></a>创建并配置component组件</h2><p>　　要想注册一个component组件，可以使用Angular模型module上的<code>.component()</code>方法。（模型module是通过调用<code>angular.module()</code>来返回的。）该方法接收两个参数：</p>
+<ul>
+<li>组件名称（字符串）</li>
+<li>组件配置对象（注意，不同于<code>.directive()</code>方法，该方法不需要使用工厂函数）</li>
+</ul>
+<p><strong>示例</strong></p>
+<ol>
+<li><p>创建heroDetail.js文件,定义一个组件component</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function HeroDetailController() &#123;</span><br><span class="line">	//do something</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">angular.module(&apos;heroApp&apos;).component(&apos;heroDetail&apos;, &#123;</span><br><span class="line">  templateUrl: &apos;heroDetail.html&apos;,</span><br><span class="line">  controller: HeroDetailController,</span><br><span class="line">  bindings: &#123;</span><br><span class="line">    hero: &apos;=&apos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建heroDetail.html文件,定义组件的DOM结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;Name: &#123;&#123;$ctrl.hero.name&#125;&#125;&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建index.js文件，增加控制器，为model变量初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&apos;heroApp&apos;, []).controller(&apos;MainCtrl&apos;, function MainCtrl() &#123;</span><br><span class="line">  this.hero = &#123;</span><br><span class="line">    name: &apos;Spawn&apos;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建index.html文件，定义文档结构，引入定义好的组件heroDetail(驼峰写法要转换成短横线”-“相连)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div ng-controller=&quot;MainCtrl as ctrl&quot;&gt;</span><br><span class="line">  &lt;b&gt;Hero&lt;/b&gt;&lt;br&gt;</span><br><span class="line">  &lt;hero-detail hero=&quot;ctrl.hero&quot;&gt;&lt;/hero-detail&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>结果如下图：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/angular-component.png" alt=""></p>
+<p>另外，也可以使用<code>$compileProvider</code>在module的配置阶段引入组件。</p>
+<p><strong>附：directive与component的比较</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>directive</th>
+<th>component</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bindings</td>
+<td>No</td>
+<td>Yes(绑定到controller)</td>
+</tr>
+<tr>
+<td>bindToController</td>
+<td>Yes(默认：false)</td>
+<td>No(使用bindings来替代)</td>
+</tr>
+<tr>
+<td>compile function</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>controller</td>
+<td>Yes</td>
+<td>Yes(默认：function(){})</td>
+</tr>
+<tr>
+<td>controllerAs</td>
+<td>Yes(默认：false)</td>
+<td>Yes(默认：$ctrl)</td>
+</tr>
+<tr>
+<td>link functions</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>multiElement</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>priority</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>require</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>restrict</td>
+<td>Yes</td>
+<td>No(仅限于元素elements)</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>Yes(默认：false)</td>
+<td>No(scope总是独立的)</td>
+</tr>
+<tr>
+<td>template</td>
+<td>Yes</td>
+<td>Yes(可注入)</td>
+</tr>
+<tr>
+<td>templateNamespace</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>templateUrl</td>
+<td>Yes</td>
+<td>Yes(可注入)</td>
+</tr>
+<tr>
+<td>terminal</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>transclude</td>
+<td>Yes(默认：false)</td>
+<td>Yes(默认：false)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="基于component组件的应用程序结构"><a href="#基于component组件的应用程序结构" class="headerlink" title="基于component组件的应用程序结构"></a>基于component组件的应用程序结构</h2><p>　　如上所述，component使得按组件结构来组织应用程序变得更加容易。基于component组件的应用程序结构主要有以下几个特性：</p>
+<ul>
+<li><strong>component只控制它自己的视图和数据</strong><br>　　组件从不应修改超出它们作用域scope的任何数据或者DOM元素。一般来讲，在Angular中，通过作用域继承（inheritance）和监视（watches），我们能够修改程序中的任何数据。这是有实用性的，但是也可能导致一些问题-尤其当不明确到底程序中的哪一部分对数据修改负责时。这也就是为什么component这种directive采用了独立隔离作用域，这样对所有scope的操作就不可能发生了。</li>
+<li><strong>component具有定义完备的公用API-Inputs 和 Outputs</strong><br>　　然而，独立作用域也有捉襟见肘的时候，因为Angular采用了“双向绑定”。假设你给组件传入了这样一个对象：<code>bindings: {item: &#39;=&#39;}</code>，然后修改其中一个属性，你会发现这个变化也会反映在父级组件中。但是对于组件来说，为了更容易的判定什么数据发生变化，何时变化，只应该由拥有该数据的组件来对其进行修改。因此，component需要遵循一些简单的约定：</li>
+</ul>
+<ol>
+<li><p>输入Inputs应该使用<code>&lt;</code>和<code>@</code>绑定。<br>　　　　<code>&lt;</code>符号表明“单向绑定”，是从1.5版本开始可用的。它和<code>=</code>的区别在于：组件作用域中的相关属性没有被监视（watched），这意味着如果你给属性赋了一个新值，父级作用域并不会因此而更新。但是要注意，父级和本级组件都是指向同一个对象，因此如果你在当前组件中修改了对象属性或者数组元素，父级组件还是能感受到这个变化。综上，一般性的规律是在组件作用域中永远不要修改对象或者数组属性。<br>　　　　<code>@</code>绑定可以用于当输入是字符串，尤其是绑定的值不会发生改变时。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bindings: &#123;</span><br><span class="line">  hero: &apos;&lt;&apos;,</span><br><span class="line">  comment: &apos;@&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出Outputs应该使用<code>&amp;</code>来绑定。这说的输出是作为组件事件的回调函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bindings: &#123;</span><br><span class="line">  onDelete: &apos;&amp;&apos;,</span><br><span class="line">  onUpdate: &apos;&amp;&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>相比于直接操作输入数据，组件应该将变化的数据交付给正确的输出事件来处理。比如一次删除操作，组件不会直接删掉<code>hero</code>本身，而是通过正确的事件将数据传递给拥有该数据属性的组件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- note that we use kebab-case for bindings in the template as usual --&gt;</span><br><span class="line">&lt;editable-field on-update=&quot;$ctrl.update(&apos;location&apos;, value)&quot;&gt;&lt;/editable-field&gt;&lt;br&gt;</span><br><span class="line">&lt;button ng-click=&quot;$ctrl.onDelete(&#123;hero: $ctrl.hero&#125;)&quot;&gt;Delete&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过这种方式，父级组件可以来决定如何处理（比如，是删除一个元素还是更新属性。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ctrl.deleteHero(hero) &#123;</span><br><span class="line">  $http.delete(...).then(function() &#123;</span><br><span class="line">    var idx = ctrl.list.indexOf(hero);</span><br><span class="line">    if (idx &gt;= 0) &#123;</span><br><span class="line">      ctrl.list.splice(idx, 1);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><p><strong>component具有定义完备的生命周期</strong></p>
+</li>
+<li><p><strong>一个应用程序就是一棵组件树</strong></p>
+</li>
+</ul>
+<hr>
+<h2 id="使用component组件作为路由模板"><a href="#使用component组件作为路由模板" class="headerlink" title="使用component组件作为路由模板"></a>使用component组件作为路由模板</h2><hr>
+<h2 id="内部component组件间的通信"><a href="#内部component组件间的通信" class="headerlink" title="内部component组件间的通信"></a>内部component组件间的通信</h2><hr>
+<h2 id="对作为controller控制器的组件component进行单元测试"><a href="#对作为controller控制器的组件component进行单元测试" class="headerlink" title="对作为controller控制器的组件component进行单元测试"></a>对作为controller控制器的组件component进行单元测试</h2>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -124,7 +292,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/08/17/angular-component/" data-title="AngularJs中组件component的相关总结 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/08/17/angular-component/" data-title="AngularJs中组件---component的相关总结 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -137,6 +305,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/08/18/angular-directive-definition-object/" title="AngularJs的指令定义对象Directive Definition Object">
+  <strong>上一篇：</strong><br/>
+  <span>
+  AngularJs的指令定义对象Directive Definition Object</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2016/08/16/nodejs-chatting-room/"  title="使用Node.js实现基于TCP协议的简单聊天室程序">
@@ -156,7 +332,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综述"><span class="toc-number">2.</span> <span class="toc-text">综述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建并配置component组件"><span class="toc-number">3.</span> <span class="toc-text">创建并配置component组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于component组件的应用程序结构"><span class="toc-number">4.</span> <span class="toc-text">基于component组件的应用程序结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用component组件作为路由模板"><span class="toc-number">5.</span> <span class="toc-text">使用component组件作为路由模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部component组件间的通信"><span class="toc-number">6.</span> <span class="toc-text">内部component组件间的通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对作为controller控制器的组件component进行单元测试"><span class="toc-number">7.</span> <span class="toc-text">对作为controller控制器的组件component进行单元测试</span></a></li></ol>
  
   </div>
 
@@ -180,7 +356,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/AngularJs/" title="AngularJs">AngularJs<sup>7</sup></a></li>
+			<li><a href="/categories/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 		  
 		
 		  
@@ -245,11 +421,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>79</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>80</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>36</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>37</sup></a></li>
 			
 		
 			
@@ -257,7 +433,7 @@
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>7</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -265,11 +441,11 @@
 			
 		
 			
-				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
+				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
 			
 		
 			
@@ -293,19 +469,19 @@
 			
 		
 			
-				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
+				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -317,11 +493,11 @@
 			
 		
 			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
 			
 		
 			
@@ -337,7 +513,7 @@
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 			
@@ -345,11 +521,11 @@
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 		</ul>
