@@ -22,7 +22,7 @@
 
 综述　　在Ang">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/angular-component.png">
-<meta property="og:updated_time" content="2016-08-14T08:16:29.024Z">
+<meta property="og:updated_time" content="2016-08-14T15:47:11.285Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AngularJs中组件---component的相关总结">
 <meta name="twitter:description" content="前言　　组件component是AngularJs中一个非常重要的概念，一个项目的前端代码结构可以完全以组件component为单位进行实现，也就是说项目的不同页面（比如列表页、详情页、编辑页）或者通用功能（比如表格渲染组件、分页组件）都可以设计为一个独立的component，再通过路由配置关联起来，实现功能需求。本篇以AngularJs官方文档为根据，对组件相关内容进行总结。
@@ -70,13 +70,7 @@
 					
 					<!--<li>
  					
-						<form class="search">
-							<label>Search</label>
-						<input type="text" id="ts-search-input" name="q" size="33" placeholder="ss"><br>
-						</form>
 
-                        
-                        
 					
 					</li>-->
 				</ul>
@@ -106,7 +100,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综述"><span class="toc-number">2.</span> <span class="toc-text">综述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建并配置component组件"><span class="toc-number">3.</span> <span class="toc-text">创建并配置component组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于component组件的应用程序结构"><span class="toc-number">4.</span> <span class="toc-text">基于component组件的应用程序结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用component组件作为路由模板"><span class="toc-number">5.</span> <span class="toc-text">使用component组件作为路由模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部component组件间的通信"><span class="toc-number">6.</span> <span class="toc-text">内部component组件间的通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对作为controller控制器的组件component进行单元测试"><span class="toc-number">7.</span> <span class="toc-text">对作为controller控制器的组件component进行单元测试</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综述"><span class="toc-number">2.</span> <span class="toc-text">综述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建并配置component组件"><span class="toc-number">3.</span> <span class="toc-text">创建并配置component组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于component组件的应用程序结构"><span class="toc-number">4.</span> <span class="toc-text">基于component组件的应用程序结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用component组件作为路由模板"><span class="toc-number">5.</span> <span class="toc-text">使用component组件作为路由模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部component组件间的通信"><span class="toc-number">6.</span> <span class="toc-text">内部component组件间的通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对作为controller控制器的组件component进行单元测试"><span class="toc-number">7.</span> <span class="toc-text">对作为controller控制器的组件component进行单元测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用案例"><span class="toc-number">8.</span> <span class="toc-text">使用案例</span></a></li></ol>
 		
 		</div>
 		
@@ -262,15 +256,27 @@
 </li>
 </ol>
 <ul>
-<li><p><strong>component具有定义完备的生命周期</strong></p>
-</li>
-<li><p><strong>一个应用程序就是一棵组件树</strong></p>
-</li>
+<li><strong>component具有定义完备的生命周期</strong><br>　　每一个组件都可以执行一套“声明周期钩子”，在生命周期的特定点，以下方法可以被调用：</li>
+</ul>
+<ol>
+<li><code>$onInit()</code><br>　　满足以下条件时会在controller上调用该方法：<br>　　　a. 当一个元素上的全部controller都已经构建完成<br>　　　b. 它们的bindings已经初始化<br>　　　c. 在该元素上指令directives的pre &amp; post linking functions执行之前</li>
+</ol>
+<p>　　将初始化代码放在这个方法中是很合适的。</p>
+<ol>
+<li><code>$onChanges(changesObj)</code><br>　　在任何时刻，只要单向绑定的数据发生更新，就会调用该方法。<code>changesObj</code>是一个哈希表，它的键是发生变化的绑定属性的属性名称，它的值是一个对象，形式为：<code>{ currentValue, previousValue, isFirstChange()}</code>。比如当需要复制一个绑定的值以防外部值发生突变的时候，就可以触发该方法。</li>
+<li><code>$doCheck()</code><br>　　该方法提供了一个检测并处理变化的接口。当检测到变化想做出相应处理时，任何的处理函数都必须从这个钩子调用。但是，当<code>$onChanges</code>已经调用时，这个钩子是不起作用的。举例来说，当你想进行一次“js对象深度相等比较”（这个概念应该参考js的深拷贝和浅拷贝），或者要检测一个Date对象这类操作时，它们的变化不会被Angular的变化检测器检测到，因此不会触发<code>$onChanges</code>，这时候就可以使用<code>$doCheck()</code>。这个钩子的调用没有参数，如果检测到了变化，必须手动保存旧值来和当前值比较。</li>
+<li><code>$onDestroy()</code><br>　　当一个controller的作用域已经销毁，会调用该函数。使用该函数可以释放外部资源，watches监听函数和其他事件处理函数。</li>
+<li><code>$postLink()</code><br>　　当控制器对应的元素及其子元素已经”link”完成（关于”link”，要单独分析<code>$compile</code>的相关内容），会调用该函数。和directive中的post-link function类似，这个钩子可以用来设置DOM元素事件处理函数，或者进行直接的DOM操作。注意一个例外，当前的controller对应的组件可能有子组件，那些包含有<code>templateUrl</code>的子元素在调用该函数的时候并没有”link”完成，因为它们要等待templateUrl指定的模板template异步加载完成，因此在完成之前它自己的编译和链接就会被挂起。这个指令可以看做是和Angular 2中的<code>ngAfterViewInit</code>和<code>ngAfterContentInit</code>作用类似。</li>
+</ol>
+<ul>
+<li><strong>一个应用程序就是一棵组件树</strong><br>　　理论上最佳的状态是，整个应用应该由不同层级的component构成一棵树，能够处理定义完备的输入输出，并且具有最少的双向数据绑定。这样，就能够更加轻松地预测数据何时变化以及组件的状态是什么。</li>
 </ul>
 <hr>
 <h2 id="使用component组件作为路由模板"><a href="#使用component组件作为路由模板" class="headerlink" title="使用component组件作为路由模板"></a>使用component组件作为路由模板</h2><hr>
 <h2 id="内部component组件间的通信"><a href="#内部component组件间的通信" class="headerlink" title="内部component组件间的通信"></a>内部component组件间的通信</h2><hr>
-<h2 id="对作为controller控制器的组件component进行单元测试"><a href="#对作为controller控制器的组件component进行单元测试" class="headerlink" title="对作为controller控制器的组件component进行单元测试"></a>对作为controller控制器的组件component进行单元测试</h2>  
+<h2 id="对作为controller控制器的组件component进行单元测试"><a href="#对作为controller控制器的组件component进行单元测试" class="headerlink" title="对作为controller控制器的组件component进行单元测试"></a>对作为controller控制器的组件component进行单元测试</h2><hr>
+<h2 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h2><p>　　具体案例，详细参见这一篇<a href="http://gcidea.info/2016/08/07/angular-table-plugin/" target="_blank" rel="external">使用AngularJs封装表格内容渲染（含分页）插件</a>。整个表格插件就是一个大的component，实现过程中用到了上述很多特性。</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -332,7 +338,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综述"><span class="toc-number">2.</span> <span class="toc-text">综述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建并配置component组件"><span class="toc-number">3.</span> <span class="toc-text">创建并配置component组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于component组件的应用程序结构"><span class="toc-number">4.</span> <span class="toc-text">基于component组件的应用程序结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用component组件作为路由模板"><span class="toc-number">5.</span> <span class="toc-text">使用component组件作为路由模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部component组件间的通信"><span class="toc-number">6.</span> <span class="toc-text">内部component组件间的通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对作为controller控制器的组件component进行单元测试"><span class="toc-number">7.</span> <span class="toc-text">对作为controller控制器的组件component进行单元测试</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综述"><span class="toc-number">2.</span> <span class="toc-text">综述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建并配置component组件"><span class="toc-number">3.</span> <span class="toc-text">创建并配置component组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于component组件的应用程序结构"><span class="toc-number">4.</span> <span class="toc-text">基于component组件的应用程序结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用component组件作为路由模板"><span class="toc-number">5.</span> <span class="toc-text">使用component组件作为路由模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部component组件间的通信"><span class="toc-number">6.</span> <span class="toc-text">内部component组件间的通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对作为controller控制器的组件component进行单元测试"><span class="toc-number">7.</span> <span class="toc-text">对作为controller控制器的组件component进行单元测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用案例"><span class="toc-number">8.</span> <span class="toc-text">使用案例</span></a></li></ol>
  
   </div>
 
@@ -360,7 +366,7 @@
 		  
 		
 		  
-			<li><a href="/categories/CSS/" title="CSS">CSS<sup>4</sup></a></li>
+			<li><a href="/categories/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 		  
 		
 		  
@@ -368,7 +374,7 @@
 		  
 		
 		  
-			<li><a href="/categories/FE/" title="FE">FE<sup>7</sup></a></li>
+			<li><a href="/categories/FE/" title="FE">FE<sup>8</sup></a></li>
 		  
 		
 		  
@@ -380,7 +386,11 @@
 		  
 		
 		  
-			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>26</sup></a></li>
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>36</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>1</sup></a></li>
 		  
 		
 		  
@@ -392,11 +402,11 @@
 		  
 		
 		  
-			<li><a href="/categories/jQuery/" title="jQuery">jQuery<sup>2</sup></a></li>
+			<li><a href="/categories/jQuery/" title="jQuery">jQuery<sup>4</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/搭建部署/" title="搭建部署">搭建部署<sup>3</sup></a></li>
+			<li><a href="/categories/搭建部署/" title="搭建部署">搭建部署<sup>5</sup></a></li>
 		  
 		
 		  
@@ -408,7 +418,7 @@
 		  
 		
 		  
-			<li><a href="/categories/综合/" title="综合">综合<sup>4</sup></a></li>
+			<li><a href="/categories/综合/" title="综合">综合<sup>8</sup></a></li>
 		  
 		
 		</ul>
@@ -421,15 +431,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>80</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>102</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>37</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>49</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>10</sup></a></li>
+				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>14</sup></a></li>
 			
 		
 			
@@ -437,7 +447,15 @@
 			
 		
 			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>6</sup></a></li>
 			
 		
 			
@@ -445,23 +463,19 @@
 			
 		
 			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/FE/" title="FE">FE<sup>5</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>3</sup></a></li>
 			
 		
 			
@@ -469,15 +483,7 @@
 			
 		
 			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
 			
 		
 			
@@ -485,7 +491,7 @@
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -493,7 +499,23 @@
 			
 		
 			
+				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
@@ -505,19 +527,11 @@
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
@@ -525,7 +539,7 @@
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>1</sup></a></li>
 			
 		
 		</ul>
