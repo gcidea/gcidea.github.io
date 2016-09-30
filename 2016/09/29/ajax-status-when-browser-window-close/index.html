@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>CSS3中的transition，transform，translate和animation | GCidea&#39;s blog</title>
+    <title>【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？ | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="gaochang | BUPT">
+    <meta name="description" content="前言">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS3中的transition，transform，translate和animation">
-<meta property="og:url" content="http://yoursite.com/2016/08/11/css3-transition-transform-translate-animation/index.html">
+<meta property="og:title" content="【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？">
+<meta property="og:url" content="http://yoursite.com/2016/09/29/ajax-status-when-browser-window-close/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="gaochang | BUPT">
-<meta property="og:updated_time" content="2016-08-11T14:11:49.106Z">
+<meta property="og:description" content="前言">
+<meta property="og:updated_time" content="2016-09-30T15:05:05.330Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS3中的transition，transform，translate和animation">
-<meta name="twitter:description" content="gaochang | BUPT">
+<meta name="twitter:title" content="【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？">
+<meta name="twitter:description" content="前言">
 
     
     
@@ -76,14 +76,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/11/css3-transition-transform-translate-animation/" title="CSS3中的transition，transform，translate和animation" itemprop="url">CSS3中的transition，transform，translate和animation</a>
+      <a href="/2016/09/29/ajax-status-when-browser-window-close/" title="【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？" itemprop="url">【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-11T15:38:47.000Z" itemprop="datePublished"> 发表于 2016-08-11</time>
+    <time datetime="2016-09-29T09:23:24.000Z" itemprop="datePublished"> 发表于 2016-09-29</time>
     
   </p>
 </header>
@@ -92,24 +92,24 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
 		
 		</div>
 		
-		  
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/CSS3/">CSS3</a>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/CSS3/">CSS3</a>
+  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/JavaScript/">JavaScript</a>
   </div>
 
 </div>
@@ -118,7 +118,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/08/11/css3-transition-transform-translate-animation/" data-title="CSS3中的transition，transform，translate和animation | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/09/29/ajax-status-when-browser-window-close/" data-title="【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？ | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -131,19 +131,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/08/13/http-get-post/" title="老生常谈-HTTP中GET方法和POST方法的区别总结">
-  <strong>上一篇：</strong><br/>
-  <span>
-  老生常谈-HTTP中GET方法和POST方法的区别总结</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/08/11/html5-localstorage-sessionstorage/"  title="HTML5客户端存储-localStorage和sessionStorage的对比分析">
+<a href="/2016/09/24/js-3d-random-tags/"  title="使用Javascript实现随机漂浮的3D标签云效果">
  <strong>下一篇：</strong><br/> 
- <span>HTML5客户端存储-localStorage和sessionStorage的对比分析
+ <span>使用Javascript实现随机漂浮的3D标签云效果
 </span>
 </a>
 </div>
@@ -158,7 +150,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
  
   </div>
 
