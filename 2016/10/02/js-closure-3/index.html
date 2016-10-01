@@ -4,22 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>GCidea&#39;s blog</title>
+    <title>JavaScript的闭包案例3---关于闭包的深入理解 | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="gaochang | BUPT">
-<meta property="og:type" content="website">
-<meta property="og:title" content="GCidea's blog">
-<meta property="og:url" content="http://yoursite.com/page/9/index.html">
+    <meta name="description" content="前言　　本篇在之前两篇关于闭包的文章JavaScript的闭包案例—1、JavaScript的闭包案例—2的基础上，更加深入的理解闭包的本质问题—作用域链；并简要对比在ES6中关于该问题的规避方法。
+
+描述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript的闭包案例3---关于闭包的深入理解">
+<meta property="og:url" content="http://yoursite.com/2016/10/02/js-closure-3/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="gaochang | BUPT">
+<meta property="og:description" content="前言　　本篇在之前两篇关于闭包的文章JavaScript的闭包案例—1、JavaScript的闭包案例—2的基础上，更加深入的理解闭包的本质问题—作用域链；并简要对比在ES6中关于该问题的规避方法。
+
+描述">
+<meta property="og:updated_time" content="2016-10-01T16:03:30.019Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GCidea's blog">
-<meta name="twitter:description" content="gaochang | BUPT">
+<meta name="twitter:title" content="JavaScript的闭包案例3---关于闭包的深入理解">
+<meta name="twitter:description" content="前言　　本篇在之前两篇关于闭包的文章JavaScript的闭包案例—1、JavaScript的闭包案例—2的基础上，更加深入的理解闭包的本质问题—作用域链；并简要对比在ES6中关于该问题的规避方法。
+
+描述">
 
     
     
@@ -69,233 +76,91 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/06/14/js-cross-domain/" title="JavaScript跨域问题总结" itemprop="url">
-  
-    <h1 itemprop="name">JavaScript跨域问题总结</h1>
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-           <p itemprop="description" >前言
-通过CORS实现
-通过JSONP实现
-通过图像Ping实现
-通过document.domain实现
-通过window.name实现
-通过iframe实现
-通过script标签实现
-通过window.postMessage实现（HTML5新增）
-通过后端处理实现</p>
-        
+      <a href="/2016/10/02/js-closure-3/" title="JavaScript的闭包案例3---关于闭包的深入理解" itemprop="url">JavaScript的闭包案例3---关于闭包的深入理解</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-02T14:29:34.000Z" itemprop="datePublished"> 发表于 2016-10-02</time>
     
-    <time datetime="2016-06-14T14:11:06.000Z" itemprop="datePublished">2016-06-14</time>
-  </a>
-</section>
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">2.</span> <span class="toc-text">描述</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本篇在之前两篇关于闭包的文章<a href="http://gcidea.info/2016/04/19/JavaScript-closure/" target="_blank" rel="external">JavaScript的闭包案例—1</a>、<a href="http://gcidea.info/2016/04/26/js-closure-2/" target="_blank" rel="external">JavaScript的闭包案例—2</a>的基础上，更加深入的理解闭包的本质问题—作用域链；并简要对比在ES6中关于该问题的规避方法。</p>
+<hr>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+</div>
 
 
-
-
-
-
+  <div class="article-tags">
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/06/13/leetcode-344/" title="leetcode [#344]" itemprop="url">
-  
-    <h1 itemprop="name">leetcode [#344]</h1>
-    
-     
-           <p itemprop="description" >题目
-Write a function that takes a string as input and returns the string reversed.
-Example:Given s = “hello”, return “olleh”.
-
-
-解决方案1234567pu</p>
-        
-    
-    <time datetime="2016-06-13T09:26:39.000Z" itemprop="datePublished">2016-06-13</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/06/12/js-proto-prototype/" title="JavaScript中__proto__和prototype的对比分析" itemprop="url">
-  
-    <h1 itemprop="name">JavaScript中__proto__和prototype的对比分析</h1>
-    
-     
-           <p itemprop="description" ></p>
-        
-    
-    <time datetime="2016-06-12T04:52:56.000Z" itemprop="datePublished">2016-06-12</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/06/11/js-constructor-prototype/" title="JavaScript中的对象、constructor属性、prototype属性对比分析" itemprop="url">
-  
-    <h1 itemprop="name">JavaScript中的对象、constructor属性、prototype属性对比分析</h1>
-    
-     
-           <p itemprop="description" >前言　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得</p>
-        
-    
-    <time datetime="2016-06-11T15:13:37.000Z" itemprop="datePublished">2016-06-11</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/06/10/js-definitive-guide-error-p-260/" title="《JavaScript权威指南》中文版P260纠错" itemprop="url">
-  
-    <h1 itemprop="name">《JavaScript权威指南》中文版P260纠错</h1>
-    
-     
-           <p itemprop="description" >中文版《JavaScript权威指南》第六版P260中，</p>
-        
-    
-    <time datetime="2016-06-10T12:30:57.000Z" itemprop="datePublished">2016-06-10</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/06/10/js-definitive-guide-error-p-204/" title="《JavaScript权威指南》中文版P204纠错" itemprop="url">
-  
-    <h1 itemprop="name">《JavaScript权威指南》中文版P204纠错</h1>
-    
-     
-           <p itemprop="description" >中文版《JavaScript权威指南》第六版P204中，讲到使用构造函数定义类时，提到“Range()构造函数是通过new关键字调用的(在示例代码的末尾)”，如下图：  
-　　找了半天没看出来示例代码中到底是怎么通过new关键字调用的，于是，查看了一下原书第六版，如下图：  
-　</p>
-        
-    
-    <time datetime="2016-06-10T05:30:03.000Z" itemprop="datePublished">2016-06-10</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/06/09/js-array-method-sum-up/" title="JavaScript数组方法对比总结" itemprop="url">
-  
-    <h1 itemprop="name">JavaScript数组方法对比总结</h1>
-    
-     
-           <p itemprop="description" >前言　　本文对JavaScript中数组类型（Array）的常用方法进行总结，主要包括其API，使用示例和是否直接操作/修改原数组的分析。文章最后会对ECMAScript5中提供的数组方法进行小结。
-
-join()作用　　将数组元素衔接为字符串。参数　　array.join()　</p>
-        
-    
-    <time datetime="2016-06-09T03:28:27.000Z" itemprop="datePublished">2016-06-09</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/06/09/js-caller-callee/" title="JavaScript的caller属性和callee属性对比总结" itemprop="url">
-  
-    <h1 itemprop="name">JavaScript的caller属性和callee属性对比总结</h1>
-    
-     
-           <p itemprop="description" >背景　　要说这两个方法，必须先说另一个东西—实参对象（arguments）。标识符arguments是指向实参对象的引用。当传入某个函数的参数个数超过函数定义时指定的形参个数时，默认的处理方法是自动忽略多出来的参数。也就是说，默认这不会引起错误。但是这会有另一个问题：无法获取多出</p>
-        
-    
-    <time datetime="2016-06-09T03:27:46.000Z" itemprop="datePublished">2016-06-09</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/06/09/js-call-apply/" title="JavaScript的call()方法和apply()方法对比总结" itemprop="url">
-  
-    <h1 itemprop="name">JavaScript的call()方法和apply()方法对比总结</h1>
-    
-     
-           <p itemprop="description" >前言　　JavaScript中的函数其实就是一种对象。函数对象也有自己的很多方法。其中，call()方法和apply()方法就是两个用来间接调用函数的方法。两个方法都允许显式地指明调用时的上下文环境（即this的值）。也就是说，这给我们提供了一种自由-任何函数可以作为任何对象的方</p>
-        
-    
-    <time datetime="2016-06-09T03:27:31.000Z" itemprop="datePublished">2016-06-09</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/06/09/js-null-undefined/" title="JavaScript的null和undefined对比总结" itemprop="url">
-  
-    <h1 itemprop="name">JavaScript的null和undefined对比总结</h1>
-    
-     
-           <p itemprop="description" >前言　　说到这两个类型，首先应该从整体上明确一下JavaScript中提供的数据类型。　　JavaScript中的数据类型分为两类：原始类型和对象类型。　　其中，原始类型又可以细分为如下5类：数字，字符串，布尔值，null，undefined。　　null和undefined都表</p>
-        
-    
-    <time datetime="2016-06-09T03:27:10.000Z" itemprop="datePublished">2016-06-09</time>
-  </a>
-</section>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/8/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/10/">Next<span></span></a>
-  </nav>
+  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/JavaScript/">JavaScript</a><a href="/tags/闭包/">闭包</a>
+  </div>
 
 </div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/10/02/js-closure-3/" data-title="JavaScript的闭包案例3---关于闭包的深入理解 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/10/01/js-7-create-object-solutions-6-inherit-solutions/"  title="Javascript中创建对象的7种模式和实现继承的6种方式">
+ <strong>下一篇：</strong><br/> 
+ <span>Javascript中创建对象的7种模式和实现继承的6种方式
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#描述"><span class="toc-number">2.</span> <span class="toc-text">描述</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <!--<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>-->
@@ -633,12 +498,89 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  /*$this.append(html);*/
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
 
 
 
@@ -709,4 +651,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
