@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/15/angular-$q-service/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　$q服务的实现与ES6(ES2015)中的promise十分相似，这种方式改变了传统长期使用的JavaScript异步编程方式-处理回调函数。试想一下，如果有这样的业务逻辑：我们需要根据某个异步ajax请求的结果是否符合要求，再发起一个异步请求，在回调函数中对响应数据进行请求后再发起异步请求… …当出现这样的异步嵌套逻辑，代码结构就会变得很差。promise正是改变了这种情况，以一种流式的">
-<meta property="og:updated_time" content="2016-08-11T12:02:52.823Z">
+<meta property="og:updated_time" content="2016-10-07T05:47:57.251Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AngularJs中$q服务(service)的使用">
 <meta name="twitter:description" content="前言　　$q服务的实现与ES6(ES2015)中的promise十分相似，这种方式改变了传统长期使用的JavaScript异步编程方式-处理回调函数。试想一下，如果有这样的业务逻辑：我们需要根据某个异步ajax请求的结果是否符合要求，再发起一个异步请求，在回调函数中对响应数据进行请求后再发起异步请求… …当出现这样的异步嵌套逻辑，代码结构就会变得很差。promise正是改变了这种情况，以一种流式的">
@@ -186,7 +186,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/JavaScript/">JavaScript</a><a href="/tags/AngularJs/">AngularJs</a>
+  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/JavaScript/">JavaScript</a><a href="/tags/AngularJs/">AngularJs</a><a href="/tags/前端框架/">前端框架</a><a href="/tags/MVVM/">MVVM</a>
   </div>
 
 </div>
@@ -263,19 +263,15 @@
 		  
 		
 		  
-			<li><a href="/categories/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+			<li><a href="/categories/CSS-CSS3/" title="CSS/CSS3">CSS/CSS3<sup>13</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
+			<li><a href="/categories/FE综合/" title="FE综合">FE综合<sup>15</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/FE/" title="FE">FE<sup>8</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/HTML/" title="HTML">HTML<sup>7</sup></a></li>
+			<li><a href="/categories/HTML-HTML5/" title="HTML/HTML5">HTML/HTML5<sup>7</sup></a></li>
 		  
 		
 		  
@@ -283,11 +279,7 @@
 		  
 		
 		  
-			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>39</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/Javascript/" title="Javascript">Javascript<sup>1</sup></a></li>
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>38</sup></a></li>
 		  
 		
 		  
@@ -295,11 +287,19 @@
 		  
 		
 		  
+			<li><a href="/categories/React/" title="React">React<sup>3</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/SSH/" title="SSH">SSH<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/jQuery/" title="jQuery">jQuery<sup>4</sup></a></li>
+			<li><a href="/categories/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
 		  
 		
 		  
@@ -311,11 +311,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>6</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/综合/" title="综合">综合<sup>8</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>7</sup></a></li>
 		  
 		
 		</ul>
@@ -332,7 +328,11 @@
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>52</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>54</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/实现-应用/" title="实现/应用">实现/应用<sup>19</sup></a></li>
 			
 		
 			
@@ -340,7 +340,7 @@
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/前端框架/" title="前端框架">前端框架<sup>12</sup></a></li>
 			
 		
 			
@@ -348,15 +348,19 @@
 			
 		
 			
-				<li><a href="/tags/算法-leetcode/" title="算法/leetcode">算法/leetcode<sup>6</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>6</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
 			
 		
 			
@@ -368,15 +372,23 @@
 			
 		
 			
-				<li><a href="/tags/FE/" title="FE">FE<sup>5</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -384,15 +396,31 @@
 			
 		
 			
+				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+				<li><a href="/tags/页面渲染/" title="页面渲染">页面渲染<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -400,11 +428,15 @@
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/可视化拖拽/" title="可视化拖拽">可视化拖拽<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -412,7 +444,11 @@
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
 			
 		
 			
@@ -420,11 +456,35 @@
 			
 		
 			
-				<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+				<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
 			
 		
 			
@@ -437,6 +497,14 @@
 		
 			
 				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
 			
 		
 		</ul>
