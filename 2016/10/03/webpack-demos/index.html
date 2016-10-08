@@ -11,16 +11,36 @@
     
 
     
-    <meta name="description" content="前言">
+    <meta name="description" content="前言　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：
+
+为了完成更加复杂的交互逻辑，一个网页中使用的js代码数量越来越多；
+即便有了更多代码，却要求使用中有更少的整页面重新加载；
+现代浏览器提供了更多的API接口。
+
+　　基于这样的情况，大量代码就需要能够被良好地管理起来，像webpack这样的模块系统就为我们将代码切分为若干模块提供了很好的选择。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用WebStorm创建webpack工作流的前端项目">
 <meta property="og:url" content="http://yoursite.com/2016/10/03/webpack-demos/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言">
-<meta property="og:updated_time" content="2016-10-07T05:59:58.143Z">
+<meta property="og:description" content="前言　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：
+
+为了完成更加复杂的交互逻辑，一个网页中使用的js代码数量越来越多；
+即便有了更多代码，却要求使用中有更少的整页面重新加载；
+现代浏览器提供了更多的API接口。
+
+　　基于这样的情况，大量代码就需要能够被良好地管理起来，像webpack这样的模块系统就为我们将代码切分为若干模块提供了很好的选择。">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack.png">
+<meta property="og:updated_time" content="2016-10-08T09:33:35.024Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用WebStorm创建webpack工作流的前端项目">
-<meta name="twitter:description" content="前言">
+<meta name="twitter:description" content="前言　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：
+
+为了完成更加复杂的交互逻辑，一个网页中使用的js代码数量越来越多；
+即便有了更多代码，却要求使用中有更少的整页面重新加载；
+现代浏览器提供了更多的API接口。
+
+　　基于这样的情况，大量代码就需要能够被良好地管理起来，像webpack这样的模块系统就为我们将代码切分为若干模块提供了很好的选择。">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack.png">
 
     
     
@@ -92,11 +112,48 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS模块化编程相关背景"><span class="toc-number">2.</span> <span class="toc-text">JS模块化编程相关背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是webpack？"><span class="toc-number">3.</span> <span class="toc-text">什么是webpack？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的安装"><span class="toc-number">4.</span> <span class="toc-text">webpack的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的使用"><span class="toc-number">5.</span> <span class="toc-text">webpack的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack中的重要工具：webpack-dev-server"><span class="toc-number">6.</span> <span class="toc-text">webpack中的重要工具：webpack-dev-server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块热替换-Hot-Module-Replacement-的应用"><span class="toc-number">7.</span> <span class="toc-text">模块热替换 Hot Module Replacement 的应用</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>  
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：</p>
+<ul>
+<li>为了完成更加复杂的交互逻辑，一个网页中使用的js代码数量越来越多；</li>
+<li>即便有了更多代码，却要求使用中有更少的整页面重新加载；</li>
+<li>现代浏览器提供了更多的API接口。</li>
+</ul>
+<p>　　基于这样的情况，大量代码就需要能够被良好地管理起来，像webpack这样的模块系统就为我们将代码切分为若干模块提供了很好的选择。本篇在webstorm编辑器中构建了一个最简单的使用webpack管理的前端项目，算是对webpack使用的入门探究。</p>
+<hr>
+<h2 id="JS模块化编程相关背景"><a href="#JS模块化编程相关背景" class="headerlink" title="JS模块化编程相关背景"></a>JS模块化编程相关背景</h2><p>　　在前端开发中有很多定义模块依赖的方法：</p>
+<ul>
+<li>在html页面中使用<code>&lt;script&gt;</code>标签手动引入（这并没有使用模块管理系统）<br>　　在这种方式下，各模块是将接口暴露给了全局对象，比如window。常见问题：</li>
+</ul>
+<ol>
+<li>全局对象中的命名变量冲突</li>
+<li>各js文件加载顺序十分重要，一旦A依赖B而A又在B之前引入，则会报错</li>
+<li>需要开发者自己来维护和解决依赖的问题</li>
+<li>在大型项目中可能需要引入数十个js文件，代码冗长，难于管理</li>
+</ol>
+<ul>
+<li>编写符合CommonJS规范的代码<br>　　这种规范使用同步的<code>require</code>方法加载依赖，并返回一个暴露出的接口，一个模块可以通过给<code>export</code>对象指定属性的方式来指定输出：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">require(&quot;module&quot;);</span><br><span class="line">require(&quot;../file.js&quot;);</span><br><span class="line">exports.doStuff = function() &#123;&#125;;</span><br><span class="line">module.exports = someValue;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>　　这种方式主要用在服务端，比如Node.js。</p>
+<ul>
+<li><p>编写符合AMD规范的代码<br>　　这种规范使用异步的<code>require</code>方法加载依赖，主要适用于客户端，因为在客户端如果同步加载的话会阻塞页面渲染等其他内容的进行，造成假死。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">require([&quot;module&quot;, &quot;../file&quot;], function(module, file) &#123; /* ... */ &#125;);</span><br><span class="line">define(&quot;mymodule&quot;, [&quot;dep1&quot;, &quot;dep2&quot;], function(d1, d2) &#123;</span><br><span class="line">  return someExportedValue;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用ES6标准原生模块<br>　　ECMAScript 2015 (6th Edition)给javascript语言增加了新的内容-import关键字，从而构成了另一个模块系统</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &quot;jquery&quot;;</span><br><span class="line">export function doStuff() &#123;&#125;</span><br><span class="line">module &quot;localModule&quot; &#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="什么是webpack？"><a href="#什么是webpack？" class="headerlink" title="什么是webpack？"></a>什么是webpack？</h2><p>一句话来概括：webpack能够将相互依赖的模块进行打包，并生成代表着这些模块的静态文件。<br>官网上给出的示意图如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack.png" alt=""></p>
+<hr>
+<h2 id="webpack的安装"><a href="#webpack的安装" class="headerlink" title="webpack的安装"></a>webpack的安装</h2><hr>
+<h2 id="webpack的使用"><a href="#webpack的使用" class="headerlink" title="webpack的使用"></a>webpack的使用</h2><hr>
+<h2 id="webpack中的重要工具：webpack-dev-server"><a href="#webpack中的重要工具：webpack-dev-server" class="headerlink" title="webpack中的重要工具：webpack-dev-server"></a>webpack中的重要工具：webpack-dev-server</h2><hr>
+<h2 id="模块热替换-Hot-Module-Replacement-的应用"><a href="#模块热替换-Hot-Module-Replacement-的应用" class="headerlink" title="模块热替换 Hot Module Replacement 的应用"></a>模块热替换 Hot Module Replacement 的应用</h2>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -158,7 +215,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS模块化编程相关背景"><span class="toc-number">2.</span> <span class="toc-text">JS模块化编程相关背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是webpack？"><span class="toc-number">3.</span> <span class="toc-text">什么是webpack？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的安装"><span class="toc-number">4.</span> <span class="toc-text">webpack的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的使用"><span class="toc-number">5.</span> <span class="toc-text">webpack的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack中的重要工具：webpack-dev-server"><span class="toc-number">6.</span> <span class="toc-text">webpack中的重要工具：webpack-dev-server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块热替换-Hot-Module-Replacement-的应用"><span class="toc-number">7.</span> <span class="toc-text">模块热替换 Hot Module Replacement 的应用</span></a></li></ol>
  
   </div>
 
@@ -202,7 +259,7 @@
 		  
 		
 		  
-			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>38</sup></a></li>
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>39</sup></a></li>
 		  
 		
 		  
@@ -247,15 +304,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>105</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>106</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>54</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/实现-应用/" title="实现/应用">实现/应用<sup>19</sup></a></li>
+				<li><a href="/tags/实现-应用/" title="实现/应用">实现/应用<sup>20</sup></a></li>
 			
 		
 			
@@ -319,15 +376,15 @@
 			
 		
 			
-				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
+				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -351,7 +408,7 @@
 			
 		
 			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
 			
 		
 			
@@ -371,10 +428,6 @@
 			
 		
 			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
 			
 		
@@ -383,11 +436,15 @@
 			
 		
 			
-				<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>1</sup></a></li>
 			
 		
 			
@@ -415,11 +472,11 @@
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
