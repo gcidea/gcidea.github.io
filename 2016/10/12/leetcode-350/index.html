@@ -4,23 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？ | GCidea&#39;s blog</title>
+    <title>leetcode [#350] | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="前言">
+    <meta name="description" content="题目
+Given two arrays, write a function to compute their intersection.
+Example:Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2, 2].
+Note:
+
+Each element in the result should appear as many times as">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？">
-<meta property="og:url" content="http://yoursite.com/2016/09/29/ajax-status-when-browser-window-close/index.html">
+<meta property="og:title" content="leetcode [#350]">
+<meta property="og:url" content="http://yoursite.com/2016/10/12/leetcode-350/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言">
-<meta property="og:updated_time" content="2016-09-30T15:05:05.330Z">
+<meta property="og:description" content="题目
+Given two arrays, write a function to compute their intersection.
+Example:Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2, 2].
+Note:
+
+Each element in the result should appear as many times as">
+<meta property="og:updated_time" content="2016-10-09T09:20:56.245Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？">
-<meta name="twitter:description" content="前言">
+<meta name="twitter:title" content="leetcode [#350]">
+<meta name="twitter:description" content="题目
+Given two arrays, write a function to compute their intersection.
+Example:Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2, 2].
+Note:
+
+Each element in the result should appear as many times as">
 
     
     
@@ -76,14 +91,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/09/29/ajax-status-when-browser-window-close/" title="【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？" itemprop="url">【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？</a>
+      <a href="/2016/10/12/leetcode-350/" title="leetcode [#350]" itemprop="url">leetcode [#350]</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-29T09:23:24.000Z" itemprop="datePublished"> 发表于 2016-09-29</time>
+    <time datetime="2016-10-12T09:26:39.000Z" itemprop="datePublished"> 发表于 2016-10-12</time>
     
   </p>
 </header>
@@ -92,24 +107,40 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>  
+		<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given two arrays, write a function to compute their intersection.</p>
+<p><strong>Example</strong>:<br>Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2, 2].</p>
+<p><strong>Note</strong>:</p>
+<ul>
+<li>Each element in the result should appear as many times as it shows in both arrays.</li>
+<li>The result can be in any order.</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int[] intersect(int[] nums1, int[] nums2) &#123;</span><br><span class="line">        Arrays.sort(nums1);</span><br><span class="line">        Arrays.sort(nums2);</span><br><span class="line">        List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();</span><br><span class="line">        int a = nums1.length;</span><br><span class="line">        int b = nums2.length;</span><br><span class="line">        int i=0,j=0;</span><br><span class="line">        while(i&lt;a &amp;&amp; j&lt;b)&#123;</span><br><span class="line">            if(nums1[i] == nums2[j])&#123;</span><br><span class="line">                list.add(nums1[i]);</span><br><span class="line">                i++;</span><br><span class="line">                j++;</span><br><span class="line">            &#125; else if(nums1[i] &lt; nums2[j])&#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int[] sect = new int[list.size()];</span><br><span class="line">        for(int k = 0;k &lt; list.size(); k++)&#123;</span><br><span class="line">            sect[k] = list.get(k);</span><br><span class="line">        &#125;</span><br><span class="line">        return sect;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>使用Java的ArrayList，可能存储重复的对象。可通过get()方法获取元素。</li>
+<li>将两个数组排序后，通过一遍对两个数组的比较，就可以获取所有相同的元素。这种方法的复杂度是由Arrays.sort()方法决定的，该方法的实现采用三向快速排序或者归并排序，保证了复杂度在o(nlogn)，相比于通过两层for循环嵌套进行暴力筛选要好很多。</li>
+</ol>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/JavaScript/">JavaScript</a>
+  <span></span> <a href="/tags/leetcode/">leetcode</a>
   </div>
 
 </div>
@@ -118,7 +149,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/09/29/ajax-status-when-browser-window-close/" data-title="【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？ | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/10/12/leetcode-350/" data-title="leetcode [#350] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -131,19 +162,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/01/js-7-create-object-solutions-6-inherit-solutions/" title="Javascript中创建对象的7种模式和实现继承的6种方式">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Javascript中创建对象的7种模式和实现继承的6种方式</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/09/24/js-3d-random-tags/"  title="使用Javascript实现随机漂浮的3D标签云效果">
+<a href="/2016/10/12/leetcode-349/"  title="leetcode [#349]">
  <strong>下一篇：</strong><br/> 
- <span>使用Javascript实现随机漂浮的3D标签云效果
+ <span>leetcode [#349]
 </span>
 </a>
 </div>
@@ -158,7 +181,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
  
   </div>
 

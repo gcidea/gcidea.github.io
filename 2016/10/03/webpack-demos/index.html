@@ -30,7 +30,7 @@
 
 　　基于这样的情况，大量代码就需要能够被良好地管理起来，像webpack这样的模块系统就为我们将代码切分为若干模块提供了很好的选择。">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack.png">
-<meta property="og:updated_time" content="2016-10-08T09:33:35.024Z">
+<meta property="og:updated_time" content="2016-10-08T09:46:20.888Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用WebStorm创建webpack工作流的前端项目">
 <meta name="twitter:description" content="前言　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：
@@ -149,6 +149,23 @@
 </ul>
 <hr>
 <h2 id="什么是webpack？"><a href="#什么是webpack？" class="headerlink" title="什么是webpack？"></a>什么是webpack？</h2><p>一句话来概括：webpack能够将相互依赖的模块进行打包，并生成代表着这些模块的静态文件。<br>官网上给出的示意图如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack.png" alt=""></p>
+<p>　　市面上已经存在的模块管理和打包工具并不适合大型的项目，尤其单页面Web应用程序。最紧迫的原因是如何在一个大规模的代码库中，维护各种模块资源的分割和存放，维护它们之间的依赖关系，并且无缝的将它们整合到一起生成适合浏览器端请求加载的静态资源。这些已有的模块化工具并不能很好的完成如下的目标：</p>
+<ul>
+<li>将依赖树拆分成按需加载的块</li>
+<li>初始化加载的耗时尽量少</li>
+<li>各种静态资源都可以视作模块</li>
+<li>将第三方库整合成模块的能力</li>
+<li>可以自定义打包逻辑的能力</li>
+<li>适合大项目，无论是单页还是多页的Web应用</li>
+</ul>
+<p>webpack有以下明显特点：</p>
+<ol>
+<li>代码拆分<br>　　Webpack 有两种组织模块依赖的方式，同步和异步。异步依赖作为分割点，形成一个新的块。在优化了依赖树后，每一个异步区块都作为一个文件被打包。</li>
+<li>Loader<br>　　Webpack 本身只能处理原生的 JavaScript 模块，但是 loader 转换器可以将各种类型的资源转换成 JavaScript 模块。这样，任何资源都可以成为 Webpack 可以处理的模块。</li>
+<li>智能解析<br>　　Webpack 有一个智能解析器，几乎可以处理任何第三方库，无论它们的模块形式是 CommonJS、 AMD 还是普通的 JS 文件。甚至在加载依赖的时候，允许使用动态表达式 require(“./templates/“ + name + “.jade”)。</li>
+<li>插件系统<br>　　Webpack 还有一个功能丰富的插件系统。大多数内容功能都是基于这个插件系统运行的，还可以开发和使用开源的 Webpack 插件，来满足各式各样的需求。</li>
+<li>快速运行<br>　　Webpack 使用异步 I/O 和多级缓存提高运行效率，这使得 Webpack 能够以令人难以置信的速度快速增量编译。</li>
+</ol>
 <hr>
 <h2 id="webpack的安装"><a href="#webpack的安装" class="headerlink" title="webpack的安装"></a>webpack的安装</h2><hr>
 <h2 id="webpack的使用"><a href="#webpack的使用" class="headerlink" title="webpack的使用"></a>webpack的使用</h2><hr>
@@ -291,7 +308,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>7</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>9</sup></a></li>
 		  
 		
 		</ul>
@@ -324,11 +341,11 @@
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>8</sup></a></li>
 			
 		
 			
@@ -336,7 +353,7 @@
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>6</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
@@ -344,7 +361,7 @@
 			
 		
 			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
+				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
 			
 		
 			
@@ -352,11 +369,11 @@
 			
 		
 			
-				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
 			
 		
 			
@@ -376,15 +393,15 @@
 			
 		
 			
-				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
 			
 		
 			
@@ -408,7 +425,7 @@
 			
 		
 			
-				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -428,6 +445,10 @@
 			
 		
 			
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
 			
 		
@@ -436,15 +457,11 @@
 			
 		
 			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+				<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>1</sup></a></li>
 			
 		
 			
@@ -472,11 +489,11 @@
 			
 		
 			
-				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
 			
 		
 			
