@@ -4,23 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>HTML转义字符 | GCidea&#39;s blog</title>
+    <title>leetcode [#242] | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="背景　　HTML转义字符又称字符实体。一些字符在HTML中有特殊的含义，比如小于号”&amp;lt;”已经用于定义HTML标签的开始。而这些标签在渲染出的html页面是不会显示出来的，如果我们希望浏览器正确地显示这些字符，我们必须在HTML源码中插入字符实体。　　字符实体有三部分,而且有两种写法：">
+    <meta name="description" content="题目
+Given two strings s and t, write a function to determine if t is an anagram of s.
+Example:s = “anagram”, t = “nagaram”, return true.s = “rat”, t = “car”, return false.
+Note:You may assume the strin">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTML转义字符">
-<meta property="og:url" content="http://yoursite.com/2016/03/18/html-character-entity/index.html">
+<meta property="og:title" content="leetcode [#242]">
+<meta property="og:url" content="http://yoursite.com/2016/10/13/leetcode-242/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="背景　　HTML转义字符又称字符实体。一些字符在HTML中有特殊的含义，比如小于号”&amp;lt;”已经用于定义HTML标签的开始。而这些标签在渲染出的html页面是不会显示出来的，如果我们希望浏览器正确地显示这些字符，我们必须在HTML源码中插入字符实体。　　字符实体有三部分,而且有两种写法：">
-<meta property="og:updated_time" content="2016-10-07T06:08:25.672Z">
+<meta property="og:description" content="题目
+Given two strings s and t, write a function to determine if t is an anagram of s.
+Example:s = “anagram”, t = “nagaram”, return true.s = “rat”, t = “car”, return false.
+Note:You may assume the strin">
+<meta property="og:updated_time" content="2016-10-11T09:08:12.535Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTML转义字符">
-<meta name="twitter:description" content="背景　　HTML转义字符又称字符实体。一些字符在HTML中有特殊的含义，比如小于号”&amp;lt;”已经用于定义HTML标签的开始。而这些标签在渲染出的html页面是不会显示出来的，如果我们希望浏览器正确地显示这些字符，我们必须在HTML源码中插入字符实体。　　字符实体有三部分,而且有两种写法：">
+<meta name="twitter:title" content="leetcode [#242]">
+<meta name="twitter:description" content="题目
+Given two strings s and t, write a function to determine if t is an anagram of s.
+Example:s = “anagram”, t = “nagaram”, return true.s = “rat”, t = “car”, return false.
+Note:You may assume the strin">
 
     
     
@@ -76,14 +85,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/18/html-character-entity/" title="HTML转义字符" itemprop="url">HTML转义字符</a>
+      <a href="/2016/10/13/leetcode-242/" title="leetcode [#242]" itemprop="url">leetcode [#242]</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-18T05:29:59.000Z" itemprop="datePublished"> 发表于 2016-03-18</time>
+    <time datetime="2016-10-13T09:26:39.000Z" itemprop="datePublished"> 发表于 2016-10-13</time>
     
   </p>
 </header>
@@ -92,110 +101,22 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最常用的字符实体"><span class="toc-number">2.</span> <span class="toc-text">最常用的字符实体</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>　　HTML转义字符又称字符实体。一些字符在HTML中有特殊的含义，比如小于号”&lt;”已经用于定义HTML标签的开始。而这些标签在渲染出的html页面是不会显示出来的，如果我们希望浏览器正确地显示这些字符，我们必须在HTML源码中插入字符实体。<br>　　字符实体有三部分,而且有两种写法：<br>  <a id="more"></a></p>
-<ol>
-<li>一个和号(&amp;) + 一个实体名称 +　一个分号(;)</li>
-<li><p>一个和号与一个井号(&amp;#) + 一个实体编号 +　一个分号(;)</p>
-<p>比如，要在HTML文档中显示小于号，需要这样写：<code>&amp;lt;</code> 或者 <code>&amp;#60;</code></p>
-<blockquote>
-<p>使用实体名称的好处：名称相对来说更容易记忆。<br>使用实体名称的坏处：并不是所有的浏览器都支持最新的实体名称，然而几乎所有的浏览器对实体编号的支持都很好。<br>注意：实体对大小写敏感。</p>
+		<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given two strings s and t, write a function to determine if t is an anagram of s.</p>
+<p><strong>Example</strong>:<br>s = “anagram”, t = “nagaram”, return true.<br>s = “rat”, t = “car”, return false.</p>
+<p><strong>Note</strong>:<br>You may assume the string contains only lowercase alphabets.</p>
 </blockquote>
-</li>
+<hr>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public static boolean isAnagram(String s, String t) &#123;</span><br><span class="line">        boolean result = true;</span><br><span class="line">        int sLen = s.length();</span><br><span class="line">        int tLen = t.length();</span><br><span class="line">        if(sLen != tLen)&#123;</span><br><span class="line">            result = false;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            char[] arrayS = sortStr(s);</span><br><span class="line">            char[] arrayT = sortStr(t);</span><br><span class="line">            for(int i = 0 ; i &lt; arrayS.length ; i++)&#123;</span><br><span class="line">                if(arrayS[i] != arrayT[i])&#123;</span><br><span class="line">                    result = false;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static char[] sortStr(String str)&#123;</span><br><span class="line">        int N = str.length();</span><br><span class="line">        char[] a = new char[N];</span><br><span class="line">        for(int k=0; k&lt;N; k++)&#123;</span><br><span class="line">            a[k] = str.charAt(k);</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(a);</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>两个字符串互为字谜，首先长度要一样。</li>
+<li>将两个字符串排序，只要对应位不一样，则肯定不是互为字谜。</li>
 </ol>
-<h2 id="最常用的字符实体"><a href="#最常用的字符实体" class="headerlink" title="最常用的字符实体"></a>最常用的字符实体</h2><table>
-<thead>
-<tr>
-<th>显示</th>
-<th>说明</th>
-<th>实体名称</th>
-<th>实体编号</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>半方大的空白</td>
-<td><code>&amp;ensp;</code></td>
-<td><code>&amp;#8194;</code></td>
-</tr>
-<tr>
-<td></td>
-<td>全方大的空白</td>
-<td><code>&amp;emsp;</code></td>
-<td><code>&amp;#8195;</code></td>
-</tr>
-<tr>
-<td></td>
-<td>不断行的空白格</td>
-<td><code>&amp;nbsp;</code></td>
-<td><code>&amp;#160;</code></td>
-</tr>
-<tr>
-<td>&lt;</td>
-<td>小于</td>
-<td><code>&amp;lt;</code></td>
-<td><code>&amp;#60;</code></td>
-</tr>
-<tr>
-<td>&gt;</td>
-<td>大于</td>
-<td><code>&amp;gt;</code></td>
-<td><code>&amp;#62;</code></td>
-</tr>
-<tr>
-<td>&amp;</td>
-<td>&amp;符号</td>
-<td><code>&amp;amp;</code></td>
-<td><code>&amp;#38;</code></td>
-</tr>
-<tr>
-<td>“</td>
-<td>双引号</td>
-<td><code>&amp;quot;</code></td>
-<td><code>&amp;#34;</code></td>
-</tr>
-<tr>
-<td>©</td>
-<td>版权</td>
-<td><code>&amp;copy;</code></td>
-<td><code>&amp;#169;</code></td>
-</tr>
-<tr>
-<td>®</td>
-<td>已注册商标</td>
-<td><code>&amp;reg;</code></td>
-<td><code>&amp;#174;</code></td>
-</tr>
-<tr>
-<td>™</td>
-<td>商标（美国）</td>
-<td><code>&amp;trade;</code></td>
-<td><code>&amp;#8482;</code></td>
-</tr>
-<tr>
-<td>×</td>
-<td>乘号</td>
-<td><code>&amp;times;</code></td>
-<td><code>&amp;#215;</code></td>
-</tr>
-<tr>
-<td>÷</td>
-<td>除号</td>
-<td><code>&amp;divide;</code></td>
-<td><code>&amp;#247;</code></td>
-</tr>
-<tr>
-<td>/</td>
-<td>正斜线</td>
-<td></td>
-<td><code>&amp;#47;</code></td>
-</tr>
-</tbody>
-</table>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -203,13 +124,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/HTML-HTML5/">HTML/HTML5</a>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/HTML/">HTML</a>
+  <span></span> <a href="/tags/leetcode/">leetcode</a>
   </div>
 
 </div>
@@ -218,7 +139,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/03/18/html-character-entity/" data-title="HTML转义字符 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/10/13/leetcode-242/" data-title="leetcode [#242] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -231,19 +152,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/04/07/JavaScript-memory-leak/" title="JavaScript内存泄漏">
-  <strong>上一篇：</strong><br/>
-  <span>
-  JavaScript内存泄漏</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/03/16/2016-03-16-my-first-blog/"  title="【首篇】记录本博客www.gcidea.info的搭建过程">
+<a href="/2016/10/12/leetcode-350/"  title="leetcode [#350]">
  <strong>下一篇：</strong><br/> 
- <span>【首篇】记录本博客www.gcidea.info的搭建过程
+ <span>leetcode [#350]
 </span>
 </a>
 </div>
@@ -258,7 +171,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最常用的字符实体"><span class="toc-number">2.</span> <span class="toc-text">最常用的字符实体</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
  
   </div>
 
