@@ -47,7 +47,26 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-16.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-17.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-18.png">
-<meta property="og:updated_time" content="2016-10-11T09:24:03.009Z">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-19.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-20.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-21.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-22.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-23.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-24.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-25.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-26.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-27.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-28.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-29.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-30.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-31.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-32.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-33.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-34.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-35.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-36.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-37.png">
+<meta property="og:updated_time" content="2016-10-13T07:24:31.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用WebStorm创建webpack工作流的前端项目">
 <meta name="twitter:description" content="前言　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：
@@ -129,7 +148,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS模块化编程相关背景"><span class="toc-number">2.</span> <span class="toc-text">JS模块化编程相关背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是webpack？"><span class="toc-number">3.</span> <span class="toc-text">什么是webpack？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的安装"><span class="toc-number">4.</span> <span class="toc-text">webpack的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的使用"><span class="toc-number">5.</span> <span class="toc-text">webpack的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单示例"><span class="toc-number">5.1.</span> <span class="toc-text">简单示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规范使用"><span class="toc-number">5.2.</span> <span class="toc-text">规范使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目结构"><span class="toc-number">5.2.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件配置"><span class="toc-number">5.2.2.</span> <span class="toc-text">文件配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用loaders"><span class="toc-number">5.2.3.</span> <span class="toc-text">使用loaders</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装其他可能需要的库"><span class="toc-number">5.2.4.</span> <span class="toc-text">安装其他可能需要的库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改app-js文件（ES6语法-jquery库）"><span class="toc-number">5.2.5.</span> <span class="toc-text">修改app.js文件（ES6语法+jquery库）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编辑index-html文件"><span class="toc-number">5.2.6.</span> <span class="toc-text">编辑index.html文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重新打包"><span class="toc-number">5.2.7.</span> <span class="toc-text">重新打包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问index-html"><span class="toc-number">5.2.8.</span> <span class="toc-text">访问index.html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用plugins"><span class="toc-number">5.2.9.</span> <span class="toc-text">使用plugins</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack中的重要工具：webpack-dev-server"><span class="toc-number">6.</span> <span class="toc-text">webpack中的重要工具：webpack-dev-server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块热替换-Hot-Module-Replacement-的应用"><span class="toc-number">7.</span> <span class="toc-text">模块热替换 Hot Module Replacement 的应用</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS模块化编程相关背景"><span class="toc-number">2.</span> <span class="toc-text">JS模块化编程相关背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是webpack？"><span class="toc-number">3.</span> <span class="toc-text">什么是webpack？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的安装"><span class="toc-number">4.</span> <span class="toc-text">webpack的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的使用"><span class="toc-number">5.</span> <span class="toc-text">webpack的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单示例"><span class="toc-number">5.1.</span> <span class="toc-text">简单示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规范使用"><span class="toc-number">5.2.</span> <span class="toc-text">规范使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目结构"><span class="toc-number">5.2.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件配置"><span class="toc-number">5.2.2.</span> <span class="toc-text">文件配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用loaders"><span class="toc-number">5.2.3.</span> <span class="toc-text">使用loaders</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装其他可能需要的库"><span class="toc-number">5.2.4.</span> <span class="toc-text">安装其他可能需要的库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改app-js文件（ES6语法-jquery库）"><span class="toc-number">5.2.5.</span> <span class="toc-text">修改app.js文件（ES6语法+jquery库）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编辑index-html文件"><span class="toc-number">5.2.6.</span> <span class="toc-text">编辑index.html文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重新打包"><span class="toc-number">5.2.7.</span> <span class="toc-text">重新打包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问index-html"><span class="toc-number">5.2.8.</span> <span class="toc-text">访问index.html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用plugins"><span class="toc-number">5.2.9.</span> <span class="toc-text">使用plugins</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack中的重要工具：webpack-dev-server"><span class="toc-number">6.</span> <span class="toc-text">webpack中的重要工具：webpack-dev-server</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装webpack-dev-server"><span class="toc-number">6.1.</span> <span class="toc-text">安装webpack-dev-server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动webpack-dev-server"><span class="toc-number">6.2.</span> <span class="toc-text">启动webpack-dev-server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定content-base"><span class="toc-number">6.3.</span> <span class="toc-text">指定content base</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动刷新"><span class="toc-number">6.4.</span> <span class="toc-text">自动刷新</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#iframe模式"><span class="toc-number">6.4.1.</span> <span class="toc-text">iframe模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inline模式"><span class="toc-number">6.4.2.</span> <span class="toc-text">inline模式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块热替换-Hot-Module-Replacement-的应用"><span class="toc-number">7.</span> <span class="toc-text">模块热替换 Hot Module Replacement 的应用</span></a></li></ol>
 		
 		</div>
 		
@@ -237,7 +256,7 @@
 <hr>
 <h4 id="修改app-js文件（ES6语法-jquery库）"><a href="#修改app-js文件（ES6语法-jquery库）" class="headerlink" title="修改app.js文件（ES6语法+jquery库）"></a>修改app.js文件（ES6语法+jquery库）</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &apos;babel-polyfill&apos;;</span><br><span class="line">import cats from &apos;./cats&apos;;</span><br><span class="line">import $ from &apos;jquery&apos;;</span><br><span class="line"></span><br><span class="line">$(&apos;&lt;h1&gt;Cats&lt;/h1&gt;&apos;).appendTo(&apos;body&apos;);</span><br><span class="line">const ul = $(&apos;&lt;ul&gt;&lt;/ul&gt;&apos;).appendTo(&apos;body&apos;);</span><br><span class="line">for (const cat of cats) &#123;</span><br><span class="line">    $(&apos;&lt;li&gt;&lt;/li&gt;&apos;).text(cat).appendTo(ul);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>将以上代码写入写入后，编辑器会报错：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-13.png" alt=""></p>
+<p>将以上代码写入后，编辑器会报错：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-13.png" alt=""></p>
 </blockquote>
 <p>原因是编辑器未能识别ES6语法，在webstorm的settings中做如下配置即可：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-14.png" alt=""></p>
 <hr>
@@ -252,8 +271,64 @@
 <p>现在执行命令<code>webpack</code>重新打包，再看app.bundle.js的文件大小,为171KB：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-17.png" alt=""></p>
 <p>可以看到，压缩工具去掉了无用的空字符等：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-18.png" alt=""></p>
 <hr>
-<h2 id="webpack中的重要工具：webpack-dev-server"><a href="#webpack中的重要工具：webpack-dev-server" class="headerlink" title="webpack中的重要工具：webpack-dev-server"></a>webpack中的重要工具：webpack-dev-server</h2><hr>
-<h2 id="模块热替换-Hot-Module-Replacement-的应用"><a href="#模块热替换-Hot-Module-Replacement-的应用" class="headerlink" title="模块热替换 Hot Module Replacement 的应用"></a>模块热替换 Hot Module Replacement 的应用</h2>  
+<h2 id="webpack中的重要工具：webpack-dev-server"><a href="#webpack中的重要工具：webpack-dev-server" class="headerlink" title="webpack中的重要工具：webpack-dev-server"></a>webpack中的重要工具：webpack-dev-server</h2><p>　　webpack-dev-server本质上是一个小型的Node.js的Express服务器，使用webpack-dev-middleware作为中间件来支持webpack打包。</p>
+<h3 id="安装webpack-dev-server"><a href="#安装webpack-dev-server" class="headerlink" title="安装webpack-dev-server"></a>安装webpack-dev-server</h3><p><code>npm install webpack-dev-server</code><br>package.json变为如下形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;webpack-usage&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;webpack-usage-demo&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;index.js&quot;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;author&quot;: &quot;gaochang&quot;,</span><br><span class="line">  &quot;license&quot;: &quot;ISC&quot;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;babel-core&quot;: &quot;^6.17.0&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^6.2.5&quot;,</span><br><span class="line">    &quot;babel-preset-es2015&quot;: &quot;^6.16.0&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^1.13.2&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^1.16.2&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;babel-polyfill&quot;: &quot;^6.16.0&quot;,</span><br><span class="line">    &quot;jquery&quot;: &quot;^3.1.1&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="启动webpack-dev-server"><a href="#启动webpack-dev-server" class="headerlink" title="启动webpack-dev-server"></a>启动webpack-dev-server</h3><p>　　安装完成后，在不指定任何参数的情况下，可以直接通过命令<code>webpack-dev-server</code>在本地8080端口运行一个服务器，访问<code>http://localhost:8080</code>可以看到效果：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-19.png" alt=""></p>
+<p>访问<code>http://localhost:8080/webpack-dev-server/</code> 可以显示webpack服务器状态条<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-20.png" alt=""></p>
+<h3 id="指定content-base"><a href="#指定content-base" class="headerlink" title="指定content base"></a>指定content base</h3><p>webpack-dev-server默认监控的是当前目录的文件，除非声明一个特殊的基本路径：<br><code>webpack-dev-server --content-base build/</code><br>这样的话，webpack就会只监控build文件夹下的静态文件。当你的文件在任何时候发生变化时，都会触发重新编译打包。验证如下：<br>1.使用上述命令启动server：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-21.png" alt=""></p>
+<p>控制台会显示打包过程日志，并最终提示打包完成已经可用：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-22.png" alt=""></p>
+<p>2.此时，访问<code>http://localhost:8080/webpack-dev-server/</code>可看到：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-23.png" alt=""></p>
+<p>即显示了build目录下的文件列表，此时只有app.bundle.js，点开内容如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-24.png" alt=""></p>
+<p>红色框中是我们app.js中的部分源码。</p>
+<p>3.现在修改上述部分源码，观察控制台日志和<code>http://localhost:8080/webpack-dev-server/</code>目录下文件变化。<br>修改<code>&lt;h1&gt;</code>内容后，发现控制台日志在之前“bundle is now VALID”的基础上，自动开始重新编译，进入“bundle is now INVALID”的状态：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-25.png" alt=""></p>
+<p>同时，看到页面状态条变为：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-26.png" alt=""></p>
+<p>等待重编译完成后，发现页面文件内容确实变为我们修改后的内容：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-27.png" alt=""></p>
+<p>但是，<strong>值得注意的是，这个修改的内容是保存在内存中的</strong>，并没有写入我们在webpack.config.js的output中指定的文件：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-28.png" alt=""></p>
+<p>发现文件还是修改之前的内容。也就是说，当相同URL下已经有一个打包的文件时，默认情况下内存中的文件享有优先权。<strong>而如果想要让build目录下的输出文件的内容也跟随发生变化，则要使用<code>webpack</code>命令重新打包</strong>。</p>
+<hr>
+<p>除了以上分析，还有一点要注意，通过给webpack.config.js的output指定publicPath，可以定制浏览器中的项目访问路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">    path: &apos;./build&apos;,</span><br><span class="line">    publicPath: &quot;/assets/&quot;,</span><br><span class="line">    filename: &apos;app.bundle.js&apos;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>重新打包，可以在如下路径访问相应文件：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-29.png" alt=""></p>
+<p>由于之前content-base指定了监控build目录，我们<strong>在该目录下</strong>创建一个index.html文件，用来加载并使用我们打包好的js文件，而原先在项目根目录webpack-usage下创建的index.html文件就不起作用了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;p&gt;在build目录下创建的index.html文件&lt;/p&gt;</span><br><span class="line">  &lt;script src=&quot;assets/app.bundle.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>访问<code>http://localhost:8080/</code>：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-30.png" alt=""></p>
+<p>访问<code>http://localhost:8080/webpack-dev-server</code>:<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-31.png" alt=""></p>
+<p>其中，第一个是打包文件app.bundle.js本身：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-32.png" alt=""><br>注意路径为<code>http://localhost:8080/assets/app.bundle.js</code>，符合publicPath的配置。</p>
+<p>第二个是根据打包文件生成的html文件，注意路径为<code>http://localhost:8080/assets/app.bundle</code>，符合publicPath的配置<br>点击“app.bundle”:<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-33.png" alt=""></p>
+<p>点击“webpack-dev-server”:<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-34.png" alt=""><br>（<font color="red">该html文件仅针对app.bundle.js，和直接访问<code>http://localhost:8080/</code>对应的index.html并不相同，以上两图中没有“在build目录下创建的index.html文件”这句话就说明了这一点。</font>）</p>
+<blockquote>
+<p>关于js文件引入的路径，经测试发现以下几种情况，应该与webpack的文件查找算法有关，具体待进一步探究：</p>
+<p>1.<code>src=&quot;assets/app.bundle.js&quot;</code> 由于publicPath指定了”/assets/“，因此这种方式肯定能找到app.bundle.js文件；</p>
+<p>2.<code>src=&quot;app.bundle.js&quot;</code> 默认在build目录下找该文件，能找到</p>
+<p>3.<code>src=&quot;/app.bundle.js&quot;</code> 默认在build目录下找该文件，能找到</p>
+<p>4.<code>src=&quot;./app.bundle.js&quot;</code> 默认在build目录下找该文件，能找到</p>
+<p>5.<code>src=&quot;../app.bundle.js&quot;</code> 默认在build目录下找该文件，能找到</p>
+</blockquote>
+<hr>
+<h3 id="自动刷新"><a href="#自动刷新" class="headerlink" title="自动刷新"></a>自动刷新</h3><p>　　webpack-dev-server支持两种自动刷新页面的方式。并且两种方式都支持模块热替换。</p>
+<h4 id="iframe模式"><a href="#iframe模式" class="headerlink" title="iframe模式"></a>iframe模式</h4><p>　　在这种方式下，页面实际上是被嵌入了一个iframe，使用这种方式不需要额外配置，只要js文件以改变，就会自动”recompiling”。直接访问<code>http://«host»:«port»/webpack-dev-server/«path»</code>，在我们的配置中就是访问<code>http://localhost:8080/webpack-dev-server/index.html</code>。该方式的特点是：</p>
+<ul>
+<li>无需改变配置</li>
+<li>编译信息通过页面顶部信息条体现</li>
+<li>浏览器地址栏不会体现出地址的变化</li>
+</ul>
+<h4 id="inline模式"><a href="#inline模式" class="headerlink" title="inline模式"></a>inline模式</h4><p>　　在这种方式下，我们需要额外的配置，使用以下两种方式之一：</p>
+<ul>
+<li>在启动命令上加参数”–inline”:<br><code>webpack-dev-server --content-base build/ --inline</code></li>
+<li>在webpack.config.js加上<code>devServer: { inline: true }</code></li>
+</ul>
+<p>　　使用这种方式不需要给URL加上/webpack-dev-server/，直接访问<code>http://«host»:«port»/«path»</code>，在我们的配置中就是访问<code>http://localhost:8080/index.html</code></p>
+<p>该方式的特点是：</p>
+<ul>
+<li>需要改变配置</li>
+<li>编译信息通过浏览器的console体现：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-35.png" alt=""></li>
+<li>浏览器地址栏会体现出地址的变化</li>
+</ul>
+<hr>
+<h2 id="模块热替换-Hot-Module-Replacement-的应用"><a href="#模块热替换-Hot-Module-Replacement-的应用" class="headerlink" title="模块热替换 Hot Module Replacement 的应用"></a>模块热替换 Hot Module Replacement 的应用</h2><p>　　在webpack-dev-server中使用模块热替换 Hot Module Replacement最简单的办法就是在inline模式中使用。我们只需要在参数中加上”–hot”即可。<br><code>webpack-dev-server --content-base build/ --inline --hot</code></p>
+<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-36.png" alt=""></p>
+<p>这样，就进入了监听状态，当文件发生修改，看到console打出如下日志：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-37.png" alt=""></p>
+<p>发现提示错误，热替换失败，整个页面进行了重载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[HMR] Cannot apply update. Need to do a full reload!</span><br><span class="line">:8080/assets/app.bundle.js:3 </span><br><span class="line">[HMR] Error: Aborted because 77 is not accepted</span><br><span class="line">    at l (http://localhost:8080/assets/app.bundle.js:1:4169)</span><br><span class="line">    at f (http://localhost:8080/assets/app.bundle.js:1:3117)</span><br><span class="line">    at u (http://localhost:8080/assets/app.bundle.js:1:3017)</span><br><span class="line">    at webpackHotUpdate (http://localhost:8080/assets/app.bundle.js:1:5790)</span><br><span class="line">    at http://localhost:8080/assets/0.ae586ae503d4fe64ca9a.hot-update.js:1:1</span><br></pre></td></tr></table></figure></p>
+<p>查阅了很多资料，如<a href="https://github.com/webpack/webpack-dev-server/issues/395" target="_blank" rel="external">https://github.com/webpack/webpack-dev-server/issues/395</a>，但并没有找到准确原因，暂时搁置。</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -315,7 +390,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS模块化编程相关背景"><span class="toc-number">2.</span> <span class="toc-text">JS模块化编程相关背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是webpack？"><span class="toc-number">3.</span> <span class="toc-text">什么是webpack？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的安装"><span class="toc-number">4.</span> <span class="toc-text">webpack的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的使用"><span class="toc-number">5.</span> <span class="toc-text">webpack的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单示例"><span class="toc-number">5.1.</span> <span class="toc-text">简单示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规范使用"><span class="toc-number">5.2.</span> <span class="toc-text">规范使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目结构"><span class="toc-number">5.2.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件配置"><span class="toc-number">5.2.2.</span> <span class="toc-text">文件配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用loaders"><span class="toc-number">5.2.3.</span> <span class="toc-text">使用loaders</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装其他可能需要的库"><span class="toc-number">5.2.4.</span> <span class="toc-text">安装其他可能需要的库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改app-js文件（ES6语法-jquery库）"><span class="toc-number">5.2.5.</span> <span class="toc-text">修改app.js文件（ES6语法+jquery库）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编辑index-html文件"><span class="toc-number">5.2.6.</span> <span class="toc-text">编辑index.html文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重新打包"><span class="toc-number">5.2.7.</span> <span class="toc-text">重新打包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问index-html"><span class="toc-number">5.2.8.</span> <span class="toc-text">访问index.html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用plugins"><span class="toc-number">5.2.9.</span> <span class="toc-text">使用plugins</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack中的重要工具：webpack-dev-server"><span class="toc-number">6.</span> <span class="toc-text">webpack中的重要工具：webpack-dev-server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块热替换-Hot-Module-Replacement-的应用"><span class="toc-number">7.</span> <span class="toc-text">模块热替换 Hot Module Replacement 的应用</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS模块化编程相关背景"><span class="toc-number">2.</span> <span class="toc-text">JS模块化编程相关背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是webpack？"><span class="toc-number">3.</span> <span class="toc-text">什么是webpack？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的安装"><span class="toc-number">4.</span> <span class="toc-text">webpack的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的使用"><span class="toc-number">5.</span> <span class="toc-text">webpack的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单示例"><span class="toc-number">5.1.</span> <span class="toc-text">简单示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规范使用"><span class="toc-number">5.2.</span> <span class="toc-text">规范使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目结构"><span class="toc-number">5.2.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件配置"><span class="toc-number">5.2.2.</span> <span class="toc-text">文件配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用loaders"><span class="toc-number">5.2.3.</span> <span class="toc-text">使用loaders</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装其他可能需要的库"><span class="toc-number">5.2.4.</span> <span class="toc-text">安装其他可能需要的库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改app-js文件（ES6语法-jquery库）"><span class="toc-number">5.2.5.</span> <span class="toc-text">修改app.js文件（ES6语法+jquery库）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编辑index-html文件"><span class="toc-number">5.2.6.</span> <span class="toc-text">编辑index.html文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重新打包"><span class="toc-number">5.2.7.</span> <span class="toc-text">重新打包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问index-html"><span class="toc-number">5.2.8.</span> <span class="toc-text">访问index.html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用plugins"><span class="toc-number">5.2.9.</span> <span class="toc-text">使用plugins</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack中的重要工具：webpack-dev-server"><span class="toc-number">6.</span> <span class="toc-text">webpack中的重要工具：webpack-dev-server</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装webpack-dev-server"><span class="toc-number">6.1.</span> <span class="toc-text">安装webpack-dev-server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动webpack-dev-server"><span class="toc-number">6.2.</span> <span class="toc-text">启动webpack-dev-server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定content-base"><span class="toc-number">6.3.</span> <span class="toc-text">指定content base</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动刷新"><span class="toc-number">6.4.</span> <span class="toc-text">自动刷新</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#iframe模式"><span class="toc-number">6.4.1.</span> <span class="toc-text">iframe模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inline模式"><span class="toc-number">6.4.2.</span> <span class="toc-text">inline模式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块热替换-Hot-Module-Replacement-的应用"><span class="toc-number">7.</span> <span class="toc-text">模块热替换 Hot Module Replacement 的应用</span></a></li></ol>
  
   </div>
 
@@ -391,7 +466,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>10</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>11</sup></a></li>
 		  
 		
 		</ul>
@@ -424,11 +499,7 @@
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>9</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>10</sup></a></li>
 			
 		
 			
@@ -440,7 +511,15 @@
 			
 		
 			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>5</sup></a></li>
 			
 		
 			
@@ -456,23 +535,7 @@
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>5</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -480,19 +543,23 @@
 			
 		
 			
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/页面渲染/" title="页面渲染">页面渲染<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
 			
 		
 			
@@ -500,11 +567,23 @@
 			
 		
 			
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/页面渲染/" title="页面渲染">页面渲染<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
+				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -516,19 +595,7 @@
 			
 		
 			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 			
@@ -536,7 +603,15 @@
 			
 		
 			
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
 			
 		
 			
@@ -548,7 +623,7 @@
 			
 		
 			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
@@ -560,15 +635,15 @@
 			
 		
 			
-				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
 			
 		
 			
