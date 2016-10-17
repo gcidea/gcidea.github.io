@@ -4,23 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Javascript中创建对象的7种模式和实现继承的6种方式 | GCidea&#39;s blog</title>
+    <title>JavaScript中创建对象的7种模式和实现继承的6种方式 | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="前言">
+    <meta name="description" content="前言　　JavaScript是一种面向对象（OO）的语言，但由于ECMAScript没有类的概念（ES6引入关键字class），所以在js中创建对象的方法也与其他基于类的语言有所不同。本篇总结在JavaScript中创建对象的7种方法；并在此基础上，总结实现继承的6种方式。
+
+JavaScript中对象的基本概念创建对象的2种基本方法
+创建一个Object实例123456var person =">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Javascript中创建对象的7种模式和实现继承的6种方式">
+<meta property="og:title" content="JavaScript中创建对象的7种模式和实现继承的6种方式">
 <meta property="og:url" content="http://yoursite.com/2016/10/01/js-7-create-object-solutions-6-inherit-solutions/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言">
-<meta property="og:updated_time" content="2016-10-01T15:17:38.536Z">
+<meta property="og:description" content="前言　　JavaScript是一种面向对象（OO）的语言，但由于ECMAScript没有类的概念（ES6引入关键字class），所以在js中创建对象的方法也与其他基于类的语言有所不同。本篇总结在JavaScript中创建对象的7种方法；并在此基础上，总结实现继承的6种方式。
+
+JavaScript中对象的基本概念创建对象的2种基本方法
+创建一个Object实例123456var person =">
+<meta property="og:updated_time" content="2016-10-15T03:10:32.200Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Javascript中创建对象的7种模式和实现继承的6种方式">
-<meta name="twitter:description" content="前言">
+<meta name="twitter:title" content="JavaScript中创建对象的7种模式和实现继承的6种方式">
+<meta name="twitter:description" content="前言　　JavaScript是一种面向对象（OO）的语言，但由于ECMAScript没有类的概念（ES6引入关键字class），所以在js中创建对象的方法也与其他基于类的语言有所不同。本篇总结在JavaScript中创建对象的7种方法；并在此基础上，总结实现继承的6种方式。
+
+JavaScript中对象的基本概念创建对象的2种基本方法
+创建一个Object实例123456var person =">
 
     
     
@@ -76,7 +85,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/01/js-7-create-object-solutions-6-inherit-solutions/" title="Javascript中创建对象的7种模式和实现继承的6种方式" itemprop="url">Javascript中创建对象的7种模式和实现继承的6种方式</a>
+      <a href="/2016/10/01/js-7-create-object-solutions-6-inherit-solutions/" title="JavaScript中创建对象的7种模式和实现继承的6种方式" itemprop="url">JavaScript中创建对象的7种模式和实现继承的6种方式</a>
   </h1>
   <p class="article-author">By
        
@@ -92,11 +101,93 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript中对象的基本概念"><span class="toc-number">2.</span> <span class="toc-text">JavaScript中对象的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建对象的2种基本方法"><span class="toc-number">2.1.</span> <span class="toc-text">创建对象的2种基本方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建一个Object实例"><span class="toc-number">2.1.1.</span> <span class="toc-text">创建一个Object实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象字面量"><span class="toc-number">2.1.2.</span> <span class="toc-text">对象字面量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性与特性"><span class="toc-number">2.2.</span> <span class="toc-text">属性与特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据属性的特性"><span class="toc-number">2.2.1.</span> <span class="toc-text">数据属性的特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问器属性的特性"><span class="toc-number">2.2.2.</span> <span class="toc-text">访问器属性的特性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES5新增的关于Object的几个实用方法"><span class="toc-number">2.3.</span> <span class="toc-text">ES5新增的关于Object的几个实用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象的7种模式"><span class="toc-number">3.</span> <span class="toc-text">创建对象的7种模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂模式"><span class="toc-number">3.1.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数模式"><span class="toc-number">3.2.</span> <span class="toc-text">构造函数模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型模式"><span class="toc-number">3.3.</span> <span class="toc-text">原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合使用构造函数模式和原型模式"><span class="toc-number">3.4.</span> <span class="toc-text">组合使用构造函数模式和原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态原型模式"><span class="toc-number">3.5.</span> <span class="toc-text">动态原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寄生构造函数模式"><span class="toc-number">3.6.</span> <span class="toc-text">寄生构造函数模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#稳妥构造函数模式"><span class="toc-number">3.7.</span> <span class="toc-text">稳妥构造函数模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现继承的6种方式"><span class="toc-number">4.</span> <span class="toc-text">实现继承的6种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原型链"><span class="toc-number">4.1.</span> <span class="toc-text">原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#借用构造函数"><span class="toc-number">4.2.</span> <span class="toc-text">借用构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合继承"><span class="toc-number">4.3.</span> <span class="toc-text">组合继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型式继承"><span class="toc-number">4.4.</span> <span class="toc-text">原型式继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寄生式继承"><span class="toc-number">4.5.</span> <span class="toc-text">寄生式继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寄生组合式继承"><span class="toc-number">4.6.</span> <span class="toc-text">寄生组合式继承</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>  
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　JavaScript是一种面向对象（OO）的语言，但由于ECMAScript没有类的概念（ES6引入关键字class），所以在js中创建对象的方法也与其他基于类的语言有所不同。本篇总结在JavaScript中创建对象的7种方法；并在此基础上，总结实现继承的6种方式。</p>
+<hr>
+<h2 id="JavaScript中对象的基本概念"><a href="#JavaScript中对象的基本概念" class="headerlink" title="JavaScript中对象的基本概念"></a>JavaScript中对象的基本概念</h2><h3 id="创建对象的2种基本方法"><a href="#创建对象的2种基本方法" class="headerlink" title="创建对象的2种基本方法"></a>创建对象的2种基本方法</h3><hr>
+<h4 id="创建一个Object实例"><a href="#创建一个Object实例" class="headerlink" title="创建一个Object实例"></a>创建一个Object实例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var person = new Object();</span><br><span class="line">person.name = &quot;Bob&quot;;</span><br><span class="line">person.age = 24;</span><br><span class="line">person.greet = function()&#123;</span><br><span class="line">	alert(this.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　通过上述方法，创建了一个对象，并为其添加了3个属性，属性值有字符串，数字，函数。</p>
+<h4 id="对象字面量"><a href="#对象字面量" class="headerlink" title="对象字面量"></a>对象字面量</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">	name: &quot;Bob&quot;,</span><br><span class="line">	age: 24,</span><br><span class="line">	greet: function()&#123;</span><br><span class="line">		alert(this.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　 创建的对象与上述相同，只不过使用<code>{}</code>的字面量方式创建。</p>
+<h3 id="属性与特性"><a href="#属性与特性" class="headerlink" title="属性与特性"></a>属性与特性</h3><p>　　关于属性和特性的细节，可以参考<a href="http://gcidea.info/2016/07/10/js-attribute-property/" target="_blank" rel="external">JavaScript中attribute(特性)和property(属性)的对比分析</a>。对象就是由众多的属性(property)构成的，而每个属性(property)又具有多个特性(attribute)。这些特性(attribute)是为了实现JavaScript引擎使用的，在JavaScript语言使用中不能直接访问它们。为了表示是内部值，将各个特性(attribute)放在两对方括号<code>[[]]</code>中表示。</p>
+<h4 id="数据属性的特性"><a href="#数据属性的特性" class="headerlink" title="数据属性的特性"></a>数据属性的特性</h4><p>1.<code>[[Configurable]]</code></p>
+<ul>
+<li>名称：可配置性。</li>
+<li>默认值：true</li>
+<li>含义：能否通过delete删除属性并重新定义；能否修改属性的这几个特性；能否把数据属性修改为访问器属性。</li>
+</ul>
+<p>2.<code>[[Enumerable]]</code></p>
+<ul>
+<li>名称：可枚举性。</li>
+<li>默认值：true</li>
+<li>含义：能否通过通过for-in循环返回当前属性。</li>
+</ul>
+<p>3.<code>[[Writable]]</code></p>
+<ul>
+<li>名称：可写性。</li>
+<li>默认值：true</li>
+<li>含义：能否修改当前属性的值。</li>
+</ul>
+<p>4.<code>[[Value]]</code></p>
+<ul>
+<li>名称：值。</li>
+<li>默认值：undefined</li>
+<li>含义：读属性值，从这个位置读；写入属性时，保存在这个位置。</li>
+</ul>
+<h4 id="访问器属性的特性"><a href="#访问器属性的特性" class="headerlink" title="访问器属性的特性"></a>访问器属性的特性</h4><p>1.<code>[[Configurable]]</code></p>
+<ul>
+<li>名称：可配置性。</li>
+<li>默认值：true</li>
+<li>含义：能否通过delete删除属性并重新定义；能否修改属性的这几个特性；能否把访问器属性修改为数据属性。</li>
+</ul>
+<p>2.<code>[[Enumerable]]</code></p>
+<ul>
+<li>名称：可枚举性。</li>
+<li>默认值：true</li>
+<li>含义：能否通过通过for-in循环返回当前属性。</li>
+</ul>
+<p>3.<code>[[Get]]</code></p>
+<ul>
+<li>名称：值。</li>
+<li>默认值：undefined</li>
+<li>含义：读属性值时调用该函数。</li>
+</ul>
+<p>4.<code>[[Set]]</code></p>
+<ul>
+<li>名称：值。</li>
+<li>默认值：undefined</li>
+<li>含义：写属性值时调用该函数。</li>
+</ul>
+<h3 id="ES5新增的关于Object的几个实用方法"><a href="#ES5新增的关于Object的几个实用方法" class="headerlink" title="ES5新增的关于Object的几个实用方法"></a>ES5新增的关于Object的几个实用方法</h3><p>1.<code>Object.defineProperty()</code><br>使用示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;&#125;;</span><br><span class="line">Object.defineProperty(person, &quot;name&quot;,&#123;</span><br><span class="line">	configurable: false,</span><br><span class="line">	value: &quot;Bob&quot;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>2.<code>Object.defineProperties()</code><br>使用示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;&#125;;</span><br><span class="line">Object.defineProperties(book, &#123;</span><br><span class="line">	_year: &#123;</span><br><span class="line">		writable: true,</span><br><span class="line">		value: 2016</span><br><span class="line">	&#125;,</span><br><span class="line">	edition: &#123;</span><br><span class="line">		writable: true,</span><br><span class="line">		value: 1</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>3.<code>Object.getOwnPropertyDescriptor()</code><br>使用示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;&#125;;</span><br><span class="line">Object.defineProperties(book, &#123;</span><br><span class="line">	_year: &#123;</span><br><span class="line">		writable: true,</span><br><span class="line">		value: 2016</span><br><span class="line">	&#125;,</span><br><span class="line">	edition: &#123;</span><br><span class="line">		writable: true,</span><br><span class="line">		value: 1</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var desc = Object.getOwnPropertyDescriptor(book, &quot;_year&quot;);</span><br><span class="line">console.log(desc.value);  //2016</span><br></pre></td></tr></table></figure></p>
+<p>4.<code>Object.getOwnPropertyNames()</code><br>5.<code>Object.isPrototypeOf()</code><br>6.<code>Object.create()</code><br>7.<code>Object.keys()</code><br>8.<code>XXX.getPrototypeOf()</code><br>9.<code>XXX.hasOwnProperty()</code></p>
+<hr>
+<h2 id="创建对象的7种模式"><a href="#创建对象的7种模式" class="headerlink" title="创建对象的7种模式"></a>创建对象的7种模式</h2><h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function createPerson(name, age, job)&#123;</span><br><span class="line">	var o = new Object();</span><br><span class="line">	o.name = name;</span><br><span class="line">	o.age = age;</span><br><span class="line">	o.job = job;</span><br><span class="line">	o.sayName = function()&#123;</span><br><span class="line">		alert(this.name);</span><br><span class="line">	&#125;;</span><br><span class="line">	return o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var person1 = createPerson(&quot;A&quot;, 25, &quot;teacher&quot;);</span><br><span class="line">var person2 = createPerson(&quot;B&quot;, 26, &quot;engineer&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>说明：<br>1.函数createPerson()就是一个工厂，该工厂内部封装了生成对象的细节（新建对象实例并初始化等）</p>
+<p>2.正如名字表示的，通过该函数可以批量创建多个同类型对象，而不必书写大量重复代码</p>
+<p>3.工厂模式缺点：未解决对象识别问题—无法知道对象的类型</p>
+<h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age, job)&#123;</span><br><span class="line">	this.name = name;</span><br><span class="line">	this.age = age;</span><br><span class="line">	this.job = job;</span><br><span class="line">	this.sayName = function()&#123;</span><br><span class="line">		alert(this.name);</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var person1 = new Person(&quot;A&quot;, 25, &quot;teacher&quot;);</span><br><span class="line">var person2 = new Person(&quot;B&quot;, 26, &quot;engineer&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>说明：<br>1.函数Person()未显示创建对象，且无返回值</p>
+<p>2.使用<code>new</code>关键字调用构造函数</p>
+<p>3.约定构造函数首字母大写</p>
+<p>4.关于对象类型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">alert(person1.constructor == Person); //true</span><br><span class="line">alert(person2.constructor == Person); //true</span><br><span class="line"></span><br><span class="line">alert(person1 instanceof Person); //true</span><br><span class="line">alert(person2 instanceof Person); //true</span><br></pre></td></tr></table></figure></p>
+<p>5.如果构造函数不像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var person1 = new Person(&quot;A&quot;, 25, &quot;teacher&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>这样通过new关键字来调用，而是直接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person(&quot;A&quot;, 25, &quot;teacher&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>也是可以使用的，只不过生成的对象会直接添加到宿主对象上，在浏览器中就是<code>window</code>对象上。</p>
+<p>6.构造函数模式缺点：<br><strong>由于将函数绑定到了特定的对象实例上面，每个方法都要在每个实例上重新创建一遍，浪费空间且并没有什么用处。</strong><br>以下可以证明这一点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(person1.sayName == person2.sayName); //false</span><br></pre></td></tr></table></figure></p>
+<p>为此，我们可以让构造函数创建的对象中的方法共享函数，也就是在方法属性处不显式声明函数，而只是写明一个函数引用，将这个函数移至构造函数外部。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Person(name, age, job)&#123;</span><br><span class="line">	this.name = name;</span><br><span class="line">	this.age = age;</span><br><span class="line">	this.job = job;</span><br><span class="line">	this.sayName = sayName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function sayName()&#123;</span><br><span class="line">	alert(this.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var person1 = new Person(&quot;A&quot;, 25, &quot;teacher&quot;);</span><br><span class="line">var person2 = new Person(&quot;B&quot;, 26, &quot;engineer&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>可是这种方法又会有新的缺点：</p>
+<ul>
+<li>身在全局作用于中的函数sayName()却只能用于让构造函数调用，让全局作用域名不副实</li>
+<li>如果构造函数有很多方法属性，那么就要在全局作用于中写很多函数，代码结构松散，毫无封装性可言</li>
+</ul>
+<p>在这种情况下，考虑使用原型模式来解决。</p>
+<h3 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h3><h3 id="组合使用构造函数模式和原型模式"><a href="#组合使用构造函数模式和原型模式" class="headerlink" title="组合使用构造函数模式和原型模式"></a>组合使用构造函数模式和原型模式</h3><h3 id="动态原型模式"><a href="#动态原型模式" class="headerlink" title="动态原型模式"></a>动态原型模式</h3><h3 id="寄生构造函数模式"><a href="#寄生构造函数模式" class="headerlink" title="寄生构造函数模式"></a>寄生构造函数模式</h3><h3 id="稳妥构造函数模式"><a href="#稳妥构造函数模式" class="headerlink" title="稳妥构造函数模式"></a>稳妥构造函数模式</h3><hr>
+<h2 id="实现继承的6种方式"><a href="#实现继承的6种方式" class="headerlink" title="实现继承的6种方式"></a>实现继承的6种方式</h2><h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><h3 id="借用构造函数"><a href="#借用构造函数" class="headerlink" title="借用构造函数"></a>借用构造函数</h3><h3 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h3><h3 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h3><h3 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h3><h3 id="寄生组合式继承"><a href="#寄生组合式继承" class="headerlink" title="寄生组合式继承"></a>寄生组合式继承</h3>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -118,7 +209,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/10/01/js-7-create-object-solutions-6-inherit-solutions/" data-title="Javascript中创建对象的7种模式和实现继承的6种方式 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/10/01/js-7-create-object-solutions-6-inherit-solutions/" data-title="JavaScript中创建对象的7种模式和实现继承的6种方式 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -158,7 +249,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript中对象的基本概念"><span class="toc-number">2.</span> <span class="toc-text">JavaScript中对象的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建对象的2种基本方法"><span class="toc-number">2.1.</span> <span class="toc-text">创建对象的2种基本方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#创建一个Object实例"><span class="toc-number">2.1.1.</span> <span class="toc-text">创建一个Object实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对象字面量"><span class="toc-number">2.1.2.</span> <span class="toc-text">对象字面量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性与特性"><span class="toc-number">2.2.</span> <span class="toc-text">属性与特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据属性的特性"><span class="toc-number">2.2.1.</span> <span class="toc-text">数据属性的特性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问器属性的特性"><span class="toc-number">2.2.2.</span> <span class="toc-text">访问器属性的特性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES5新增的关于Object的几个实用方法"><span class="toc-number">2.3.</span> <span class="toc-text">ES5新增的关于Object的几个实用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象的7种模式"><span class="toc-number">3.</span> <span class="toc-text">创建对象的7种模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂模式"><span class="toc-number">3.1.</span> <span class="toc-text">工厂模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数模式"><span class="toc-number">3.2.</span> <span class="toc-text">构造函数模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型模式"><span class="toc-number">3.3.</span> <span class="toc-text">原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合使用构造函数模式和原型模式"><span class="toc-number">3.4.</span> <span class="toc-text">组合使用构造函数模式和原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态原型模式"><span class="toc-number">3.5.</span> <span class="toc-text">动态原型模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寄生构造函数模式"><span class="toc-number">3.6.</span> <span class="toc-text">寄生构造函数模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#稳妥构造函数模式"><span class="toc-number">3.7.</span> <span class="toc-text">稳妥构造函数模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现继承的6种方式"><span class="toc-number">4.</span> <span class="toc-text">实现继承的6种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原型链"><span class="toc-number">4.1.</span> <span class="toc-text">原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#借用构造函数"><span class="toc-number">4.2.</span> <span class="toc-text">借用构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合继承"><span class="toc-number">4.3.</span> <span class="toc-text">组合继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型式继承"><span class="toc-number">4.4.</span> <span class="toc-text">原型式继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寄生式继承"><span class="toc-number">4.5.</span> <span class="toc-text">寄生式继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寄生组合式继承"><span class="toc-number">4.6.</span> <span class="toc-text">寄生组合式继承</span></a></li></ol></li></ol>
  
   </div>
 
@@ -190,7 +281,7 @@
 		  
 		
 		  
-			<li><a href="/categories/FE综合/" title="FE综合">FE综合<sup>15</sup></a></li>
+			<li><a href="/categories/FE综合/" title="FE综合">FE综合<sup>16</sup></a></li>
 		  
 		
 		  
@@ -234,7 +325,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>11</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>12</sup></a></li>
 		  
 		
 		</ul>
@@ -247,7 +338,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>106</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>107</sup></a></li>
 			
 		
 			
@@ -259,7 +350,7 @@
 			
 		
 			
-				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>14</sup></a></li>
+				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>15</sup></a></li>
 			
 		
 			
@@ -267,7 +358,7 @@
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>10</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>11</sup></a></li>
 			
 		
 			
@@ -283,11 +374,7 @@
 			
 		
 			
-				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>6</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>5</sup></a></li>
+				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>7</sup></a></li>
 			
 		
 			
@@ -295,11 +382,15 @@
 			
 		
 			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
+				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
 			
 		
 			
@@ -307,19 +398,7 @@
 			
 		
 			
-				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
 			
 		
 			
@@ -327,15 +406,23 @@
 			
 		
 			
-				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
+				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>2</sup></a></li>
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
 			
 		
 			
@@ -347,7 +434,15 @@
 			
 		
 			
-				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
 			
 		
 			
@@ -359,55 +454,7 @@
 			
 		
 			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -415,11 +462,11 @@
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -427,7 +474,51 @@
 			
 		
 			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
 			
 		
 		</ul>
