@@ -66,7 +66,7 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-35.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-36.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-37.png">
-<meta property="og:updated_time" content="2016-10-15T02:28:21.135Z">
+<meta property="og:updated_time" content="2016-10-18T08:46:52.547Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用WebStorm创建webpack工作流的前端项目">
 <meta name="twitter:description" content="前言　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：
@@ -326,7 +326,7 @@
 <h2 id="模块热替换-Hot-Module-Replacement-的应用"><a href="#模块热替换-Hot-Module-Replacement-的应用" class="headerlink" title="模块热替换 Hot Module Replacement 的应用"></a>模块热替换 Hot Module Replacement 的应用</h2><p>　　在webpack-dev-server中使用模块热替换 Hot Module Replacement最简单的办法就是在inline模式中使用。我们只需要在参数中加上”–hot”即可。<br><code>webpack-dev-server --content-base build/ --inline --hot</code></p>
 <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-36.png" alt=""></p>
 <p>这样，就进入了监听状态，当文件发生修改，看到console打出如下日志：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-37.png" alt=""></p>
-<p>发现提示错误，热替换失败，整个页面进行了重载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[HMR] Cannot apply update. Need to do a full reload!</span><br><span class="line">:8080/assets/app.bundle.js:3 </span><br><span class="line">[HMR] Error: Aborted because 77 is not accepted</span><br><span class="line">    at l (http://localhost:8080/assets/app.bundle.js:1:4169)</span><br><span class="line">    at f (http://localhost:8080/assets/app.bundle.js:1:3117)</span><br><span class="line">    at u (http://localhost:8080/assets/app.bundle.js:1:3017)</span><br><span class="line">    at webpackHotUpdate (http://localhost:8080/assets/app.bundle.js:1:5790)</span><br><span class="line">    at http://localhost:8080/assets/0.ae586ae503d4fe64ca9a.hot-update.js:1:1</span><br></pre></td></tr></table></figure></p>
+<p>发现提示错误，热替换失败，整个页面进行了重载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[HMR] Cannot apply update. Need to do a full reload!</span><br><span class="line">[HMR] Error: Aborted because 77 is not accepted</span><br><span class="line">    at l (http://localhost:8080/assets/app.bundle.js:1:4169)</span><br><span class="line">    at f (http://localhost:8080/assets/app.bundle.js:1:3117)</span><br><span class="line">    at u (http://localhost:8080/assets/app.bundle.js:1:3017)</span><br><span class="line">    at webpackHotUpdate (http://localhost:8080/assets/app.bundle.js:1:5790)</span><br><span class="line">    at http://localhost:8080/assets/0.ae586ae503d4fe64ca9a.hot-update.js:1:1</span><br></pre></td></tr></table></figure></p>
 <p>查阅了很多资料，如<a href="https://github.com/webpack/webpack-dev-server/issues/395" target="_blank" rel="external">https://github.com/webpack/webpack-dev-server/issues/395</a>，但并没有找到准确原因，暂时搁置。</p>
   
 	</div>
@@ -383,6 +383,10 @@
 </nav>
 
 	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/10/03/webpack-demos/" data-title="使用WebStorm创建webpack工作流的前端项目" data-url="http://yoursite.com/2016/10/03/webpack-demos/"></div>
+</section>
+
 
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
@@ -466,7 +470,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>12</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>13</sup></a></li>
 		  
 		
 		</ul>
@@ -499,7 +503,11 @@
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>11</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>12</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>8</sup></a></li>
 			
 		
 			
@@ -508,10 +516,6 @@
 		
 			
 				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>8</sup></a></li>
 			
 		
 			
@@ -571,7 +575,7 @@
 			
 		
 			
-				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -579,7 +583,7 @@
 			
 		
 			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
 			
 		
 			
@@ -595,7 +599,7 @@
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 			
@@ -623,7 +627,7 @@
 			
 		
 			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
@@ -883,6 +887,18 @@ $(document).ready(function(){
 </script>
 
 
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"gcidea"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 

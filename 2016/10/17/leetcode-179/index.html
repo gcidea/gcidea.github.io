@@ -4,22 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>GCidea&#39;s blog</title>
+    <title>leetcode [#179] | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="gaochang | BUPT">
-<meta property="og:type" content="website">
-<meta property="og:title" content="GCidea's blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+    <meta name="description" content="题目
+Given a list of non negative integers, arrange them such that they form the largest number.
+Example:Given [3, 30, 34, 5, 9], the largest formed number is 9534330.
+Note:
+
+The result may be very larg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode [#179]">
+<meta property="og:url" content="http://yoursite.com/2016/10/17/leetcode-179/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="gaochang | BUPT">
+<meta property="og:description" content="题目
+Given a list of non negative integers, arrange them such that they form the largest number.
+Example:Given [3, 30, 34, 5, 9], the largest formed number is 9534330.
+Note:
+
+The result may be very larg">
+<meta property="og:updated_time" content="2016-10-18T08:28:51.735Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GCidea's blog">
-<meta name="twitter:description" content="gaochang | BUPT">
+<meta name="twitter:title" content="leetcode [#179]">
+<meta name="twitter:description" content="题目
+Given a list of non negative integers, arrange them such that they form the largest number.
+Example:Given [3, 30, 34, 5, 9], the largest formed number is 9534330.
+Note:
+
+The result may be very larg">
 
     
     
@@ -69,232 +85,112 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/10/17/leetcode-179/" title="leetcode [#179]" itemprop="url">
-  
-    <h1 itemprop="name">leetcode [#179]</h1>
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-           <p itemprop="description" >题目
-Given a list of non negative integers, arrange them such that they form the largest number.
-Example:Given [3, 30, 34, 5, 9], the largest </p>
-        
+      <a href="/2016/10/17/leetcode-179/" title="leetcode [#179]" itemprop="url">leetcode [#179]</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-17T09:26:39.000Z" itemprop="datePublished"> 发表于 2016-10-17</time>
     
-    <time datetime="2016-10-17T09:26:39.000Z" itemprop="datePublished">2016-10-17</time>
-  </a>
-</section>
-
-
-
-
-
-
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given a list of non negative integers, arrange them such that they form the largest number.</p>
+<p><strong>Example</strong>:<br>Given [3, 30, 34, 5, 9], the largest formed number is 9534330.</p>
+<p><strong>Note</strong>:</p>
+<ul>
+<li>The result may be very large, so you need to return a string instead of an integer.</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public String largestNumber(int[] nums) &#123;</span><br><span class="line">        //如果为空，直接返回空串</span><br><span class="line">        if(nums == null || nums.length == 0)</span><br><span class="line">            return &quot;&quot;;</span><br><span class="line">        </span><br><span class="line">        //将数字数组转换为字符串数组，便于排序</span><br><span class="line">        String[] s_num = new String[nums.length];</span><br><span class="line">        for(int i = 0; i &lt; nums.length; i++)&#123;</span><br><span class="line">            s_num[i] = String.valueOf(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">            </span><br><span class="line">        //实现Comparator接口用来定义排序规则</span><br><span class="line">        Comparator&lt;String&gt; comp = new Comparator&lt;String&gt;()&#123;</span><br><span class="line">            @Override</span><br><span class="line">            public int compare(String str1, String str2)&#123;</span><br><span class="line">                String s1 = str1 + str2;</span><br><span class="line">                String s2 = str2 + str1;</span><br><span class="line">                return s2.compareTo(s1);</span><br><span class="line">            &#125;</span><br><span class="line">       &#125;;</span><br><span class="line">        </span><br><span class="line">       //数组排序</span><br><span class="line">       Arrays.sort(s_num, comp);</span><br><span class="line">              </span><br><span class="line">       //如果排序后数组第一个元素是0，则说明都是零，直接返回“0”即可         </span><br><span class="line">       if(s_num[0].charAt(0) == &apos;0&apos;)&#123;</span><br><span class="line">           return &quot;0&quot;;</span><br><span class="line">       &#125;</span><br><span class="line">        </span><br><span class="line">       //否则，使用StringBuilder将字符串数组中每一项连起来即可</span><br><span class="line">       StringBuilder sb = new StringBuilder();</span><br><span class="line">       for(String s: s_num)&#123;</span><br><span class="line">            sb.append(s);</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">        return sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>1.曾考虑以下想法：</p>
+<ul>
+<li>对于两个要比较的数，将长度补齐，并且较短的末尾是用0补齐</li>
+<li>对于两个要比较的数，将长度补齐，并且较短的末尾是用个位数补齐</li>
+</ul>
+<p>　这两种方法都需要考虑不少特殊情况再单独做出判断，不是很完整。</p>
+<p>2.上述方法是借鉴discuss中vote较高的回答。核心是实现Comparator接口用来定义排序规则，用此规则使用Arrays.sort排序。</p>
+<p>3.由于最后要做字符串拼接，因此务必使用StringBuilder而非String直接相连，大大提高性能。</p>
   
-<section class="post" itemscope itemprop="blogitem">
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
+</div>
+
+
+  <div class="article-tags">
   
-    <a href="/2016/10/16/browser-detect/" title="客户端检测（浏览器兼容性）技术总结" itemprop="url">
-  
-    <h1 itemprop="name">客户端检测（浏览器兼容性）技术总结</h1>
-    
-     
-           <p itemprop="description" ></p>
-        
-    
-    <time datetime="2016-10-15T16:00:39.000Z" itemprop="datePublished">2016-10-16</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/10/15/leetcode-242/" title="leetcode [#242]" itemprop="url">
-  
-    <h1 itemprop="name">leetcode [#242]</h1>
-    
-     
-           <p itemprop="description" >题目
-Given two strings s and t, write a function to determine if t is an anagram of s.
-Example:s = “anagram”, t = “nagaram”, return true.s = “</p>
-        
-    
-    <time datetime="2016-10-15T09:26:39.000Z" itemprop="datePublished">2016-10-15</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/10/14/leetcode-75/" title="leetcode [#75]" itemprop="url">
-  
-    <h1 itemprop="name">leetcode [#75]</h1>
-    
-     
-           <p itemprop="description" >题目
-Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent, with the colors in th</p>
-        
-    
-    <time datetime="2016-10-14T09:26:39.000Z" itemprop="datePublished">2016-10-14</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/10/13/leetcode-147/" title="leetcode [#147]" itemprop="url">
-  
-    <h1 itemprop="name">leetcode [#147]</h1>
-    
-     
-           <p itemprop="description" >题目
-Sort a linked list using insertion sort.
-
-
-解决方案12345678910111213141516171819202122232425262728293031323334353637383940/** * Definition fo</p>
-        
-    
-    <time datetime="2016-10-13T09:26:39.000Z" itemprop="datePublished">2016-10-13</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/10/12/leetcode-350/" title="leetcode [#350]" itemprop="url">
-  
-    <h1 itemprop="name">leetcode [#350]</h1>
-    
-     
-           <p itemprop="description" >题目
-Given two arrays, write a function to compute their intersection.
-Example:Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2, 2].
-Note</p>
-        
-    
-    <time datetime="2016-10-12T09:26:39.000Z" itemprop="datePublished">2016-10-12</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/10/12/leetcode-349/" title="leetcode [#349]" itemprop="url">
-  
-    <h1 itemprop="name">leetcode [#349]</h1>
-    
-     
-           <p itemprop="description" >题目
-Given two arrays, write a function to compute their intersection.
-Example:Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2].
-Note:
-
-</p>
-        
-    
-    <time datetime="2016-10-12T02:26:39.000Z" itemprop="datePublished">2016-10-12</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/10/11/invalid-char-filter/" title="使用JavaScript实现非法输入字符实时过滤" itemprop="url">
-  
-    <h1 itemprop="name">使用JavaScript实现非法输入字符实时过滤</h1>
-    
-     
-           <p itemprop="description" >前言　　表单提交是一项常见操作，对于输入内容的合法性必须在前后端都做验证才能保证可靠性。表单验证有很重要的意义，除了防止注入攻击之类的安全问题外，有时如果不能正确的进行验证，可能会使合法的页面渲染受到影响。比如在实际开发中遇到的一种问题，jsp页面使用JSTL库自定义标签渲染后台</p>
-        
-    
-    <time datetime="2016-10-11T05:54:23.000Z" itemprop="datePublished">2016-10-11</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/10/10/react-music-player/" title="使用React实现简单的音乐播放器" itemprop="url">
-  
-    <h1 itemprop="name">使用React实现简单的音乐播放器</h1>
-    
-     
-           <p itemprop="description" >前言//TODO</p>
-        
-    
-    <time datetime="2016-10-10T05:54:23.000Z" itemprop="datePublished">2016-10-10</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/10/09/react-picture-gallery/" title="使用React实现简单的画廊应用(慕课网学习总结)" itemprop="url">
-  
-    <h1 itemprop="name">使用React实现简单的画廊应用(慕课网学习总结)</h1>
-    
-     
-           <p itemprop="description" >前言//TODO</p>
-        
-    
-    <time datetime="2016-10-09T05:54:23.000Z" itemprop="datePublished">2016-10-09</time>
-  </a>
-</section>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix unexpand">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
-  </nav>
+  <span></span> <a href="/tags/leetcode/">leetcode</a>
+  </div>
 
 </div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/10/17/leetcode-179/" data-title="leetcode [#179] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/10/16/browser-detect/"  title="客户端检测（浏览器兼容性）技术总结">
+ <strong>下一篇：</strong><br/> 
+ <span>客户端检测（浏览器兼容性）技术总结
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/10/17/leetcode-179/" data-title="leetcode [#179]" data-url="http://yoursite.com/2016/10/17/leetcode-179/"></div>
+</section>
+
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <!--<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>-->
@@ -700,14 +596,103 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  /*$this.append(html);*/
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"gcidea"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -776,4 +761,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
