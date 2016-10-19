@@ -4,23 +4,32 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>老生常谈-HTTP中GET方法和POST方法的区别总结 | GCidea&#39;s blog</title>
+    <title>leetcode [#396] | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="前言//TODO">
+    <meta name="description" content="题目
+Given an array of integers A and let n to be its length.
+Assume Bk to be an array obtained by rotating the array A k positions clock-wise, we define a “rotation function” F on A as follow:
+F(k) = 0">
 <meta property="og:type" content="article">
-<meta property="og:title" content="老生常谈-HTTP中GET方法和POST方法的区别总结">
-<meta property="og:url" content="http://yoursite.com/2016/08/13/http-get-post/index.html">
+<meta property="og:title" content="leetcode [#396]">
+<meta property="og:url" content="http://yoursite.com/2016/10/18/leetcode-396/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言//TODO">
-<meta property="og:updated_time" content="2016-08-01T10:19:03.983Z">
+<meta property="og:description" content="题目
+Given an array of integers A and let n to be its length.
+Assume Bk to be an array obtained by rotating the array A k positions clock-wise, we define a “rotation function” F on A as follow:
+F(k) = 0">
+<meta property="og:updated_time" content="2016-10-19T06:06:12.872Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="老生常谈-HTTP中GET方法和POST方法的区别总结">
-<meta name="twitter:description" content="前言//TODO">
+<meta name="twitter:title" content="leetcode [#396]">
+<meta name="twitter:description" content="题目
+Given an array of integers A and let n to be its length.
+Assume Bk to be an array obtained by rotating the array A k positions clock-wise, we define a “rotation function” F on A as follow:
+F(k) = 0">
 
     
     
@@ -76,14 +85,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/13/http-get-post/" title="老生常谈-HTTP中GET方法和POST方法的区别总结" itemprop="url">老生常谈-HTTP中GET方法和POST方法的区别总结</a>
+      <a href="/2016/10/18/leetcode-396/" title="leetcode [#396]" itemprop="url">leetcode [#396]</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-13T07:27:31.000Z" itemprop="datePublished"> 发表于 2016-08-13</time>
+    <time datetime="2016-10-18T09:26:39.000Z" itemprop="datePublished"> 发表于 2016-10-18</time>
     
   </p>
 </header>
@@ -92,11 +101,29 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>//TODO</p>
+		<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given an array of integers A and let n to be its length.</p>
+<p>Assume Bk to be an array obtained by rotating the array A k positions clock-wise, we define a “rotation function” F on A as follow:</p>
+<p>F(k) = 0 <em> Bk[0] + 1 </em> Bk[1] + … + (n-1) * Bk[n-1].</p>
+<p>Calculate the maximum value of F(0), F(1), …, F(n-1).</p>
+<p><strong>Example</strong>:<br>A = [4, 3, 2, 6]</p>
+<p>F(0) = (0 <em> 4) + (1 </em> 3) + (2 <em> 2) + (3 </em> 6) = 0 + 3 + 4 + 18 = 25<br>F(1) = (0 <em> 6) + (1 </em> 4) + (2 <em> 3) + (3 </em> 2) = 0 + 4 + 6 + 6 = 16<br>F(2) = (0 <em> 2) + (1 </em> 6) + (2 <em> 4) + (3 </em> 3) = 0 + 6 + 8 + 9 = 23<br>F(3) = (0 <em> 3) + (1 </em> 2) + (2 <em> 6) + (3 </em> 4) = 0 + 2 + 12 + 12 = 26</p>
+<p>So the maximum value of F(0), F(1), F(2), F(3) is F(3) = 26.</p>
+<p><strong>Note</strong>:</p>
+<ul>
+<li>n is guaranteed to be less than 10^5.</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int maxRotateFunction(int[] A) &#123;</span><br><span class="line">        int N = A.length;</span><br><span class="line">        if(A == null || N == 0) return 0;</span><br><span class="line"></span><br><span class="line">        int sum = 0;</span><br><span class="line">        int f0 = 0;</span><br><span class="line"></span><br><span class="line">        for(int t = 0; t &lt; N; t++)&#123;</span><br><span class="line">            sum += A[t];</span><br><span class="line">            f0 += t * A[t];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int max = f0;</span><br><span class="line"></span><br><span class="line">        for(int p = 1; p &lt; N; p++)&#123;</span><br><span class="line">            f0 = f0 - sum + N * A[p-1];</span><br><span class="line">            max = f0 &gt; max ? f0 : max;</span><br><span class="line">        &#125;</span><br><span class="line">        return max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>1.使用如下方法会超时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static int maxRotateFunction(int[] A) &#123;</span><br><span class="line">    if(A == null || A.length == 0) return 0;</span><br><span class="line"></span><br><span class="line">    int N = A.length;</span><br><span class="line">    int[] F = new int[N];</span><br><span class="line"></span><br><span class="line">    for(int k = 0; k &lt; N; k++)&#123;</span><br><span class="line">        F[k] = 0;</span><br><span class="line"></span><br><span class="line">        for(int j = 0; j &lt; N; j++)&#123;</span><br><span class="line">            int index = ((N-k) % N + j) &lt; N ? ((N-k) % N + j) : (((N-k) % N + j) % N);</span><br><span class="line">            F[k] = F[k] + j * A[index];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Arrays.sort(F);</span><br><span class="line">    return F[N-1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　该方法只是严格按照运算规则逐一进行了运算，但没有找到实际规律，导致大量无用的计算。</p>
+<p>2.应该采用的做法中，找到了F函数相邻两项的规律，即：后一项F(i)是在前一项F(i-1)的基础上，减去输入数组之和sum，再加上数组长度N乘以A[i-1]。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -104,13 +131,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/HTTP/">HTTP</a>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/HTTP/">HTTP</a>
+  <span></span> <a href="/tags/leetcode/">leetcode</a>
   </div>
 
 </div>
@@ -119,7 +146,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/08/13/http-get-post/" data-title="老生常谈-HTTP中GET方法和POST方法的区别总结 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/10/18/leetcode-396/" data-title="leetcode [#396] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -132,19 +159,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/08/14/regular-expression-group-capture-assertion-comment/" title="正则表达式中的“分组”、“捕获”、“断言”、“注释”">
-  <strong>上一篇：</strong><br/>
-  <span>
-  正则表达式中的“分组”、“捕获”、“断言”、“注释”</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/08/11/css3-transition-transform-translate-animation/"  title="CSS3中的transition，transform，translate和animation">
+<a href="/2016/10/17/leetcode-179/"  title="leetcode [#179]">
  <strong>下一篇：</strong><br/> 
- <span>CSS3中的transition，transform，translate和animation
+ <span>leetcode [#179]
 </span>
 </a>
 </div>
@@ -153,7 +172,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/08/13/http-get-post/" data-title="老生常谈-HTTP中GET方法和POST方法的区别总结" data-url="http://yoursite.com/2016/08/13/http-get-post/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/18/leetcode-396/" data-title="leetcode [#396]" data-url="http://yoursite.com/2016/10/18/leetcode-396/"></div>
 </section>
 
 
@@ -163,7 +182,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
  
   </div>
 
