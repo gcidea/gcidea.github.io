@@ -4,38 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>正则表达式中的“分组”、“捕获”、“断言”、“注释” | GCidea&#39;s blog</title>
+    <title>leetcode [#415] | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="前言
-分组
-捕获
-断言
-注释
-案例">
+    <meta name="description" content="题目
+Given two non-negative numbers num1 and num2 represented as string, return the sum of num1 and num2.
+Note:
+
+The length of both num1 and num2 is &amp;lt; 5100.
+Both num1 and num2 contains only digits 0-">
 <meta property="og:type" content="article">
-<meta property="og:title" content="正则表达式中的“分组”、“捕获”、“断言”、“注释”">
-<meta property="og:url" content="http://yoursite.com/2016/08/14/regular-expression-group-capture-assertion-comment/index.html">
+<meta property="og:title" content="leetcode [#415]">
+<meta property="og:url" content="http://yoursite.com/2016/10/31/leetcode-415/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言
-分组
-捕获
-断言
-注释
-案例">
-<meta property="og:updated_time" content="2016-08-12T02:17:48.387Z">
+<meta property="og:description" content="题目
+Given two non-negative numbers num1 and num2 represented as string, return the sum of num1 and num2.
+Note:
+
+The length of both num1 and num2 is &amp;lt; 5100.
+Both num1 and num2 contains only digits 0-">
+<meta property="og:updated_time" content="2016-10-30T16:46:04.680Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="正则表达式中的“分组”、“捕获”、“断言”、“注释”">
-<meta name="twitter:description" content="前言
-分组
-捕获
-断言
-注释
-案例">
+<meta name="twitter:title" content="leetcode [#415]">
+<meta name="twitter:description" content="题目
+Given two non-negative numbers num1 and num2 represented as string, return the sum of num1 and num2.
+Note:
+
+The length of both num1 and num2 is &amp;lt; 5100.
+Both num1 and num2 contains only digits 0-">
 
     
     
@@ -91,14 +91,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/14/regular-expression-group-capture-assertion-comment/" title="正则表达式中的“分组”、“捕获”、“断言”、“注释”" itemprop="url">正则表达式中的“分组”、“捕获”、“断言”、“注释”</a>
+      <a href="/2016/10/31/leetcode-415/" title="leetcode [#415]" itemprop="url">leetcode [#415]</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-13T16:17:05.000Z" itemprop="datePublished"> 发表于 2016-08-14</time>
+    <time datetime="2016-10-30T16:26:39.000Z" itemprop="datePublished"> 发表于 2016-10-31</time>
     
   </p>
 </header>
@@ -107,29 +107,45 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分组"><span class="toc-number">2.</span> <span class="toc-text">分组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#捕获"><span class="toc-number">3.</span> <span class="toc-text">捕获</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#断言"><span class="toc-number">4.</span> <span class="toc-text">断言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注释"><span class="toc-number">5.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例"><span class="toc-number">6.</span> <span class="toc-text">案例</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><hr>
-<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><hr>
-<h2 id="捕获"><a href="#捕获" class="headerlink" title="捕获"></a>捕获</h2><hr>
-<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><hr>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><hr>
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2>  
+		<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given two non-negative numbers num1 and num2 represented as string, return the sum of num1 and num2.</p>
+<p><strong>Note</strong>:</p>
+<ol>
+<li>The length of both num1 and num2 is &lt; 5100.</li>
+<li>Both num1 and num2 contains only digits 0-9.</li>
+<li>Both num1 and num2 does not contain any leading zero.</li>
+<li>You must not use any built-in BigInteger library or convert the inputs to integer directly.</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public String addStrings(String num1, String num2) &#123;</span><br><span class="line">        int len1 = num1.length();</span><br><span class="line">        int len2 = num2.length();</span><br><span class="line">        int delta = Math.abs(len1 - len2);</span><br><span class="line">        int max = Math.max(len1, len2);</span><br><span class="line">        int[] intVal1 = new int[max];</span><br><span class="line">        int[] intVal2 = new int[max];</span><br><span class="line">        if(len1 &gt;= len2)&#123;</span><br><span class="line">            for(int i = 0; i &lt; max; i++)&#123;</span><br><span class="line">                intVal1[i] = Integer.parseInt(String.valueOf(num1.charAt(i)));</span><br><span class="line">            &#125;</span><br><span class="line">            for(int j = 0; j &lt; max; j++)&#123;</span><br><span class="line">                if(j &lt; delta)&#123;</span><br><span class="line">                    intVal2[j] = 0;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    intVal2[j] = Integer.parseInt(String.valueOf(num2.charAt(j - delta)));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            for(int i = 0; i &lt; max; i++)&#123;</span><br><span class="line">                intVal1[i] = Integer.parseInt(String.valueOf(num2.charAt(i)));</span><br><span class="line">            &#125;</span><br><span class="line">            for(int j = 0; j &lt; max; j++)&#123;</span><br><span class="line">                if(j &lt; delta)&#123;</span><br><span class="line">                    intVal2[j] = 0;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    intVal2[j] = Integer.parseInt(String.valueOf(num1.charAt(j - delta)));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder builder = new StringBuilder(&quot;&quot;);</span><br><span class="line">        handle(max, 0, intVal1, intVal2, builder);</span><br><span class="line">        return builder.reverse().toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void handle(int max, int more, int[] val1, int[] val2, StringBuilder builder)&#123;</span><br><span class="line">        int temp = 0;</span><br><span class="line">        if(max &gt;= 1)&#123;</span><br><span class="line">            temp = val1[max - 1] + val2[max - 1] + more;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            temp = val1[0] + val2[0] + more;</span><br><span class="line">        &#125;</span><br><span class="line">        if(max-1 &gt; 0)&#123;</span><br><span class="line">            if(temp &lt;= 9)&#123;</span><br><span class="line">                builder.append(Integer.toString(temp));</span><br><span class="line">                handle(--max, 0, val1, val2, builder);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                builder.append(Integer.toString(temp % 10));</span><br><span class="line">                handle(--max, 1, val1, val2, builder);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            if(temp &lt;= 9)&#123;</span><br><span class="line">                builder.append(Integer.toString(temp));</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                builder.append(Integer.toString(temp % 10));</span><br><span class="line">                builder.append(&quot;1&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>不能考虑任何直接转向整型进行求和的方法。字符串最多达到5099位，这不是常规数据类型能够表示的，同时又不能使用大整数的库。那么，就要将问题化简为最简的情况进行处理—考虑两个1位数求和的情况，结合进位情况，递归考虑下去。</li>
+<li>为了简便，在进行递归处理前，先做了一系列处理：<blockquote>
+<p>a. 无论两个字符串各自多长，统一处理成较长长度的数组。<br>b. 遍历每个位置的字符，直接构建整型数组而不是字符串数组。<br>c. 始终保证<code>intVal1[]</code>存储的是本来较长的字符串转换的数组；而<code>intVal2[]</code>存储的是经过高位补零构成的数组。</p>
+</blockquote>
+</li>
+<li>经过以上处理，开始递归。注意进位状况，跳出递归的条件是遍历到达了数组的最低位（亦即“数字”的最高位）。</li>
+</ol>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/正则表达式/">正则表达式</a>
+  <a class="article-category-link" href="/categories/算法/">算法</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/学习笔记/">学习笔记</a><a href="/tags/正则/">正则</a>
+  <span></span> <a href="/tags/leetcode/">leetcode</a>
   </div>
 
 </div>
@@ -138,7 +154,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/08/14/regular-expression-group-capture-assertion-comment/" data-title="正则表达式中的“分组”、“捕获”、“断言”、“注释” | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/10/31/leetcode-415/" data-title="leetcode [#415] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -151,19 +167,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/08/14/css3-rgb-rgba-hsl-hsla/" title="CSS的颜色空间-Color Name、HEX、RGB、RGBA、HSL、HSLA">
-  <strong>上一篇：</strong><br/>
-  <span>
-  CSS的颜色空间-Color Name、HEX、RGB、RGBA、HSL、HSLA</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/08/13/http-get-post/"  title="老生常谈-HTTP中GET方法和POST方法的区别总结">
+<a href="/2016/10/30/leetcode-167/"  title="leetcode [#167]">
  <strong>下一篇：</strong><br/> 
- <span>老生常谈-HTTP中GET方法和POST方法的区别总结
+ <span>leetcode [#167]
 </span>
 </a>
 </div>
@@ -172,7 +180,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/08/14/regular-expression-group-capture-assertion-comment/" data-title="正则表达式中的“分组”、“捕获”、“断言”、“注释”" data-url="http://yoursite.com/2016/08/14/regular-expression-group-capture-assertion-comment/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/31/leetcode-415/" data-title="leetcode [#415]" data-url="http://yoursite.com/2016/10/31/leetcode-415/"></div>
 </section>
 
 
@@ -182,7 +190,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分组"><span class="toc-number">2.</span> <span class="toc-text">分组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#捕获"><span class="toc-number">3.</span> <span class="toc-text">捕获</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#断言"><span class="toc-number">4.</span> <span class="toc-text">断言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注释"><span class="toc-number">5.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例"><span class="toc-number">6.</span> <span class="toc-text">案例</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
  
   </div>
 
