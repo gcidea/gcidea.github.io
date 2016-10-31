@@ -21,7 +21,7 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 <meta property="og:description" content="题目
 Given an array nums, write a function to move all 0’s to the end of it while maintaining the relative order of the non-zero elements.
 Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
-<meta property="og:updated_time" content="2016-10-11T09:12:31.268Z">
+<meta property="og:updated_time" content="2016-10-31T12:55:55.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode [#283]">
 <meta name="twitter:description" content="题目
@@ -112,7 +112,7 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 </ol>
 </blockquote>
 <hr>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public void moveZeroes(int[] nums) &#123;</span><br><span class="line">        int N = 0;</span><br><span class="line">        for(int k = 0;k &lt; nums.length; k++)&#123;</span><br><span class="line">            if(nums[k] == 0)&#123;</span><br><span class="line">                N++;</span><br><span class="line">                continue;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                if(N &gt; 0)&#123;</span><br><span class="line">                    nums[k-N] = nums[k];</span><br><span class="line">                    nums[k] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveZeroes</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>;k &lt; nums.length; k++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[k] == <span class="number">0</span>)&#123;</span><br><span class="line">                N++;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(N &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                    nums[k-N] = nums[k];</span><br><span class="line">                    nums[k] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
 <li>遍历一遍数组，遇到0，就给零值计数器加一。</li>
@@ -260,7 +260,7 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -277,11 +277,11 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -297,7 +297,7 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -305,11 +305,11 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -333,19 +333,7 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -353,7 +341,19 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -361,7 +361,7 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -369,19 +369,7 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -389,7 +377,15 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -397,15 +393,11 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -413,11 +405,11 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -425,11 +417,15 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -441,11 +437,11 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -453,11 +449,15 @@ Example:given nums = [0, 1, 0, 3, 12], after calling your funct">
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>

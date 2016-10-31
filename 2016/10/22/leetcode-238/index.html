@@ -21,7 +21,7 @@ Solve it without division and in O(">
 <meta property="og:description" content="题目
 Given an array of n integers where n &amp;gt; 1, nums, return an array output such that output[i] is equal to the product of all the elements of nums except nums[i].
 Solve it without division and in O(">
-<meta property="og:updated_time" content="2016-10-30T08:04:26.838Z">
+<meta property="og:updated_time" content="2016-10-31T12:55:16.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode [#237]">
 <meta name="twitter:description" content="题目
@@ -108,11 +108,11 @@ Solve it without division and in O(">
 <p><strong>Note</strong><br>given [1,2,3,4], return [24,12,8,6].</p>
 </blockquote>
 <hr>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int[] productExceptSelf(int[] nums) &#123;</span><br><span class="line">        int N = nums.length;</span><br><span class="line">        int[] output = new int[N];</span><br><span class="line">        int zero = 0;</span><br><span class="line">        int total = 1;</span><br><span class="line">        for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">            if(nums[i] == 0)&#123;</span><br><span class="line">                zero++;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                total *= nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(zero &gt;= 2)&#123;</span><br><span class="line">            for(int i=0;i&lt;N;i++)&#123;</span><br><span class="line">                output[i] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else if(zero == 1)&#123;</span><br><span class="line">            for(int i=0;i&lt;N;i++)&#123;</span><br><span class="line">                if(nums[i] == 0)&#123;</span><br><span class="line">                    output[i] = total;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    output[i] = 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            for(int i = 0; i &lt; N; i++)&#123;</span><br><span class="line">                output[i] = total / nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return output;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] productExceptSelf(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> N = nums.length;</span><br><span class="line">        <span class="keyword">int</span>[] output = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        <span class="keyword">int</span> zero = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> total = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] == <span class="number">0</span>)&#123;</span><br><span class="line">                zero++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                total *= nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(zero &gt;= <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">                output[i] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(zero == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[i] == <span class="number">0</span>)&#123;</span><br><span class="line">                    output[i] = total;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    output[i] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">                output[i] = total / nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> output;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
 <li>考虑了0的个数进行单独处理。</li>
-<li>上述方法使用了除法，不符合题目要求，discuss中vote较高的回答为：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public int[] productExceptSelf(int[] nums) &#123;</span><br><span class="line">    int[] result = new int[nums.length];</span><br><span class="line">    for (int i = 0, tmp = 1; i &lt; nums.length; i++) &#123;</span><br><span class="line">        result[i] = tmp;</span><br><span class="line">        tmp *= nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    for (int i = nums.length - 1, tmp = 1; i &gt;= 0; i--) &#123;</span><br><span class="line">        result[i] *= tmp;</span><br><span class="line">        tmp *= nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>上述方法使用了除法，不符合题目要求，discuss中vote较高的回答为：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] productExceptSelf(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>, tmp = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        result[i] = tmp;</span><br><span class="line">        tmp *= nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = nums.length - <span class="number">1</span>, tmp = <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        result[i] *= tmp;</span><br><span class="line">        tmp *= nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>该方法很巧妙，第一遍遍历算出了每个元素左边的值的乘积，保留该结果。再反向遍历，在刚才乘积结果的基础上再累成每个元素右边的值，最后就得到了答案。</p>
@@ -258,7 +258,7 @@ Solve it without division and in O(">
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -275,11 +275,11 @@ Solve it without division and in O(">
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -295,7 +295,7 @@ Solve it without division and in O(">
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -303,11 +303,11 @@ Solve it without division and in O(">
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -331,19 +331,7 @@ Solve it without division and in O(">
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -351,7 +339,19 @@ Solve it without division and in O(">
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -359,7 +359,7 @@ Solve it without division and in O(">
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -367,19 +367,7 @@ Solve it without division and in O(">
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -387,7 +375,15 @@ Solve it without division and in O(">
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -395,15 +391,11 @@ Solve it without division and in O(">
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -411,11 +403,11 @@ Solve it without division and in O(">
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -423,11 +415,15 @@ Solve it without division and in O(">
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -439,11 +435,11 @@ Solve it without division and in O(">
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -451,11 +447,15 @@ Solve it without division and in O(">
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>

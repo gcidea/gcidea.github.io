@@ -27,7 +27,7 @@ Example:Given s = “hello”, return “olleh”.
 
 
 解决方案1234567public class Solution &amp;#123;    public String reverseString(St">
-<meta property="og:updated_time" content="2016-10-07T05:56:30.176Z">
+<meta property="og:updated_time" content="2016-10-31T12:56:12.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode [#344]">
 <meta name="twitter:description" content="题目
@@ -116,9 +116,9 @@ Example:Given s = “hello”, return “olleh”.
 <p><strong>Example</strong>:<br>Given s = “hello”, return “olleh”.</p>
 </blockquote>
 <hr>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public String reverseString(String s) &#123;</span><br><span class="line">        StringBuilder handler = new StringBuilder(s);</span><br><span class="line">        handler.reverse();</span><br><span class="line">        return handler.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseString</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        StringBuilder handler = <span class="keyword">new</span> StringBuilder(s);</span><br><span class="line">        handler.reverse();</span><br><span class="line">        <span class="keyword">return</span> handler.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>以下这种写法可以得到正确答案，但是会超时，无法通过。原因是String一旦创建就不可修改，因此遍历中每次为result衔接新增的部分都会创建新对象并将引用指向result，增大了开销。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    Stack stack = new Stack();</span><br><span class="line">    int length = s.length();</span><br><span class="line">    for(int i = 0; i &lt; length; i++)&#123;</span><br><span class="line">        stack.push(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    String result = &quot;&quot;;</span><br><span class="line">    while(!stack.empty())&#123;</span><br><span class="line">        result += stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>以下这种写法可以得到正确答案，但是会超时，无法通过。原因是String一旦创建就不可修改，因此遍历中每次为result衔接新增的部分都会创建新对象并将引用指向result，增大了开销。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    Stack stack = <span class="keyword">new</span> Stack();</span><br><span class="line">    <span class="keyword">int</span> length = s.length();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)&#123;</span><br><span class="line">        stack.push(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    String result = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">while</span>(!stack.empty())&#123;</span><br><span class="line">        result += stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -155,10 +155,10 @@ Example:Given s = “hello”, return “olleh”.
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/06/14/js-cross-domain/" title="JavaScript跨域问题总结">
+ <a href="/2016/06/13/leetcode-345/" title="leetcode [#344]">
   <strong>上一篇：</strong><br/>
   <span>
-  JavaScript跨域问题总结</span>
+  leetcode [#344]</span>
 </a>
 </div>
 
@@ -261,7 +261,7 @@ Example:Given s = “hello”, return “olleh”.
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -278,11 +278,11 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -298,7 +298,7 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -306,11 +306,11 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -334,19 +334,7 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -354,7 +342,19 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -362,7 +362,7 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -370,19 +370,7 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -390,7 +378,15 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -398,15 +394,11 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -414,11 +406,11 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -426,11 +418,15 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -442,11 +438,11 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -454,11 +450,15 @@ Example:Given s = “hello”, return “olleh”.
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>

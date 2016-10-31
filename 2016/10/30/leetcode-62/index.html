@@ -22,7 +22,7 @@ The robot can only move either down or right at any point in time. The robot is 
 A robot is located at the top-left corner of a m x n grid (marked ‘Start’ in the diagram below).
 The robot can only move either down or right at any point in time. The robot is trying to reach the">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-62.png">
-<meta property="og:updated_time" content="2016-10-30T06:42:07.057Z">
+<meta property="og:updated_time" content="2016-10-31T12:57:01.190Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode [#62]">
 <meta name="twitter:description" content="题目
@@ -112,11 +112,11 @@ The robot can only move either down or right at any point in time. The robot is 
 <p><strong>Note</strong><br>m and n will be at most 100.</p>
 </blockquote>
 <hr>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public int uniquePaths(int m, int n) &#123;</span><br><span class="line">        int[][] map = new int[101][101];</span><br><span class="line">        for(int i = 1; i &lt; 101; i++)&#123;</span><br><span class="line">            for(int j = 1; j &lt; 101; j++)&#123;</span><br><span class="line">                map[i][j] = 0;</span><br><span class="line">                if(i == 1 || j == 1)&#123;</span><br><span class="line">                    map[i][j] = 1;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    int temp = 0;</span><br><span class="line">                    if(map[i][j] == 0)&#123;</span><br><span class="line">                        for(int k = 1; k &lt;= i; k++)&#123;</span><br><span class="line">                            temp += map[k][j-1];</span><br><span class="line">                        &#125;</span><br><span class="line">                        map[i][j] = temp;</span><br><span class="line">                        map[j][i] = temp;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return map[m][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">uniquePaths</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] map = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">101</span>][<span class="number">101</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">101</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; <span class="number">101</span>; j++)&#123;</span><br><span class="line">                map[i][j] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span>(i == <span class="number">1</span> || j == <span class="number">1</span>)&#123;</span><br><span class="line">                    map[i][j] = <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">if</span>(map[i][j] == <span class="number">0</span>)&#123;</span><br><span class="line">                        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= i; k++)&#123;</span><br><span class="line">                            temp += map[k][j-<span class="number">1</span>];</span><br><span class="line">                        &#125;</span><br><span class="line">                        map[i][j] = temp;</span><br><span class="line">                        map[j][i] = temp;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> map[m][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
 <li>找到规律，开辟二维数组，每个位置的值就是m,n为对应下标时不同路线的总数。计算方法是上一行元素从0到i所有元素之和。</li>
-<li>这是一道典型的动态规划(DP)题目，上面给出的实质上是暴力递归的方法。而对暴力递归的方法进行优化正是动态规划要做的事情。使用动态规划，就是要考虑当前状态和哪些状态有关，并且只使用这些有意义的状态，避免大量冗余的重复计算。<br>在上面的方法中，我们求每个位置的元素时，是将其上一排从0截止到当前横坐标i位置的所有元素进行相加，这就访问了很多次数组。而要想获得这个值，并不是非得需要这样，因为<strong>这个“累加过程”我们其实已经做过了—就是在求解当前位置元素左边元素的时候。</strong>但是，稍有不同的是，解当前位置元素左边元素的时候，我们求的是从0截止到横坐标i-1位置的所有元素和，差了一个i，<strong>而这个正是要求的当前元素上面的元素。</strong>因此，找到了规律：<strong>求解每个元素，只需要将该元素左边的和上边的元素相加即可。</strong>这就减少了大量无意义的计算。代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public int uniquePaths(int m, int n) &#123;</span><br><span class="line">    Integer[][] map = new Integer[m][n];</span><br><span class="line">    for(int i = 0; i&lt;m;i++)&#123;</span><br><span class="line">        map[i][0] = 1;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int j= 0;j&lt;n;j++)&#123;</span><br><span class="line">        map[0][j]=1;</span><br><span class="line">    &#125;</span><br><span class="line">    for(int i = 1;i&lt;m;i++)&#123;</span><br><span class="line">        for(int j = 1;j&lt;n;j++)&#123;</span><br><span class="line">            map[i][j] = map[i-1][j]+map[i][j-1];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return map[m-1][n-1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>这是一道典型的动态规划(DP)题目，上面给出的实质上是暴力递归的方法。而对暴力递归的方法进行优化正是动态规划要做的事情。使用动态规划，就是要考虑当前状态和哪些状态有关，并且只使用这些有意义的状态，避免大量冗余的重复计算。<br>在上面的方法中，我们求每个位置的元素时，是将其上一排从0截止到当前横坐标i位置的所有元素进行相加，这就访问了很多次数组。而要想获得这个值，并不是非得需要这样，因为<strong>这个“累加过程”我们其实已经做过了—就是在求解当前位置元素左边元素的时候。</strong>但是，稍有不同的是，解当前位置元素左边元素的时候，我们求的是从0截止到横坐标i-1位置的所有元素和，差了一个i，<strong>而这个正是要求的当前元素上面的元素。</strong>因此，找到了规律：<strong>求解每个元素，只需要将该元素左边的和上边的元素相加即可。</strong>这就减少了大量无意义的计算。代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">uniquePaths</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    Integer[][] map = <span class="keyword">new</span> Integer[m][n];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;m;i++)&#123;</span><br><span class="line">        map[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j= <span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">        map[<span class="number">0</span>][j]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;m;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;n;j++)&#123;</span><br><span class="line">            map[i][j] = map[i-<span class="number">1</span>][j]+map[i][j-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> map[m-<span class="number">1</span>][n-<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
   
 	</div>
@@ -260,7 +260,7 @@ The robot can only move either down or right at any point in time. The robot is 
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -277,11 +277,11 @@ The robot can only move either down or right at any point in time. The robot is 
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -297,7 +297,7 @@ The robot can only move either down or right at any point in time. The robot is 
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -305,11 +305,11 @@ The robot can only move either down or right at any point in time. The robot is 
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -333,19 +333,7 @@ The robot can only move either down or right at any point in time. The robot is 
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -353,7 +341,19 @@ The robot can only move either down or right at any point in time. The robot is 
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -361,7 +361,7 @@ The robot can only move either down or right at any point in time. The robot is 
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -369,19 +369,7 @@ The robot can only move either down or right at any point in time. The robot is 
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -389,7 +377,15 @@ The robot can only move either down or right at any point in time. The robot is 
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -397,15 +393,11 @@ The robot can only move either down or right at any point in time. The robot is 
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -413,11 +405,11 @@ The robot can only move either down or right at any point in time. The robot is 
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -425,11 +417,15 @@ The robot can only move either down or right at any point in time. The robot is 
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -441,11 +437,11 @@ The robot can only move either down or right at any point in time. The robot is 
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -453,11 +449,15 @@ The robot can only move either down or right at any point in time. The robot is 
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>

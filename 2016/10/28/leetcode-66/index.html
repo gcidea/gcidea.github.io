@@ -27,7 +27,7 @@ The digits are stored such that the most significant digit is at the head of the
 
 
 解决方案12345678910111213">
-<meta property="og:updated_time" content="2016-10-28T15:24:03.348Z">
+<meta property="og:updated_time" content="2016-10-31T12:57:07.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode [#66]">
 <meta name="twitter:description" content="题目
@@ -116,11 +116,11 @@ The digits are stored such that the most significant digit is at the head of the
 <p>The digits are stored such that the most significant digit is at the head of the list.</p>
 </blockquote>
 <hr>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    public static int[] plusOne(int[] digits) &#123;</span><br><span class="line">        int N = digits.length;</span><br><span class="line">        int[] result = handle(digits, N - 1);</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static int[] handle(int[] a, int index)&#123;</span><br><span class="line">        if(a[index] &lt; 9)&#123;</span><br><span class="line">            a[index]++;</span><br><span class="line">            return a;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            a[index] = 0;</span><br><span class="line">            index--;</span><br><span class="line">            if(index &lt; 0)&#123;</span><br><span class="line">                int[] y = new int[2];</span><br><span class="line">                y[0] = 1;</span><br><span class="line">                y[1] = 0;</span><br><span class="line">                return y;</span><br><span class="line">            &#125; else if(index == 0)&#123;</span><br><span class="line">                if(a[index] &lt; 9)&#123;</span><br><span class="line">                    a[index]++;</span><br><span class="line">                    return a;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    a[index] = 0;</span><br><span class="line"></span><br><span class="line">                    int res[] = new int[a.length + 1];</span><br><span class="line">                    res[0] = 1;</span><br><span class="line">                    for(int r = 1; r &lt; a.length + 1; r++)&#123;</span><br><span class="line">                        res[r] = a[r - 1];</span><br><span class="line">                    &#125;</span><br><span class="line">                    return res;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                int[] t = handle(a, index);</span><br><span class="line">                return t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] plusOne(<span class="keyword">int</span>[] digits) &#123;</span><br><span class="line">        <span class="keyword">int</span> N = digits.length;</span><br><span class="line">        <span class="keyword">int</span>[] result = handle(digits, N - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] handle(<span class="keyword">int</span>[] a, <span class="keyword">int</span> index)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[index] &lt; <span class="number">9</span>)&#123;</span><br><span class="line">            a[index]++;</span><br><span class="line">            <span class="keyword">return</span> a;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            a[index] = <span class="number">0</span>;</span><br><span class="line">            index--;</span><br><span class="line">            <span class="keyword">if</span>(index &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">int</span>[] y = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">                y[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">                y[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">return</span> y;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(index == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(a[index] &lt; <span class="number">9</span>)&#123;</span><br><span class="line">                    a[index]++;</span><br><span class="line">                    <span class="keyword">return</span> a;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    a[index] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">int</span> res[] = <span class="keyword">new</span> <span class="keyword">int</span>[a.length + <span class="number">1</span>];</span><br><span class="line">                    res[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> r = <span class="number">1</span>; r &lt; a.length + <span class="number">1</span>; r++)&#123;</span><br><span class="line">                        res[r] = a[r - <span class="number">1</span>];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">return</span> res;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">int</span>[] t = handle(a, index);</span><br><span class="line">                <span class="keyword">return</span> t;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
 <li><p>以下方法思路正确，但是会超时，不符合复杂度要求：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public static int[] plusOne(int[] digits) &#123;</span><br><span class="line">    int[] one = &#123;1&#125;;</span><br><span class="line">    int N = digits.length;</span><br><span class="line">    if(N == 0) return one;</span><br><span class="line">    int val = 0;</span><br><span class="line">    for(int i = 0; i&lt; N; i++)&#123;</span><br><span class="line">        val += digits[i] * Math.pow(10, (N-i-1));</span><br><span class="line">    &#125;</span><br><span class="line">    val++;</span><br><span class="line">    List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">    while(val != 0)&#123;</span><br><span class="line">        list.add(val % 10);</span><br><span class="line">        val = val / 10;</span><br><span class="line">    &#125;</span><br><span class="line">    int[] result = new int[list.size()];</span><br><span class="line">    for(int p = 0; p &lt; list.size(); p++)&#123;</span><br><span class="line">        result[p] = list.get(list.size() - 1 - p);</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] plusOne(<span class="keyword">int</span>[] digits) &#123;</span><br><span class="line">    <span class="keyword">int</span>[] one = &#123;<span class="number">1</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> N = digits.length;</span><br><span class="line">    <span class="keyword">if</span>(N == <span class="number">0</span>) <span class="keyword">return</span> one;</span><br><span class="line">    <span class="keyword">int</span> val = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; N; i++)&#123;</span><br><span class="line">        val += digits[i] * Math.pow(<span class="number">10</span>, (N-i-<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    val++;</span><br><span class="line">    List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">while</span>(val != <span class="number">0</span>)&#123;</span><br><span class="line">        list.add(val % <span class="number">10</span>);</span><br><span class="line">        val = val / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[list.size()];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> p = <span class="number">0</span>; p &lt; list.size(); p++)&#123;</span><br><span class="line">        result[p] = list.get(list.size() - <span class="number">1</span> - p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>解决方案中，使用递归，从数组最高位开始判定，如果小于9，直接加1返回即可；如果为9，则要进位，递归调用本身判断前一位的情况。跳出递归的条件是当前索引值。</p>
 </li>
@@ -267,7 +267,7 @@ The digits are stored such that the most significant digit is at the head of the
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -284,11 +284,11 @@ The digits are stored such that the most significant digit is at the head of the
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -304,7 +304,7 @@ The digits are stored such that the most significant digit is at the head of the
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -312,11 +312,11 @@ The digits are stored such that the most significant digit is at the head of the
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -340,19 +340,7 @@ The digits are stored such that the most significant digit is at the head of the
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -360,7 +348,19 @@ The digits are stored such that the most significant digit is at the head of the
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -368,7 +368,7 @@ The digits are stored such that the most significant digit is at the head of the
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -376,19 +376,7 @@ The digits are stored such that the most significant digit is at the head of the
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -396,7 +384,15 @@ The digits are stored such that the most significant digit is at the head of the
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -404,15 +400,11 @@ The digits are stored such that the most significant digit is at the head of the
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -420,11 +412,11 @@ The digits are stored such that the most significant digit is at the head of the
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -432,11 +424,15 @@ The digits are stored such that the most significant digit is at the head of the
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -448,11 +444,11 @@ The digits are stored such that the most significant digit is at the head of the
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -460,11 +456,15 @@ The digits are stored such that the most significant digit is at the head of the
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>

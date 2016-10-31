@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-11.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-12.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-13.png">
-<meta property="og:updated_time" content="2016-06-18T03:49:04.548Z">
+<meta property="og:updated_time" content="2016-10-31T12:35:47.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中的对象、constructor属性、prototype属性对比分析">
 <meta name="twitter:description" content="前言　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感">
@@ -122,7 +122,7 @@
 <h2 id="JavaScript对象简述"><a href="#JavaScript对象简述" class="headerlink" title="JavaScript对象简述　"></a>JavaScript对象简述　</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>　　在之前关于null和undefined的讨论中提到过，JavaScript中的数据类型分为两类：原始类型和对象类型。本篇主要要总结的就是对象类型。对象是JavaScript中十分重要且常用的概念。<br>　　对象是一种复合值：是多个属性的集合，每个属性都以键/值对的形式体现。其中对于属性值为函数的属性，一般将其称作方法。函数、数组等数据组织形式都是对象的一种特殊表现形式。</p>
 <h3 id="属性类型"><a href="#属性类型" class="headerlink" title="属性类型"></a>属性类型</h3><p>　　既然对象是属性的集合，那么有必要对属性进行分类。具体如下：<br>1.数据属性</p>
 <blockquote>
-<p>示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var student = &#123;</span><br><span class="line">    name: &quot;gaochang&quot;,</span><br><span class="line">    university: &quot;BUPT&quot; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>示例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> student = &#123;</span><br><span class="line">    name: <span class="string">"gaochang"</span>,</span><br><span class="line">    university: <span class="string">"BUPT"</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>　　以上对象中的name和university两个属性就是数据属性，对它们可以进行数据的读取和写入。对于这类属性而言，它们又具备4个“特性”：</p>
 <ul>
@@ -133,7 +133,7 @@
 </ul>
 <p>2.访问器属性</p>
 <blockquote>
-<p>示例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var book = &#123;</span><br><span class="line">    name: &quot;Professional JavaScript for Web Developers&quot;,</span><br><span class="line">    _isbn: &quot;978-7-115-27579-0&quot; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Object.defineProperty(book, &quot;isbn&quot;, &#123;</span><br><span class="line">    get: function() &#123;</span><br><span class="line">        return this._isbn;</span><br><span class="line">    &#125;</span><br><span class="line">    set: function(str) &#123;</span><br><span class="line">        this._isbn = str;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>示例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> book = &#123;</span><br><span class="line">    name: <span class="string">"Professional JavaScript for Web Developers"</span>,</span><br><span class="line">    _isbn: <span class="string">"978-7-115-27579-0"</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(book, <span class="string">"isbn"</span>, &#123;</span><br><span class="line">    get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._isbn;</span><br><span class="line">    &#125;</span><br><span class="line">    set: <span class="function"><span class="keyword">function</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>._isbn = str;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>　　以上对象中的_isbn属性就是访问器属性（前缀下划线表示是内部属性）。特别地，访问器属性不能直接定义，必须借助<code>Object.defineProperty()</code>方法。对于这类属性而言，它们又具备4个“特性”：</p>
 <ul>
@@ -170,11 +170,11 @@
 <hr>
 <h2 id="创建对象-构造函数模式（constructor属性相关）"><a href="#创建对象-构造函数模式（constructor属性相关）" class="headerlink" title="创建对象-构造函数模式（constructor属性相关）"></a>创建对象-构造函数模式（constructor属性相关）</h2><h3 id="工厂模式与构造函数模式的对比"><a href="#工厂模式与构造函数模式的对比" class="headerlink" title="工厂模式与构造函数模式的对比"></a>工厂模式与构造函数模式的对比</h3><p>　　在看构造函数模式之前，先看一个工厂模式的例子，从而和构造函数模式进行对比。</p>
 <blockquote>
-<p>使用工厂模式创建对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function createNews(title, subtitle)&#123;</span><br><span class="line">    var o = new Object();</span><br><span class="line">    o.title = title;</span><br><span class="line">    o.subtitle = subtitle;</span><br><span class="line">    o.release = function() &#123;</span><br><span class="line">        alert(o.title + &quot;--&quot; + o.subtitle);</span><br><span class="line">    &#125;</span><br><span class="line">    return o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var firstNews = createNews(&quot;important news&quot;, &quot;strategy&quot;);</span><br><span class="line">var secondNews = createNews(&quot;interesting news&quot;, &quot;strategy&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>使用工厂模式创建对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createNews</span>(<span class="params">title, subtitle</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    o.title = title;</span><br><span class="line">    o.subtitle = subtitle;</span><br><span class="line">    o.release = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(o.title + <span class="string">"--"</span> + o.subtitle);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> firstNews = createNews(<span class="string">"important news"</span>, <span class="string">"strategy"</span>);</span><br><span class="line"><span class="keyword">var</span> secondNews = createNews(<span class="string">"interesting news"</span>, <span class="string">"strategy"</span>);</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>　　接下来看看用构造函数模式如何重构上述代码：</p>
 <blockquote>
-<p>使用构造函数模式创建对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function News(title, subtitle)&#123;</span><br><span class="line">    this.title = title;</span><br><span class="line">    this.subtitle = subtitle;</span><br><span class="line">    this.release = function() &#123;</span><br><span class="line">        alert(this.title + &quot;--&quot; + this.subtitle);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var firstNews = new News(&quot;important news&quot;, &quot;strategy&quot;);</span><br><span class="line">var secondNews = new News(&quot;interesting news&quot;, &quot;strategy&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>使用构造函数模式创建对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">News</span>(<span class="params">title, subtitle</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.title = title;</span><br><span class="line">    <span class="keyword">this</span>.subtitle = subtitle;</span><br><span class="line">    <span class="keyword">this</span>.release = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.title + <span class="string">"--"</span> + <span class="keyword">this</span>.subtitle);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> firstNews = <span class="keyword">new</span> News(<span class="string">"important news"</span>, <span class="string">"strategy"</span>);</span><br><span class="line"><span class="keyword">var</span> secondNews = <span class="keyword">new</span> News(<span class="string">"interesting news"</span>, <span class="string">"strategy"</span>);</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>　　对比可得构造函数模式的特点：</p>
 <ol>
@@ -208,7 +208,7 @@
 <h3 id="构造函数模式存在的缺陷"><a href="#构造函数模式存在的缺陷" class="headerlink" title="构造函数模式存在的缺陷"></a>构造函数模式存在的缺陷</h3><p>　　相比于工厂模式，构造函数模式有其优点—它可以准确识别创建的对象的类型。但是，它本身也存在问题：构造函数中的方法，在每个新创建的对象上都要重新实例化一次，也就是说每个对象的该方法都不是同一个实例，然而它们的作用却是相同的，这就增大了开销。<br>　　为了解决这个问题，可以采取的方法是：把构造函数中的方法单独剥离出来，提出全局作用域上的函数，而在构造函数内部仅保留对这个全局函数的引用。这样，通过构造函数创建的所有实例都是共享了同一个函数。<strong>但是，这又产生了新的问题：</strong>如果构造函数中需要很多方法，全部都提到全局作用域中，就破坏了封装性，结构很不好。对于此问题，则需要采用下面提到的原型模式了。</p>
 <hr>
 <h2 id="创建对象-原型模式（prototype属性相关）"><a href="#创建对象-原型模式（prototype属性相关）" class="headerlink" title="创建对象-原型模式（prototype属性相关）"></a>创建对象-原型模式（prototype属性相关）</h2><h3 id="原型模式的案例"><a href="#原型模式的案例" class="headerlink" title="原型模式的案例"></a>原型模式的案例</h3><blockquote>
-<p>使用原型模式模式创建对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function News()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">News.prototype.title = &quot;important news&quot;;</span><br><span class="line">News.prototype.subtitle = &quot;strategy&quot;;</span><br><span class="line">News.prototype.release = function() &#123;</span><br><span class="line">    alert(this.title + &quot;--&quot; + this.subtitle);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var firstNews = new News();</span><br><span class="line">firstNews.title;        //&quot;important news&quot;</span><br><span class="line">var secondNews = new News();</span><br><span class="line">secondNews.subtitle;    //&quot;strategy&quot;</span><br><span class="line"></span><br><span class="line">firstNews.title = &quot;interesting news&quot;;</span><br><span class="line">firstNews.title;        //&quot;interesting news&quot;</span><br></pre></td></tr></table></figure></p>
+<p>使用原型模式模式创建对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">News</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">News.prototype.title = <span class="string">"important news"</span>;</span><br><span class="line">News.prototype.subtitle = <span class="string">"strategy"</span>;</span><br><span class="line">News.prototype.release = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.title + <span class="string">"--"</span> + <span class="keyword">this</span>.subtitle);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> firstNews = <span class="keyword">new</span> News();</span><br><span class="line">firstNews.title;        <span class="comment">//"important news"</span></span><br><span class="line"><span class="keyword">var</span> secondNews = <span class="keyword">new</span> News();</span><br><span class="line">secondNews.subtitle;    <span class="comment">//"strategy"</span></span><br><span class="line"></span><br><span class="line">firstNews.title = <span class="string">"interesting news"</span>;</span><br><span class="line">firstNews.title;        <span class="comment">//"interesting news"</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>　　每个函数其实都有一个prototype（原型）属性，这个属性是一个指针，指向一个对象-原型对象，而这个对象的作用是包含好可以由特定类型的实例所共享的属性和方法。因此，如上所示，构造函数是空的也可以（但必须有这个构造函数），需要共享的内容写在prototype对象上就好了。</p>
 <h3 id="理解原型对象（prototype属性）"><a href="#理解原型对象（prototype属性）" class="headerlink" title="理解原型对象（prototype属性）"></a>理解原型对象（prototype属性）</h3><p>　　到底什么是原型对象呢？<br>　　首先，我们看看上述例子中通过原型模式创建的对象实例firstNews的原型对象是什么：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-1.png" alt=""></p>
@@ -257,7 +257,7 @@
 </blockquote>
 </li>
 </ol>
-<h3 id="原型对象的重写"><a href="#原型对象的重写" class="headerlink" title="原型对象的重写"></a>原型对象的重写</h3><p>　　写法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function News()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">News.prototype = &#123;</span><br><span class="line">    title: &quot;important news&quot;,</span><br><span class="line">    subtitle: &quot;strategy&quot;,</span><br><span class="line">    release: function() &#123;</span><br><span class="line">        alert(this.title + &quot;--&quot; + this.subtitle);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var firstNews = new News();</span><br></pre></td></tr></table></figure></p>
+<h3 id="原型对象的重写"><a href="#原型对象的重写" class="headerlink" title="原型对象的重写"></a>原型对象的重写</h3><p>　　写法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">News</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">News.prototype = &#123;</span><br><span class="line">    title: <span class="string">"important news"</span>,</span><br><span class="line">    subtitle: <span class="string">"strategy"</span>,</span><br><span class="line">    release: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.title + <span class="string">"--"</span> + <span class="keyword">this</span>.subtitle);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> firstNews = <span class="keyword">new</span> News();</span><br></pre></td></tr></table></figure></p>
 <p>　　这样的写法不是另一种模式，只是为了说明一个问题。根据之前的分析，我们知道<code>firstNews.constructor</code>会指向构造函数本身，也就是<code>function News(){}</code>。那么在现在这样的写法中，<code>firstNews.constructor</code>还是指向<code>function News(){}</code>吗？答案是否定的，如下：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-9.png" alt=""><br>　　可以发现现在指向了<code>function Object()</code>，为什么呢？<br>　　原因是，在这种写法中，直接将一个”{}”对象赋给了<code>News.prototype</code>，本质上是完全重写了<code>News.prototype</code>，而不是像之前只是给<code>News.prototype</code>添加属性，比如<code>News.prototype.title</code>。因此，<code>News.prototype</code>的constructor属性也就发生了变化，变成了新的”{}”对象的constructor属性，而新对象”{}”是字面量直接对象，根据之前的分析知道它的constructor属性指向<code>function Object()</code>，所以现在的<code>firstNews.constructor</code>指向了<code>function Object()</code>。<br>　　如果想恢复到原来的状态，可以显式声明prototype对象的constructor属性：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-10.png" alt=""></p>
 <h3 id="原型对象的动态性"><a href="#原型对象的动态性" class="headerlink" title="原型对象的动态性"></a>原型对象的动态性</h3><p>　　根据原型链操作的分析，每一次属性获取都是一次查询，因此可以动态向原型中添加属性，并且可以立即反映出来。<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-11.png" alt=""></p>
 <p>　　但是，如果是重写整个原型对象，情况就不同了：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-12.png" alt=""><br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-13.png" alt=""></p>
@@ -406,7 +406,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -423,11 +423,11 @@
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -443,7 +443,7 @@
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -451,11 +451,11 @@
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -479,19 +479,7 @@
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -499,7 +487,19 @@
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -507,7 +507,7 @@
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -515,19 +515,7 @@
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -535,7 +523,15 @@
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -543,15 +539,11 @@
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -559,11 +551,11 @@
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -571,11 +563,15 @@
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -587,11 +583,11 @@
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -599,11 +595,15 @@
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>

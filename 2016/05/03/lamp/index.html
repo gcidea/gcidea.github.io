@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/php5-6.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/phpmyadmin.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/phpmyadmin-panel.png">
-<meta property="og:updated_time" content="2016-06-16T14:45:44.873Z">
+<meta property="og:updated_time" content="2016-10-31T12:48:36.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【阿里云ECS】LAMP开发环境的完整搭建配置过程">
 <meta name="twitter:description" content="前言　　为了顺利进行web开发，一套完整易用的开发环境是十分必要的，这可以大大提高团队的合作和开发效率。这里说的开发环境包括IDE，数据库，开发语言组件，版本控制工具等一系列内容。最近在使用的是比较流行的php开发架构，在windows下，无疑推荐WAMP + MySQL-Front + phpStorm，WAMP集成了Apache、MySQL、PHP，可以免除许多安装配置的问题。这样的环境在具体">
@@ -146,7 +146,7 @@
 <blockquote>
 <p>注：SELinux(Security-Enhanced Linux) 是美国国家安全局（NSA）对于强制访问控制的实现，在这种访问控制体系的限制下，进程只能访问那些在他的任务中所需要文件。但是由于一般情况下没有对SELinux进行细致研究，不懂其中原理，可能还会对其他服务的使用造成影响，因此这里将其关闭。</p>
 </blockquote>
-<p>3.1 关闭内核防火墙。使用命令：<code># vi /etc/selinux/config</code>将SELINUX=enforcing 改成SELINUX=disabled<br>3.2 在iptables防火墙策略里设置网站运行的80端口和数据库的3306端口，使用命令：<code># vi /etc/sysconfig/iptables</code>添加以下2个记录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -p tcp -m tcp --sport 1024:65534 --dport 3306 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m tcp --sport 1024:65534 --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<p>3.1 关闭内核防火墙。使用命令：<code># vi /etc/selinux/config</code>将SELINUX=enforcing 改成SELINUX=disabled<br>3.2 在iptables防火墙策略里设置网站运行的80端口和数据库的3306端口，使用命令：<code># vi /etc/sysconfig/iptables</code>添加以下2个记录：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -p tcp -m tcp --sport 1024:65534 --dport 3306 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m tcp --sport 1024:65534 --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
 <p>具体过程如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/5-0.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/5.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/6.png" alt=""></p>
 <hr>
 <h2 id="MariaDB的安装与配置"><a href="#MariaDB的安装与配置" class="headerlink" title="MariaDB的安装与配置"></a>MariaDB的安装与配置</h2><blockquote>
@@ -167,7 +167,7 @@
 <li>Apache默认网站部署目录是/var/www/html，我们在里面创建index.php测试一下环境是否可以正常运行：<br>使用命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /var/www/html</span><br><span class="line">vi index.php</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">  phpinfo();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
+<p>内容如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>4.在浏览器地址栏中输入<code>http://阿里云ECS主机ip/index.php</code>可以看到如下页面，说明安装配置成功。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/14.png" alt=""></p>
 <p>5.【可选】PHP的版本升级<br>　　如上图我们可以看到，PHP的版本是5.4.16。我在使用过程中，前期没有遇到什么问题。直到写图片上传服务之类的功能，在本地WAMPServer测试正常的代码部署到ECS后就会报错，错误如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/curlFile.png" alt=""><br>　　网上也查了一些解决方案，问题主要就是缺失curl这个类文件。提供的一些解决方案有单独编译安装这个类，再在php的配置文件中做extension，或者直接源码编译安装其他版本的PHP。感觉步骤较多，比较麻烦。因此选择了更换yum源直接升级高版本php(大于等于php5.5)：<br>  1.配置yum源:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># yum install epel-release</span><br><span class="line"># rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm</span><br></pre></td></tr></table></figure></p>
 <p>  2.安装php5.6:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># yum install --enablerepo=remi --enablerepo=remi-php56 php php-opcache php-devel php-mbstring php-mcrypt php-mysqlnd php-phpunit-PHPUnit php-pecl-xdebug php-pecl-xhprof</span><br></pre></td></tr></table></figure></p>
@@ -335,7 +335,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -352,11 +352,11 @@
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -372,7 +372,7 @@
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -380,11 +380,11 @@
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -408,19 +408,7 @@
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -428,7 +416,19 @@
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -436,7 +436,7 @@
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -444,19 +444,7 @@
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -464,7 +452,15 @@
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -472,15 +468,11 @@
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -488,11 +480,11 @@
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -500,11 +492,15 @@
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -516,11 +512,11 @@
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -528,11 +524,15 @@
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>

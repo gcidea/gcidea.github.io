@@ -66,7 +66,7 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-35.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-36.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-37.png">
-<meta property="og:updated_time" content="2016-10-18T08:46:52.547Z">
+<meta property="og:updated_time" content="2016-10-31T13:00:42.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用WebStorm创建webpack工作流的前端项目">
 <meta name="twitter:description" content="前言　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：
@@ -171,16 +171,16 @@
 <li>在大型项目中可能需要引入数十个js文件，代码冗长，难于管理</li>
 </ol>
 <ul>
-<li>编写符合CommonJS规范的代码<br>　　这种规范使用同步的<code>require</code>方法加载依赖，并返回一个暴露出的接口，一个模块可以通过给<code>export</code>对象指定属性的方式来指定输出：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">require(&quot;module&quot;);</span><br><span class="line">require(&quot;../file.js&quot;);</span><br><span class="line">exports.doStuff = function() &#123;&#125;;</span><br><span class="line">module.exports = someValue;</span><br></pre></td></tr></table></figure>
+<li>编写符合CommonJS规范的代码<br>　　这种规范使用同步的<code>require</code>方法加载依赖，并返回一个暴露出的接口，一个模块可以通过给<code>export</code>对象指定属性的方式来指定输出：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">"module"</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">"../file.js"</span>);</span><br><span class="line">exports.doStuff = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="built_in">module</span>.exports = someValue;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>　　这种方式主要用在服务端，比如Node.js。</p>
 <ul>
 <li><p>编写符合AMD规范的代码<br>　　这种规范使用异步的<code>require</code>方法加载依赖，主要适用于客户端，因为在客户端如果同步加载的话会阻塞页面渲染等其他内容的进行，造成假死。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">require([&quot;module&quot;, &quot;../file&quot;], function(module, file) &#123; /* ... */ &#125;);</span><br><span class="line">define(&quot;mymodule&quot;, [&quot;dep1&quot;, &quot;dep2&quot;], function(d1, d2) &#123;</span><br><span class="line">  return someExportedValue;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>([<span class="string">"module"</span>, <span class="string">"../file"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">module, file</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;);</span><br><span class="line">define(<span class="string">"mymodule"</span>, [<span class="string">"dep1"</span>, <span class="string">"dep2"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">d1, d2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> someExportedValue;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使用ES6标准原生模块<br>　　ECMAScript 2015 (6th Edition)给javascript语言增加了新的内容-import关键字，从而构成了另一个模块系统</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &quot;jquery&quot;;</span><br><span class="line">export function doStuff() &#123;&#125;</span><br><span class="line">module &quot;localModule&quot; &#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"jquery"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">doStuff</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="built_in">module</span> <span class="string">"localModule"</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <hr>
@@ -212,10 +212,10 @@
 <p>3.2 此时，再通过如下命令安装webpack，其中<code>--save-dev</code>表示会将webpack添加到package.json的devDependencies中：<br><code>npm install webpack --save-dev</code></p>
 <p>并且，该命令会自动检查安装webpack所需的全部依赖，执行该命令后，项目有3处变化：控制台打印出依赖结构树；根目录下生成node_modules文件夹用于存放所有依赖包；package.json中多出一个devDependencies属性。如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-7.png" alt=""></p>
 <p>4.安装webpack-dev-server<br>　　这是一个Node.js Express server，可以帮我们在本地建立一个服务器。此处仅安装，具体使用在下文描述。<br><code>npm install webpack-dev-server --save-dev</code></p>
-<p>可以预想，现在package.json文件的依赖项已经变为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;webpack&quot;: &quot;^1.13.2&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^1.16.2&quot;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以预想，现在package.json文件的依赖项已经变为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"webpack"</span>: <span class="string">"^1.13.2"</span>,</span><br><span class="line">    <span class="string">"webpack-dev-server"</span>: <span class="string">"^1.16.2"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
-<h2 id="webpack的使用"><a href="#webpack的使用" class="headerlink" title="webpack的使用"></a>webpack的使用</h2><h3 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h3><p>1.新建cats.js文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var cats = [&apos;dave&apos;, &apos;henry&apos;, &apos;martha&apos;];</span><br><span class="line">module.exports = cats;</span><br></pre></td></tr></table></figure></p>
-<p>2.新建app.js文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cats = require(&apos;./cats.js&apos;);</span><br><span class="line">console.log(cats);</span><br></pre></td></tr></table></figure></p>
+<h2 id="webpack的使用"><a href="#webpack的使用" class="headerlink" title="webpack的使用"></a>webpack的使用</h2><h3 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h3><p>1.新建cats.js文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cats = [<span class="string">'dave'</span>, <span class="string">'henry'</span>, <span class="string">'martha'</span>];</span><br><span class="line"><span class="built_in">module</span>.exports = cats;</span><br></pre></td></tr></table></figure></p>
+<p>2.新建app.js文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cats = <span class="built_in">require</span>(<span class="string">'./cats.js'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(cats);</span><br></pre></td></tr></table></figure></p>
 <p>3.使用webpack命令进行打包<br><code>webpack ./app.js app.bundle.js</code><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-8.png" alt=""></p>
 <p>结果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-9.png" alt=""></p>
 <p>可以发现webpack已经帮我们将两个文件合并在一起并加入很多其他内容，这个过程在官方上详细描述如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-10.png" alt=""></p>
@@ -233,7 +233,7 @@
 </ul>
 <p>修改后的项目结构如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-12.png" alt=""></p>
 <hr>
-<h4 id="文件配置"><a href="#文件配置" class="headerlink" title="文件配置"></a>文件配置</h4><p><strong>配置webpack.config.js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &apos;./src/app.js&apos;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: &apos;./build&apos;,</span><br><span class="line">        filename: &apos;app.bundle.js&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h4 id="文件配置"><a href="#文件配置" class="headerlink" title="文件配置"></a>文件配置</h4><p><strong>配置webpack.config.js</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">'./src/app.js'</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: <span class="string">'./build'</span>,</span><br><span class="line">        filename: <span class="string">'app.bundle.js'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p> 　　以上简单的配置表示指定webpack打包入口为./src/app.js文件，打包结果为app.bundle.js，在./build目录下。</p>
 <p> 　　该文件还有很多配置项，详见：<a href="http://webpack.github.io/docs/configuration.html" target="_blank" rel="external">http://webpack.github.io/docs/configuration.html</a></p>
 <p> 现在，只需要简单的命令<code>webpack</code>而不需要参数，就可以执行打包。</p>
@@ -247,32 +247,32 @@
 <li>Loader 可以通过文件扩展名（或正则表达式）绑定给不同类型的文件。</li>
 <li>Loader 可以通过 npm 发布和安装。</li>
 </ul>
-<p>　　为了使浏览器能够解析，使用ES6语法编写的代码需要使用babel进行转码，为此我们安装babel-loader。<br>1.安装Babel 和 presets<br><code>npm install --save-dev babel-core babel-preset-es2015</code><br>2.安装babel-loader<br><code>npm install --save-dev babel-loader</code><br>3.在根目录创建Babel配置文件—.babelrc<br>内容为： <code>{ &quot;presets&quot;: [ &quot;es2015&quot; ] }</code><br>4.修改webpack.config.js如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &apos;./src/app.js&apos;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: &apos;./build&apos;,</span><br><span class="line">        filename: &apos;app.bundle.js&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">    module: &#123;</span><br><span class="line">        loaders: [&#123;</span><br><span class="line">            test: /\.js$/,</span><br><span class="line">            exclude: /node_modules/,</span><br><span class="line">            loader: &apos;babel-loader&apos;</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　为了使浏览器能够解析，使用ES6语法编写的代码需要使用babel进行转码，为此我们安装babel-loader。<br>1.安装Babel 和 presets<br><code>npm install --save-dev babel-core babel-preset-es2015</code><br>2.安装babel-loader<br><code>npm install --save-dev babel-loader</code><br>3.在根目录创建Babel配置文件—.babelrc<br>内容为： <code>{ &quot;presets&quot;: [ &quot;es2015&quot; ] }</code><br>4.修改webpack.config.js如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">'./src/app.js'</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: <span class="string">'./build'</span>,</span><br><span class="line">        filename: <span class="string">'app.bundle.js'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        loaders: [&#123;</span><br><span class="line">            test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">            exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">            loader: <span class="string">'babel-loader'</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h4 id="安装其他可能需要的库"><a href="#安装其他可能需要的库" class="headerlink" title="安装其他可能需要的库"></a>安装其他可能需要的库</h4><p> <code>npm install --save jquery babel-polyfill</code></p>
 <blockquote>
 <p><code>--save</code>而非<code>--save-dev</code>表示库将会在运行环境使用<br><code>--save-dev</code>的内容将会放在package.json 的devDependencies<br>而<code>--save</code>会放在dependencies里面<br>产品模式用dependencies，开发模式用devDependencies<br>因此将会实际运行在用户端浏览器环境中的库就要采用<code>--save</code>安装<br>通过使用babel-polyfill可以让老版本浏览器能够使用ES6新提供的API</p>
 </blockquote>
 <hr>
-<h4 id="修改app-js文件（ES6语法-jquery库）"><a href="#修改app-js文件（ES6语法-jquery库）" class="headerlink" title="修改app.js文件（ES6语法+jquery库）"></a>修改app.js文件（ES6语法+jquery库）</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &apos;babel-polyfill&apos;;</span><br><span class="line">import cats from &apos;./cats&apos;;</span><br><span class="line">import $ from &apos;jquery&apos;;</span><br><span class="line"></span><br><span class="line">$(&apos;&lt;h1&gt;Cats&lt;/h1&gt;&apos;).appendTo(&apos;body&apos;);</span><br><span class="line">const ul = $(&apos;&lt;ul&gt;&lt;/ul&gt;&apos;).appendTo(&apos;body&apos;);</span><br><span class="line">for (const cat of cats) &#123;</span><br><span class="line">    $(&apos;&lt;li&gt;&lt;/li&gt;&apos;).text(cat).appendTo(ul);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="修改app-js文件（ES6语法-jquery库）"><a href="#修改app-js文件（ES6语法-jquery库）" class="headerlink" title="修改app.js文件（ES6语法+jquery库）"></a>修改app.js文件（ES6语法+jquery库）</h4> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'babel-polyfill'</span>;</span><br><span class="line"><span class="keyword">import</span> cats <span class="keyword">from</span> <span class="string">'./cats'</span>;</span><br><span class="line"><span class="keyword">import</span> $ <span class="keyword">from</span> <span class="string">'jquery'</span>;</span><br><span class="line"></span><br><span class="line">$(<span class="string">'&lt;h1&gt;Cats&lt;/h1&gt;'</span>).appendTo(<span class="string">'body'</span>);</span><br><span class="line"><span class="keyword">const</span> ul = $(<span class="string">'&lt;ul&gt;&lt;/ul&gt;'</span>).appendTo(<span class="string">'body'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> cat <span class="keyword">of</span> cats) &#123;</span><br><span class="line">    $(<span class="string">'&lt;li&gt;&lt;/li&gt;'</span>).text(cat).appendTo(ul);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>将以上代码写入后，编辑器会报错：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-13.png" alt=""></p>
 <p>原因是编辑器未能识别ES6语法，在webstorm的settings中做如下配置即可：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-14.png" alt=""></p>
 </blockquote>
 <hr>
-<h4 id="编辑index-html文件"><a href="#编辑index-html文件" class="headerlink" title="编辑index.html文件"></a>编辑index.html文件</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;script src=&quot;build/app.bundle.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="编辑index-html文件"><a href="#编辑index-html文件" class="headerlink" title="编辑index.html文件"></a>编辑index.html文件</h4> <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"build/app.bundle.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h4 id="重新打包"><a href="#重新打包" class="headerlink" title="重新打包"></a>重新打包</h4><p> <code>webpack</code></p>
 <hr>
 <h4 id="访问index-html"><a href="#访问index-html" class="headerlink" title="访问index.html"></a>访问index.html</h4><p>可以看到正确结果<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-15.png" alt=""></p>
 <hr>
-<h4 id="使用plugins"><a href="#使用plugins" class="headerlink" title="使用plugins"></a>使用plugins</h4><p>　　在打包的工作流中可能还会有一些其他的操作，会使用到不同的插件plugins，比较典型的就是uglify plugin这个压缩工具。为此，在webpack.config.js中增加配置项plugins：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">const webpack = require(&apos;webpack&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &apos;./src/app.js&apos;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: &apos;./build&apos;,</span><br><span class="line">        filename: &apos;app.bundle.js&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">    module: &#123;</span><br><span class="line">        loaders: [&#123;</span><br><span class="line">            test: /\.js$/,</span><br><span class="line">            exclude: /node_modules/,</span><br><span class="line">            loader: &apos;babel-loader&apos;</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        new webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">            compress: &#123;</span><br><span class="line">                warnings: false,</span><br><span class="line">            &#125;,</span><br><span class="line">            output: &#123;</span><br><span class="line">                comments: false,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="使用plugins"><a href="#使用plugins" class="headerlink" title="使用plugins"></a>使用plugins</h4><p>　　在打包的工作流中可能还会有一些其他的操作，会使用到不同的插件plugins，比较典型的就是uglify plugin这个压缩工具。为此，在webpack.config.js中增加配置项plugins：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">'./src/app.js'</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: <span class="string">'./build'</span>,</span><br><span class="line">        filename: <span class="string">'app.bundle.js'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        loaders: [&#123;</span><br><span class="line">            test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">            exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">            loader: <span class="string">'babel-loader'</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">            compress: &#123;</span><br><span class="line">                warnings: <span class="literal">false</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            output: &#123;</span><br><span class="line">                comments: <span class="literal">false</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在执行命令<code>webpack</code>重新打包之前，我们先看看app.bundle.js的文件大小,为523KB：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-16.png" alt=""></p>
 <p>现在执行命令<code>webpack</code>重新打包，再看app.bundle.js的文件大小,为171KB：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-17.png" alt=""></p>
 <p>可以看到，压缩工具去掉了无用的空字符等：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-18.png" alt=""></p>
 <hr>
 <h2 id="webpack中的重要工具：webpack-dev-server"><a href="#webpack中的重要工具：webpack-dev-server" class="headerlink" title="webpack中的重要工具：webpack-dev-server"></a>webpack中的重要工具：webpack-dev-server</h2><p>　　webpack-dev-server本质上是一个小型的Node.js的Express服务器，使用webpack-dev-middleware作为中间件来支持webpack打包。</p>
-<h3 id="安装webpack-dev-server"><a href="#安装webpack-dev-server" class="headerlink" title="安装webpack-dev-server"></a>安装webpack-dev-server</h3><p><code>npm install webpack-dev-server</code><br>package.json变为如下形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;webpack-usage&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;webpack-usage-demo&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;index.js&quot;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;author&quot;: &quot;gaochang&quot;,</span><br><span class="line">  &quot;license&quot;: &quot;ISC&quot;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;babel-core&quot;: &quot;^6.17.0&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^6.2.5&quot;,</span><br><span class="line">    &quot;babel-preset-es2015&quot;: &quot;^6.16.0&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^1.13.2&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^1.16.2&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;babel-polyfill&quot;: &quot;^6.16.0&quot;,</span><br><span class="line">    &quot;jquery&quot;: &quot;^3.1.1&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装webpack-dev-server"><a href="#安装webpack-dev-server" class="headerlink" title="安装webpack-dev-server"></a>安装webpack-dev-server</h3><p><code>npm install webpack-dev-server</code><br>package.json变为如下形式：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"webpack-usage"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">"webpack-usage-demo"</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">"gaochang"</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"babel-core"</span>: <span class="string">"^6.17.0"</span>,</span><br><span class="line">    <span class="attr">"babel-loader"</span>: <span class="string">"^6.2.5"</span>,</span><br><span class="line">    <span class="attr">"babel-preset-es2015"</span>: <span class="string">"^6.16.0"</span>,</span><br><span class="line">    <span class="attr">"webpack"</span>: <span class="string">"^1.13.2"</span>,</span><br><span class="line">    <span class="attr">"webpack-dev-server"</span>: <span class="string">"^1.16.2"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"babel-polyfill"</span>: <span class="string">"^6.16.0"</span>,</span><br><span class="line">    <span class="attr">"jquery"</span>: <span class="string">"^3.1.1"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="启动webpack-dev-server"><a href="#启动webpack-dev-server" class="headerlink" title="启动webpack-dev-server"></a>启动webpack-dev-server</h3><p>　　安装完成后，在不指定任何参数的情况下，可以直接通过命令<code>webpack-dev-server</code>在本地8080端口运行一个服务器，访问<code>http://localhost:8080</code>可以看到效果：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-19.png" alt=""></p>
 <p>访问<code>http://localhost:8080/webpack-dev-server/</code> 可以显示webpack服务器状态条<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-20.png" alt=""></p>
 <h3 id="指定content-base"><a href="#指定content-base" class="headerlink" title="指定content base"></a>指定content base</h3><p>webpack-dev-server默认监控的是当前目录的文件，除非声明一个特殊的基本路径：<br><code>webpack-dev-server --content-base build/</code><br>这样的话，webpack就会只监控build文件夹下的静态文件。当你的文件在任何时候发生变化时，都会触发重新编译打包。验证如下：<br>1.使用上述命令启动server：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-21.png" alt=""></p>
@@ -286,9 +286,9 @@
 <p>但是，<strong>值得注意的是，这个修改的内容是保存在内存中的</strong>，并没有写入我们在webpack.config.js的output中指定的文件：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-28.png" alt=""></p>
 <p>发现文件还是修改之前的内容。也就是说，当相同URL下已经有一个打包的文件时，默认情况下内存中的文件享有优先权。<strong>而如果想要让build目录下的输出文件的内容也跟随发生变化，则要使用<code>webpack</code>命令重新打包</strong>。</p>
 <hr>
-<p>除了以上分析，还有一点要注意，通过给webpack.config.js的output指定publicPath，可以定制浏览器中的项目访问路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">    path: &apos;./build&apos;,</span><br><span class="line">    publicPath: &quot;/assets/&quot;,</span><br><span class="line">    filename: &apos;app.bundle.js&apos;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>除了以上分析，还有一点要注意，通过给webpack.config.js的output指定publicPath，可以定制浏览器中的项目访问路径。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">    path: <span class="string">'./build'</span>,</span><br><span class="line">    publicPath: <span class="string">"/assets/"</span>,</span><br><span class="line">    filename: <span class="string">'app.bundle.js'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>重新打包，可以在如下路径访问相应文件：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-29.png" alt=""></p>
-<p>由于之前content-base指定了监控build目录，我们<strong>在该目录下</strong>创建一个index.html文件，用来加载并使用我们打包好的js文件，而原先在项目根目录webpack-usage下创建的index.html文件就不起作用了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;p&gt;在build目录下创建的index.html文件&lt;/p&gt;</span><br><span class="line">  &lt;script src=&quot;assets/app.bundle.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>由于之前content-base指定了监控build目录，我们<strong>在该目录下</strong>创建一个index.html文件，用来加载并使用我们打包好的js文件，而原先在项目根目录webpack-usage下创建的index.html文件就不起作用了：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>在build目录下创建的index.html文件<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"assets/app.bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>访问<code>http://localhost:8080/</code>：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-30.png" alt=""></p>
 <p>访问<code>http://localhost:8080/webpack-dev-server</code>:<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-31.png" alt=""></p>
 <p>其中，第一个是打包文件app.bundle.js本身：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-32.png" alt=""><br>注意路径为<code>http://localhost:8080/assets/app.bundle.js</code>，符合publicPath的配置。</p>
@@ -470,7 +470,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -487,11 +487,11 @@
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -507,7 +507,7 @@
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -515,11 +515,11 @@
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -543,19 +543,7 @@
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -563,7 +551,19 @@
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -571,7 +571,7 @@
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -579,19 +579,7 @@
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -599,7 +587,15 @@
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -607,15 +603,11 @@
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -623,11 +615,11 @@
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -635,11 +627,15 @@
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -651,11 +647,11 @@
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -663,11 +659,15 @@
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>

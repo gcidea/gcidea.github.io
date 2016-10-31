@@ -21,7 +21,7 @@
 <meta property="og:description" content="前言　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。
 
 核心　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对象">
-<meta property="og:updated_time" content="2016-10-07T03:45:43.509Z">
+<meta property="og:updated_time" content="2016-10-31T12:23:32.715Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jQuery的ajax()方法详细分析">
 <meta name="twitter:description" content="前言　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。
@@ -104,7 +104,7 @@
 		
 		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。</p>
 <hr>
-<h2 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h2><p>　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对象。通过以下jQuery源码片段可以看出(jquery-2.2.0)：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jQuery.ajaxSettings.xhr = function() &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        return new window.XMLHttpRequest();</span><br><span class="line">    &#125; catch ( e ) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h2><p>　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对象。通过以下jQuery源码片段可以看出(jquery-2.2.0)：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jQuery.ajaxSettings.xhr = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">window</span>.XMLHttpRequest();</span><br><span class="line">    &#125; <span class="keyword">catch</span> ( e ) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>  关于XMLHttpRequest的更多属性、方法和演示，可以参考<a href="http://www.w3school.com.cn/xmldom/dom_http.asp" target="_blank" rel="external">W3School XML DOM - XMLHttpRequest 对象</a>。</p>
 <hr>
 <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>　　其实，$.ajax只是jQuery对异步加载封装的函数之一。jQuery对Ajax相关内容分为了4类：</p>
@@ -143,7 +143,7 @@
 </ul>
 <hr>
 <h2 id="ajax-详细介绍"><a href="#ajax-详细介绍" class="headerlink" title="$.ajax()详细介绍"></a>$.ajax()详细介绍</h2><h3 id="描述：使用该方法可发起一个异步HTTP请求。"><a href="#描述：使用该方法可发起一个异步HTTP请求。" class="headerlink" title="描述：使用该方法可发起一个异步HTTP请求。"></a>描述：使用该方法可发起一个异步HTTP请求。</h3><h3 id="version1-5-格式：jQuery-ajax-url-settings"><a href="#version1-5-格式：jQuery-ajax-url-settings" class="headerlink" title="version1.5 格式：jQuery.ajax( url [, settings ] )"></a>version1.5 格式：jQuery.ajax( url [, settings ] )</h3><p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。<br><strong>settings</strong><br>　　类型：PlainObject（PlainObject是一种包含0个或多个键值对的JavaScript对象，换句话说，就是“对象的对象”。之所以被称为“PlainObject”，是为了和其他类型的JavaScript对象作区分：比如说，null，用户自定义数组，或者宿主对象-document/window。这些对象使用typeof方法都会得到“Object”返回值。而对于PlainObject，则可以使用jQuery.isPlainObject()来判断是否成立。）<br>　　settings中一系列的键值对集合配置了一个ajax请求。所有设置都是可选的。默认设置可以使用之前提到的.ajaxSetup()。下面的内容则针对所有的setting选项给出了详细解释。</p>
-<h3 id="version1-0-格式：jQuery-ajax-settings"><a href="#version1-0-格式：jQuery-ajax-settings" class="headerlink" title="version1.0 格式：jQuery.ajax( [ settings ] )"></a>version1.0 格式：jQuery.ajax( [ settings ] )</h3><p>settings的所有可选项：<br><strong>1.accepts</strong>(缺省：取决于DataType)<br>　　类型：PlainObject<br>　　是键值对的集合，将一种给定的dataType转化为对应的MIME type(MIME类型就是设定某种扩展名的文件用一种应用程序来打开的方式类型)。它将会在请求头中发送。这个头告诉服务器它需要什么类型的返回值。比如说，下面就定义了一种自定义类型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  accepts: &#123;</span><br><span class="line">    mycustomtype: &apos;application/x-some-custom-type&apos;</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">  // Instructions for how to deserialize a `mycustomtype`</span><br><span class="line">  converters: &#123;</span><br><span class="line">    &apos;text mycustomtype&apos;: function(result) &#123;</span><br><span class="line">      // Do Stuff</span><br><span class="line">      return newresult;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">  // Expect a `mycustomtype` back from server</span><br><span class="line">  dataType: &apos;mycustomtype&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="version1-0-格式：jQuery-ajax-settings"><a href="#version1-0-格式：jQuery-ajax-settings" class="headerlink" title="version1.0 格式：jQuery.ajax( [ settings ] )"></a>version1.0 格式：jQuery.ajax( [ settings ] )</h3><p>settings的所有可选项：<br><strong>1.accepts</strong>(缺省：取决于DataType)<br>　　类型：PlainObject<br>　　是键值对的集合，将一种给定的dataType转化为对应的MIME type(MIME类型就是设定某种扩展名的文件用一种应用程序来打开的方式类型)。它将会在请求头中发送。这个头告诉服务器它需要什么类型的返回值。比如说，下面就定义了一种自定义类型：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  accepts: &#123;</span><br><span class="line">    mycustomtype: <span class="string">'application/x-some-custom-type'</span></span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// Instructions for how to deserialize a `mycustomtype`</span></span><br><span class="line">  converters: &#123;</span><br><span class="line">    <span class="string">'text mycustomtype'</span>: <span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// Do Stuff</span></span><br><span class="line">      <span class="keyword">return</span> newresult;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// Expect a `mycustomtype` back from server</span></span><br><span class="line">  dataType: <span class="string">'mycustomtype'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>注意：为了让accepts正常工作，必须配套声明converters。</p>
 </blockquote>
@@ -153,7 +153,7 @@
 <p><strong>5.complete</strong><br>　　类型：Function( jqXHR jqXHR, String textStatus )<br>　　当一个请求完成后将会调用该函数（<font color="red">特别注意：是当success或者error回调函数执行完成后才调用该函数</font>）。参数中的textStatus有”success”, “notmodified”, “nocontent”, “error”, “timeout”, “abort”, “parsererror” 这些种类。在jQuery1.5版本中，该选项还可以接收函数数组，其中的各个函数将会按顺序调用。</p>
 <p><strong>6.contents</strong><br>　　类型：PlainObject<br>　　这个对象是“字符串/正则表达式”这样的键值对的集合，这决定了jQuery如何解析返回值，一般是鉴定content type。</p>
 <p><strong>7.contentType</strong>(缺省：’application/x-www-form-urlencoded; charset=UTF-8’)<br>　　类型：String<br>　　当给服务器发送数据时会使用这个参数指定的类型。默认值能很好地适用于大多数情况。如果你在$.ajax()中显示地写明了该参数，那么即使没有数据，也会给服务器发送数据。在jQuery1.6中，可以通过设置为false来告诉jQuery不要设置http请求头中的content type参数。注意：W3C的XMLHttpRequest规范规定，字符集总是UTF-8。因此指定其他字符集不会让浏览器强制转换编码方式。还要注意：对于跨域请求，如果contentType设置的不是application/x-www-form-urlencoded, multipart/form-data, or text/plain这三个中的一个，将会触发浏览器向服务器发送一个含有预检功能HTTP-OPTIONS方法的请求，用以判断实际发送的请求是否安全。</p>
-<p><strong>8.context</strong><br>　　类型：PlainObject<br>　　这个参数指定的对象是ajax相关的所有回调函数的作用域。默认情况下，是一个代表着在调用中使用的ajax配置项的对象。比如，指定一个DOM元素作为context将会使得它（这个元素）成为complete这个回调函数的上下文环境（作用域），如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: &quot;test.html&quot;,</span><br><span class="line">  context: document.body</span><br><span class="line">&#125;).done(function() &#123;</span><br><span class="line">  $( this ).addClass( &quot;done&quot; );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>8.context</strong><br>　　类型：PlainObject<br>　　这个参数指定的对象是ajax相关的所有回调函数的作用域。默认情况下，是一个代表着在调用中使用的ajax配置项的对象。比如，指定一个DOM元素作为context将会使得它（这个元素）成为complete这个回调函数的上下文环境（作用域），如下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: <span class="string">"test.html"</span>,</span><br><span class="line">  context: <span class="built_in">document</span>.body</span><br><span class="line">&#125;).done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $( <span class="keyword">this</span> ).addClass( <span class="string">"done"</span> );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p><strong>9.converters</strong>(缺省：{“* text”: window.String, “text html”: true, “text json”: jQuery.parseJSON, “text xml”: jQuery.parseXML})<br>　　类型：PlainObject<br>　　这是一个数据类型到数据类型转换的配置项，每个值都是一个函数，它返回响应值转换好的值。以上默认值表示：</p>
 <ul>
 <li>“* text”: window.String—调用String方法将任意内容转换为字符串。</li>
@@ -189,7 +189,7 @@
 <p><strong>23.password</strong><br>　　类型：String<br>　　用于响应HTTP访问认证请求的密码。</p>
 <p><strong>24.processData</strong>(缺省：true)<br>　　类型：Boolean<br>　　默认情况下，通过data选项传递进来的数据，如果是一个对象(技术上讲只要不是字符串)，都会处理转化成一个查询字符串，以配合默认内容类型 “application/x-www-form-urlencoded”。如果要发送DOM文档信息或其它不希望转换的信息，请设置为false。</p>
 <p><strong>25.scriptCharset</strong><br>　　类型：String<br>　　仅适用于当”script”传输使用时（例如，跨域的”jsonp”或 dataType选项为”script” 和 “GET”类型）。请求中使用在script标签上设置charset 属性。通常只在本地和远程的内容编码不同时使用。</p>
-<p><strong>26.statusCode</strong>(缺省：{})<br>　　类型：PlainObject<br>　　一组数值的HTTP代码和函数对象，当响应中有对应的状态码时，相应的函数将会被调用。例如，如果响应状态是404，将触发以下警报：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  $.ajax(&#123;</span><br><span class="line">  statusCode: &#123;</span><br><span class="line">    404: function() &#123;</span><br><span class="line">      alert( &quot;page not found&quot; );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>26.statusCode</strong>(缺省：{})<br>　　类型：PlainObject<br>　　一组数值的HTTP代码和函数对象，当响应中有对应的状态码时，相应的函数将会被调用。例如，如果响应状态是404，将触发以下警报：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  $.ajax(&#123;</span><br><span class="line">  statusCode: &#123;</span><br><span class="line">    <span class="number">404</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      alert( <span class="string">"page not found"</span> );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>  如果请求成功，则状态码函数将会获得与success回调函数相同的参数；如果返回了错误（包括3XX重定向），则会获得与error回调函数相同的参数。</p>
 <p><strong>27.success</strong><br>　　类型：Function( Anything data, String textStatus, jqXHR jqXHR )<br>　　请求成功将会调用该函数，该函数有3个函数：第一个是data，如果请求中指明了dataType参数或者dataFilter回调函数，返回数据将会按照指定格式进行格式化；第二个是描述状态的字符串；第三个是jqXHR（jQuery1.4.x版本中是XMLHttpRequest）对象。在jQuery1.5版本中，该选项还可以接收函数数组，其中的各个函数将会按顺序调用。</p>
 <p><strong>28.timeout</strong><br>　　类型：Number<br>　　设置请求超时时间（毫秒为单位）。此设置将覆盖$.ajaxSetup() 里的全局设置。超时时间的计算是根据$.ajax成功调用的时间，如果有其他请求正在进行并且浏览器没有可用连接，那么有可能一个请求在发送之前就已经超时了。在 jQuery 1.4.x 及更低版本中, 如果请求超时，XMLHttpRequest对象是处于无效状态;访问任何对象的成员可能会抛出一个异常。只有在 Firefox 3.0+,script 和 JSONP请求不会因超时而取消;即使是超时后到达的脚本也将运行。</p>
@@ -198,12 +198,12 @@
 <p><strong>31.url</strong>(缺省：当前页URL)<br>　　类型：String<br>　　请求将要送达的地址。</p>
 <p><strong>32.username</strong><br>　　类型：String<br>　　用于响应HTTP访问认证请求的用户名。</p>
 <p><strong>33.xhr</strong>(缺省：ActiveXObject (IE), XMLHttpRequest (其他))<br>　　类型：Function()<br>　　用于重写或者提供一个增强的XMLHttpRequest 对象。</p>
-<p><strong>34.xhrFields</strong><br>　　类型：PlainObject<br>　　“文件名-文件值”对构成的对象，用于设定原生的 XHR对象。例如，如果需要的话，在进行跨域请求时，你可以用它来设置withCredentials为true。<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line"> url: a_cross_domain_url,</span><br><span class="line"> xhrFields: &#123;</span><br><span class="line">    withCredentials: true</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>34.xhrFields</strong><br>　　类型：PlainObject<br>　　“文件名-文件值”对构成的对象，用于设定原生的 XHR对象。例如，如果需要的话，在进行跨域请求时，你可以用它来设置withCredentials为true。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line"> url: a_cross_domain_url,</span><br><span class="line"> xhrFields: &#123;</span><br><span class="line">    withCredentials: <span class="literal">true</span></span><br><span class="line"> &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></p>
 <p>  在 jQuery 1.5中， withCredentials属性不会传递给原生的XHR,从而对于需要使用此属性的CORS请求，则只能忽略这个属性。出于这个原因，应使用jQuery1.5.1以上版本。</p>
 <hr>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>　　$.ajax()方法是jQuery中所有和ajax（异步请求）相关内容的基础。有时候我们不需要非得直接调用这个函数，因为有其他更高层一些的可选函数比如<code>$.get()</code>、<code>.load()</code>可供我们使用并且更易用。但是，如果有一些生僻的参数需要指定，还是$.ajax()更加灵活。$.ajax()是更加全面的，这也是为什么要深入讨论其每一个参数的目的。<br>　　在最简单的情况下，$.ajax()可以无参数使用：<code>$.ajax();</code>。<br>注意：上述使用方式是无参的，默认参数的设定可以通过$.ajaxSetup()函数来指定。另外，这种无参的使用方法，对加载当前页面的内容，并且对这个内容没有任何操作。如果想使用这个结果，则可以自己写一个回调函数。</p>
 <hr>
-<h2 id="jqXHR对象"><a href="#jqXHR对象" class="headerlink" title="jqXHR对象"></a>jqXHR对象</h2><p>　　在jQuery1.5及以上版本中，由$.ajax()返回的jQuery XMLHttpRequest (jqXHR)是浏览器原生XMLHttpRequest的一个超集。比如说，它具有responseText、responseXML属性以及getResponseHeader()方法。当传输机制不是是XMLHttpRequest时（例如，一个JSONP请求脚本，返回一个<script></script> 时），jqXHR对象尽可能的模拟原生的XHR功能。<br>　　在jQuery1.5.1及以上版本中，jqXHR对象还包含了overrideMimeType方法 (它在jQuery 1.4.x中是有效的，但是在jQuery 1.5中暂时的被移除)。.overrideMimeType()方法可用在beforeSend()的回调函数中，例如，修改响应的Content-Type信息头：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  $.ajax(&#123;</span><br><span class="line">  url: &quot;http://fiddle.jshell.net/favicon.png&quot;,</span><br><span class="line">  beforeSend: function( xhr ) &#123;</span><br><span class="line">    xhr.overrideMimeType( &quot;text/plain; charset=x-user-defined&quot; );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">  .done(function( data ) &#123;</span><br><span class="line">    if ( console &amp;&amp; console.log ) &#123;</span><br><span class="line">      console.log( &quot;Sample of data:&quot;, data.slice( 0, 100 ) );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="jqXHR对象"><a href="#jqXHR对象" class="headerlink" title="jqXHR对象"></a>jqXHR对象</h2><p>　　在jQuery1.5及以上版本中，由$.ajax()返回的jQuery XMLHttpRequest (jqXHR)是浏览器原生XMLHttpRequest的一个超集。比如说，它具有responseText、responseXML属性以及getResponseHeader()方法。当传输机制不是是XMLHttpRequest时（例如，一个JSONP请求脚本，返回一个<script></script> 时），jqXHR对象尽可能的模拟原生的XHR功能。<br>　　在jQuery1.5.1及以上版本中，jqXHR对象还包含了overrideMimeType方法 (它在jQuery 1.4.x中是有效的，但是在jQuery 1.5中暂时的被移除)。.overrideMimeType()方法可用在beforeSend()的回调函数中，例如，修改响应的Content-Type信息头：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  $.ajax(&#123;</span><br><span class="line">  url: <span class="string">"http://fiddle.jshell.net/favicon.png"</span>,</span><br><span class="line">  beforeSend: <span class="function"><span class="keyword">function</span>(<span class="params"> xhr </span>) </span>&#123;</span><br><span class="line">    xhr.overrideMimeType( <span class="string">"text/plain; charset=x-user-defined"</span> );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"> data </span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( <span class="built_in">console</span> &amp;&amp; <span class="built_in">console</span>.log ) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log( <span class="string">"Sample of data:"</span>, data.slice( <span class="number">0</span>, <span class="number">100</span> ) );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></p>
 <p>  从 jQuery1.5开始，$.ajax()返回的jqXHR对象实现了Promise接口, 使它拥有了Promise的所有属性，方法和行为。当$.ajax()请求结束后，这些方法将有一个或多个函数作为参数传入。通常对于一个请求允许对多个回调函数进行赋值，甚至允许你在请求已经完成后，对回调函数进行赋值(如果该请求已经完成，则回调函数会被立刻调用)。</p>
 <ul>
 <li><strong>jqXHR.done(function( data, textStatus, jqXHR ) {});</strong><br>　　一个可供选择的 success 回调选项的构造函数，.done()方法取代了的过时的jqXHR.success()方法。</li>
@@ -214,7 +214,7 @@
 <blockquote>
 <p>弃用注意：jqXHR.success(), jqXHR.error(), 和 jqXHR.complete()回调从jQuery 1.8开始被弃用。它们将最终被取消，应做好准备使用jqXHR.done(), jqXHR.fail(), 和 jqXHR.always() 代替。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// Assign handlers immediately after making the request,</span><br><span class="line">// and remember the jqXHR object for this request</span><br><span class="line">var jqxhr = $.ajax( &quot;example.php&quot; )</span><br><span class="line">  .done(function() &#123;</span><br><span class="line">    alert( &quot;success&quot; );</span><br><span class="line">  &#125;)</span><br><span class="line">  .fail(function() &#123;</span><br><span class="line">    alert( &quot;error&quot; );</span><br><span class="line">  &#125;)</span><br><span class="line">  .always(function() &#123;</span><br><span class="line">    alert( &quot;complete&quot; );</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line">// Perform other work here ...</span><br><span class="line"> </span><br><span class="line">// Set another completion function for the request above</span><br><span class="line">jqxhr.always(function() &#123;</span><br><span class="line">  alert( &quot;second complete&quot; );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Assign handlers immediately after making the request,</span></span><br><span class="line"><span class="comment">// and remember the jqXHR object for this request</span></span><br><span class="line"><span class="keyword">var</span> jqxhr = $.ajax( <span class="string">"example.php"</span> )</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert( <span class="string">"success"</span> );</span><br><span class="line">  &#125;)</span><br><span class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert( <span class="string">"error"</span> );</span><br><span class="line">  &#125;)</span><br><span class="line">  .always(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert( <span class="string">"complete"</span> );</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// Perform other work here ...</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// Set another completion function for the request above</span></span><br><span class="line">jqxhr.always(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert( <span class="string">"second complete"</span> );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>this在所有的回调中所指向的引用，是上文提到的参数之一-context所指定的内容；如果没有指定context这个参数，那么this所引用的是Ajax配置项本身。</p>
 <p>　　为了向后兼容XMLHttpRequest ，jqXHR对象暴露了下列属性和方法：</p>
 <ul>
@@ -248,9 +248,9 @@
 <hr>
 <h2 id="可扩展的Ajax（Extending-Ajax）"><a href="#可扩展的Ajax（Extending-Ajax）" class="headerlink" title="可扩展的Ajax（Extending Ajax）"></a>可扩展的Ajax（Extending Ajax）</h2><p>　　对于jQuery1.5及以上版本，jQuery的ajax实现包含了prefilters, transports, 和 converters，这为你扩展ajax提供了极大地灵活性。</p>
 <hr>
-<h2 id="使用转换器（Using-Converters）"><a href="#使用转换器（Using-Converters）" class="headerlink" title="使用转换器（Using Converters）"></a>使用转换器（Using Converters）</h2><p>　　$.ajax()的转换器支持的数据类型映射到其它数据类型。但是，如果你想把自定义数据类型映射到一个已知的类型（json等）,必须通过contents选项在响应的Content-Type属性和实际的数据类型之间的添加一个相关的转换函数：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  $.ajaxSetup(&#123;</span><br><span class="line">  contents: &#123;</span><br><span class="line">    mycustomtype: /mycustomtype/</span><br><span class="line">  &#125;,</span><br><span class="line">  converters: &#123;</span><br><span class="line">    &quot;mycustomtype json&quot;: function( result ) &#123;</span><br><span class="line">      // Do stuff</span><br><span class="line">      return newresult;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用转换器（Using-Converters）"><a href="#使用转换器（Using-Converters）" class="headerlink" title="使用转换器（Using Converters）"></a>使用转换器（Using Converters）</h2><p>　　$.ajax()的转换器支持的数据类型映射到其它数据类型。但是，如果你想把自定义数据类型映射到一个已知的类型（json等）,必须通过contents选项在响应的Content-Type属性和实际的数据类型之间的添加一个相关的转换函数：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  $.ajaxSetup(&#123;</span><br><span class="line">  contents: &#123;</span><br><span class="line">    mycustomtype: <span class="regexp">/mycustomtype/</span></span><br><span class="line">  &#125;,</span><br><span class="line">  converters: &#123;</span><br><span class="line">    <span class="string">"mycustomtype json"</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> result </span>) </span>&#123;</span><br><span class="line">      <span class="comment">// Do stuff</span></span><br><span class="line">      <span class="keyword">return</span> newresult;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>这个额外的对象是必要的 ，因为响应中的Content-Types和实际数据类型之间从未有过严格的一对一对应关系。</p>
-<p>转换一个支持的类型（例如text, json）成自定义数据类型，然后再转换成另一个支持的类型，使用直通转换器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajaxSetup(&#123;</span><br><span class="line">  contents: &#123;</span><br><span class="line">    mycustomtype: /mycustomtype/</span><br><span class="line">  &#125;,</span><br><span class="line">  converters: &#123;</span><br><span class="line">    &quot;text mycustomtype&quot;: true,</span><br><span class="line">    &quot;mycustomtype json&quot;: function( result ) &#123;</span><br><span class="line">      // Do stuff</span><br><span class="line">      return newresult;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>转换一个支持的类型（例如text, json）成自定义数据类型，然后再转换成另一个支持的类型，使用直通转换器：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajaxSetup(&#123;</span><br><span class="line">  contents: &#123;</span><br><span class="line">    mycustomtype: <span class="regexp">/mycustomtype/</span></span><br><span class="line">  &#125;,</span><br><span class="line">  converters: &#123;</span><br><span class="line">    <span class="string">"text mycustomtype"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"mycustomtype json"</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> result </span>) </span>&#123;</span><br><span class="line">      <span class="comment">// Do stuff</span></span><br><span class="line">      <span class="keyword">return</span> newresult;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h2 id="附加提醒"><a href="#附加提醒" class="headerlink" title="附加提醒"></a>附加提醒</h2><ol>
 <li>考虑到浏览器安全限制，大多数ajax请求遵循同源策略。请求不能成功从其他域名，子域名，端口或者协议获取数据。</li>
@@ -400,7 +400,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -417,11 +417,11 @@
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -437,7 +437,7 @@
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -445,11 +445,11 @@
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -473,19 +473,7 @@
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -493,7 +481,19 @@
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -501,7 +501,7 @@
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -509,19 +509,7 @@
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -529,7 +517,15 @@
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -537,15 +533,11 @@
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -553,11 +545,11 @@
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -565,11 +557,15 @@
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -581,11 +577,11 @@
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -593,11 +589,15 @@
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>

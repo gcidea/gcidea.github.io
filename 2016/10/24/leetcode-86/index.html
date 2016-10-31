@@ -21,7 +21,7 @@ You should preserve the original relative order of the nodes in each of">
 <meta property="og:description" content="题目
 Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
 You should preserve the original relative order of the nodes in each of">
-<meta property="og:updated_time" content="2016-10-28T08:26:44.512Z">
+<meta property="og:updated_time" content="2016-10-31T12:57:29.765Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode [#86]">
 <meta name="twitter:description" content="题目
@@ -108,11 +108,11 @@ You should preserve the original relative order of the nodes in each of">
 <p><strong>Example</strong>:<br>Given 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;2 and x = 3,<br>return 1-&gt;2-&gt;2-&gt;4-&gt;3-&gt;5.</p>
 </blockquote>
 <hr>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * public class ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode next;</span><br><span class="line"> *     ListNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span><br><span class="line">public class Solution &#123;</span><br><span class="line">    public ListNode partition(ListNode head, int x) &#123;</span><br><span class="line">        if(head == null) return null;</span><br><span class="line">        List&lt;ListNode&gt; list1 = new ArrayList&lt;&gt;();</span><br><span class="line">        List&lt;ListNode&gt; list2 = new ArrayList&lt;&gt;();</span><br><span class="line">        ListNode p = head;</span><br><span class="line">        while (p != null) &#123;</span><br><span class="line">            if(p.val &lt; x) &#123;</span><br><span class="line">                list1.add(p);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                list2.add(p);</span><br><span class="line">            &#125;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if(list1.size() == 0 || list2.size() == 0)&#123;</span><br><span class="line">            return head;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            ListNode head1 = new ListNode(0);</span><br><span class="line">            ListNode head2 = new ListNode(0);</span><br><span class="line">            ListNode end = null;</span><br><span class="line">            ListNode p1 = head1;</span><br><span class="line">            ListNode p2 = head2;</span><br><span class="line"></span><br><span class="line">            for(int m = 0; m &lt; list1.size(); m++)&#123;</span><br><span class="line">                p1.val = list1.get(m).val;</span><br><span class="line">                if(m == list1.size()-1)&#123;</span><br><span class="line">                    p1.next = null;</span><br><span class="line">                    end = p1;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    p1.next = new ListNode(0);</span><br><span class="line">                &#125;</span><br><span class="line">                p1 = p1.next;</span><br><span class="line">            &#125;</span><br><span class="line">            for(int n = 0; n &lt; list2.size(); n++)&#123;</span><br><span class="line">                p2.val = list2.get(n).val;</span><br><span class="line">                if(n == list2.size()-1)&#123;</span><br><span class="line">                    p2.next = null;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    p2.next = new ListNode(0);</span><br><span class="line">                &#125;</span><br><span class="line">                p2 = p2.next;</span><br><span class="line">            &#125;</span><br><span class="line">            end.next = head2;</span><br><span class="line">            return head1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * public class ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode next;</span><br><span class="line"> *     ListNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">partition</span><span class="params">(ListNode head, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        List&lt;ListNode&gt; list1 = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        List&lt;ListNode&gt; list2 = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        ListNode p = head;</span><br><span class="line">        <span class="keyword">while</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(p.val &lt; x) &#123;</span><br><span class="line">                list1.add(p);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                list2.add(p);</span><br><span class="line">            &#125;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(list1.size() == <span class="number">0</span> || list2.size() == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ListNode head1 = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">            ListNode head2 = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">            ListNode end = <span class="keyword">null</span>;</span><br><span class="line">            ListNode p1 = head1;</span><br><span class="line">            ListNode p2 = head2;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">0</span>; m &lt; list1.size(); m++)&#123;</span><br><span class="line">                p1.val = list1.get(m).val;</span><br><span class="line">                <span class="keyword">if</span>(m == list1.size()-<span class="number">1</span>)&#123;</span><br><span class="line">                    p1.next = <span class="keyword">null</span>;</span><br><span class="line">                    end = p1;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    p1.next = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                p1 = p1.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> n = <span class="number">0</span>; n &lt; list2.size(); n++)&#123;</span><br><span class="line">                p2.val = list2.get(n).val;</span><br><span class="line">                <span class="keyword">if</span>(n == list2.size()-<span class="number">1</span>)&#123;</span><br><span class="line">                    p2.next = <span class="keyword">null</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    p2.next = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                p2 = p2.next;</span><br><span class="line">            &#125;</span><br><span class="line">            end.next = head2;</span><br><span class="line">            <span class="keyword">return</span> head1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
 <li>遍历一遍，将小于x的放在一个ArrayList中，将大于等于x的放在另一个ArrayList中。之后再分别构造链表，相连起来。</li>
-<li>思路相同，但是不必放入List在连起来构造链表，这样效率比较低。下面方法直接用指针完成：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public ListNode partition(ListNode head, int x) &#123;</span><br><span class="line">    ListNode head1 = new ListNode(0);</span><br><span class="line">    ListNode head2 = new ListNode(0);  </span><br><span class="line">    ListNode curr1 = head1;</span><br><span class="line">    ListNode curr2 = head2;      </span><br><span class="line">    while (head != null)&#123;</span><br><span class="line">        if (head.val &lt; x) &#123;</span><br><span class="line">            curr1.next = head;</span><br><span class="line">            curr1 = head;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            curr2.next = head;</span><br><span class="line">            curr2 = head;</span><br><span class="line">        &#125;</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    curr2.next = null;</span><br><span class="line">    curr1.next = head2.next;</span><br><span class="line">    return head1.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>思路相同，但是不必放入List在连起来构造链表，这样效率比较低。下面方法直接用指针完成：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">partition</span><span class="params">(ListNode head, <span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    ListNode head1 = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">    ListNode head2 = <span class="keyword">new</span> ListNode(<span class="number">0</span>);  </span><br><span class="line">    ListNode curr1 = head1;</span><br><span class="line">    ListNode curr2 = head2;      </span><br><span class="line">    <span class="keyword">while</span> (head != <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (head.val &lt; x) &#123;</span><br><span class="line">            curr1.next = head;</span><br><span class="line">            curr1 = head;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            curr2.next = head;</span><br><span class="line">            curr2 = head;</span><br><span class="line">        &#125;</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    curr2.next = <span class="keyword">null</span>;</span><br><span class="line">    curr1.next = head2.next;</span><br><span class="line">    <span class="keyword">return</span> head1.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
   
@@ -151,18 +151,18 @@ You should preserve the original relative order of the nodes in each of">
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/10/24/leetcode-83/" title="leetcode [#83]">
+ <a href="/2016/10/24/leetcode-82/" title="leetcode [#82]">
   <strong>上一篇：</strong><br/>
   <span>
-  leetcode [#83]</span>
+  leetcode [#82]</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/10/24/leetcode-142/"  title="leetcode [#142]">
+<a href="/2016/10/24/leetcode-83/"  title="leetcode [#83]">
  <strong>下一篇：</strong><br/> 
- <span>leetcode [#142]
+ <span>leetcode [#83]
 </span>
 </a>
 </div>
@@ -257,7 +257,7 @@ You should preserve the original relative order of the nodes in each of">
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -274,11 +274,11 @@ You should preserve the original relative order of the nodes in each of">
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -294,7 +294,7 @@ You should preserve the original relative order of the nodes in each of">
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -302,11 +302,11 @@ You should preserve the original relative order of the nodes in each of">
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -330,19 +330,7 @@ You should preserve the original relative order of the nodes in each of">
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -350,7 +338,19 @@ You should preserve the original relative order of the nodes in each of">
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -358,7 +358,7 @@ You should preserve the original relative order of the nodes in each of">
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -366,19 +366,7 @@ You should preserve the original relative order of the nodes in each of">
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -386,7 +374,15 @@ You should preserve the original relative order of the nodes in each of">
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -394,15 +390,11 @@ You should preserve the original relative order of the nodes in each of">
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -410,11 +402,11 @@ You should preserve the original relative order of the nodes in each of">
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -422,11 +414,15 @@ You should preserve the original relative order of the nodes in each of">
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -438,11 +434,11 @@ You should preserve the original relative order of the nodes in each of">
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -450,11 +446,15 @@ You should preserve the original relative order of the nodes in each of">
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>

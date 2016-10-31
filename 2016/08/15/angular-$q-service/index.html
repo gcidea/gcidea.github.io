@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/08/15/angular-$q-service/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　$q服务的实现与ES6(ES2015)中的promise十分相似，这种方式改变了传统长期使用的JavaScript异步编程方式-处理回调函数。试想一下，如果有这样的业务逻辑：我们需要根据某个异步ajax请求的结果是否符合要求，再发起一个异步请求，在回调函数中对响应数据进行请求后再发起异步请求… …当出现这样的异步嵌套逻辑，代码结构就会变得很差。promise正是改变了这种情况，以一种流式的">
-<meta property="og:updated_time" content="2016-10-07T05:47:57.251Z">
+<meta property="og:updated_time" content="2016-10-31T12:24:14.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AngularJs中$q服务(service)的使用">
 <meta name="twitter:description" content="前言　　$q服务的实现与ES6(ES2015)中的promise十分相似，这种方式改变了传统长期使用的JavaScript异步编程方式-处理回调函数。试想一下，如果有这样的业务逻辑：我们需要根据某个异步ajax请求的结果是否符合要求，再发起一个异步请求，在回调函数中对响应数据进行请求后再发起异步请求… …当出现这样的异步嵌套逻辑，代码结构就会变得很差。promise正是改变了这种情况，以一种流式的">
@@ -100,7 +100,7 @@
 <hr>
 <h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>　　$q是AngularJs中的一个服务，可以用来异步执行函数，并在异步请求执行完成时使用返回的结果。$q是对<a href="https://github.com/kriskowal/q" target="_blank" rel="external">Kris Kowal提出的Kris Kowal’s Q中的promises/deferred对象</a>的一种实现。$q有两种使用风格，一种和Kris Kowal’s Q或者jQuery中的defer实现类似，另一种实现与ES6(ES2015)中的promise十分相似。</p>
 <hr>
-<h2 id="q构造函数"><a href="#q构造函数" class="headerlink" title="$q构造函数"></a>$q构造函数</h2><p>　　上面提到的ES6流式风格的promise对象本质上就是把$q用作构造函数，并且这个构造函数的第一个参数是一个函数-resolver，构造函数返回一个promise对象。这个结果和原生的ES6的promise对象是十分类似的。<br>　　要注意的是，虽然能够按照构造函数的形式来使用$q，但是并不是ES6的promise对象的所有方法在这里都得到了支持。<br>　　根据AngularJs的官方文档，$q构造函数的典型使用如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// for the purpose of this example let&apos;s assume that variables `$q` and `okToGreet`</span><br><span class="line">// are available in the current lexical scope (they could have been injected or passed in).</span><br><span class="line"></span><br><span class="line">function asyncGreet(name) &#123;</span><br><span class="line">  // perform some asynchronous operation, resolve or reject the promise when appropriate.</span><br><span class="line">  return $q(function(resolve, reject) &#123;</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">      if (okToGreet(name)) &#123;</span><br><span class="line">        resolve(&apos;Hello, &apos; + name + &apos;!&apos;);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        reject(&apos;Greeting &apos; + name + &apos; is not allowed.&apos;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var promise = asyncGreet(&apos;Robin Hood&apos;);</span><br><span class="line">promise.then(function(greeting) &#123;</span><br><span class="line">  alert(&apos;Success: &apos; + greeting);</span><br><span class="line">&#125;, function(reason) &#123;</span><br><span class="line">  alert(&apos;Failed: &apos; + reason);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="q构造函数"><a href="#q构造函数" class="headerlink" title="$q构造函数"></a>$q构造函数</h2><p>　　上面提到的ES6流式风格的promise对象本质上就是把$q用作构造函数，并且这个构造函数的第一个参数是一个函数-resolver，构造函数返回一个promise对象。这个结果和原生的ES6的promise对象是十分类似的。<br>　　要注意的是，虽然能够按照构造函数的形式来使用$q，但是并不是ES6的promise对象的所有方法在这里都得到了支持。<br>　　根据AngularJs的官方文档，$q构造函数的典型使用如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for the purpose of this example let's assume that variables `$q` and `okToGreet`</span></span><br><span class="line"><span class="comment">// are available in the current lexical scope (they could have been injected or passed in).</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">asyncGreet</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// perform some asynchronous operation, resolve or reject the promise when appropriate.</span></span><br><span class="line">  <span class="keyword">return</span> $q(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (okToGreet(name)) &#123;</span><br><span class="line">        resolve(<span class="string">'Hello, '</span> + name + <span class="string">'!'</span>);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        reject(<span class="string">'Greeting '</span> + name + <span class="string">' is not allowed.'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> promise = asyncGreet(<span class="string">'Robin Hood'</span>);</span><br><span class="line">promise.then(<span class="function"><span class="keyword">function</span>(<span class="params">greeting</span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">'Success: '</span> + greeting);</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">'Failed: '</span> + reason);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>上面这种写法，执行asyncGreet(‘Robin Hood’)返回了一个$q构造函数，该函数执行后要么调用resolve，要么调用reject，返回一个promise对象。之后再调用这个对象上的then()方法，具体下面有解释。</p>
 <hr>
 <h2 id="Deferred-API"><a href="#Deferred-API" class="headerlink" title="Deferred API"></a>Deferred API</h2><p>　　一个新的deferred实例—延迟对象实例，是通过调用$q.defer()创建的。<br>　　创建deferred对象的目的是：</p>
@@ -112,7 +112,7 @@
 <ul>
 <li><code>promise</code></li>
 </ul>
-<p>可通过下面方法调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var deferred = $q.defer();</span><br><span class="line">var promise = deferred.promise;</span><br></pre></td></tr></table></figure></p>
+<p>可通过下面方法调用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> deferred = $q.defer();</span><br><span class="line"><span class="keyword">var</span> promise = deferred.promise;</span><br></pre></td></tr></table></figure></p>
 <p>对应上述2，$q.defer()创建的延迟对象实例有以下方法：</p>
 <ul>
 <li><code>resolve(value)</code><br>　　表明成功解决了派生的promise对象，此时value值将会作为参数值传递给对应promise对象的then()方法的第一个参数，而这个第一个参数是一个函数，即successCallback成功回调函数。也就是value值传递给successCallback函数。<br>　　而如果这个value值是通过”$q.reject()”创建的rejection(实际上也是一个promise对象，详见下文)，那么表明deferred的promise对象未被成功处理。</li>
@@ -127,7 +127,7 @@
 <li><code>finally(callback, notifyCallback)</code><br>　　此方法允许观察处理一个promise对象是完成还是拒绝。但这样做不用修改最后的value值。 这可以用来做一些释放资源或者清理无用对象的工作,不管promise 被拒绝还是解决。</li>
 </ul>
 <hr>
-<h2 id="链式promises"><a href="#链式promises" class="headerlink" title="链式promises"></a>链式promises</h2><p>　　由于调用promise对象的then()方法会返回一个新派生出的promise对象，因此很容易创建一个链式的promise调用。如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">promiseB = promiseA.then(function(result) &#123;</span><br><span class="line">  return result + 1;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//一旦promiseA调用完成，就会执行promiseB，并且promiseB的值是promiseA返回的结果值加1。</span><br></pre></td></tr></table></figure></p>
+<h2 id="链式promises"><a href="#链式promises" class="headerlink" title="链式promises"></a>链式promises</h2><p>　　由于调用promise对象的then()方法会返回一个新派生出的promise对象，因此很容易创建一个链式的promise调用。如下所示：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">promiseB = promiseA.then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> result + <span class="number">1</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//一旦promiseA调用完成，就会执行promiseB，并且promiseB的值是promiseA返回的结果值加1。</span></span><br></pre></td></tr></table></figure></p>
 <p>我们可以创建任意长度的链式调用。并且由于一个promise对象的执行可能要受另一个promise对象的影响，这使得在链上任意一点暂停或者推迟promise的执行成为可能。这一点很有用，比如http响应拦截器，具体参考<a href="http://gcidea.info/2016/08/15/angular-error-interceptor/" target="_blank" rel="external">AngularJs中使用拦截器interceptor对全局HTTP错误进行统一处理</a>。</p>
 <hr>
 <h2 id="Kris-Kowal’s-Q和-q的区别"><a href="#Kris-Kowal’s-Q和-q的区别" class="headerlink" title="Kris Kowal’s Q和$q的区别"></a>Kris Kowal’s Q和$q的区别</h2><p>主要有两点不同：</p>
@@ -148,14 +148,14 @@
 <li><p>defer();<br><strong>解释</strong><br>创建一个延迟对象deferred，它代表着一个在将来完成的任务。<br><strong>参数</strong><br>无。<br><strong>返回值</strong><br>一个新的deferred实例。</p>
 </li>
 <li><p>reject(reason);<br><strong>解释</strong><br>　　创建一个promise对象，这个对象的处理状态是被拒绝，参数reson表明具体原因。这个API应该用来在链式promise中向前传递rejection。如果是在处理链式调用中的最后一个promise对象，就不用担心这个了。<br>　　当把deferreds/promises和有类似行为的try/catch/throw作比较时，应该这样想：把<code>reject</code>类比为JavaScript中的<code>throw</code>关键字。这就意味着，如果你通过promise的errorCallback捕获到了一个错误，并且你想将这个错误从当前promise对象向派生出的promise对象继续传播时，你就必须将这个错误重新抛出，而方法就是，使用该API，通过<code>reject(reason);</code>返回一个rejection。示例如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">promiseB = promiseA.then(function(result) &#123;</span><br><span class="line">  // success: do something and resolve promiseB</span><br><span class="line">  //          with the old or a new result</span><br><span class="line">  return result;</span><br><span class="line">&#125;, function(reason) &#123;</span><br><span class="line">  // error: handle the error if possible and</span><br><span class="line">  //        resolve promiseB with newPromiseOrValue,</span><br><span class="line">  //        otherwise forward the rejection to promiseB</span><br><span class="line">  if (canHandle(reason)) &#123;</span><br><span class="line">   // handle the error and recover</span><br><span class="line">   return newPromiseOrValue;</span><br><span class="line">  &#125;</span><br><span class="line">  return $q.reject(reason);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">promiseB = promiseA.then(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// success: do something and resolve promiseB</span></span><br><span class="line">  <span class="comment">//          with the old or a new result</span></span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">reason</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// error: handle the error if possible and</span></span><br><span class="line">  <span class="comment">//        resolve promiseB with newPromiseOrValue,</span></span><br><span class="line">  <span class="comment">//        otherwise forward the rejection to promiseB</span></span><br><span class="line">  <span class="keyword">if</span> (canHandle(reason)) &#123;</span><br><span class="line">   <span class="comment">// handle the error and recover</span></span><br><span class="line">   <span class="keyword">return</span> newPromiseOrValue;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> $q.reject(reason);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><strong>参数</strong><br><code>reson</code>(类型任意)。可以是代表着异常原因的常量、消息、对象等。<br><strong>返回值</strong><br>promise对象。并且这个对象已经被处理为rejected，参数就是reson。</p>
 <ul>
 <li>when(value, [successCallback], [errorCallback], [progressCallback]);<br><strong>解释</strong><br>该方法会将一个普通任意值或者第三方的promise对象统一包装成$q的promise对象，第一个参数若不是promise对象则直接运行successCallback，若为promise那么返回的promise其实就是对这个promise类型的参数的一个包装，被传入的这个promise对应的defer发送的消息，会被我们when函数返回的promise对象所接收到。示例如下：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var promise = $q.when(&quot;a value&quot;, function(val) &#123;</span><br><span class="line">       console.log(&quot;a value---resolve,this is &quot; + val);</span><br><span class="line">&#125;, function() &#123;</span><br><span class="line">       console.log(&quot;a value---reject&quot;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">var defer1 = $q.defer();</span><br><span class="line">var promise1 = defer1.promise;</span><br><span class="line">var promise2 = $q.when(promise1, function(val) &#123;</span><br><span class="line">       console.log(&quot;a (3rd party) then-able promise,this is &quot; + val);</span><br><span class="line">&#125;, function() &#123;</span><br><span class="line">       console.log(&quot;a (3rd party) then-able promise---reject&quot;);</span><br><span class="line">&#125;);</span><br><span class="line">defer1.reject(1);</span><br><span class="line"></span><br><span class="line">//运行结果：</span><br><span class="line">//a value---resolve,this is a value</span><br><span class="line">//a (3rd party) then-able promise---reject</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = $q.when(<span class="string">"a value"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">"a value---resolve,this is "</span> + val);</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">"a value---reject"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> defer1 = $q.defer();</span><br><span class="line"><span class="keyword">var</span> promise1 = defer1.promise;</span><br><span class="line"><span class="keyword">var</span> promise2 = $q.when(promise1, <span class="function"><span class="keyword">function</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">"a (3rd party) then-able promise,this is "</span> + val);</span><br><span class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">"a (3rd party) then-able promise---reject"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">defer1.reject(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//运行结果：</span></span><br><span class="line"><span class="comment">//a value---resolve,this is a value</span></span><br><span class="line"><span class="comment">//a (3rd party) then-able promise---reject</span></span><br></pre></td></tr></table></figure>
 <p><strong>参数</strong><br><code>value</code>：任意值或者promise对象<br><code>successCallback</code>：可选，成功回调函数<br><code>errorCallback</code>：可选，错误回调函数<br><code>progressCallback</code>：可选，执行过程通知回调函数<br><strong>返回值</strong><br>传入值包装后的promise对象。</p>
 <ul>
 <li><p>resolve(value, [successCallback], [errorCallback], [progressCallback]);<br>这是when()方法的一个别名，是为了保持和ES6的命名一致性。</p>
@@ -166,10 +166,10 @@
 </li>
 </ul>
 <hr>
-<h2 id="使用案例一"><a href="#使用案例一" class="headerlink" title="使用案例一"></a>使用案例一</h2><p>　　$q提供了很多方法和使用形式，但在实际中还没有用到太复杂的。下面这段代码是对$q的一个简单使用：列表的更新方法<code>ctrl.update</code>是一个异步操作，不知道确切在哪个时间点返回，那么这正符合$q的使用场景。<br>1.其中更新方法<code>ctrl.update</code>的实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function(reqInfo,toTable) &#123;</span><br><span class="line">    var params = &#123;</span><br><span class="line">        &apos;taskName&apos;:$scope.taskName,</span><br><span class="line">        &apos;createUser&apos;:$scope.createUser,</span><br><span class="line">        &apos;taskStatus&apos;:$scope.taskStatus</span><br><span class="line">    &#125;;</span><br><span class="line">    params = angular.extend(params,reqInfo);</span><br><span class="line">    $http.get(&quot;/rest/idap/taskList/index&quot;,&#123;params:params&#125;).success(function(result)&#123;</span><br><span class="line">        if(result.success)&#123;</span><br><span class="line">            toTable(result.data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用案例一"><a href="#使用案例一" class="headerlink" title="使用案例一"></a>使用案例一</h2><p>　　$q提供了很多方法和使用形式，但在实际中还没有用到太复杂的。下面这段代码是对$q的一个简单使用：列表的更新方法<code>ctrl.update</code>是一个异步操作，不知道确切在哪个时间点返回，那么这正符合$q的使用场景。<br>1.其中更新方法<code>ctrl.update</code>的实现如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">reqInfo,toTable</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> params = &#123;</span><br><span class="line">        <span class="string">'taskName'</span>:$scope.taskName,</span><br><span class="line">        <span class="string">'createUser'</span>:$scope.createUser,</span><br><span class="line">        <span class="string">'taskStatus'</span>:$scope.taskStatus</span><br><span class="line">    &#125;;</span><br><span class="line">    params = angular.extend(params,reqInfo);</span><br><span class="line">    $http.get(<span class="string">"/rest/idap/taskList/index"</span>,&#123;params:params&#125;).success(<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(result.success)&#123;</span><br><span class="line">            toTable(result.data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>我们不需要管其中具体的业务逻辑，比如请求的参数、路由之类的。我们只需要知道，$http.get发起了一个异步请求，当成功执行时，我们会将返回的数据result.data传递给作为参数的函数toTable，由这个函数来将数据渲染到表格中。</p>
-<p>2.接下来就是核心：$q如何使用。执行$q(function(resolve, reject) {})这部分后会返回一个新创建的promise对象，我们在function(resolve, reject) {}中发起数据查询请求：pageInfo只是一个配置表格分页信息的普通对象，不需多管。resolve是当promise对象成功执行时候用来进行处理的函数。我们就把这个函数传递给toTable方法，用来当查询成功时对表格进行数据渲染。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$q(function(resolve, reject) &#123;</span><br><span class="line">	if(!ctrl.removeLoadingBox)&#123;</span><br><span class="line">		loadingDialogId = Box.startLoading(&quot;查询中...&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	ctrl.update(&#123;reqInfo:pageInfo,toTable:resolve&#125;);</span><br><span class="line">&#125;).then(function(msg) &#123;</span><br><span class="line">	if(!ctrl.removeLoadingBox)&#123;</span><br><span class="line">		setTimeout(function(id)&#123;</span><br><span class="line">			return function() &#123;</span><br><span class="line">				Box.stopLoading(id);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;(loadingDialogId),100);</span><br><span class="line">	&#125;</span><br><span class="line">	if(angular.isObject(msg)) &#123;</span><br><span class="line">		ctrl.config = msg;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		Box.error(msg);  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>3.既然执行$q后返回promise对象，我们由上述promise API可知，通过then()方法的第一个参数可以指定promise成功执行后的回调函数，我们就在这里来具体指定我们在2中说的resolve到底是怎么处理的，是怎样一个函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function(msg) &#123;</span><br><span class="line">	if(!ctrl.removeLoadingBox)&#123;</span><br><span class="line">		setTimeout(function(id)&#123;</span><br><span class="line">			return function() &#123;</span><br><span class="line">				Box.stopLoading(id);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;(loadingDialogId),100);</span><br><span class="line">	&#125;</span><br><span class="line">	if(angular.isObject(msg)) &#123;</span><br><span class="line">		ctrl.config = msg;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		Box.error(msg);  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.接下来就是核心：$q如何使用。执行$q(function(resolve, reject) {})这部分后会返回一个新创建的promise对象，我们在function(resolve, reject) {}中发起数据查询请求：pageInfo只是一个配置表格分页信息的普通对象，不需多管。resolve是当promise对象成功执行时候用来进行处理的函数。我们就把这个函数传递给toTable方法，用来当查询成功时对表格进行数据渲染。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$q(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!ctrl.removeLoadingBox)&#123;</span><br><span class="line">		loadingDialogId = Box.startLoading(<span class="string">"查询中..."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	ctrl.update(&#123;reqInfo:pageInfo,toTable:resolve&#125;);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!ctrl.removeLoadingBox)&#123;</span><br><span class="line">		setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">				Box.stopLoading(id);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;(loadingDialogId),<span class="number">100</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(angular.isObject(msg)) &#123;</span><br><span class="line">		ctrl.config = msg;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		Box.error(msg);  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>3.既然执行$q后返回promise对象，我们由上述promise API可知，通过then()方法的第一个参数可以指定promise成功执行后的回调函数，我们就在这里来具体指定我们在2中说的resolve到底是怎么处理的，是怎样一个函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!ctrl.removeLoadingBox)&#123;</span><br><span class="line">		setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">				Box.stopLoading(id);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;(loadingDialogId),<span class="number">100</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(angular.isObject(msg)) &#123;</span><br><span class="line">		ctrl.config = msg;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		Box.error(msg);  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>当promise成功执行，由1知道，传递给toTable()函数的参数是result.data，也就是说resolve()方法拿到的是result.data，也就是说successCallback-成功回调函数拿到的是result.data，那么上面的<code>msg</code>就是result.data，我们现在就可以拿着这个数据进行渲染了。这里我们只要把它赋值给ctrl.config即可（而config具体如何实现已经不是这里需要考虑的问题，总之它做的事情就是配置并渲染表格）。</p>
 <hr>
 <h2 id="使用案例二"><a href="#使用案例二" class="headerlink" title="使用案例二"></a>使用案例二</h2><p>　　另一个案例就是使用$q异步服务对全局HTTP请求错误的进行拦截处理，具体内容参考这一篇<a href="http://gcidea.info/2016/08/15/angular-error-interceptor/" target="_blank" rel="external">AngularJs中使用拦截器interceptor对全局HTTP错误进行统一处理</a>。</p>
@@ -315,7 +315,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -332,11 +332,11 @@
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -352,7 +352,7 @@
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -360,11 +360,11 @@
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -388,19 +388,7 @@
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -408,7 +396,19 @@
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -416,7 +416,7 @@
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -424,19 +424,7 @@
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -444,7 +432,15 @@
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -452,15 +448,11 @@
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -468,11 +460,11 @@
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -480,11 +472,15 @@
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -496,11 +492,11 @@
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -508,11 +504,15 @@
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>

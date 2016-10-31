@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="背景　　闭包是JavaScript中的一个重要概念。　　JavaScript采用词法作用域，函数的执行依赖于变量作用域，这个作用域是在函数定义时决定的，而不是函数调用时决定的。函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内，这就是闭包的特性。">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/demo-index.png">
-<meta property="og:updated_time" content="2016-06-14T15:26:51.383Z">
+<meta property="og:updated_time" content="2016-10-31T12:30:34.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript的闭包案例---1">
 <meta name="twitter:description" content="背景　　闭包是JavaScript中的一个重要概念。　　JavaScript采用词法作用域，函数的执行依赖于变量作用域，这个作用域是在函数定义时决定的，而不是函数调用时决定的。函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内，这就是闭包的特性。">
@@ -99,14 +99,14 @@
 		</div>
 		
 		<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>　　闭包是JavaScript中的一个重要概念。<br>　　JavaScript采用词法作用域，函数的执行依赖于变量作用域，这个作用域是在函数定义时决定的，而不是函数调用时决定的。函数对象可以通过作用域链相互关联起来，函数体内部的变量都可以保存在函数作用域内，这就是闭包的特性。<br>  <a id="more"></a></p>
-<h2 id="实际场景"><a href="#实际场景" class="headerlink" title="实际场景"></a>实际场景</h2><p>　　在完成一个小demo时，正巧遇到了这个问题。先说一下这个demo要实现的基本功能吧。要求能让用户输入城市名称和对应的空气质量指数（输入的名称和指数都要做表单验证），输入完成后点击确定，将合法的数据显示在本页的列表中，可以增加多条记录。并且已添加的数据可以逐条删除。这里仅从功能展示，没有使用css美化页面：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/demo-index.png" alt=""><br>　　在做删除功能时，按着想法先写了一遍，进行实际测试时候发现一个问题：对于最后一列的删除按钮，无论点击哪一个，都是列表中最后一条数据被删除了。<br>　　开始代码是这样写的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 渲染aqi-table表格</span><br><span class="line"> */</span><br><span class="line">function renderAqiList() &#123;</span><br><span class="line">    var aqiTable = document.getElementById(&quot;aqi-table&quot;);</span><br><span class="line">    aqiTable.innerHTML = &quot;&quot;;</span><br><span class="line">    var t_row = document.createElement(&quot;tr&quot;);</span><br><span class="line">    var t_city = document.createElement(&quot;td&quot;);</span><br><span class="line">    var t_score = document.createElement(&quot;td&quot;);</span><br><span class="line">    var t_oper = document.createElement(&quot;td&quot;);</span><br><span class="line">    t_city.innerHTML = &quot;城市&quot;;</span><br><span class="line">    t_score.innerHTML = &quot;空气质量&quot;;</span><br><span class="line">    t_oper.innerHTML = &quot;操作&quot;;</span><br><span class="line">    t_row.appendChild(t_city);</span><br><span class="line">    t_row.appendChild(t_score);</span><br><span class="line">    t_row.appendChild(t_oper);</span><br><span class="line">    aqiTable.appendChild(t_row);</span><br><span class="line">    //遍历对象中所有属性渲染表格</span><br><span class="line">    for (var name in aqiData)&#123;</span><br><span class="line">        var newLi = document.createElement(&quot;tr&quot;);</span><br><span class="line">        var cityName = document.createElement(&quot;td&quot;);</span><br><span class="line">        var score = document.createElement(&quot;td&quot;);</span><br><span class="line">        var oper = document.createElement(&quot;td&quot;);</span><br><span class="line">        var delBtn = document.createElement(&quot;button&quot;);</span><br><span class="line">        cityName.innerHTML = name;</span><br><span class="line">        score.innerHTML = aqiData[name];</span><br><span class="line">        delBtn.innerHTML = &quot;删除&quot;;</span><br><span class="line">        delBtn.setAttribute(&quot;city&quot;, name);</span><br><span class="line">        delBtn.onclick = function ()&#123;</span><br><span class="line">                delBtnHandle(name);</span><br><span class="line">        &#125;;</span><br><span class="line">        oper.appendChild(delBtn);</span><br><span class="line">        newLi.appendChild(cityName);</span><br><span class="line">        newLi.appendChild(score);</span><br><span class="line">        newLi.appendChild(oper);</span><br><span class="line">        aqiTable.appendChild(newLi);</span><br><span class="line">    &#125;</span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="实际场景"><a href="#实际场景" class="headerlink" title="实际场景"></a>实际场景</h2><p>　　在完成一个小demo时，正巧遇到了这个问题。先说一下这个demo要实现的基本功能吧。要求能让用户输入城市名称和对应的空气质量指数（输入的名称和指数都要做表单验证），输入完成后点击确定，将合法的数据显示在本页的列表中，可以增加多条记录。并且已添加的数据可以逐条删除。这里仅从功能展示，没有使用css美化页面：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/demo-index.png" alt=""><br>　　在做删除功能时，按着想法先写了一遍，进行实际测试时候发现一个问题：对于最后一列的删除按钮，无论点击哪一个，都是列表中最后一条数据被删除了。<br>　　开始代码是这样写的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 渲染aqi-table表格</span><br><span class="line"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">renderAqiList</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> aqiTable = <span class="built_in">document</span>.getElementById(<span class="string">"aqi-table"</span>);</span><br><span class="line">    aqiTable.innerHTML = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">var</span> t_row = <span class="built_in">document</span>.createElement(<span class="string">"tr"</span>);</span><br><span class="line">    <span class="keyword">var</span> t_city = <span class="built_in">document</span>.createElement(<span class="string">"td"</span>);</span><br><span class="line">    <span class="keyword">var</span> t_score = <span class="built_in">document</span>.createElement(<span class="string">"td"</span>);</span><br><span class="line">    <span class="keyword">var</span> t_oper = <span class="built_in">document</span>.createElement(<span class="string">"td"</span>);</span><br><span class="line">    t_city.innerHTML = <span class="string">"城市"</span>;</span><br><span class="line">    t_score.innerHTML = <span class="string">"空气质量"</span>;</span><br><span class="line">    t_oper.innerHTML = <span class="string">"操作"</span>;</span><br><span class="line">    t_row.appendChild(t_city);</span><br><span class="line">    t_row.appendChild(t_score);</span><br><span class="line">    t_row.appendChild(t_oper);</span><br><span class="line">    aqiTable.appendChild(t_row);</span><br><span class="line">    <span class="comment">//遍历对象中所有属性渲染表格</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> name <span class="keyword">in</span> aqiData)&#123;</span><br><span class="line">        <span class="keyword">var</span> newLi = <span class="built_in">document</span>.createElement(<span class="string">"tr"</span>);</span><br><span class="line">        <span class="keyword">var</span> cityName = <span class="built_in">document</span>.createElement(<span class="string">"td"</span>);</span><br><span class="line">        <span class="keyword">var</span> score = <span class="built_in">document</span>.createElement(<span class="string">"td"</span>);</span><br><span class="line">        <span class="keyword">var</span> oper = <span class="built_in">document</span>.createElement(<span class="string">"td"</span>);</span><br><span class="line">        <span class="keyword">var</span> delBtn = <span class="built_in">document</span>.createElement(<span class="string">"button"</span>);</span><br><span class="line">        cityName.innerHTML = name;</span><br><span class="line">        score.innerHTML = aqiData[name];</span><br><span class="line">        delBtn.innerHTML = <span class="string">"删除"</span>;</span><br><span class="line">        delBtn.setAttribute(<span class="string">"city"</span>, name);</span><br><span class="line">        delBtn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">                delBtnHandle(name);</span><br><span class="line">        &#125;;</span><br><span class="line">        oper.appendChild(delBtn);</span><br><span class="line">        newLi.appendChild(cityName);</span><br><span class="line">        newLi.appendChild(score);</span><br><span class="line">        newLi.appendChild(oper);</span><br><span class="line">        aqiTable.appendChild(newLi);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>　　其中最关键的是给删除按钮绑定事件：</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">delBtn.onclick = function ()&#123;</span><br><span class="line">        delBtnHandle(name);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">delBtn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        delBtnHandle(name);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>　　这种做法想当然的认为，只要发生click事件时候，调用delBtnHandle()函数，并把要删除城市对应的name参数传递过去就好了，但在js中并不是这么执行的，这就要考虑到闭包的概念了。换做如下写法，问题就得到了解决。</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/*难点：js闭包的运用，防止出现以下错误：for循环时动态绑定，使得onclick</span><br><span class="line"> 事件需要的name只能取到最后一个值而不是每一次遍历*/</span><br><span class="line">delBtn.onclick = function (asd) &#123;</span><br><span class="line">     return function ()&#123;</span><br><span class="line">     delBtnHandle(asd);</span><br><span class="line">　　　&#125;</span><br><span class="line">&#125;(name);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*难点：js闭包的运用，防止出现以下错误：for循环时动态绑定，使得onclick</span><br><span class="line"> 事件需要的name只能取到最后一个值而不是每一次遍历*/</span></span><br><span class="line">delBtn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">asd</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">     delBtnHandle(asd);</span><br><span class="line">　　　&#125;</span><br><span class="line">&#125;(name);</span><br></pre></td></tr></table></figure>
 </blockquote>
   
 	</div>
@@ -250,7 +250,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -267,11 +267,11 @@
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -287,7 +287,7 @@
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -295,11 +295,11 @@
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -323,19 +323,7 @@
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -343,7 +331,19 @@
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -351,7 +351,7 @@
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -359,19 +359,7 @@
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -379,7 +367,15 @@
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -387,15 +383,11 @@
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -403,11 +395,11 @@
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -415,11 +407,15 @@
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -431,11 +427,11 @@
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -443,11 +439,15 @@
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>

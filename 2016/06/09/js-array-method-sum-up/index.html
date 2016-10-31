@@ -47,7 +47,7 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/tolocaleString.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/array-toLocaleString-1.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/array-toLocaleString-2.png">
-<meta property="og:updated_time" content="2016-06-14T15:27:01.422Z">
+<meta property="og:updated_time" content="2016-10-31T12:35:51.402Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript数组方法对比总结">
 <meta name="twitter:description" content="前言　　本文对JavaScript中数组类型（Array）的常用方法进行总结，主要包括其API，使用示例和是否直接操作/修改原数组的分析。文章最后会对ECMAScript5中提供的数组方法进行小结。
@@ -135,8 +135,8 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 <hr>
 <h2 id="reverse"><a href="#reverse" class="headerlink" title="reverse()"></a>reverse()</h2><p><strong>作用</strong><br>　　颠倒数组中元素顺序。<br><strong>参数</strong><br>　　<code>array.reverse()</code><br><strong>返回值</strong><br>　　元素顺序调整后的数组。<br><strong>使用示例</strong><br>　　在chrome的控制台中做如下操作：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/array-reverse-1.png" alt=""><br><strong>是否直接操作/修改原数组</strong><br>　　在上图示例基础上，打印原数组值：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/array-reverse-2.png" alt=""><br>  由此可得：<br>  <font color="red">reverse()方法会直接修改操作的数组本身</font>。</p>
 <hr>
-<h2 id="sort"><a href="#sort" class="headerlink" title="sort()"></a>sort()</h2><p><strong>作用</strong><br>　　对数组元素进行排序。<br><strong>参数</strong><br>　　<code>array.sort()</code><br>　　<code>array.sort(orderfunc)</code><br>　　orderfunc： 用来指定如何排序的可选函数。<br><strong>返回值</strong><br>　　元素排序后的数组。<br><strong>说明</strong><br>　　1.不带参数时，默认按字母顺序（准确说是字符编码顺序）进行排序；<br>　　2.orderfunc可以自定义排序方式，该函数接受两个参数，返回一个数字，根据数字与0的大小关系确定排序方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//升序，m-n小于0，n大，表明m排在n前面</span><br><span class="line">function orderfunc(m,n) &#123;</span><br><span class="line">    return m - n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//降序，n-m小于0，m大，表明m排在n前面</span><br><span class="line">function orderfunc(m,n) &#123;</span><br><span class="line">    return n - m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="sort"><a href="#sort" class="headerlink" title="sort()"></a>sort()</h2><p><strong>作用</strong><br>　　对数组元素进行排序。<br><strong>参数</strong><br>　　<code>array.sort()</code><br>　　<code>array.sort(orderfunc)</code><br>　　orderfunc： 用来指定如何排序的可选函数。<br><strong>返回值</strong><br>　　元素排序后的数组。<br><strong>说明</strong><br>　　1.不带参数时，默认按字母顺序（准确说是字符编码顺序）进行排序；<br>　　2.orderfunc可以自定义排序方式，该函数接受两个参数，返回一个数字，根据数字与0的大小关系确定排序方式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//升序，m-n小于0，n大，表明m排在n前面</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">orderfunc</span>(<span class="params">m,n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> m - n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//降序，n-m小于0，m大，表明m排在n前面</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">orderfunc</span>(<span class="params">m,n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n - m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>使用示例</strong><br>　　在chrome的控制台中做如下操作：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/array-sort-1.png" alt=""><br><strong>是否直接操作/修改原数组</strong><br>　　在上图示例基础上，打印原数组值：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/array-sort-2.png" alt=""><br>  由此可得：<br>  <font color="red">sort()方法会直接修改操作的数组本身</font>。</p>
 <hr>
 <h2 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h2><p><strong>作用</strong><br>　　连接数组。<br><strong>参数</strong><br>　　<code>array.concat(value1, value2, ...)</code><br>　　value1, value2, …： 要连接到数组中的元素。<br><strong>返回值</strong><br>　　连接新元素后的数组。<br><strong>说明</strong><br>　　1. 如果新连接的元素中任何一个自身就是数组，那么会将其每个元素依次进行连接（而不是将该数组元素作为一个独立的元素进行连接）。<br>　　2. 但是，如果某个新元素是一个数组，且这个数组中还有某些元素是数组，那么concat()方法并不会递归进行扁平化，也就是说：<br>  <code>var a = [1,2,3];</code><br>  <code>a.concat(4,[5,[6,7]]); //会返回 [1,2,3,4,5,[6,7]]</code> </p>
@@ -320,7 +320,7 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -337,11 +337,11 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -357,7 +357,7 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -365,11 +365,11 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -393,19 +393,7 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -413,7 +401,19 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -421,7 +421,7 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -429,19 +429,7 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -449,7 +437,15 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -457,15 +453,11 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -473,11 +465,11 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -485,11 +477,15 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -501,11 +497,11 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -513,11 +509,15 @@ join()作用　　将数组元素衔接为字符串。参数　　array.join()�
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>

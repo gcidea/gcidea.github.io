@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/setcookieapi.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/setcookiefalse.png">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/setcookietrue.png">
-<meta property="og:updated_time" content="2016-06-14T15:24:26.444Z">
+<meta property="og:updated_time" content="2016-10-31T12:27:17.870Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cookie相关总结">
 <meta name="twitter:description" content="前言　　本篇简单总结cookie的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且cookie相关是一个很大的话题，这里只是简单小结，主要包括：　　1.cookie相关介绍　　2.cookie安全性问题　　3.javascript对cookie的操作与使用　　4.cookie与session的对比分析　　5.cookie在实际开发中的使用
@@ -208,10 +208,10 @@
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>简单来讲，关于cookie记住3句话：<br>　1.首次由服务端生成，放入set-cookie字段传回给客户端；<br>　2.客户端请求报文首部加入该cookie；<br>　3.服务端识别该cookie，从而确定用户身份。</p>
 <hr>
 <h2 id="cookie安全性问题"><a href="#cookie安全性问题" class="headerlink" title="cookie安全性问题"></a>cookie安全性问题</h2><p>　　cookie在提供便利的同时，确实存在安全性问题，它可能被非法使用冒充身份。Cookie记录了用户的帐户ID、密码之类的信息，通常使用MD5方法加密后在网上传递。但是，Cookie以纯文本的形式在浏览器和服务器之间传送，很容易被他人非法截获和利用。并且截获者不需要知道这些字符串的含义，只要把别人的Cookie向服务器提交，且能够通过验证，就可以冒充受害人的身份登陆网站，这种行为就叫做Cookie欺骗。</p>
-<h3 id="httpOnly"><a href="#httpOnly" class="headerlink" title="httpOnly"></a>httpOnly</h3><p>　　上述cookie属性中的httpOnly是安全性的解决方案之一。设置为true后，JavaScript是无法获取cookie的，可防止XSS（跨站脚本攻击）等。详见如下演示：<br>1.测试程序如下：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace Home\Controller;</span><br><span class="line">use Think\Controller;</span><br><span class="line">class IndexController extends Controller &#123;</span><br><span class="line">    public function index()&#123;</span><br><span class="line">        setcookie(&quot;sid&quot;, &quot;this is a cookie test&quot;, NULL, NULL, NULL, NULL, false);</span><br><span class="line">        $this-&gt;display();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>根据setcookie()函数的API：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/setcookieapi.png" alt=""><br>此时设置httpOnly的属性为false；客户端应该可以到sid=this is a cookie test这个cookie，验证代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    $(function()&#123;</span><br><span class="line">        $(&quot;#cookieBtn&quot;).click(function()&#123;</span><br><span class="line">            alert(document.cookie);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="httpOnly"><a href="#httpOnly" class="headerlink" title="httpOnly"></a>httpOnly</h3><p>　　上述cookie属性中的httpOnly是安全性的解决方案之一。设置为true后，JavaScript是无法获取cookie的，可防止XSS（跨站脚本攻击）等。详见如下演示：<br>1.测试程序如下：<br>  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Home</span>\<span class="title">Controller</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Controller</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> <span class="keyword">extends</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span>&#123;</span><br><span class="line">        setcookie(<span class="string">"sid"</span>, <span class="string">"this is a cookie test"</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">false</span>);</span><br><span class="line">        $this-&gt;display();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>根据setcookie()函数的API：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/setcookieapi.png" alt=""><br>此时设置httpOnly的属性为false；客户端应该可以到sid=this is a cookie test这个cookie，验证代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">"#cookieBtn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="built_in">document</span>.cookie);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>点击“查看cookie信息”按钮，显示结果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/setcookiefalse.png" alt=""><br>结果符合预期。</p>
-<p>现在更改为true，开启httpOnly:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace Home\Controller;</span><br><span class="line">use Think\Controller;</span><br><span class="line">class IndexController extends Controller &#123;</span><br><span class="line">    public function index()&#123;</span><br><span class="line">        setcookie(&quot;sid&quot;, &quot;this is a cookie test&quot;, NULL, NULL, NULL, NULL, true);</span><br><span class="line">        $this-&gt;display();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>现在更改为true，开启httpOnly:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Home</span>\<span class="title">Controller</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Controller</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> <span class="keyword">extends</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span>&#123;</span><br><span class="line">        setcookie(<span class="string">"sid"</span>, <span class="string">"this is a cookie test"</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">true</span>);</span><br><span class="line">        $this-&gt;display();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>点击“查看cookie信息”按钮，显示结果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/setcookietrue.png" alt=""><br>可以看出此时已经无法通过JavaScript获取cookie</p>
 <p>但是，这种方式也还是有漏洞的，具体参见这篇文章：<a href="http://netsecurity.51cto.com/art/201404/435401.htm" target="_blank" rel="external">http://netsecurity.51cto.com/art/201404/435401.htm</a></p>
 <blockquote>
@@ -220,10 +220,10 @@
 <hr>
 <h2 id="JavaScript对cookie的操作与使用"><a href="#JavaScript对cookie的操作与使用" class="headerlink" title="JavaScript对cookie的操作与使用"></a>JavaScript对cookie的操作与使用</h2><p>（注：以下内容主要为引用。）</p>
 <h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>　　JavaScript是运行在客户端的脚本，因此一般是不能够设置Session的，因为Session是运行在服务器端的。而cookie是运行在客户端的，所以可以用JS来设置cookie。假设有这样一种情况，在某个用例流程中，由A页面跳至B页面，若在A页面中采用JS用变量temp保存了某一变量的值，在B页面的时候，同样需要使用JS来引用temp的变量值，对于JS中的全局变量或者静态变量的生命周期是有限的，当发生页面跳转或者页面关闭的时候，这些变量的值会重新载入，即没有达到保存的效果。解决这个问题的最好的方案是采用cookie(本地文件)来保存该变量的值，那么如何来设置和读取cookie呢？首先需要稍微了解一下cookie的结构，简单地说：cookie是以键值对的形式保存的，即key=value的格式。各个cookie之间一般是以“;”分隔。</p>
-<h3 id="JS设置cookie"><a href="#JS设置cookie" class="headerlink" title="JS设置cookie"></a>JS设置cookie</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function setCookie(c_name,value,expiredays)&#123;</span><br><span class="line">    var exdate=new Date();</span><br><span class="line">    exdate.setDate(exdate.getDate()+expiredays);</span><br><span class="line">    document.cookie=c_name+ &quot;=&quot; +escape(value)+((expiredays==null) ? &quot;&quot; : &quot;; expires=&quot;+exdate.toGMTString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="JS获取cookie"><a href="#JS获取cookie" class="headerlink" title="JS获取cookie"></a>JS获取cookie</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function getCookie(c_name)&#123;</span><br><span class="line">    if (document.cookie.length&gt;0)&#123; </span><br><span class="line">        c_start=document.cookie.indexOf(c_name + &quot;=&quot;);</span><br><span class="line">        if (c_start!=-1)&#123; </span><br><span class="line">            c_start=c_start + c_name.length+1;</span><br><span class="line">            c_end=document.cookie.indexOf(&quot;;&quot;,c_start);</span><br><span class="line">            if (c_end==-1) &#123;</span><br><span class="line">                c_end=document.cookie.length;</span><br><span class="line">            &#125;</span><br><span class="line">            return unescape(document.cookie.substring(c_start,c_end));</span><br><span class="line">        &#125; </span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="JS删除cookie"><a href="#JS删除cookie" class="headerlink" title="JS删除cookie"></a>JS删除cookie</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function delCookie(name)&#123;</span><br><span class="line">    var exp = new Date();</span><br><span class="line">    exp.setTime(exp.getTime() - 1); //删除cookie即设置expires为一个过去的时间</span><br><span class="line">    var cval=getCookie(name);</span><br><span class="line">    if(cval!=null)&#123;</span><br><span class="line">        document.cookie= name + &quot;=&quot;+cval+&quot;;expires=&quot;+exp.toGMTString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="JS检查cookie"><a href="#JS检查cookie" class="headerlink" title="JS检查cookie"></a>JS检查cookie</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function checkCookie()</span><br><span class="line">&#123;</span><br><span class="line">    username=getCookie(&apos;username&apos;);</span><br><span class="line">    if (username!=null &amp;&amp; username!=&quot;&quot;)&#123;</span><br><span class="line">        alert(&apos;Welcome again &apos;+username+&apos;!&apos;);</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">      username=prompt(&apos;Please enter your name:&apos;,&quot;&quot;);</span><br><span class="line">      if (username!=null &amp;&amp; username!=&quot;&quot;)&#123;</span><br><span class="line">        setCookie(&apos;username&apos;,username,365);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JS设置cookie"><a href="#JS设置cookie" class="headerlink" title="JS设置cookie"></a>JS设置cookie</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">c_name,value,expiredays</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> exdate=<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    exdate.setDate(exdate.getDate()+expiredays);</span><br><span class="line">    <span class="built_in">document</span>.cookie=c_name+ <span class="string">"="</span> +<span class="built_in">escape</span>(value)+((expiredays==<span class="literal">null</span>) ? <span class="string">""</span> : <span class="string">"; expires="</span>+exdate.toGMTString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JS获取cookie"><a href="#JS获取cookie" class="headerlink" title="JS获取cookie"></a>JS获取cookie</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">c_name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.cookie.length&gt;<span class="number">0</span>)&#123; </span><br><span class="line">        c_start=<span class="built_in">document</span>.cookie.indexOf(c_name + <span class="string">"="</span>);</span><br><span class="line">        <span class="keyword">if</span> (c_start!=<span class="number">-1</span>)&#123; </span><br><span class="line">            c_start=c_start + c_name.length+<span class="number">1</span>;</span><br><span class="line">            c_end=<span class="built_in">document</span>.cookie.indexOf(<span class="string">";"</span>,c_start);</span><br><span class="line">            <span class="keyword">if</span> (c_end==<span class="number">-1</span>) &#123;</span><br><span class="line">                c_end=<span class="built_in">document</span>.cookie.length;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">unescape</span>(<span class="built_in">document</span>.cookie.substring(c_start,c_end));</span><br><span class="line">        &#125; </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JS删除cookie"><a href="#JS删除cookie" class="headerlink" title="JS删除cookie"></a>JS删除cookie</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delCookie</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> exp = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    exp.setTime(exp.getTime() - <span class="number">1</span>); <span class="comment">//删除cookie即设置expires为一个过去的时间</span></span><br><span class="line">    <span class="keyword">var</span> cval=getCookie(name);</span><br><span class="line">    <span class="keyword">if</span>(cval!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="built_in">document</span>.cookie= name + <span class="string">"="</span>+cval+<span class="string">";expires="</span>+exp.toGMTString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JS检查cookie"><a href="#JS检查cookie" class="headerlink" title="JS检查cookie"></a>JS检查cookie</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkCookie</span>(<span class="params"></span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    username=getCookie(<span class="string">'username'</span>);</span><br><span class="line">    <span class="keyword">if</span> (username!=<span class="literal">null</span> &amp;&amp; username!=<span class="string">""</span>)&#123;</span><br><span class="line">        alert(<span class="string">'Welcome again '</span>+username+<span class="string">'!'</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      username=prompt(<span class="string">'Please enter your name:'</span>,<span class="string">""</span>);</span><br><span class="line">      <span class="keyword">if</span> (username!=<span class="literal">null</span> &amp;&amp; username!=<span class="string">""</span>)&#123;</span><br><span class="line">        setCookie(<span class="string">'username'</span>,username,<span class="number">365</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>注：jQuery库也提供了对cookie操作的封装。具体可参见<a href="http://www.php100.com/html/program/jquery/2013/0905/6028.html" target="_blank" rel="external">http://www.php100.com/html/program/jquery/2013/0905/6028.html</a></p>
 </blockquote>
@@ -387,7 +387,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>49</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>57</sup></a></li>
 		  
 		
 		</ul>
@@ -404,11 +404,11 @@
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>56</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>48</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
 			
 		
 			
@@ -424,7 +424,7 @@
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -432,11 +432,11 @@
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -460,19 +460,7 @@
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -480,7 +468,19 @@
 			
 		
 			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -488,7 +488,7 @@
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -496,19 +496,7 @@
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -516,7 +504,15 @@
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -524,15 +520,11 @@
 			
 		
 			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
@@ -540,11 +532,11 @@
 			
 		
 			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -552,11 +544,15 @@
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
@@ -568,11 +564,11 @@
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -580,11 +576,15 @@
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 		</ul>
