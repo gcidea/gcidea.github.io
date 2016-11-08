@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>leetcode [#53] | GCidea&#39;s blog</title>
+    <title>leetcode [#415] | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
@@ -12,23 +12,18 @@
 
     
     <meta name="description" content="题目
-Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
-Examplegiven the array [-2,1,-3,4,-1,2,1,-5,4],the contiguous subarray [4,-1,2,1] has the la">
+Given n points in the plane that are all pairwise distinct, a “boomerang” is a tuple of points (i, j, k) such that the distance between i and j equals the distance between i and k (the order of the">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode [#53]">
-<meta property="og:url" content="http://yoursite.com/2016/10/29/leetcode-53/index.html">
+<meta property="og:title" content="leetcode [#415]">
+<meta property="og:url" content="http://yoursite.com/2016/11/08/leetcode-447/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="题目
-Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
-Examplegiven the array [-2,1,-3,4,-1,2,1,-5,4],the contiguous subarray [4,-1,2,1] has the la">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-53.png">
-<meta property="og:updated_time" content="2016-10-31T12:56:51.364Z">
+Given n points in the plane that are all pairwise distinct, a “boomerang” is a tuple of points (i, j, k) such that the distance between i and j equals the distance between i and k (the order of the">
+<meta property="og:updated_time" content="2016-11-08T15:25:18.518Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode [#53]">
+<meta name="twitter:title" content="leetcode [#415]">
 <meta name="twitter:description" content="题目
-Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
-Examplegiven the array [-2,1,-3,4,-1,2,1,-5,4],the contiguous subarray [4,-1,2,1] has the la">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-53.png">
+Given n points in the plane that are all pairwise distinct, a “boomerang” is a tuple of points (i, j, k) such that the distance between i and j equals the distance between i and k (the order of the">
 
     
     
@@ -84,14 +79,14 @@ Examplegiven the array [-2,1,-3,4,-1,2,1,-5,4],the contiguous subarray [4,-1,2,1
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/29/leetcode-53/" title="leetcode [#53]" itemprop="url">leetcode [#53]</a>
+      <a href="/2016/11/08/leetcode-447/" title="leetcode [#415]" itemprop="url">leetcode [#415]</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-29T09:26:39.000Z" itemprop="datePublished"> 发表于 2016-10-29</time>
+    <time datetime="2016-11-08T15:26:39.000Z" itemprop="datePublished"> 发表于 2016-11-08</time>
     
   </p>
 </header>
@@ -105,15 +100,20 @@ Examplegiven the array [-2,1,-3,4,-1,2,1,-5,4],the contiguous subarray [4,-1,2,1
 		</div>
 		
 		<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
-<p>Find the contiguous subarray within an array (containing at least one number) which has the largest sum.</p>
-<p><strong>Example</strong><br>given the array [-2,1,-3,4,-1,2,1,-5,4],<br>the contiguous subarray [4,-1,2,1] has the largest sum = 6.</p>
+<p>Given n points in the plane that are all pairwise distinct, a “boomerang” is a tuple of points (i, j, k) such that the distance between i and j equals the distance between i and k (the order of the tuple matters).</p>
+<p>Find the number of boomerangs. You may assume that n will be at most 500 and coordinates of points are all in the range [-10000, 10000] (inclusive).</p>
+<p><strong>Example</strong>:<br>Input:<br>[[0,0],[1,0],[2,0]]</p>
+<p>Output:<br>2</p>
+<p>Explanation:<br>The two boomerangs are [[1,0],[0,0],[2,0]] and [[1,0],[2,0],[0,0]]</p>
 </blockquote>
 <hr>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> maxSoFar = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> maxEndingHere = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">            maxEndingHere = Math.max(maxEndingHere + nums[i], nums[i]);</span><br><span class="line">            maxSoFar = Math.max(maxSoFar, maxEndingHere);   </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxSoFar;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numberOfBoomerangs</span><span class="params">(<span class="keyword">int</span>[][] points)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; points.length; i++) &#123;</span><br><span class="line">            HashMap&lt;Double, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Double, Integer&gt;();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; points.length; j++) &#123;</span><br><span class="line">                <span class="keyword">double</span> dis = distance(points[i], points[j]);</span><br><span class="line">                <span class="keyword">if</span> (!map.containsKey(dis)) &#123;</span><br><span class="line">                    map.put(dis, <span class="number">0</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                count += map.get(dis) * <span class="number">2</span>;</span><br><span class="line">                map.put(dis, map.get(dis) + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">distance</span><span class="params">(<span class="keyword">int</span>[] first, <span class="keyword">int</span>[] second)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a1 = first[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> b1 = first[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> a2 = second[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> b2 = second[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">return</span> Math.pow((a1-a2), <span class="number">2</span>) + Math.pow((b1-b2), <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
-<li>典型的动态规划问题。</li>
-<li>思路：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-53.png" alt=""></li>
+<li>本题题意是：在二维直角坐标系中给出一组坐标点，若存在三个点[i,j,k],i和j的距离与i和k的距离相等，则记为“一组”，求所都点中共有多少这样的组。</li>
+<li>计算距离单独抽出函数。</li>
+<li>两次遍历该二维数组，使用数据结构HashMap，计算两点间距离，如果map中不包含该距离值，将其存入map(作为key)，对应的值为0；如果map中已包含该距离值，则要将对应value更新：加一。表明截止目前，互相距离满足[i,j,k]关系的有value组。</li>
+<li>不能使用比如HashSet这样的数据结构，虽然可以存储距离且去重，但是无法记录重复次数，导致求和无法进行。</li>
 </ol>
   
 	</div>
@@ -137,7 +137,7 @@ Examplegiven the array [-2,1,-3,4,-1,2,1,-5,4],the contiguous subarray [4,-1,2,1
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/10/29/leetcode-53/" data-title="leetcode [#53] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/11/08/leetcode-447/" data-title="leetcode [#415] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -150,19 +150,11 @@ Examplegiven the array [-2,1,-3,4,-1,2,1,-5,4],the contiguous subarray [4,-1,2,1
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/30/leetcode-414/" title="leetcode [#414]">
-  <strong>上一篇：</strong><br/>
-  <span>
-  leetcode [#414]</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/29/leetcode-35/"  title="leetcode [#35]">
+<a href="/2016/11/08/web-real-time communication/"  title="Web即时通信技术小结">
  <strong>下一篇：</strong><br/> 
- <span>leetcode [#35]
+ <span>Web即时通信技术小结
 </span>
 </a>
 </div>
@@ -171,7 +163,7 @@ Examplegiven the array [-2,1,-3,4,-1,2,1,-5,4],the contiguous subarray [4,-1,2,1
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/29/leetcode-53/" data-title="leetcode [#53]" data-url="http://yoursite.com/2016/10/29/leetcode-53/"></div>
+	<div class="ds-thread" data-thread-key="2016/11/08/leetcode-447/" data-title="leetcode [#415]" data-url="http://yoursite.com/2016/11/08/leetcode-447/"></div>
 </section>
 
 
