@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>leetcode [#92] | GCidea&#39;s blog</title>
+    <title>leetcode [#6] | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
@@ -12,24 +12,21 @@
 
     
     <meta name="description" content="题目
-Reverse a linked list from position m to n. Do it in-place and in one-pass.
-Example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, m = 2 and n = 4,return 1-&amp;gt;4-&amp;gt;3-&amp;gt;2-&amp;gt;5-&amp;gt;NULL.
-Example:Give">
+The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+123P   A   H   NA P L S">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode [#92]">
-<meta property="og:url" content="http://yoursite.com/2016/10/27/leetcode-92/index.html">
+<meta property="og:title" content="leetcode [#6]">
+<meta property="og:url" content="http://yoursite.com/2016/11/08/leetcode-6/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="题目
-Reverse a linked list from position m to n. Do it in-place and in one-pass.
-Example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, m = 2 and n = 4,return 1-&amp;gt;4-&amp;gt;3-&amp;gt;2-&amp;gt;5-&amp;gt;NULL.
-Example:Give">
-<meta property="og:updated_time" content="2016-10-31T12:57:46.116Z">
+The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+123P   A   H   NA P L S">
+<meta property="og:updated_time" content="2016-11-08T06:32:50.650Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode [#92]">
+<meta name="twitter:title" content="leetcode [#6]">
 <meta name="twitter:description" content="题目
-Reverse a linked list from position m to n. Do it in-place and in one-pass.
-Example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL, m = 2 and n = 4,return 1-&amp;gt;4-&amp;gt;3-&amp;gt;2-&amp;gt;5-&amp;gt;NULL.
-Example:Give">
+The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+123P   A   H   NA P L S">
 
     
     
@@ -85,14 +82,14 @@ Example:Give">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/27/leetcode-92/" title="leetcode [#92]" itemprop="url">leetcode [#92]</a>
+      <a href="/2016/11/08/leetcode-6/" title="leetcode [#6]" itemprop="url">leetcode [#6]</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-27T15:26:39.000Z" itemprop="datePublished"> 发表于 2016-10-27</time>
+    <time datetime="2016-11-08T03:26:39.000Z" itemprop="datePublished"> 发表于 2016-11-08</time>
     
   </p>
 </header>
@@ -106,21 +103,25 @@ Example:Give">
 		</div>
 		
 		<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
-<p>Reverse a linked list from position m to n. Do it in-place and in one-pass.</p>
-<p><strong>Example</strong>:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL, m = 2 and n = 4,<br>return 1-&gt;4-&gt;3-&gt;2-&gt;5-&gt;NULL.</p>
-<p><strong>Example</strong>:<br>Given m, n satisfy the following condition:<br>1 ≤ m ≤ n ≤ length of list.</p>
+<p>The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">P   A   H   N</span><br><span class="line">A P L S I I G</span><br><span class="line">Y   I   R</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>And then read line by line: “PAHNAPLSIIGYIR”</p>
+<blockquote>
+<p>Write the code that will take a string and make this conversion given a number of rows:</p>
+</blockquote>
+<p><code>string convert(string text, int nRows);</code></p>
+<blockquote>
+<p>convert(“PAYPALISHIRING”, 3) should return “PAHNAPLSIIGYIR”.</p>
 </blockquote>
 <hr>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * public class ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode next;</span><br><span class="line"> *     ListNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span><span class="params">(ListNode head, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">int</span> tempA = -<span class="number">1</span>;</span><br><span class="line">        ListNode pre = <span class="keyword">null</span>;</span><br><span class="line">        ListNode begin = <span class="keyword">null</span>;</span><br><span class="line">        ListNode end = <span class="keyword">null</span>;</span><br><span class="line">        ListNode before = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        ListNode fakeHead = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        fakeHead.next = head;</span><br><span class="line">        ListNode p = fakeHead;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(p != <span class="keyword">null</span>)&#123;</span><br><span class="line">            tempA++;</span><br><span class="line">            <span class="keyword">if</span>(tempA &lt; m-<span class="number">1</span>)&#123;</span><br><span class="line">                p = p.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>((tempA+<span class="number">1</span>) == m) &#123;</span><br><span class="line">                pre = p;</span><br><span class="line">                before = p;</span><br><span class="line">                p = p.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(tempA == m) &#123;</span><br><span class="line">                begin = p;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(m &lt;= tempA &amp;&amp; tempA &lt;= n)&#123;</span><br><span class="line">                ListNode next = p.next;</span><br><span class="line">                p.next = pre;</span><br><span class="line">                pre = p;</span><br><span class="line">                <span class="keyword">if</span>(tempA == n)&#123;</span><br><span class="line">                    end = p;</span><br><span class="line">                &#125;</span><br><span class="line">                p = next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(tempA == n)&#123;</span><br><span class="line">                begin.next = p;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(before != <span class="keyword">null</span>)&#123;</span><br><span class="line">                    before.next = end;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fakeHead.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">convert</span><span class="params">(String s, <span class="keyword">int</span> numRows)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = s.length();</span><br><span class="line">        <span class="keyword">if</span>(len == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">if</span>(numRows == <span class="number">1</span>) <span class="keyword">return</span> s;</span><br><span class="line">        <span class="keyword">char</span>[] sArr = s.toCharArray();</span><br><span class="line">        StringBuilder[] b = <span class="keyword">new</span> StringBuilder[numRows];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; numRows; k++)&#123;</span><br><span class="line">            b[k] = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> piece = <span class="number">2</span> * (numRows - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i &lt; numRows)&#123;</span><br><span class="line">                b[i].append(sArr[i]);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (i % piece &gt;= <span class="number">0</span> &amp;&amp; i % piece &lt; numRows) &#123;</span><br><span class="line">                    b[i % piece].append(sArr[i]);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    b[piece - i % piece].append(sArr[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder resBuilder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> m = <span class="number">0</span>; m &lt; numRows; m++)&#123;</span><br><span class="line">            resBuilder.append(b[m]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>  resBuilder.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
-<li>使用“头指针”，从而去除头结点的特殊性。</li>
-<li>难度在于要只一遍遍历且原地完成。</li>
-<li>记录要翻转节点的前一个节点、要翻转的第一个节点、要翻转的最后一个节点。</li>
-<li>核心代码：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(m &lt;= tempA &amp;&amp; tempA &lt;= n)&#123;</span><br><span class="line">    ListNode next = p.next;</span><br><span class="line">    p.next = pre;</span><br><span class="line">    pre = p;</span><br><span class="line">    <span class="keyword">if</span>(tempA == n)&#123;</span><br><span class="line">        end = p;</span><br><span class="line">    &#125;</span><br><span class="line">    p = next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>按照给定的numRows，将字符串排列成锯齿状，并且按照行返回。</li>
+<li>先处理特殊情况。</li>
+<li>定义numRows个StringBuilder，重点在于找到每个字符应该加入的StringBuilder。对于下标满足i % piece &gt;= 0 &amp;&amp; i % piece &lt; numRows范围的字符串，即锯齿中“垂直方向”的一段，依次填入b[i % piece]即可；对于下标满足i % piece  &gt;= numRows范围的字符串，即锯齿中“倾斜方向”的一段，依次填入b[piece - i % piece]即可。</li>
 </ol>
-<p>是使用了链表翻转的典型做法。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -143,7 +144,7 @@ Example:Give">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/10/27/leetcode-92/" data-title="leetcode [#92] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/11/08/leetcode-6/" data-title="leetcode [#6] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -157,18 +158,18 @@ Example:Give">
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/10/28/leetcode-88/" title="leetcode [#88]">
+ <a href="/2016/11/08/leetcode-8/" title="leetcode [#8]">
   <strong>上一篇：</strong><br/>
   <span>
-  leetcode [#88]</span>
+  leetcode [#8]</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/10/27/leetcode-234/"  title="leetcode [#234]">
+<a href="/2016/11/06/leetcode-20/"  title="leetcode [#20]">
  <strong>下一篇：</strong><br/> 
- <span>leetcode [#234]
+ <span>leetcode [#20]
 </span>
 </a>
 </div>
@@ -177,7 +178,7 @@ Example:Give">
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/27/leetcode-92/" data-title="leetcode [#92]" data-url="http://yoursite.com/2016/10/27/leetcode-92/"></div>
+	<div class="ds-thread" data-thread-key="2016/11/08/leetcode-6/" data-title="leetcode [#6]" data-url="http://yoursite.com/2016/11/08/leetcode-6/"></div>
 </section>
 
 
