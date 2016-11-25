@@ -4,23 +4,40 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>JavaScript中__proto__和prototype的对比分析 | GCidea&#39;s blog</title>
+    <title>JavaScript中的__proto__、[[prototype]]和prototype | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
     
 
     
-    <meta name="description" content="gaochang | BUPT">
+    <meta name="description" content="前言
+prototype相关介绍
+__proto__与[[prototype]]相关介绍一张图分析三者的关系
+
+案例分析12345function Foo()&amp;#123;  console.log(1);&amp;#125;var a = new Foo();console.log(a.prototype === Foo.prototype);
+12345function Foo()&amp;#123;  con">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript中__proto__和prototype的对比分析">
+<meta property="og:title" content="JavaScript中的__proto__、[[prototype]]和prototype">
 <meta property="og:url" content="http://yoursite.com/2016/06/12/js-proto-prototype/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="gaochang | BUPT">
-<meta property="og:updated_time" content="2016-06-14T15:27:42.665Z">
+<meta property="og:description" content="前言
+prototype相关介绍
+__proto__与[[prototype]]相关介绍一张图分析三者的关系
+
+案例分析12345function Foo()&amp;#123;  console.log(1);&amp;#125;var a = new Foo();console.log(a.prototype === Foo.prototype);
+12345function Foo()&amp;#123;  con">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/prototype-proto.jpg">
+<meta property="og:updated_time" content="2016-11-25T06:36:04.024Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript中__proto__和prototype的对比分析">
-<meta name="twitter:description" content="gaochang | BUPT">
+<meta name="twitter:title" content="JavaScript中的__proto__、[[prototype]]和prototype">
+<meta name="twitter:description" content="前言
+prototype相关介绍
+__proto__与[[prototype]]相关介绍一张图分析三者的关系
+
+案例分析12345function Foo()&amp;#123;  console.log(1);&amp;#125;var a = new Foo();console.log(a.prototype === Foo.prototype);
+12345function Foo()&amp;#123;  con">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/prototype-proto.jpg">
 
     
     
@@ -76,7 +93,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/06/12/js-proto-prototype/" title="JavaScript中__proto__和prototype的对比分析" itemprop="url">JavaScript中__proto__和prototype的对比分析</a>
+      <a href="/2016/06/12/js-proto-prototype/" title="JavaScript中的__proto__、[[prototype]]和prototype" itemprop="url">JavaScript中的__proto__、[[prototype]]和prototype</a>
   </h1>
   <p class="article-author">By
        
@@ -92,11 +109,27 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prototype相关介绍"><span class="toc-number">2.</span> <span class="toc-text">prototype相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto-与-prototype-相关介绍"><span class="toc-number">3.</span> <span class="toc-text">__proto__与[[prototype]]相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一张图分析三者的关系"><span class="toc-number">4.</span> <span class="toc-text">一张图分析三者的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例分析"><span class="toc-number">5.</span> <span class="toc-text">案例分析</span></a></li></ol>
 		
 		</div>
 		
-		  
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><hr>
+<h2 id="prototype相关介绍"><a href="#prototype相关介绍" class="headerlink" title="prototype相关介绍"></a>prototype相关介绍</h2><hr>
+<h2 id="proto-与-prototype-相关介绍"><a href="#proto-与-prototype-相关介绍" class="headerlink" title="__proto__与[[prototype]]相关介绍"></a>__proto__与[[prototype]]相关介绍</h2><h2 id="一张图分析三者的关系"><a href="#一张图分析三者的关系" class="headerlink" title="一张图分析三者的关系"></a>一张图分析三者的关系</h2><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/prototype-proto.jpg" alt=""></p>
+<hr>
+<h2 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.prototype === Foo.prototype);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.__proto__ === Foo.prototype);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.prototype);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.__proto__);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype = &#123; &#125;;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.constructor === Foo);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype = &#123; &#125;;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.constructor === <span class="built_in">Object</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype = &#123; &#125;;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.constructor);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype = &#123; &#125;;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.__proto__);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype = &#123; &#125;;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.__proto__.__proto__ === <span class="built_in">Object</span>.prototype);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.__proto__ === a.prototype);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Function</span>();</span><br><span class="line"><span class="built_in">console</span>.log(a.__proto__ === <span class="built_in">Function</span>.prototype);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.constructor.prototype === a.__proto__);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.constructor.prototype === Foo.prototype);</span><br></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -118,7 +151,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/06/12/js-proto-prototype/" data-title="JavaScript中__proto__和prototype的对比分析 | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/06/12/js-proto-prototype/" data-title="JavaScript中的__proto__、[[prototype]]和prototype | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -152,7 +185,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/06/12/js-proto-prototype/" data-title="JavaScript中__proto__和prototype的对比分析" data-url="http://yoursite.com/2016/06/12/js-proto-prototype/"></div>
+	<div class="ds-thread" data-thread-key="2016/06/12/js-proto-prototype/" data-title="JavaScript中的__proto__、[[prototype]]和prototype" data-url="http://yoursite.com/2016/06/12/js-proto-prototype/"></div>
 </section>
 
 
@@ -162,7 +195,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prototype相关介绍"><span class="toc-number">2.</span> <span class="toc-text">prototype相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto-与-prototype-相关介绍"><span class="toc-number">3.</span> <span class="toc-text">__proto__与[[prototype]]相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一张图分析三者的关系"><span class="toc-number">4.</span> <span class="toc-text">一张图分析三者的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例分析"><span class="toc-number">5.</span> <span class="toc-text">案例分析</span></a></li></ol>
  
   </div>
 
@@ -194,7 +227,7 @@
 		  
 		
 		  
-			<li><a href="/categories/FE综合/" title="FE综合">FE综合<sup>17</sup></a></li>
+			<li><a href="/categories/FE综合/" title="FE综合">FE综合<sup>19</sup></a></li>
 		  
 		
 		  
@@ -202,11 +235,11 @@
 		  
 		
 		  
-			<li><a href="/categories/HTTP/" title="HTTP">HTTP<sup>12</sup></a></li>
+			<li><a href="/categories/HTTP/" title="HTTP">HTTP<sup>13</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>39</sup></a></li>
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>45</sup></a></li>
 		  
 		
 		  
@@ -218,7 +251,7 @@
 		  
 		
 		  
-			<li><a href="/categories/SSH/" title="SSH">SSH<sup>1</sup></a></li>
+			<li><a href="/categories/SSH/" title="SSH">SSH<sup>2</sup></a></li>
 		  
 		
 		  
@@ -238,7 +271,7 @@
 		  
 		
 		  
-			<li><a href="/categories/算法/" title="算法">算法<sup>77</sup></a></li>
+			<li><a href="/categories/算法/" title="算法">算法<sup>86</sup></a></li>
 		  
 		
 		</ul>
@@ -251,15 +284,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>109</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>117</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>76</sup></a></li>
+				<li><a href="/tags/leetcode/" title="leetcode">leetcode<sup>85</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>55</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>63</sup></a></li>
 			
 		
 			
@@ -267,11 +300,19 @@
 			
 		
 			
-				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>15</sup></a></li>
+				<li><a href="/tags/HTTP/" title="HTTP">HTTP<sup>17</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/前端框架/" title="前端框架">前端框架<sup>12</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
@@ -283,19 +324,7 @@
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
 			
 		
 			
@@ -307,11 +336,11 @@
 			
 		
 			
-				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
+				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
 			
 		
 			
@@ -319,11 +348,15 @@
 			
 		
 			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
+				<li><a href="/tags/页面渲染/" title="页面渲染">页面渲染<sup>3</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
 			
 		
 			
@@ -335,11 +368,27 @@
 			
 		
 			
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/页面渲染/" title="页面渲染">页面渲染<sup>2</sup></a></li>
+				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
 			
 		
 			
@@ -351,23 +400,11 @@
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
 			
 		
 			
@@ -375,23 +412,7 @@
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
 			
 		
 			
@@ -399,7 +420,19 @@
 			
 		
 			
-				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/跨域/" title="跨域">跨域<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
@@ -411,11 +444,15 @@
 			
 		
 			
+				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+				<li><a href="/tags/模块化/" title="模块化">模块化<sup>1</sup></a></li>
 			
 		
 			
@@ -423,11 +460,11 @@
 			
 		
 			
-				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
+				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Session/" title="Session">Session<sup>1</sup></a></li>
+				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
 			
 		
 			
@@ -451,11 +488,11 @@
 			
 		
 			
-				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
+				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
 			
 		
 		</ul>
