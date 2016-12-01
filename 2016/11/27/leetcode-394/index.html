@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>leetcode [#219] | GCidea&#39;s blog</title>
+    <title>leetcode [#394] | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
@@ -12,27 +12,21 @@
 
     
     <meta name="description" content="题目
-Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the difference between i and j is at most k.
-
-
-解决方案">
+Given an encoded string, return it’s decoded string.
+The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode [#219]">
-<meta property="og:url" content="http://yoursite.com/2016/10/18/leetcode-219/index.html">
+<meta property="og:title" content="leetcode [#394]">
+<meta property="og:url" content="http://yoursite.com/2016/11/27/leetcode-394/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="题目
-Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the difference between i and j is at most k.
-
-
-解决方案">
-<meta property="og:updated_time" content="2016-10-31T12:54:55.017Z">
+Given an encoded string, return it’s decoded string.
+The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is g">
+<meta property="og:updated_time" content="2016-12-01T03:27:09.104Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode [#219]">
+<meta name="twitter:title" content="leetcode [#394]">
 <meta name="twitter:description" content="题目
-Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the difference between i and j is at most k.
-
-
-解决方案">
+Given an encoded string, return it’s decoded string.
+The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is g">
 
     
     
@@ -88,14 +82,14 @@ Given an array of integers and an integer k, find out whether there are two dist
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/18/leetcode-219/" title="leetcode [#219]" itemprop="url">leetcode [#219]</a>
+      <a href="/2016/11/27/leetcode-394/" title="leetcode [#394]" itemprop="url">leetcode [#394]</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-18T12:26:39.000Z" itemprop="datePublished"> 发表于 2016-10-18</time>
+    <time datetime="2016-11-27T09:26:39.000Z" itemprop="datePublished"> 发表于 2016-11-27</time>
     
   </p>
 </header>
@@ -109,17 +103,22 @@ Given an array of integers and an integer k, find out whether there are two dist
 		</div>
 		
 		<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
-<p>Given an array of integers and an integer k, find out whether there are two distinct indices i and j in the array such that nums[i] = nums[j] and the difference between i and j is at most k.</p>
+<p>Given an encoded string, return it’s decoded string.</p>
+<p>The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is guaranteed to be a positive integer.</p>
+<p>You may assume that the input string is always valid; No extra white spaces, square brackets are well-formed, etc.</p>
+<p>Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k. For example, there won’t be input like 3a or 2[4].</p>
+<p><strong>Example</strong>:<br>s = “3[a]2[bc]”, return “aaabcbc”.<br>s = “3[a2[c]]”, return “accaccacc”.<br>s = “2[abc]3[cd]ef”, return “abcabccdcdcdef”.</p>
 </blockquote>
 <hr>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsNearbyDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = nums.length;</span><br><span class="line">        <span class="keyword">if</span>(nums == <span class="keyword">null</span> || N == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i &gt; k) set.remove(nums[i-k-<span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">if</span>(!set.add(nums[i])) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">decodeString</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s.length() == <span class="number">0</span> || s.indexOf(<span class="string">"["</span>) == -<span class="number">1</span>) <span class="keyword">return</span> s;</span><br><span class="line">        </span><br><span class="line">        Stack&lt;Integer&gt; kStack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        Stack&lt;String&gt; strStack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        String lastSec = s.substring(s.lastIndexOf(<span class="string">']'</span>) + <span class="number">1</span>);</span><br><span class="line">        String firstSec = <span class="string">""</span>;</span><br><span class="line">        String lastBracket = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> lastCharIndex = -<span class="number">1</span>;</span><br><span class="line">        Boolean firstNotLetter = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> firstNotLetterIndex = -<span class="number">1</span>;</span><br><span class="line">        StringBuilder res = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i) &gt;= <span class="string">'a'</span> &amp;&amp; s.charAt(i) &lt;= <span class="string">'z'</span>)&#123;</span><br><span class="line">                lastCharIndex = i;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i) == <span class="string">'['</span>)&#123;</span><br><span class="line">                String tmpNum = s.substring(lastCharIndex + <span class="number">1</span>, i);</span><br><span class="line">                kStack.push(Integer.valueOf(tmpNum));</span><br><span class="line">                <span class="keyword">int</span> m = i + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span>(s.charAt(m) &gt;= <span class="string">'a'</span> &amp;&amp; s.charAt(m) &lt;= <span class="string">'z'</span>) m++;</span><br><span class="line">                String tmpStr = s.substring(i + <span class="number">1</span>, m);</span><br><span class="line">                strStack.push(tmpStr);</span><br><span class="line">                lastCharIndex = i;</span><br><span class="line">                lastBracket = <span class="string">"["</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i) == <span class="string">']'</span>)&#123;</span><br><span class="line">                StringBuilder x = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">                String topStr = strStack.pop();</span><br><span class="line">                Integer topNum = kStack.pop();</span><br><span class="line">                <span class="keyword">if</span>(lastBracket.equals(<span class="string">"["</span>))&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; topNum; k++) x.append(topStr);</span><br><span class="line">                    res = res.append(x);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    StringBuilder tmp = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">                    tmp.append(topStr);</span><br><span class="line">                    tmp.append(res);</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; topNum; k++) x.append(tmp);</span><br><span class="line">                    res = x;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> m = i+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (m &lt; s.length() &amp;&amp; s.charAt(m) &gt;= <span class="string">'a'</span> &amp;&amp; s.charAt(m) &lt;= <span class="string">'z'</span>)&#123;</span><br><span class="line">                    res = res.append(s.charAt(m));</span><br><span class="line">                    m++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(m == s.length()) lastSec = <span class="string">""</span>;</span><br><span class="line">                lastCharIndex = i;</span><br><span class="line">                lastBracket = <span class="string">"]"</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(firstNotLetter == <span class="keyword">false</span>)&#123;</span><br><span class="line">                    firstNotLetterIndex = i;</span><br><span class="line">                    firstNotLetter = <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        firstSec = s.substring(<span class="number">0</span>, firstNotLetterIndex);</span><br><span class="line">        <span class="keyword">return</span> firstSec + res.toString() + lastSec;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
-<li><p>以下方法不稳定，在不同提交时，有时会通过，有时会超时，效率不高，不是好方法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsNearbyDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = nums.length;</span><br><span class="line">        <span class="keyword">if</span>(nums == <span class="keyword">null</span> || N == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] index = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        <span class="keyword">int</span>[] cpy = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> p = <span class="number">0</span>; p &lt; N; p++)&#123;</span><br><span class="line">            cpy[p] = nums[p];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> Hashtable&lt;Integer, Integer&gt; ht = <span class="keyword">new</span> Hashtable&lt;Integer, Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++)&#123;</span><br><span class="line">            ht.put(i, nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        List&lt;Integer&gt; v = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(ht.keySet());</span><br><span class="line">        Collections.sort(v,<span class="keyword">new</span> Comparator&lt;Object&gt;()&#123;</span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Object arg0,Object arg1)</span></span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> ht.get(arg1) - ht.get(arg0);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">int</span> t = N-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (Integer i : v) &#123;</span><br><span class="line">            index[t--] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> result = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N-<span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] - nums[i+<span class="number">1</span>] == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(index[i+<span class="number">1</span>] - index[i] &lt;= k)&#123;</span><br><span class="line">                    result = <span class="keyword">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>解决方案中借鉴了discuss中的优秀回答，这种方法比较巧妙地维护了一个长度为k的HashSet。复杂度为o(n)。</p>
-</li>
+<li>先考虑特殊情况，对于长度为零的或者没有方括号的输入字符串，直接返回。</li>
+<li>需要两个栈，一个保存倍数K，一个保存字符串片段。</li>
+<li>firstSec表示第一个字符串片段（不包含数字，方括号），这部分作为结果的开头部分直接返回。firstNotLetter标志位就是用于找到第一个不为数字的地方，从而firstNotLetterIndex就是其对应的下标，截取后可得到firstSec。</li>
+<li>lastBracket表示上一个方括号是左括号还是右括号，用于判断是嵌套方括号还是并列方括号。</li>
+<li>lastCharIndex表示最近遇到的字母的下标，用于做字符串截取从而获得K值（具体意义见遍历过程）</li>
+<li>遍历字符串：<br>6.1 如果遇到字母，更新lastCharIndex即可；<br>6.2 如果遇到左方括号：<br>　　6.2.1 截取左方括号左边的紧邻的数字字符串片段，压入kStack，作为K值；<br>　　6.2.2 截取左方括号右边的紧邻的字母字符串片段，压入strStack，作为str值；<br>　　6.2.3 更新lastCharIndex，指向当前下标；<br>　　6.2.4 更新lastBracket，为”[“。<br>6.3 如果遇到右方括号：<br>　　6.3.1 strStack弹出一个元素topStr，kStack弹出一个元素topNum<br>　　6.3.2 根据lastBracket的情况，决定是否拼接上当前结果res再进行倍增（即考虑是否有括号嵌套的问题）<br>　　　　6.3.2.1 如果lastBracket是”[“，说明当前右方括号内部不是嵌套的，因此直接将topStr倍乘topNum次即可；<br>　　　　6.3.2.2 如果lastBracket是”]”，说明当前右方括号内部有嵌套的，因此需要将topStr和当前res结合在一起进行倍乘<br>　　6.3.3 处理完倍乘后，考虑右方括号右面可能存在的字母（无数字k，即单倍的），这些显然也有拼接进res中；<br>　　6.3.4 更新lastBracket，为”]”。<br>6.4 对于遇到的第一个数字字符，要根据其下标决定firstSec的内容。<br>6.5 最后，将firstSec和res拼接在一起返回，即为最后的结果。</li>
 </ol>
   
 	</div>
@@ -143,7 +142,7 @@ Given an array of integers and an integer k, find out whether there are two dist
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/10/18/leetcode-219/" data-title="leetcode [#219] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/11/27/leetcode-394/" data-title="leetcode [#394] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -156,19 +155,11 @@ Given an array of integers and an integer k, find out whether there are two dist
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/19/leetcode-169/" title="leetcode [#169]">
-  <strong>上一篇：</strong><br/>
-  <span>
-  leetcode [#169]</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/18/leetcode-217/"  title="leetcode [#217]">
+<a href="/2016/11/25/js-compare/"  title="JavaScript中比较运算的详细总结">
  <strong>下一篇：</strong><br/> 
- <span>leetcode [#217]
+ <span>JavaScript中比较运算的详细总结
 </span>
 </a>
 </div>
@@ -177,7 +168,7 @@ Given an array of integers and an integer k, find out whether there are two dist
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/18/leetcode-219/" data-title="leetcode [#219]" data-url="http://yoursite.com/2016/10/18/leetcode-219/"></div>
+	<div class="ds-thread" data-thread-key="2016/11/27/leetcode-394/" data-title="leetcode [#394]" data-url="http://yoursite.com/2016/11/27/leetcode-394/"></div>
 </section>
 
 
