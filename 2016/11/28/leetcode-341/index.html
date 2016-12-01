@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>leetcode [#82] | GCidea&#39;s blog</title>
+    <title>leetcode [#341] | GCidea&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Gao Chang">
@@ -12,21 +12,24 @@
 
     
     <meta name="description" content="题目
-Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
-Example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5, return 1-&amp;gt;2-&amp;">
+Given a nested list of integers, implement an iterator to flatten it.
+Each element is either an integer, or a list – whose elements may also be integers or other lists.
+Example:Given the list [[1,1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode [#82]">
-<meta property="og:url" content="http://yoursite.com/2016/10/24/leetcode-82/index.html">
+<meta property="og:title" content="leetcode [#341]">
+<meta property="og:url" content="http://yoursite.com/2016/11/28/leetcode-341/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="题目
-Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
-Example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5, return 1-&amp;gt;2-&amp;">
-<meta property="og:updated_time" content="2016-10-31T12:57:18.393Z">
+Given a nested list of integers, implement an iterator to flatten it.
+Each element is either an integer, or a list – whose elements may also be integers or other lists.
+Example:Given the list [[1,1">
+<meta property="og:updated_time" content="2016-12-01T06:51:01.512Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode [#82]">
+<meta name="twitter:title" content="leetcode [#341]">
 <meta name="twitter:description" content="题目
-Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
-Example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5, return 1-&amp;gt;2-&amp;">
+Given a nested list of integers, implement an iterator to flatten it.
+Each element is either an integer, or a list – whose elements may also be integers or other lists.
+Example:Given the list [[1,1">
 
     
     
@@ -82,14 +85,14 @@ Example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5, ret
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/10/24/leetcode-82/" title="leetcode [#82]" itemprop="url">leetcode [#82]</a>
+      <a href="/2016/11/28/leetcode-341/" title="leetcode [#341]" itemprop="url">leetcode [#341]</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Gao Chang" target="_blank" itemprop="author">Gao Chang</a>
 		
   <p class="article-time">
-    <time datetime="2016-10-24T15:56:39.000Z" itemprop="datePublished"> 发表于 2016-10-24</time>
+    <time datetime="2016-11-28T09:26:39.000Z" itemprop="datePublished"> 发表于 2016-11-28</time>
     
   </p>
 </header>
@@ -103,22 +106,21 @@ Example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5, ret
 		</div>
 		
 		<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
-<p>Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.</p>
-<p><strong>Example</strong>:<br>Given 1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5, return 1-&gt;2-&gt;5.<br>Given 1-&gt;1-&gt;1-&gt;2-&gt;3, return 2-&gt;3.</p>
+<p>Given a nested list of integers, implement an iterator to flatten it.</p>
+<p>Each element is either an integer, or a list – whose elements may also be integers or other lists.</p>
+<p><strong>Example</strong>:<br>Given the list [[1,1],2,[1,1]],</p>
+<p>By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].</p>
+<p>Given the list [1,[4,[6]]],</p>
+<p>By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6].</p>
 </blockquote>
 <hr>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Definition for singly-linked list.</span><br><span class="line"> * public class ListNode &#123;</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode next;</span><br><span class="line"> *     ListNode(int x) &#123; val = x; &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">deleteDuplicates</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        ListNode p = head;</span><br><span class="line"></span><br><span class="line">        LinkedHashSet&lt;Integer&gt; setDuplicates = <span class="keyword">new</span> LinkedHashSet&lt;&gt;();</span><br><span class="line">        LinkedHashSet&lt;Integer&gt; setAll = <span class="keyword">new</span> LinkedHashSet&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(p != <span class="keyword">null</span> &amp;&amp; p.next != <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(p.val == p.next.val)&#123;</span><br><span class="line">                setDuplicates.add(p.val);</span><br><span class="line">            &#125;</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        p = head;</span><br><span class="line">        <span class="keyword">while</span>(p != <span class="keyword">null</span>)&#123;</span><br><span class="line">            setAll.add(p.val);</span><br><span class="line">            p = p.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Iterator&lt;Integer&gt; setDuplicatesIt = setDuplicates.iterator();</span><br><span class="line">        <span class="keyword">while</span>(setDuplicatesIt.hasNext())&#123;</span><br><span class="line">            setAll.remove(setDuplicatesIt.next());</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(setAll.size() &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            ListNode result = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">            ListNode q = result;</span><br><span class="line">            Iterator&lt;Integer&gt; it = setAll.iterator();</span><br><span class="line">            <span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">                q.val = it.next();</span><br><span class="line">                <span class="keyword">if</span>(it.hasNext())&#123;</span><br><span class="line">                    q.next = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">                    q = q.next;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    q.next = <span class="keyword">null</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * // This is the interface that allows for creating nested lists.</span><br><span class="line"> * // You should not implement it, or speculate about its implementation</span><br><span class="line"> * public interface NestedInteger &#123;</span><br><span class="line"> *</span><br><span class="line"> *     // <span class="doctag">@return</span> true if this NestedInteger holds a single integer, rather than a nested list.</span><br><span class="line"> *     public boolean isInteger();</span><br><span class="line"> *</span><br><span class="line"> *     // <span class="doctag">@return</span> the single integer that this NestedInteger holds, if it holds a single integer</span><br><span class="line"> *     // Return null if this NestedInteger holds a nested list</span><br><span class="line"> *     public Integer getInteger();</span><br><span class="line"> *</span><br><span class="line"> *     // <span class="doctag">@return</span> the nested list that this NestedInteger holds, if it holds a nested list</span><br><span class="line"> *     // Return null if this NestedInteger holds a single integer</span><br><span class="line"> *     public List&lt;NestedInteger&gt; getList();</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NestedIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;NestedInteger&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; num = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NestedIterator</span><span class="params">(List&lt;NestedInteger&gt; nestedList)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.list = nestedList;</span><br><span class="line">        getFlatternInteger(list);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">getFlatternInteger</span><span class="params">(List&lt;NestedInteger&gt; nest)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = nest.size() - <span class="number">1</span>; k &gt;= <span class="number">0</span>; k--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nest.get(k).isInteger())&#123;</span><br><span class="line">                num.push(nest.get(k).getInteger());</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                List&lt;NestedInteger&gt; nestList = nest.get(k).getList();</span><br><span class="line">                getFlatternInteger(nestList);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> num.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !num.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * Your NestedIterator object will be instantiated and called as such:</span><br><span class="line"> * NestedIterator i = new NestedIterator(nestedList);</span><br><span class="line"> * while (i.hasNext()) v[f()] = i.next();</span><br><span class="line"> */</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
-<li>与83链表去重相比，本题要求“完全去重”，即重复元素不是保留一次，而是完全删除。</li>
-<li>这种方法用了LinkedHashSet，其特性是会去掉加入的重复元素，且与HashSet相比，可以保留元素加入的顺序不变，而不会像HashSet对加入的元素进行排序。</li>
-<li>这种方法效率较低，与83题考虑指针变化来解题的思路类似，discuss中vote较高的回答做法如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">deleteDuplicates</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        ListNode FakeHead=<span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        FakeHead.next=head;</span><br><span class="line">        ListNode pre=FakeHead;</span><br><span class="line">        ListNode cur=head;</span><br><span class="line">        <span class="keyword">while</span>(cur!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span>(cur.next!=<span class="keyword">null</span>&amp;&amp;cur.val==cur.next.val)&#123;</span><br><span class="line">                cur=cur.next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(pre.next==cur)&#123;</span><br><span class="line">                pre=pre.next;</span><br><span class="line">            &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">                pre.next=cur.next;</span><br><span class="line">            &#125;</span><br><span class="line">            cur=cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> FakeHead.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>接口NestedInteger无需实现，可以直接调用相应方法。</li>
+<li>私有方法getFlatternInteger用于对输入的List<nestedinteger> nestedList做展开并存入一个堆栈。对于是数字的项，直接存入堆栈，对于是List<nestedinteger>类型的元素，递归调用该方法。</nestedinteger></nestedinteger></li>
+<li>next()和hasNext()方法对栈做弹出和判空即可。</li>
 </ol>
-<p>其思路是：</p>
-<blockquote>
-<p>1.定义了“头指针”，也就是指向头结点的“虚拟新增结点”。这样就去除了头结点的特殊性，从而可以应对从链表一开始元素就是重复的这种情况。<br>2.一开始，<code>pre</code>指向头指针结点，<code>cur</code>指向头结点。从<code>cur</code>即头结点开始遍历整个链表。<br>3.如果下一结点不为空且当前节点的值和下一结点的值相等，那么<code>cur</code>指针向后移动一位。<br>4.此时考虑指针<code>pre</code>，如果<code>pre</code>就在<code>cur</code>前面1位，那么<code>pre</code>向后移动一位即可，也就是<code>cur</code>和<code>pre</code>此时指向同一元素。否则，说明<code>cur</code>和<code>pre</code>中间间隔有元素，就正是那些重复的元素，这些都应该被跳过，跳过的方法就是，让<code>pre</code>指向<code>cur</code>后面1位的元素，即<code>pre.next=cur.next;</code>。<br>5.经过上述步骤，处理完所有情况，此时<code>cur</code>向后移动一位，重新开始考虑上面的步骤。</p>
-</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -141,7 +143,7 @@ Example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5, ret
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/10/24/leetcode-82/" data-title="leetcode [#82] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/11/28/leetcode-341/" data-title="leetcode [#341] | GCidea&#39;s blog" data-tsina="2180985772" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -154,19 +156,11 @@ Example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5, ret
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/10/25/nginx-configuration-and-modules-project-dispatch/" title="Nginx服务器基本配置及在模块化项目中的转发应用">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Nginx服务器基本配置及在模块化项目中的转发应用</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/10/24/leetcode-83/"  title="leetcode [#83]">
+<a href="/2016/11/27/leetcode-394/"  title="leetcode [#394]">
  <strong>下一篇：</strong><br/> 
- <span>leetcode [#83]
+ <span>leetcode [#394]
 </span>
 </a>
 </div>
@@ -175,7 +169,7 @@ Example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5, ret
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/10/24/leetcode-82/" data-title="leetcode [#82]" data-url="http://yoursite.com/2016/10/24/leetcode-82/"></div>
+	<div class="ds-thread" data-thread-key="2016/11/28/leetcode-341/" data-title="leetcode [#341]" data-url="http://yoursite.com/2016/11/28/leetcode-341/"></div>
 </section>
 
 
