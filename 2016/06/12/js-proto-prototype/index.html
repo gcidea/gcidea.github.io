@@ -15,8 +15,8 @@
 prototype相关介绍
 __proto__与[[prototype]]相关介绍一张图分析三者的关系
 
-案例分析12345function Foo()&amp;#123;  console.log(1);&amp;#125;var a = new Foo();console.log(a.prototype === Foo.prototype);
-12345function Foo()&amp;#123;  con">
+一系列案例分析12345function Foo()&amp;#123;  console.log(1);&amp;#125;var a = new Foo();console.log(a.prototype === Foo.prototype);
+12345function Foo()&amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript中的__proto__、[[prototype]]和prototype">
 <meta property="og:url" content="http://yoursite.com/2016/06/12/js-proto-prototype/index.html">
@@ -25,18 +25,18 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 prototype相关介绍
 __proto__与[[prototype]]相关介绍一张图分析三者的关系
 
-案例分析12345function Foo()&amp;#123;  console.log(1);&amp;#125;var a = new Foo();console.log(a.prototype === Foo.prototype);
-12345function Foo()&amp;#123;  con">
+一系列案例分析12345function Foo()&amp;#123;  console.log(1);&amp;#125;var a = new Foo();console.log(a.prototype === Foo.prototype);
+12345function Foo()&amp;#123;">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/prototype-proto.jpg">
-<meta property="og:updated_time" content="2016-11-25T06:36:04.024Z">
+<meta property="og:updated_time" content="2016-12-05T08:37:57.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中的__proto__、[[prototype]]和prototype">
 <meta name="twitter:description" content="前言
 prototype相关介绍
 __proto__与[[prototype]]相关介绍一张图分析三者的关系
 
-案例分析12345function Foo()&amp;#123;  console.log(1);&amp;#125;var a = new Foo();console.log(a.prototype === Foo.prototype);
-12345function Foo()&amp;#123;  con">
+一系列案例分析12345function Foo()&amp;#123;  console.log(1);&amp;#125;var a = new Foo();console.log(a.prototype === Foo.prototype);
+12345function Foo()&amp;#123;">
 <meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/prototype-proto.jpg">
 
     
@@ -109,7 +109,7 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prototype相关介绍"><span class="toc-number">2.</span> <span class="toc-text">prototype相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto-与-prototype-相关介绍"><span class="toc-number">3.</span> <span class="toc-text">__proto__与[[prototype]]相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一张图分析三者的关系"><span class="toc-number">4.</span> <span class="toc-text">一张图分析三者的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例分析"><span class="toc-number">5.</span> <span class="toc-text">案例分析</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prototype相关介绍"><span class="toc-number">2.</span> <span class="toc-text">prototype相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto-与-prototype-相关介绍"><span class="toc-number">3.</span> <span class="toc-text">__proto__与[[prototype]]相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一张图分析三者的关系"><span class="toc-number">4.</span> <span class="toc-text">一张图分析三者的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一系列案例分析"><span class="toc-number">5.</span> <span class="toc-text">一系列案例分析</span></a></li></ol>
 		
 		</div>
 		
@@ -117,7 +117,7 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 <h2 id="prototype相关介绍"><a href="#prototype相关介绍" class="headerlink" title="prototype相关介绍"></a>prototype相关介绍</h2><hr>
 <h2 id="proto-与-prototype-相关介绍"><a href="#proto-与-prototype-相关介绍" class="headerlink" title="__proto__与[[prototype]]相关介绍"></a>__proto__与[[prototype]]相关介绍</h2><h2 id="一张图分析三者的关系"><a href="#一张图分析三者的关系" class="headerlink" title="一张图分析三者的关系"></a>一张图分析三者的关系</h2><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/prototype-proto.jpg" alt=""></p>
 <hr>
-<h2 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.prototype === Foo.prototype);</span><br></pre></td></tr></table></figure>
+<h2 id="一系列案例分析"><a href="#一系列案例分析" class="headerlink" title="一系列案例分析"></a>一系列案例分析</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.prototype === Foo.prototype);</span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.__proto__ === Foo.prototype);</span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.prototype);</span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.__proto__);</span><br></pre></td></tr></table></figure>
@@ -195,7 +195,7 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prototype相关介绍"><span class="toc-number">2.</span> <span class="toc-text">prototype相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto-与-prototype-相关介绍"><span class="toc-number">3.</span> <span class="toc-text">__proto__与[[prototype]]相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一张图分析三者的关系"><span class="toc-number">4.</span> <span class="toc-text">一张图分析三者的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例分析"><span class="toc-number">5.</span> <span class="toc-text">案例分析</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prototype相关介绍"><span class="toc-number">2.</span> <span class="toc-text">prototype相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto-与-prototype-相关介绍"><span class="toc-number">3.</span> <span class="toc-text">__proto__与[[prototype]]相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一张图分析三者的关系"><span class="toc-number">4.</span> <span class="toc-text">一张图分析三者的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一系列案例分析"><span class="toc-number">5.</span> <span class="toc-text">一系列案例分析</span></a></li></ol>
  
   </div>
 
@@ -312,11 +312,11 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
@@ -328,10 +328,6 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 			
 		
 			
-				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
 			
 		
@@ -340,11 +336,11 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 			
 		
 			
-				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
+				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
 			
 		
 			
@@ -352,19 +348,7 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 			
 		
 			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
 			
 		
 			
@@ -372,7 +356,19 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 			
 		
 			
-				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -380,7 +376,7 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 			
 		
 			
-				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
+				<li><a href="/tags/异步编程/" title="异步编程">异步编程<sup>2</sup></a></li>
 			
 		
 			
@@ -388,7 +384,15 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 			
 		
 			
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
 			
 		
 			
@@ -396,23 +400,11 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 			
 		
 			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 			
@@ -420,7 +412,15 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 			
 		
 			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
 			
 		
 			
@@ -428,11 +428,11 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
@@ -444,19 +444,19 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 			
 		
 			
-				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
+				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/模块化/" title="模块化">模块化<sup>1</sup></a></li>
+				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/模块化/" title="模块化">模块化<sup>1</sup></a></li>
 			
 		
 			
@@ -465,10 +465,6 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 		
 			
 				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
 			
 		
 			
@@ -492,7 +488,11 @@ __proto__与[[prototype]]相关介绍一张图分析三者的关系
 			
 		
 			
-				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
 			
 		
 		</ul>
