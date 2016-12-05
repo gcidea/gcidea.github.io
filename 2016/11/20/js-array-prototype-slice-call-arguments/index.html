@@ -11,22 +11,22 @@
     
 
     
-    <meta name="description" content="作用
-示例一
-示例二123456789Function.prototype.bind = function(context)&amp;#123;    var args = Array.prototype.slice.call(arguments, 1),  self = this;  return function()&amp;#123;      var innerArgs = Array.prototype">
+    <meta name="description" content="作用　　一句话来讲，这是一种将类数组对象转换为真正数组的方法。很多时候我们会遇到“类数组对象”，比如在操作DOM元素的时候，查询符合某种class的DOM节点会返回一个NodeList，它就是一个类数组对象。真正数组的很多成员方法不能直接用于类数组对象，因此就需要将其转换为真正的数组。
+
+示例123456789Function.prototype.bind = function(context)&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Array.prototype.slice.call()的典型应用">
 <meta property="og:url" content="http://yoursite.com/2016/11/20/js-array-prototype-slice-call-arguments/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="作用
-示例一
-示例二123456789Function.prototype.bind = function(context)&amp;#123;    var args = Array.prototype.slice.call(arguments, 1),  self = this;  return function()&amp;#123;      var innerArgs = Array.prototype">
-<meta property="og:updated_time" content="2016-11-21T05:20:48.011Z">
+<meta property="og:description" content="作用　　一句话来讲，这是一种将类数组对象转换为真正数组的方法。很多时候我们会遇到“类数组对象”，比如在操作DOM元素的时候，查询符合某种class的DOM节点会返回一个NodeList，它就是一个类数组对象。真正数组的很多成员方法不能直接用于类数组对象，因此就需要将其转换为真正的数组。
+
+示例123456789Function.prototype.bind = function(context)&amp;">
+<meta property="og:updated_time" content="2016-12-05T02:22:18.453Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Array.prototype.slice.call()的典型应用">
-<meta name="twitter:description" content="作用
-示例一
-示例二123456789Function.prototype.bind = function(context)&amp;#123;    var args = Array.prototype.slice.call(arguments, 1),  self = this;  return function()&amp;#123;      var innerArgs = Array.prototype">
+<meta name="twitter:description" content="作用　　一句话来讲，这是一种将类数组对象转换为真正数组的方法。很多时候我们会遇到“类数组对象”，比如在操作DOM元素的时候，查询符合某种class的DOM节点会返回一个NodeList，它就是一个类数组对象。真正数组的很多成员方法不能直接用于类数组对象，因此就需要将其转换为真正的数组。
+
+示例123456789Function.prototype.bind = function(context)&amp;">
 
     
     
@@ -98,13 +98,27 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作用"><span class="toc-number">1.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例一"><span class="toc-number">2.</span> <span class="toc-text">示例一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例二"><span class="toc-number">3.</span> <span class="toc-text">示例二</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作用"><span class="toc-number">1.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">2.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><hr>
-<h2 id="示例一"><a href="#示例一" class="headerlink" title="示例一"></a>示例一</h2><hr>
-<h2 id="示例二"><a href="#示例二" class="headerlink" title="示例二"></a>示例二</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.bind = function(context)&#123;  </span><br><span class="line">  var args = Array.prototype.slice.call(arguments, 1),</span><br><span class="line">  self = this;</span><br><span class="line">  return function()&#123;</span><br><span class="line">      var innerArgs = Array.prototype.slice.call(arguments);</span><br><span class="line">      var finalArgs = args.concat(innerArgs);</span><br><span class="line">      return self.apply(context,finalArgs);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>  
+		<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>　　<strong>一句话来讲，这是一种将类数组对象转换为真正数组的方法</strong>。<br>很多时候我们会遇到“类数组对象”，比如在操作DOM元素的时候，查询符合某种class的DOM节点会返回一个NodeList，它就是一个类数组对象。真正数组的很多成员方法不能直接用于类数组对象，因此就需要将其转换为真正的数组。</p>
+<hr>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>)</span>&#123;  </span><br><span class="line">  <span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>),</span><br><span class="line">  self = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> innerArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">      <span class="keyword">var</span> finalArgs = args.concat(innerArgs);</span><br><span class="line">      <span class="keyword">return</span> self.apply(context,finalArgs);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>该例子是手动实现了一个具有基本功能的bind函数。这里不需要过多关注其细节（具体细节可参考这篇：<a href="http://gcidea.info/2016/11/24/js-call-apply/" target="_blank" rel="external">JavaScript的call()、apply()、bind()方法对比总结</a>），只需要关注：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>),</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line"><span class="keyword">var</span> innerArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这两句即可。<br><strong>解释</strong></p>
+<ol>
+<li>call的作用是在指定的一个作用域上执行某函数。</li>
+<li>arguments是javascript中函数的一个默认具有的属性，即参数列表，是一个类数组对象，此处需要将其转换为真正数组。</li>
+<li>slice()方法作用域获取数组某个片段。并且它是数组的内置方法，那么必然在Array.prototype上。</li>
+<li>至于call()函数传入的第二个参数，表明的是保留arguments的哪一部分，视具体需求而定。</li>
+<li>调用slice()方法后返回的是一个副本，而原arguments并没有发生变化。</li>
+</ol>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>这种将类数组对象转换为真正数组的方法<strong>已经从ES6开始正式废止</strong>。取而代之的应该使用新提供的方法：<code>Array.from()</code>来达到同样的效果。</li>
+</ol>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -149,9 +163,9 @@
 
 
 <div class="next">
-<a href="/2016/11/19/leetcode-205/"  title="leetcode [#205]">
+<a href="/2016/11/19/leetcode-36/"  title="leetcode [#36]">
  <strong>下一篇：</strong><br/> 
- <span>leetcode [#205]
+ <span>leetcode [#36]
 </span>
 </a>
 </div>
@@ -170,7 +184,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作用"><span class="toc-number">1.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例一"><span class="toc-number">2.</span> <span class="toc-text">示例一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例二"><span class="toc-number">3.</span> <span class="toc-text">示例二</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#作用"><span class="toc-number">1.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">2.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">3.</span> <span class="toc-text">注意事项</span></a></li></ol>
  
   </div>
 
@@ -214,7 +228,7 @@
 		  
 		
 		  
-			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>45</sup></a></li>
+			<li><a href="/categories/JavaScript/" title="JavaScript">JavaScript<sup>46</sup></a></li>
 		  
 		
 		  
@@ -259,7 +273,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>117</sup></a></li>
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>118</sup></a></li>
 			
 		
 			
@@ -267,7 +281,7 @@
 			
 		
 			
-				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>63</sup></a></li>
+				<li><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>64</sup></a></li>
 			
 		
 			
@@ -287,7 +301,7 @@
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
 			
 		
 			
@@ -295,15 +309,11 @@
 			
 		
 			
-				<li><a href="/tags/CSS/" title="CSS">CSS<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/浏览器/" title="浏览器">浏览器<sup>7</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
 			
 		
 			
@@ -315,11 +325,11 @@
 			
 		
 			
-				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
+				<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
+				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
 			
 		
 			
@@ -327,19 +337,7 @@
 			
 		
 			
-				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/页面渲染/" title="页面渲染">页面渲染<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
 			
 		
 			
@@ -347,7 +345,19 @@
 			
 		
 			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+				<li><a href="/tags/编码/" title="编码">编码<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/闭包/" title="闭包">闭包<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
 			
 		
 			
@@ -355,15 +365,7 @@
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -371,23 +373,19 @@
 			
 		
 			
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/可视化拖拽/" title="可视化拖拽">可视化拖拽<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
+				<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>2</sup></a></li>
 			
 		
 			
@@ -395,7 +393,23 @@
 			
 		
 			
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 			
@@ -407,7 +421,7 @@
 			
 		
 			
-				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 			
@@ -419,11 +433,11 @@
 			
 		
 			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
 			
 		
 			
@@ -467,7 +481,7 @@
 			
 		
 			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
 			
 		
 		</ul>
