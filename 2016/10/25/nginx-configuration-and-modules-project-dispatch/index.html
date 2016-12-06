@@ -11,16 +11,33 @@
     
 
     
-    <meta name="description" content="前言">
+    <meta name="description" content="nginx概述
+来源　　Nginx (“engine x”) 是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。Nginx是由Igor Sysoev为俄罗斯访问量第二的Rambler.ru站点开发的，第一个公开版本0.1.0发布于2004年10月4日。2011年6月1日，nginx 1.0.4发布。
+特点　　占有内存少，并发能力强。Nginx可以在大多数Unix">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx服务器基本配置及在模块化项目中的转发应用">
 <meta property="og:url" content="http://yoursite.com/2016/10/25/nginx-configuration-and-modules-project-dispatch/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="前言">
-<meta property="og:updated_time" content="2016-10-26T14:26:28.668Z">
+<meta property="og:description" content="nginx概述
+来源　　Nginx (“engine x”) 是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。Nginx是由Igor Sysoev为俄罗斯访问量第二的Rambler.ru站点开发的，第一个公开版本0.1.0发布于2004年10月4日。2011年6月1日，nginx 1.0.4发布。
+特点　　占有内存少，并发能力强。Nginx可以在大多数Unix">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-conf.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-contrib.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-docs.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-html1.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-html2.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-logs.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-temp.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-start.png">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-stop.png">
+<meta property="og:updated_time" content="2016-12-06T15:14:44.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx服务器基本配置及在模块化项目中的转发应用">
-<meta name="twitter:description" content="前言">
+<meta name="twitter:description" content="nginx概述
+来源　　Nginx (“engine x”) 是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。Nginx是由Igor Sysoev为俄罗斯访问量第二的Rambler.ru站点开发的，第一个公开版本0.1.0发布于2004年10月4日。2011年6月1日，nginx 1.0.4发布。
+特点　　占有内存少，并发能力强。Nginx可以在大多数Unix">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure.png">
 
     
     
@@ -92,11 +109,34 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx概述"><span class="toc-number">1.</span> <span class="toc-text">nginx概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本目录结构"><span class="toc-number">2.</span> <span class="toc-text">基本目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置文件nginx-conf"><span class="toc-number">3.</span> <span class="toc-text">配置文件nginx.conf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本介绍"><span class="toc-number">3.1.</span> <span class="toc-text">基本介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一个实际使用的nginx-conf"><span class="toc-number">3.2.</span> <span class="toc-text">一个实际使用的nginx.conf</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用案例"><span class="toc-number">4.</span> <span class="toc-text">应用案例</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>  
+		<h2 id="nginx概述"><a href="#nginx概述" class="headerlink" title="nginx概述"></a>nginx概述</h2><ul>
+<li>来源<br>　　Nginx (“engine x”) 是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。Nginx是由Igor Sysoev为俄罗斯访问量第二的Rambler.ru站点开发的，第一个公开版本0.1.0发布于2004年10月4日。2011年6月1日，nginx 1.0.4发布。</li>
+<li>特点<br>　　占有内存少，并发能力强。Nginx可以在大多数Unix like OS上编译运行，并有Windows移植版。windows下的nginx使用的是native Win32 API编写的，使用select处理连接，所以windows下的nginx性能不会太高且伸缩性(scalability，意思是通过数量上的扩展满足系统业务的增长）也差些。另外windows下的nginx缺少一些模块：XSLT filter, image filter, GeoIP module, 和 embedded Perl language。同时需要注意的是：</li>
+</ul>
+<ol>
+<li>windows下nginx配置文件中的目录请使用“/”，而不是“”做目录分隔</li>
+<li>windows下的nginx只有一个有效的工作进程</li>
+<li>windows vista以后系统的不支持nginx的cache模块和需要共享内存支持的模块。</li>
+<li>widows下的nginx支持最大1024个并发连接</li>
+</ol>
+<hr>
+<h2 id="基本目录结构"><a href="#基本目录结构" class="headerlink" title="基本目录结构"></a>基本目录结构</h2><p>在window系统中，nginx目录结构如下（本文以nginx-1.11.5为例）：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure.png" alt=""><br>其中：<br><strong>conf</strong><br>存放默认配置文件。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-conf.png" alt=""><br><strong>contrib</strong><br>存放一些实用工具，如geo配置生成工具（geo2nginx.pl）。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-contrib.png" alt=""><br><strong>docs</strong><br>存放一些说明文档。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-docs.png" alt=""><br><strong>html</strong><br>存放默认的网页文件。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-html1.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-html2.png" alt=""><br><strong>logs</strong><br>存放nginx运行的访问接入日志和错误日志。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-logs.png" alt=""><br><strong>temp</strong><br>存放一些静态缓存数据，用户访问的时候，如果有就直接从缓存里取。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-temp.png" alt=""><br><strong>nginx.exe</strong><br>nginx启动方式：双击nginx.exe或者在当前目录打开cmd窗口，使用命令<code>nginx</code>即可：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-start.png" alt=""><br>如果要关闭nginx，则需要再打开一个cmd窗口，使用命令<code>nginx -s stop</code>:<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-stop.png" alt=""></p>
+<hr>
+<h2 id="配置文件nginx-conf"><a href="#配置文件nginx-conf" class="headerlink" title="配置文件nginx.conf"></a>配置文件nginx.conf</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><p>Nginx配置文件主要分为4部分：main（全局设置）、server（主机设置）、upstream（负载均衡服务器设置）和location（URL匹配特定位置的设置）。<br>nginx.conf中的配置信息，根据其逻辑上的意义，对它们进行了分类，也就是分成了多个作用域，或者称之为配置指令上下文。不同的作用域含有一个或者多个配置项。</p>
+<p>当前nginx支持的几个指令上下文：<br><strong>main</strong><br>nginx在运行时与具体业务功能（比如http服务或者email服务代理）无关的一些参数，比如工作进程数，运行的身份等。<br><strong>http</strong><br>与提供http服务相关的一些配置参数。例如：是否使用keepalive，是否使用gzip进行压缩等。<br><strong>server</strong><br>http服务上支持若干虚拟主机。每个虚拟主机一个对应的server配置项，配置项里面包含该虚拟主机相关的配置。在提供mail服务的代理时，也可以建立若干server.每个server通过监听的地址来区分。<br><strong>location</strong><br>http服务中，某些特定的URL对应的一系列配置项。<br><strong>mail</strong><br>实现email相关的SMTP/IMAP/POP3代理时，共享的一些配置项（因为可能实现多个代理，工作在多个监听地址上）。</p>
+<h3 id="一个实际使用的nginx-conf"><a href="#一个实际使用的nginx-conf" class="headerlink" title="一个实际使用的nginx.conf"></a>一个实际使用的nginx.conf</h3><blockquote>
+<p>注：下述配置文件由于要加入注释说明，缩进效果不佳，因此取消了所有缩进，这可能不利于阅读，为此，说明文件结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">user nobody;</span><br><span class="line">worker_processes  4;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections 1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">	include mime.types;</span><br><span class="line">	default_type application/octet-stream;</span><br><span class="line"></span><br><span class="line">	sendfile on;</span><br><span class="line"></span><br><span class="line">	keepalive_timeout 65;</span><br><span class="line">	#gzip on;</span><br><span class="line"></span><br><span class="line">	server &#123;</span><br><span class="line">		listen 80;</span><br><span class="line">		server_name localhost;</span><br><span class="line"></span><br><span class="line">		#charset utf-8;</span><br><span class="line"></span><br><span class="line">		#access_log logs/host.access.log main;</span><br><span class="line"></span><br><span class="line">		location / &#123;</span><br><span class="line">			proxy_pass http://127.0.0.1:8089/;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		location /rest/monitor/ &#123;</span><br><span class="line">			proxy_pass	http://127.0.0.1:8080/dw-monitorTask/rest/monitor/;</span><br><span class="line">			#反向代理配置</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		#error_page 404 /404.html;</span><br><span class="line"></span><br><span class="line">		error_page 500 502 503 504 /50x.html;</span><br><span class="line">		#定义错误页面</span><br><span class="line">		location = /50x.html &#123;</span><br><span class="line">		    root html;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	# another virtual host using mix of IP-, name-, and port-based configuration</span><br><span class="line">	#</span><br><span class="line">	#server &#123;</span><br><span class="line"></span><br><span class="line">	#&#125;</span><br><span class="line"></span><br><span class="line">	# HTTPS server</span><br><span class="line">	server &#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>相应含义见每行注释。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><span class="line">####################################################################################################</span><br><span class="line">user nobody;</span><br><span class="line">#指定nginx worker进程运行用户以及用户组，默认nobody。</span><br><span class="line"></span><br><span class="line">worker_processes  4;</span><br><span class="line">#指定nginx要开启的进程数，最好与CPU个数相同。</span><br><span class="line"></span><br><span class="line">#error_log logs/error.log;</span><br><span class="line">#error_log logs/error.log notice;</span><br><span class="line">#error_log logs/error.log info;</span><br><span class="line">#用来定义全局错误日志文件。级别有：debug、info、notice、warn、error和crit。debug输出日志最为详细，crit输出日志最少。</span><br><span class="line"></span><br><span class="line">#pid logs/nginx.pid;</span><br><span class="line">#用来指定进程id的存储文件位置。</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections 1024;</span><br><span class="line">&#125;</span><br><span class="line">#设定nginx的工作模式及连接上限。</span><br><span class="line"></span><br><span class="line">####################################################################################################</span><br><span class="line">http &#123;</span><br><span class="line">include mime.types;</span><br><span class="line">#实现对配置文件所包含的文件的设定，可以减少主配置文件的复杂度。</span><br><span class="line"></span><br><span class="line">default_type application/octet-stream;</span><br><span class="line">#设定默认类型为二进制流。</span><br><span class="line"></span><br><span class="line">#log_format main &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">#                  &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">#                  &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</span><br><span class="line">#指定nginx日志的输出格式。main为此日志文件输出格式的名称，可以在下面access_log指令中引用。</span><br><span class="line"></span><br><span class="line">#access_log logs/access.log main;</span><br><span class="line">#指定nginx的access日志输出，使用上面声明的格式。</span><br><span class="line"></span><br><span class="line">sendfile on;</span><br><span class="line">#用于开启高效文件传输模式。</span><br><span class="line"></span><br><span class="line">#tcp_nopush on;</span><br><span class="line">#防止TCP阻塞。</span><br><span class="line"></span><br><span class="line">keepalive_timeout 65;</span><br><span class="line">#用于设置客户端连接保持活动的超时时间，超过这个时间，服务器会关闭该连接。</span><br><span class="line"></span><br><span class="line">#gzip on;</span><br><span class="line">#支持压缩传输，提高传输速度。</span><br><span class="line"></span><br><span class="line">#server这部分指定了一个虚拟主机。</span><br><span class="line">server &#123;</span><br><span class="line">listen 80;</span><br><span class="line">#监听端口。</span><br><span class="line"></span><br><span class="line">server_name localhost;</span><br><span class="line">#主机名（域名）。</span><br><span class="line"></span><br><span class="line">#charset utf-8;</span><br><span class="line">#web服务器的语言编码。</span><br><span class="line"></span><br><span class="line">#access_log logs/host.access.log main;</span><br><span class="line">#虚拟主机独立的访问日志。</span><br><span class="line"></span><br><span class="line"># ==================================================================================================================</span><br><span class="line"># 匹配url地址中有&quot;/&quot;，则执行花括号中的配置。具体在本项目中，匹配到&quot;/&quot;，则将请求转发至http://127.0.0.1:8089/，也就是项目中管理员模块（基础模块）所运行在的端口</span><br><span class="line">#（本地测试，管理员模块部署在本地tomcat中，且运行在8089端口，因此是http://127.0.0.1:8089/）</span><br><span class="line">location / &#123;</span><br><span class="line">proxy_pass http://127.0.0.1:8089/;</span><br><span class="line">#反向代理配置。特别注意：在nginx中配置proxy_pass时，当在后面的url加上了/（如上所写http://127.0.0.1:8089/），相当于是绝对根路径，则nginx不会把location中匹配的路径部分代理走；如果没有/，则会把匹配的路径部分也给代理走。再比如：</span><br><span class="line">#1、location /test/ &#123; </span><br><span class="line">#   	proxy_pass http://t6:8300; </span><br><span class="line">	#   &#125; </span><br><span class="line">#</span><br><span class="line">#2、location /test/ &#123; </span><br><span class="line">#   	proxy_pass http://t6:8300/; </span><br><span class="line">#   &#125; </span><br><span class="line">#</span><br><span class="line">#对于上面两种配置，区别只在于proxy_pass转发的路径后是否带 “/” </span><br><span class="line">#</span><br><span class="line">#针对情况1，由于proxy_pass配置最后没有加/，则会把匹配的路径部分也给代理走。即如果访问http://server/test/test.jsp，则被nginx代理后，请求路径会便问http://t6:8300/test/test.jsp，将test/ 作为根路径（是一个相对路径），请求test/路径下的资源。</span><br><span class="line">#</span><br><span class="line">#针对情况2，由于proxy_pass配置最后加了/，则不会把匹配的路径部分也给代理走。即如果访问http://server/test/test.jsp，则被nginx代理后，请求路径会变为 http://proxy_pass/test.jsp，直接访问server的根资源。</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># ==================================================================================================================</span><br><span class="line"># 匹配url地址中有&quot;/rest/monitor/&quot;，则执行花括号中的配置。具体在本项目中，匹配到&quot;/rest/monitor/&quot;，表明是具体业务子模块monitorTask的业务逻辑，则将请求转发至http://127.0.0.1:8080/dw-monitorTask/rest/monitor/</span><br><span class="line">location /rest/monitor/ &#123;</span><br><span class="line">	proxy_pass	http://127.0.0.1:8080/dw-monitorTask/rest/monitor/;</span><br><span class="line">	#反向代理配置</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#error_page 404 /404.html;</span><br><span class="line">#定义错误页面</span><br><span class="line"></span><br><span class="line"># redirect server error pages to the static page /50x.html</span><br><span class="line"></span><br><span class="line">error_page 500 502 503 504 /50x.html;</span><br><span class="line">#定义错误页面</span><br><span class="line">location = /50x.html &#123;</span><br><span class="line">    root html;</span><br><span class="line">    #nginx指定文件路径有两种方式root和alias，这里是默认值：root html</span><br><span class="line">&#125;</span><br><span class="line">#等号“=”表示完全一致</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#server这部分指定了其它的虚拟主机。</span><br><span class="line"># another virtual host using mix of IP-, name-, and port-based configuration</span><br><span class="line">#</span><br><span class="line">#server &#123;</span><br><span class="line">#    listen       8000;</span><br><span class="line">#    listen       somename:8080;</span><br><span class="line">#    server_name  somename  alias  another.alias;</span><br><span class="line"></span><br><span class="line">#    location / &#123;</span><br><span class="line">#        root   html;</span><br><span class="line">#        index  index.html index.htm;</span><br><span class="line">#    &#125;</span><br><span class="line">#&#125;</span><br><span class="line"></span><br><span class="line">#server这部分指定了其它的虚拟主机。</span><br><span class="line"># HTTPS server</span><br><span class="line">#</span><br><span class="line">#server &#123;</span><br><span class="line">#    listen       443 ssl;</span><br><span class="line">#    server_name  localhost;</span><br><span class="line"></span><br><span class="line">#    ssl_certificate      cert.pem;</span><br><span class="line">#    ssl_certificate_key  cert.key;</span><br><span class="line"></span><br><span class="line">#    ssl_session_cache    shared:SSL:1m;</span><br><span class="line">#    ssl_session_timeout  5m;</span><br><span class="line"></span><br><span class="line">#    ssl_ciphers  HIGH:!aNULL:!MD5;</span><br><span class="line">#    ssl_prefer_server_ciphers  on;</span><br><span class="line"></span><br><span class="line">#    location / &#123;</span><br><span class="line">#        root   html;</span><br><span class="line">#        index  index.html index.htm;</span><br><span class="line">#    &#125;</span><br><span class="line">#&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="应用案例"><a href="#应用案例" class="headerlink" title="应用案例"></a>应用案例</h2><p>　　在模块化的web项目中，应用被合理地拆分成了多个模块。有一些通用的模块会被多个项目复用，比如上述配置文件中提到的管理员模块，也就是基础入口模块。<br>　　具体访问一个web应用时，诸如登录鉴权，系统菜单路由这些功能统一由基础模块进行处理。具体地，这个独立的模块被部署在了本地tomcat中（8089端口），那么，项目启动后，初始访问路由”/“就会由此转发给<code>http://127.0.0.1:8089/</code>;<br>　　而对于具体业务项目来说，业务模块其功能根据需求单独开发，开发完成后结合基础管理员模块，通过nginx进行反向代理来进行通信。具体地，本项目业务模块部署在了本地另一个tomcat中（端口8080）。在这里，凡是拦截到请求“/rest/monitor/”，说明是本项目具体业务逻辑的内容，则会被转发至<code>http://127.0.0.1:8080/dw-monitorTask/rest/monitor/</code>。<br>　　可以看出，通过上述这种方式，整个项目不但变得清晰，而且模块化特点很明显，易于灵活迁移。比如，公共模块统一部署在某个公网服务器上，那么后续开发的新业务系统就可以通过这种方式复用某些共有功能，避免了重复开发，提高了开发效率。</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -162,7 +202,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx概述"><span class="toc-number">1.</span> <span class="toc-text">nginx概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本目录结构"><span class="toc-number">2.</span> <span class="toc-text">基本目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置文件nginx-conf"><span class="toc-number">3.</span> <span class="toc-text">配置文件nginx.conf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本介绍"><span class="toc-number">3.1.</span> <span class="toc-text">基本介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一个实际使用的nginx-conf"><span class="toc-number">3.2.</span> <span class="toc-text">一个实际使用的nginx.conf</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用案例"><span class="toc-number">4.</span> <span class="toc-text">应用案例</span></a></li></ol>
  
   </div>
 
@@ -275,11 +315,7 @@
 			
 		
 			
-				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>8</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
 			
 		
 			
@@ -287,7 +323,11 @@
 			
 		
 			
-				<li><a href="/tags/搭建部署/" title="搭建部署">搭建部署<sup>8</sup></a></li>
+				<li><a href="/tags/AngularJs/" title="AngularJs">AngularJs<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/MVVM/" title="MVVM">MVVM<sup>8</sup></a></li>
 			
 		
 			
@@ -295,7 +335,7 @@
 			
 		
 			
-				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
 			
 		
 			
@@ -303,7 +343,7 @@
 			
 		
 			
-				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
+				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
 			
 		
 			
@@ -315,11 +355,7 @@
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
+				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
 			
 		
 			
@@ -327,7 +363,7 @@
 			
 		
 			
-				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
 			
 		
 			
@@ -335,11 +371,11 @@
 			
 		
 			
-				<li><a href="/tags/React/" title="React">React<sup>3</sup></a></li>
+				<li><a href="/tags/转载/" title="转载">转载<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
 			
 		
 			
@@ -347,7 +383,7 @@
 			
 		
 			
-				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -355,7 +391,7 @@
 			
 		
 			
-				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
+				<li><a href="/tags/可视化拖拽/" title="可视化拖拽">可视化拖拽<sup>2</sup></a></li>
 			
 		
 			
@@ -363,19 +399,11 @@
 			
 		
 			
-				<li><a href="/tags/可视化拖拽/" title="可视化拖拽">可视化拖拽<sup>2</sup></a></li>
+				<li><a href="/tags/正则/" title="正则">正则<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>1</sup></a></li>
+				<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>2</sup></a></li>
 			
 		
 			
@@ -383,11 +411,23 @@
 			
 		
 			
+				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Emmet/" title="Emmet">Emmet<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/jqGrid/" title="jqGrid">jqGrid<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
 			
 		
 			
@@ -395,15 +435,11 @@
 			
 		
 			
-				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 			
@@ -411,19 +447,23 @@
 			
 		
 			
-				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+				<li><a href="/tags/Less/" title="Less">Less<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
+				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/模块化/" title="模块化">模块化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
 			
 		
 			
@@ -455,7 +495,7 @@
 			
 		
 			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
 			
 		
 			
