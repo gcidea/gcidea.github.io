@@ -11,16 +11,22 @@
     
 
     
-    <meta name="description" content="gaochang | BUPT">
+    <meta name="description" content="前言　　访问一个对象中的某个属性时，返回的结果可能是undefined，这有可能是本身该属性存储的值就是undefined，也有可能是该属性在对象中不存在。对此，就产生了判断属性存在性的相关问题和解决方法。
+
+in操作符语法格式1234567var obj = &amp;#123;	name : &quot;Bob&quot;,	age : 24&amp;#125;;(&quot;name&quot; in obj);  //true(&quot;sex&quot; in">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript中对象属性存在性及相关检测方法总结">
 <meta property="og:url" content="http://yoursite.com/2016/11/25/js-obj-attr-exist-or-not-and-related-detect-function/index.html">
 <meta property="og:site_name" content="GCidea's blog">
-<meta property="og:description" content="gaochang | BUPT">
-<meta property="og:updated_time" content="2016-11-24T03:08:03.934Z">
+<meta property="og:description" content="前言　　访问一个对象中的某个属性时，返回的结果可能是undefined，这有可能是本身该属性存储的值就是undefined，也有可能是该属性在对象中不存在。对此，就产生了判断属性存在性的相关问题和解决方法。
+
+in操作符语法格式1234567var obj = &amp;#123;	name : &quot;Bob&quot;,	age : 24&amp;#125;;(&quot;name&quot; in obj);  //true(&quot;sex&quot; in">
+<meta property="og:updated_time" content="2016-12-08T06:34:07.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中对象属性存在性及相关检测方法总结">
-<meta name="twitter:description" content="gaochang | BUPT">
+<meta name="twitter:description" content="前言　　访问一个对象中的某个属性时，返回的结果可能是undefined，这有可能是本身该属性存储的值就是undefined，也有可能是该属性在对象中不存在。对此，就产生了判断属性存在性的相关问题和解决方法。
+
+in操作符语法格式1234567var obj = &amp;#123;	name : &quot;Bob&quot;,	age : 24&amp;#125;;(&quot;name&quot; in obj);  //true(&quot;sex&quot; in">
 
     
     
@@ -92,11 +98,40 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#in操作符"><span class="toc-number">2.</span> <span class="toc-text">in操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法格式"><span class="toc-number">2.1.</span> <span class="toc-text">语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否查找原型链"><span class="toc-number">2.2.</span> <span class="toc-text">是否查找原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#所查找的属性是否必须满足可枚举（enumerable-true）"><span class="toc-number">2.3.</span> <span class="toc-text">所查找的属性是否必须满足可枚举（enumerable:true）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他说明"><span class="toc-number">2.4.</span> <span class="toc-text">其他说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#obj-hasOwnProperty-attr"><span class="toc-number">3.</span> <span class="toc-text">obj.hasOwnProperty(attr)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法格式-1"><span class="toc-number">3.1.</span> <span class="toc-text">语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否查找原型链-1"><span class="toc-number">3.2.</span> <span class="toc-text">是否查找原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#所查找的属性是否必须满足可枚举（enumerable-true）-1"><span class="toc-number">3.3.</span> <span class="toc-text">所查找的属性是否必须满足可枚举（enumerable:true）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他说明-1"><span class="toc-number">3.4.</span> <span class="toc-text">其他说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for-var-k-in-obj-循环"><span class="toc-number">4.</span> <span class="toc-text">for(var k in obj)循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法格式-2"><span class="toc-number">4.1.</span> <span class="toc-text">语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否查找原型链-2"><span class="toc-number">4.2.</span> <span class="toc-text">是否查找原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#所查找的属性是否必须满足可枚举（enumerable-true）-2"><span class="toc-number">4.3.</span> <span class="toc-text">所查找的属性是否必须满足可枚举（enumerable:true）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他说明-2"><span class="toc-number">4.4.</span> <span class="toc-text">其他说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#obj-propertyIsEnumerable"><span class="toc-number">5.</span> <span class="toc-text">obj.propertyIsEnumerable</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法格式-3"><span class="toc-number">5.1.</span> <span class="toc-text">语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否查找原型链-3"><span class="toc-number">5.2.</span> <span class="toc-text">是否查找原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#所查找的属性是否必须满足可枚举（enumerable-true）-3"><span class="toc-number">5.3.</span> <span class="toc-text">所查找的属性是否必须满足可枚举（enumerable:true）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object-getOwnPropertyNames-obj"><span class="toc-number">6.</span> <span class="toc-text">Object.getOwnPropertyNames(obj)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法格式-4"><span class="toc-number">6.1.</span> <span class="toc-text">语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否查找原型链-4"><span class="toc-number">6.2.</span> <span class="toc-text">是否查找原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#所查找的属性是否必须满足可枚举（enumerable-true）-4"><span class="toc-number">6.3.</span> <span class="toc-text">所查找的属性是否必须满足可枚举（enumerable:true）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object-keys-obj"><span class="toc-number">7.</span> <span class="toc-text">Object.keys(obj)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法格式-5"><span class="toc-number">7.1.</span> <span class="toc-text">语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否查找原型链-5"><span class="toc-number">7.2.</span> <span class="toc-text">是否查找原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#所查找的属性是否必须满足可枚举（enumerable-true）-5"><span class="toc-number">7.3.</span> <span class="toc-text">所查找的属性是否必须满足可枚举（enumerable:true）</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		  
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　访问一个对象中的某个属性时，返回的结果可能是undefined，这有可能是本身该属性存储的值就是undefined，也有可能是该属性在对象中不存在。对此，就产生了判断属性存在性的相关问题和解决方法。</p>
+<hr>
+<h2 id="in操作符"><a href="#in操作符" class="headerlink" title="in操作符"></a>in操作符</h2><h3 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">(<span class="string">"name"</span> <span class="keyword">in</span> obj);  <span class="comment">//true</span></span><br><span class="line">(<span class="string">"sex"</span> <span class="keyword">in</span> obj);   <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<h3 id="是否查找原型链"><a href="#是否查找原型链" class="headerlink" title="是否查找原型链"></a>是否查找原型链</h3><p><strong>是</strong><br>该操作会检查属性在对象本身及其[[prototype]]原型链中是否存在。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pro = &#123;</span><br><span class="line">    sex : <span class="string">"m"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.__proto__ = pro;</span><br><span class="line"></span><br><span class="line"><span class="string">"sex"</span> <span class="keyword">in</span> obj;    <span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="所查找的属性是否必须满足可枚举（enumerable-true）"><a href="#所查找的属性是否必须满足可枚举（enumerable-true）" class="headerlink" title="所查找的属性是否必须满足可枚举（enumerable:true）"></a>所查找的属性是否必须满足可枚举（enumerable:true）</h3><p><strong>否</strong><br>该操作会检查对象本身及其[[prototype]]原型链上的所有属性，无论其是否可枚举。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"own"</span>, &#123;</span><br><span class="line">	enumerable : <span class="literal">false</span>,</span><br><span class="line">	value : <span class="number">5</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">(<span class="string">"own"</span> <span class="keyword">in</span> obj);  <span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="其他说明"><a href="#其他说明" class="headerlink" title="其他说明"></a>其他说明</h3><p><code>in</code>检查的是属性名，而非属性值。</p>
+<hr>
+<h2 id="obj-hasOwnProperty-attr"><a href="#obj-hasOwnProperty-attr" class="headerlink" title="obj.hasOwnProperty(attr)"></a>obj.hasOwnProperty(attr)</h2><h3 id="语法格式-1"><a href="#语法格式-1" class="headerlink" title="语法格式"></a>语法格式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.hasOwnProperty(<span class="string">"name"</span>);  <span class="comment">//true</span></span><br><span class="line">obj.hasOwnProperty(<span class="string">"sex"</span>);   <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<h3 id="是否查找原型链-1"><a href="#是否查找原型链-1" class="headerlink" title="是否查找原型链"></a>是否查找原型链</h3><p><strong>否</strong><br>该操作仅会检查属性在对象本身是否存在，不会检查其[[prototype]]原型链。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pro = &#123;</span><br><span class="line">    sex : <span class="string">"m"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.__proto__ = pro;</span><br><span class="line"></span><br><span class="line">obj.hasOwnProperty(<span class="string">"sex"</span>);    <span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="所查找的属性是否必须满足可枚举（enumerable-true）-1"><a href="#所查找的属性是否必须满足可枚举（enumerable-true）-1" class="headerlink" title="所查找的属性是否必须满足可枚举（enumerable:true）"></a>所查找的属性是否必须满足可枚举（enumerable:true）</h3><p><strong>否</strong><br>该操作会检查属对象本身上的所有属性，无论其是否可枚举。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"own"</span>, &#123;</span><br><span class="line">	enumerable : <span class="literal">false</span>,</span><br><span class="line">	value : <span class="number">5</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">obj.hasOwnProperty(<span class="string">"own"</span>);    <span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="其他说明-1"><a href="#其他说明-1" class="headerlink" title="其他说明"></a>其他说明</h3><p>一般来讲，所有普通对象都可以通过对Object.prototype的委托来访问hasOwnProperty()，但是，对于有些特殊情况，比如通过Object.create(null)来创建的对象，它就没有连接到Object.prototype，因此就无法使用该方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">a.name = <span class="string">"bob"</span>;</span><br><span class="line">a.hasOwnProperty(<span class="string">"name"</span>); <span class="comment">//VM2137:1 Uncaught TypeError: a.hasOwnProperty is not a function(…)</span></span><br></pre></td></tr></table></figure></p>
+<p>这时可通过显式绑定来达到效果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">a.name = <span class="string">"bob"</span>;</span><br><span class="line"><span class="built_in">Object</span>.prototype.hasOwnProperty.call(a, <span class="string">"name"</span>); <span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="for-var-k-in-obj-循环"><a href="#for-var-k-in-obj-循环" class="headerlink" title="for(var k in obj)循环"></a>for(var k in obj)循环</h2><h3 id="语法格式-2"><a href="#语法格式-2" class="headerlink" title="语法格式"></a>语法格式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> obj)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(k, obj[k]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//name Bob</span></span><br><span class="line"><span class="comment">//age 24</span></span><br></pre></td></tr></table></figure>
+<h3 id="是否查找原型链-2"><a href="#是否查找原型链-2" class="headerlink" title="是否查找原型链"></a>是否查找原型链</h3><p><strong>是</strong><br>该操作会检查属性在对象本身及其[[prototype]]原型链中是否存在。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pro = &#123;</span><br><span class="line">    sex : <span class="string">"m"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.__proto__ = pro;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//name Bob</span></span><br><span class="line"><span class="comment">//age 24</span></span><br><span class="line"><span class="comment">//sex m</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="所查找的属性是否必须满足可枚举（enumerable-true）-2"><a href="#所查找的属性是否必须满足可枚举（enumerable-true）-2" class="headerlink" title="所查找的属性是否必须满足可枚举（enumerable:true）"></a>所查找的属性是否必须满足可枚举（enumerable:true）</h3><p><strong>是</strong><br>该操作仅会检查对象本身及其[[prototype]]原型链上的所有可枚举属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"own"</span>, &#123;</span><br><span class="line">	enumerable : <span class="literal">false</span>,</span><br><span class="line">	value : <span class="number">5</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> obj)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(k, obj[k]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//name Bob</span></span><br><span class="line"><span class="comment">//age 24</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="其他说明-2"><a href="#其他说明-2" class="headerlink" title="其他说明"></a>其他说明</h3><p>不要在数组上运用这种for(var k in obj)循环，因为这种枚举不仅会包含所有数值索引，还会包含所有可枚举属性，可能会产生一些问题。对于数组遍历，采用普通for循环或者forEach()方法就好。</p>
+<hr>
+<h2 id="obj-propertyIsEnumerable"><a href="#obj-propertyIsEnumerable" class="headerlink" title="obj.propertyIsEnumerable"></a>obj.propertyIsEnumerable</h2><h3 id="语法格式-3"><a href="#语法格式-3" class="headerlink" title="语法格式"></a>语法格式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.propertyIsEnumerable(<span class="string">"name"</span>);  <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+<h3 id="是否查找原型链-3"><a href="#是否查找原型链-3" class="headerlink" title="是否查找原型链"></a>是否查找原型链</h3><p><strong>否</strong><br>该操作仅会检查属性在对象本身是否存在，不会检查其[[prototype]]原型链。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pro = &#123;</span><br><span class="line">    sex : <span class="string">"m"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.__proto__ = pro;</span><br><span class="line"></span><br><span class="line">obj.propertyIsEnumerable(<span class="string">"sex"</span>);  <span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="所查找的属性是否必须满足可枚举（enumerable-true）-3"><a href="#所查找的属性是否必须满足可枚举（enumerable-true）-3" class="headerlink" title="所查找的属性是否必须满足可枚举（enumerable:true）"></a>所查找的属性是否必须满足可枚举（enumerable:true）</h3><p><strong>是</strong><br>从名字容易看出，属性必须满足enumerable:true<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"own"</span>, &#123;</span><br><span class="line">	enumerable : <span class="literal">false</span>,</span><br><span class="line">	value : <span class="number">5</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">obj.propertyIsEnumerable(<span class="string">"own"</span>);  <span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="Object-getOwnPropertyNames-obj"><a href="#Object-getOwnPropertyNames-obj" class="headerlink" title="Object.getOwnPropertyNames(obj)"></a>Object.getOwnPropertyNames(obj)</h2><h3 id="语法格式-4"><a href="#语法格式-4" class="headerlink" title="语法格式"></a>语法格式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(obj);    <span class="comment">//["name", "age"]</span></span><br></pre></td></tr></table></figure>
+<h3 id="是否查找原型链-4"><a href="#是否查找原型链-4" class="headerlink" title="是否查找原型链"></a>是否查找原型链</h3><p><strong>否</strong><br>该操作仅会检查属性在对象本身是否存在，不会检查其[[prototype]]原型链。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pro = &#123;</span><br><span class="line">    sex : <span class="string">"m"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.__proto__ = pro;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(obj);    <span class="comment">//["name", "age"]</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="所查找的属性是否必须满足可枚举（enumerable-true）-4"><a href="#所查找的属性是否必须满足可枚举（enumerable-true）-4" class="headerlink" title="所查找的属性是否必须满足可枚举（enumerable:true）"></a>所查找的属性是否必须满足可枚举（enumerable:true）</h3><p><strong>否</strong><br>该操作会检查属对象本身上的所有属性，无论其是否可枚举。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"own"</span>, &#123;</span><br><span class="line">	enumerable : <span class="literal">false</span>,</span><br><span class="line">	value : <span class="number">5</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.getOwnPropertyNames(obj);  <span class="comment">//["name", "age", "own"]</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="Object-keys-obj"><a href="#Object-keys-obj" class="headerlink" title="Object.keys(obj)"></a>Object.keys(obj)</h2><h3 id="语法格式-5"><a href="#语法格式-5" class="headerlink" title="语法格式"></a>语法格式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj);    <span class="comment">//["name", "age"]</span></span><br></pre></td></tr></table></figure>
+<h3 id="是否查找原型链-5"><a href="#是否查找原型链-5" class="headerlink" title="是否查找原型链"></a>是否查找原型链</h3><p><strong>否</strong><br>该操作仅会检查属性在对象本身是否存在，不会检查其[[prototype]]原型链。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> pro = &#123;</span><br><span class="line">    sex : <span class="string">"m"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.__proto__ = pro;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj);    <span class="comment">//["name", "age"]</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="所查找的属性是否必须满足可枚举（enumerable-true）-5"><a href="#所查找的属性是否必须满足可枚举（enumerable-true）-5" class="headerlink" title="所查找的属性是否必须满足可枚举（enumerable:true）"></a>所查找的属性是否必须满足可枚举（enumerable:true）</h3><p><strong>是</strong><br>该操作仅会检查对象本身上的所有可枚举属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	name : <span class="string">"Bob"</span>,</span><br><span class="line">	age : <span class="number">24</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, <span class="string">"own"</span>, &#123;</span><br><span class="line">	enumerable : <span class="literal">false</span>,</span><br><span class="line">	value : <span class="number">5</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(obj);    <span class="comment">//["name", "age"]</span></span><br></pre></td></tr></table></figure></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -162,7 +197,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#in操作符"><span class="toc-number">2.</span> <span class="toc-text">in操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法格式"><span class="toc-number">2.1.</span> <span class="toc-text">语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否查找原型链"><span class="toc-number">2.2.</span> <span class="toc-text">是否查找原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#所查找的属性是否必须满足可枚举（enumerable-true）"><span class="toc-number">2.3.</span> <span class="toc-text">所查找的属性是否必须满足可枚举（enumerable:true）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他说明"><span class="toc-number">2.4.</span> <span class="toc-text">其他说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#obj-hasOwnProperty-attr"><span class="toc-number">3.</span> <span class="toc-text">obj.hasOwnProperty(attr)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法格式-1"><span class="toc-number">3.1.</span> <span class="toc-text">语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否查找原型链-1"><span class="toc-number">3.2.</span> <span class="toc-text">是否查找原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#所查找的属性是否必须满足可枚举（enumerable-true）-1"><span class="toc-number">3.3.</span> <span class="toc-text">所查找的属性是否必须满足可枚举（enumerable:true）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他说明-1"><span class="toc-number">3.4.</span> <span class="toc-text">其他说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for-var-k-in-obj-循环"><span class="toc-number">4.</span> <span class="toc-text">for(var k in obj)循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法格式-2"><span class="toc-number">4.1.</span> <span class="toc-text">语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否查找原型链-2"><span class="toc-number">4.2.</span> <span class="toc-text">是否查找原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#所查找的属性是否必须满足可枚举（enumerable-true）-2"><span class="toc-number">4.3.</span> <span class="toc-text">所查找的属性是否必须满足可枚举（enumerable:true）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他说明-2"><span class="toc-number">4.4.</span> <span class="toc-text">其他说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#obj-propertyIsEnumerable"><span class="toc-number">5.</span> <span class="toc-text">obj.propertyIsEnumerable</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法格式-3"><span class="toc-number">5.1.</span> <span class="toc-text">语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否查找原型链-3"><span class="toc-number">5.2.</span> <span class="toc-text">是否查找原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#所查找的属性是否必须满足可枚举（enumerable-true）-3"><span class="toc-number">5.3.</span> <span class="toc-text">所查找的属性是否必须满足可枚举（enumerable:true）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object-getOwnPropertyNames-obj"><span class="toc-number">6.</span> <span class="toc-text">Object.getOwnPropertyNames(obj)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法格式-4"><span class="toc-number">6.1.</span> <span class="toc-text">语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否查找原型链-4"><span class="toc-number">6.2.</span> <span class="toc-text">是否查找原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#所查找的属性是否必须满足可枚举（enumerable-true）-4"><span class="toc-number">6.3.</span> <span class="toc-text">所查找的属性是否必须满足可枚举（enumerable:true）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object-keys-obj"><span class="toc-number">7.</span> <span class="toc-text">Object.keys(obj)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#语法格式-5"><span class="toc-number">7.1.</span> <span class="toc-text">语法格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是否查找原型链-5"><span class="toc-number">7.2.</span> <span class="toc-text">是否查找原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#所查找的属性是否必须满足可枚举（enumerable-true）-5"><span class="toc-number">7.3.</span> <span class="toc-text">所查找的属性是否必须满足可枚举（enumerable:true）</span></a></li></ol></li></ol>
  
   </div>
 
@@ -295,6 +330,10 @@
 			
 		
 			
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
 			
 		
@@ -303,11 +342,11 @@
 			
 		
 			
-				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
+				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
+				<li><a href="/tags/页面渲染/" title="页面渲染">页面渲染<sup>3</sup></a></li>
 			
 		
 			
@@ -315,15 +354,11 @@
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/页面渲染/" title="页面渲染">页面渲染<sup>3</sup></a></li>
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
 			
 		
 			
@@ -339,7 +374,7 @@
 			
 		
 			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
 			
 		
 			
@@ -359,7 +394,7 @@
 			
 		
 			
-				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -367,11 +402,11 @@
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
 			
 		
 			
@@ -379,7 +414,7 @@
 			
 		
 			
-				<li><a href="/tags/轮询/" title="轮询">轮询<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
 			
 		
 			
@@ -387,7 +422,7 @@
 			
 		
 			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
@@ -395,11 +430,11 @@
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
@@ -407,23 +442,23 @@
 			
 		
 			
+				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Nginx/" title="Nginx">Nginx<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/模块化/" title="模块化">模块化<sup>1</sup></a></li>
+				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/模块化/" title="模块化">模块化<sup>1</sup></a></li>
 			
 		
 			
@@ -432,14 +467,6 @@
 		
 			
 				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
 			
 		
 			
@@ -459,7 +486,15 @@
 			
 		
 			
-				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
+				<li><a href="/tags/轮询/" title="轮询">轮询<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
 			
 		
 		</ul>

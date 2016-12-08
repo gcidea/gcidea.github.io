@@ -13,41 +13,20 @@
     
     <meta name="description" content="前言
 通过CORS实现
-通过JSONP实现
-通过图像Ping实现
-通过document.domain实现
-通过window.name实现
-通过iframe实现
-通过script标签实现
-通过window.postMessage实现（HTML5新增）
-通过后端处理实现">
+通过JSONP实现通过&amp;lt;script src=&amp;quot;&amp;quot;&amp;gt;标签加载javascript文件，JSON-P（将JSON数据封装为函数调用，比如foo({“a”:42})）通过将JSON数据传递给函数来实现对其访问。要知道JSON本身并不是合法的javascript语法，因为它会被当做一个带有非法标签的语句块来执行。而通过foo({“a”:42})这种">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript跨域问题总结">
 <meta property="og:url" content="http://yoursite.com/2016/06/14/js-cross-domain/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言
 通过CORS实现
-通过JSONP实现
-通过图像Ping实现
-通过document.domain实现
-通过window.name实现
-通过iframe实现
-通过script标签实现
-通过window.postMessage实现（HTML5新增）
-通过后端处理实现">
-<meta property="og:updated_time" content="2016-10-07T05:54:07.363Z">
+通过JSONP实现通过&amp;lt;script src=&amp;quot;&amp;quot;&amp;gt;标签加载javascript文件，JSON-P（将JSON数据封装为函数调用，比如foo({“a”:42})）通过将JSON数据传递给函数来实现对其访问。要知道JSON本身并不是合法的javascript语法，因为它会被当做一个带有非法标签的语句块来执行。而通过foo({“a”:42})这种">
+<meta property="og:updated_time" content="2016-12-08T02:01:18.737Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript跨域问题总结">
 <meta name="twitter:description" content="前言
 通过CORS实现
-通过JSONP实现
-通过图像Ping实现
-通过document.domain实现
-通过window.name实现
-通过iframe实现
-通过script标签实现
-通过window.postMessage实现（HTML5新增）
-通过后端处理实现">
+通过JSONP实现通过&amp;lt;script src=&amp;quot;&amp;quot;&amp;gt;标签加载javascript文件，JSON-P（将JSON数据封装为函数调用，比如foo({“a”:42})）通过将JSON数据传递给函数来实现对其访问。要知道JSON本身并不是合法的javascript语法，因为它会被当做一个带有非法标签的语句块来执行。而通过foo({“a”:42})这种">
 
     
     
@@ -125,7 +104,8 @@
 		
 		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><hr>
 <h2 id="通过CORS实现"><a href="#通过CORS实现" class="headerlink" title="通过CORS实现"></a>通过CORS实现</h2><hr>
-<h2 id="通过JSONP实现"><a href="#通过JSONP实现" class="headerlink" title="通过JSONP实现"></a>通过JSONP实现</h2><hr>
+<h2 id="通过JSONP实现"><a href="#通过JSONP实现" class="headerlink" title="通过JSONP实现"></a>通过JSONP实现</h2><p>通过<code>&lt;script src=&quot;&quot;&gt;</code>标签加载javascript文件，JSON-P（将JSON数据封装为函数调用，比如foo({“a”:42})）通过将JSON数据传递给函数来实现对其访问。要知道JSON本身并不是合法的javascript语法，因为它会被当做一个带有非法标签的语句块来执行。而通过foo({“a”:42})这种方式，JSON数据作为参数传递给函数进行执行，就没有什么问题了。所以说，JSON-P能将JSON转为合法的javascript语法。</p>
+<hr>
 <h2 id="通过图像Ping实现"><a href="#通过图像Ping实现" class="headerlink" title="通过图像Ping实现"></a>通过图像Ping实现</h2><hr>
 <h2 id="通过document-domain实现"><a href="#通过document-domain实现" class="headerlink" title="通过document.domain实现"></a>通过document.domain实现</h2><hr>
 <h2 id="通过window-name实现"><a href="#通过window-name实现" class="headerlink" title="通过window.name实现"></a>通过window.name实现</h2><hr>
@@ -177,7 +157,7 @@
 
 
 <div class="next">
-<a href="/2016/06/13/leetcode-345/"  title="leetcode [#344]">
+<a href="/2016/06/13/leetcode-344/"  title="leetcode [#344]">
  <strong>下一篇：</strong><br/> 
  <span>leetcode [#344]
 </span>
@@ -331,6 +311,10 @@
 			
 		
 			
+				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>5</sup></a></li>
 			
 		
@@ -339,11 +323,11 @@
 			
 		
 			
-				<li><a href="/tags/HTML/" title="HTML">HTML<sup>5</sup></a></li>
+				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/FE/" title="FE">FE<sup>4</sup></a></li>
+				<li><a href="/tags/页面渲染/" title="页面渲染">页面渲染<sup>3</sup></a></li>
 			
 		
 			
@@ -351,15 +335,11 @@
 			
 		
 			
-				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/前端工程化/" title="前端工程化">前端工程化<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/页面渲染/" title="页面渲染">页面渲染<sup>3</sup></a></li>
+				<li><a href="/tags/兼容性/" title="兼容性">兼容性<sup>3</sup></a></li>
 			
 		
 			
@@ -375,7 +355,7 @@
 			
 		
 			
-				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
+				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
 			
 		
 			
@@ -395,7 +375,7 @@
 			
 		
 			
-				<li><a href="/tags/webpack/" title="webpack">webpack<sup>2</sup></a></li>
+				<li><a href="/tags/版本控制/" title="版本控制">版本控制<sup>2</sup></a></li>
 			
 		
 			
@@ -403,11 +383,11 @@
 			
 		
 			
-				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
+				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
+				<li><a href="/tags/客户端存储/" title="客户端存储">客户端存储<sup>1</sup></a></li>
 			
 		
 			
@@ -415,7 +395,7 @@
 			
 		
 			
-				<li><a href="/tags/轮询/" title="轮询">轮询<sup>1</sup></a></li>
+				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
 			
 		
 			
@@ -423,7 +403,7 @@
 			
 		
 			
-				<li><a href="/tags/前端自动构建/" title="前端自动构建">前端自动构建<sup>1</sup></a></li>
+				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
 			
 		
 			
@@ -431,11 +411,11 @@
 			
 		
 			
-				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
+				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
+				<li><a href="/tags/LAMP/" title="LAMP">LAMP<sup>1</sup></a></li>
 			
 		
 			
@@ -443,23 +423,23 @@
 			
 		
 			
+				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Nginx/" title="Nginx">Nginx<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/内存泄漏/" title="内存泄漏">内存泄漏<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/前端包管理工具/" title="前端包管理工具">前端包管理工具<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/模块化/" title="模块化">模块化<sup>1</sup></a></li>
+				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/RestfulAPI/" title="RestfulAPI">RestfulAPI<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/模块化/" title="模块化">模块化<sup>1</sup></a></li>
 			
 		
 			
@@ -468,14 +448,6 @@
 		
 			
 				<li><a href="/tags/token/" title="token">token<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/zTree/" title="zTree">zTree<sup>1</sup></a></li>
 			
 		
 			
@@ -495,7 +467,15 @@
 			
 		
 			
-				<li><a href="/tags/语义化/" title="语义化">语义化<sup>1</sup></a></li>
+				<li><a href="/tags/轮询/" title="轮询">轮询<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Cookie/" title="Cookie">Cookie<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/持续集成CI/" title="持续集成CI">持续集成CI<sup>1</sup></a></li>
 			
 		
 		</ul>
