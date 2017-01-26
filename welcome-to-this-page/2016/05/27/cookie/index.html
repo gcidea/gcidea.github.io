@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Cookie相关总结 | GCidea&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="学习笔记,Cookie" />
+    
+    <meta name="description" content="前言　　本篇简单总结cookie的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且cookie相关是一个很大的话题，这里只是简单小结，主要包括：　　1.cookie相关介绍　　2.cookie安全性问题　　3.javascript对cookie的操作与使用　　4.cookie与session的对比分析　　5.cookie在实际开发中的使用
+
+直观感受　　co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cookie相关总结">
+<meta property="og:url" content="http://www.gcidea.info/welcome-to-this-page/2016/05/27/cookie/index.html">
+<meta property="og:site_name" content="GCidea's blog">
+<meta property="og:description" content="前言　　本篇简单总结cookie的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且cookie相关是一个很大的话题，这里只是简单小结，主要包括：　　1.cookie相关介绍　　2.cookie安全性问题　　3.javascript对cookie的操作与使用　　4.cookie与session的对比分析　　5.cookie在实际开发中的使用
+
+直观感受　　co">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/local-cookie-file.png">
+<meta property="og:updated_time" content="2016-10-31T12:27:17.870Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cookie相关总结">
+<meta name="twitter:description" content="前言　　本篇简单总结cookie的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且cookie相关是一个很大的话题，这里只是简单小结，主要包括：　　1.cookie相关介绍　　2.cookie安全性问题　　3.javascript对cookie的操作与使用　　4.cookie与session的对比分析　　5.cookie在实际开发中的使用
+
+直观感受　　co">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/local-cookie-file.png">
+    
+
+    
+        <link rel="alternate" href="http://www.gcidea.info" title="GCidea&#39;s blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad03ecfd99432fefa83cbc4dea96fac4";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">gaochang | BUPT</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/archives">归档</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/open-source">开源</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">关于</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/AngularJs/">AngularJs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FE综合/">FE综合</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTTP/">HTTP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/NodeJs/">NodeJs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/SSH/">SSH</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/jQuery/">jQuery</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端工程化/">前端工程化</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/搭建部署/">搭建部署</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/搭建部署/gaochang/">gaochang</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/正则表达式/">正则表达式</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/算法/">算法</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么（默认列表仅供参考）..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/HTTP/">HTTP</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-cookie" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Cookie相关总结
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/welcome-to-this-page/2016/05/27/cookie/" class="article-date">
+    <time datetime="2016-05-27T09:35:08.000Z" itemprop="datePublished">2016-05-27</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cookie/">Cookie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <div id="toc" style="margin-bottom: -1.6em;margin-top: 1em">
+                <strong>目录</strong>
+            </div>
+            <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#直观感受"><span class="toc-number">2.</span> <span class="toc-text">直观感受</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie相关介绍"><span class="toc-number">3.</span> <span class="toc-text">cookie相关介绍</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准"><span class="toc-number">3.2.</span> <span class="toc-text">标准</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编码"><span class="toc-number">3.3.</span> <span class="toc-text">编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性"><span class="toc-number">3.4.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">3.5.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限制"><span class="toc-number">3.6.</span> <span class="toc-text">限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输"><span class="toc-number">3.7.</span> <span class="toc-text">传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例"><span class="toc-number">3.8.</span> <span class="toc-text">案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改"><span class="toc-number">3.9.</span> <span class="toc-text">修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用"><span class="toc-number">3.10.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-number">3.11.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie安全性问题"><span class="toc-number">4.</span> <span class="toc-text">cookie安全性问题</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#httpOnly"><span class="toc-number">4.1.</span> <span class="toc-text">httpOnly</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对cookie的操作与使用"><span class="toc-number">5.</span> <span class="toc-text">JavaScript对cookie的操作与使用</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#应用场景"><span class="toc-number">5.1.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS设置cookie"><span class="toc-number">5.2.</span> <span class="toc-text">JS设置cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS获取cookie"><span class="toc-number">5.3.</span> <span class="toc-text">JS获取cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS删除cookie"><span class="toc-number">5.4.</span> <span class="toc-text">JS删除cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS检查cookie"><span class="toc-number">5.5.</span> <span class="toc-text">JS检查cookie</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie与session的对比分析"><span class="toc-number">6.</span> <span class="toc-text">cookie与session的对比分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie在实际开发中的使用"><span class="toc-number">7.</span> <span class="toc-text">cookie在实际开发中的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li></ol>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本篇简单总结cookie的概念，作用，应用，实现案例等要点，关于大段的介绍，就不再重复了，网上有很多可以参考。而且cookie相关是一个很大的话题，这里只是简单小结，主要包括：<br>　　1.cookie相关介绍<br>　　2.cookie安全性问题<br>　　3.javascript对cookie的操作与使用<br>　　4.cookie与session的对比分析<br>　　5.cookie在实际开发中的使用</p>
+<hr>
+<h2 id="直观感受"><a href="#直观感受" class="headerlink" title="直观感受"></a>直观感受</h2><p>　　cookie是一种存储在用户本地的数据。比如在windows系统中使用chrome浏览器访问网站，相应的数据将保存在如下目录：<br>  <code>C:\Users\gaochang\AppData\Local\Google\Chrome\User Data\Default</code><br>  如图所示：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/local-cookie-file.png" alt=""></p>
+<p>  我们可以用一些第三方工具查看这个文件内容，比如chrome浏览器的一款插件cookies：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/cookie-plugin.png" alt=""></p>
+<p>  我们也可以在具体访问某个网站时，点击URL左边的“纸张/锁”图标，显示当前网站的cookie信息：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/cookie-example.png" alt=""></p>
+<hr>
+<h2 id="cookie相关介绍"><a href="#cookie相关介绍" class="headerlink" title="cookie相关介绍"></a>cookie相关介绍</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>　　Cookie是由服务器端生成的，当用户访问服务器后，发送给User-Agent（一般指浏览器），浏览器会将Cookie的key/value保存到某个目录下的文本文件内，下次请求同一网站时就发送该Cookie给服务器（前提是浏览器设置为启用cookie）。Cookie名称和值可以由服务器端在开发过程中自己定义，通过cookie服务器可以知道该用户是否是合法用户以及是否需要重新登录等，服务器可以设置或读取Cookies中包含信息，借此维护用户跟服务器会话中的状态。</p>
+<h3 id="标准"><a href="#标准" class="headerlink" title="标准"></a>标准</h3><p>　　cookie的规格标准文档主要有以下4种：<br>  1.由网景公司颁布的规格标准<br>  　　网景通信公司设计开发了cookie，并制定了相关的规格标准。1994年前后，cookie正式应用在网景浏览器中。目前最为普及的cookie方式也是以此为准的。<br>  2.RFC2109<br>  　　原本是想和网景公司的标准交互应用，可惜发生了微妙的差异。该标准现在已经淡出视线。<br>  3.RFC2965<br>  　　为终结IE浏览器与Netscape Navigator的标准差异而导致的浏览器战争，该标准定义了新的HTTP首部Set-Cookie2和Cookie2。可事实上，并未投入大量使用。<br>  4.RFC6265<br>  　　将网景公司制定的标准作为业界事实标准，重新定义cookie标准后的产物。</p>
+<p>　目前使用最广泛的cookie标准并不是上述中的某一个，而是在网景公司制定的标准上进行扩展后的产物。</p>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>　　Cookies的值中可以保存除了“;”以外的标点符号。但是不能保存汉字。否则会出现乱码。所以对于Cookies中的内容要进行统一的编码和解码。为了在浏览器端和服务器端都能够进行解码和编码，可统一使用UTF-8编码格式。<br>　　javacript提供了内置的编码和解码函数，用来将非英文的字符编码或者解码。编码函数为“escape”,使用语法如下<br><code>codedString=escape(originalString);</code><br>其作用为，将参数字符串“originalString”中的特殊字符(绝大多数的非英文字母、非数字的字符)替换为”%”加上该字符Unicode编码的两位十六进制字符，或者“%u”加上该字符unicode编码的4位十六进制字符(视该字符的编码而定);<br>　　函数“un escape”与“escape”相反，用于将“escape”编码后的字符串还原为原始的字符串，其语法如下：<br><code>originalString=unescape(codedString);</code></p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>cookie主要的属性有：<br>　(1)<code>name</code>:Cookie名称，Cookie名称必须，一般用字母及数字，不能包含特殊字符，如有特殊字符需要转码。如js操作cookie的时候可以使用escape()对名称转码。</p>
+<p>　(2)<code>value</code>:Cookie值，Cookie值同理Cookie的名称，可以进行转码和加密。</p>
+<p>　(3)<code>expire</code>:过期日期，一个GMT格式的时间，当过了这个日期之后，浏览器就会将这个Cookie删除掉，当不设置这个的时候，Cookie在浏览器关闭(会话结束)后消失。</p>
+<p>　(4)<code>path</code>:一个路径，在这个路径下面的页面才可以访问该Cookie，一般设为“/”，以表示同一个站点的所有页面都可以访问这个Cookie。</p>
+<p>　(5)<code>domain</code>:子域，指定在该子域下才可以访问Cookie，例如要让Cookie在a.test.com下可以访问，但在b.test.com下不能访问，则可将domain设置成a.test.com。</p>
+<p>　(6)<code>secure</code>:安全性，指定Cookie是否只能通过https协议访问，一般的Cookie使用HTTP协议即可访问，如果设置了secure，则只有当使用https协议连接时cookie才可以被页面访问。</p>
+<p>　(7)<code>httpOnly</code>:如果在Cookie中设置了”HttpOnly”属性，那么通过程序(JS脚本、Applet等)将无法读取到Cookie信息。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>cookie主要可以分为以下两类：</p>
+<blockquote>
+<p>Session cookies - these are temporary and are erased when you close your browser at the end of your surfing session. The next time you visit that particular site it will not recognise you and will treat you as a completely new visitor as there is nothing in your browser to let the site know that you have visited before.</p>
+</blockquote>
+<p>会话cookie—这类cookie是短暂性的，是位于客户端所在系统的内存中的，当你的会话结束，关闭浏览器时，这类cookie将会被清空。当你下一次再访问该网站时，服务端并不能识别出你而是将你当做一个全新的用户，因为你的浏览器中没有任何可以让服务端判断你之前访问过的信息。（在设置了Discard参数(该参数是指当客户端程序运行结束时丢弃这个cookie。是RFC2965中新增字段，允许浏览器在退出时，不考虑过期时间，将cookie强制销毁)，或者没有明确设置的expires或Max-Age的情况下，创建的是一个会话cookie。）主要作用：根据名字也容易看出，主要是为了配合服务端session机制对用户进行标识。</p>
+<blockquote>
+<p>Persistent cookies - these remain on your hard drive until you erase them or they expire. How long a cookie remains on your browser depends on how long the visited website has programmed the cookie to last.</p>
+</blockquote>
+<p>持久cookie—这类cookie将保存在客户端所在设备的硬盘上（具体位置见本文开头直观感受部分），除非你主动删除它们或者它们过期了。这类cookie能在你的浏览器中保持有效多长时间，取决于你所访问网站为之设定的有效期。主要作用：持久化cookie则主要是进行用户特征的追踪，比如记录用户最初访问时间，用户习惯等。</p>
+<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p>　　大多数浏览器支持最大为4096字节的 Cookie。浏览器还限制站点可以在用户计算机上存储的Cookie的数量。大多数浏览器只允许每个站点存储20个Cookie；注意这里的20个是指主键值，也就是20条Cookies记录，但是每个Cookies记录还可以包含若干子键。如果试图存储更多Cookie，则最旧的Cookie便会被丢弃。有些浏览器还会对它们将接受的来自所有站点的Cookie总数作出绝对限制，通常为300个。</p>
+<h3 id="传输"><a href="#传输" class="headerlink" title="传输"></a>传输</h3><p>　　cookie信息在浏览器（客户端）和服务器端的传递是通过http报文头部来实现的。<br>　　HTTP请求报文的首部字段有“请求首部字段”，“通用首部字段”，“实体首部字段”3种；HTTP响应报文的首部字段有“响应首部字段”，“通用首部字段”，“实体首部字段”3种。具体到这里：为cookie服务的首部字段有：</p>
+<table>
+<thead>
+<tr>
+<th>首部字段名</th>
+<th>说明</th>
+<th>首部类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Set-Cookie</td>
+<td>开始状态管理所使用的Cookie信息</td>
+<td>响应首部字段</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>服务器接收到的Cookie信息</td>
+<td>请求首部字段</td>
+</tr>
+</tbody>
+</table>
+<p>下面具体来看一下两个字段：</p>
+<p><b>Set-Cookie</b><br>示例：响应报文中的一段<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/setcookie.png" alt=""></p>
+<p>Set-Cookie字段的属性有：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NAME=VALUE</td>
+<td>赋予cookie的名称和值</td>
+</tr>
+<tr>
+<td>expires=DATE</td>
+<td>cookie的有效期（若不明确指定则默认为浏览器关闭时）</td>
+</tr>
+<tr>
+<td>path=PATH</td>
+<td>指明服务器上的哪些文件目录作为cookie的适用对象 </td>
+</tr>
+<tr>
+<td>domain=域名</td>
+<td>作为cookie适用对象的域名</td>
+</tr>
+<tr>
+<td>Secure</td>
+<td>仅在HTTPS安全通信时才会发送cookie，无具体值，直接指定“secure”即可</td>
+</tr>
+<tr>
+<td>HttpOnly</td>
+<td>加以限制，使cookie不能被js等脚本访问，无具体值，直接指定“HttpOnly”即可</td>
+</tr>
+</tbody>
+</table>
+<p><b>Cookie</b><br>示例：请求报文中的一段<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/cookie.png" alt=""></p>
+<p>首部字段Cookie会告知服务器，当客服端想获得HTTP状态管理支持时，就会在请求头包含从服务器接收到的cookie。</p>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p>　　下面是《HTTP权威指南》中给出的一个关于“cookie与会话跟踪”的例子：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/cookie-session-1.png" alt=""><br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/cookie-session-2.png" alt=""><br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/cookie-session-3.png" alt=""></p>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>　　其实cookie是不存在真正意义上的修改、删除操作的。要想修改，只需要在服务端新建一个同名cookie，填入http响应报文覆盖原来的cookie即可；要想删除，则只要在服务端新建一个同名cookie，并且设置maxAge为0，填入http响应报文覆盖原来的cookie即可。</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>　　cookie的作用主要在于“绑定一种状态”，其工作机制是用户识别及状态管理。比如购物网站中，一定时间内可以直接登录，免去输入用户名密码的繁琐；可以根据浏览记录精准推荐感兴趣的商品；正确记录购物车中已有商品等等。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>简单来讲，关于cookie记住3句话：<br>　1.首次由服务端生成，放入set-cookie字段传回给客户端；<br>　2.客户端请求报文首部加入该cookie；<br>　3.服务端识别该cookie，从而确定用户身份。</p>
+<hr>
+<h2 id="cookie安全性问题"><a href="#cookie安全性问题" class="headerlink" title="cookie安全性问题"></a>cookie安全性问题</h2><p>　　cookie在提供便利的同时，确实存在安全性问题，它可能被非法使用冒充身份。Cookie记录了用户的帐户ID、密码之类的信息，通常使用MD5方法加密后在网上传递。但是，Cookie以纯文本的形式在浏览器和服务器之间传送，很容易被他人非法截获和利用。并且截获者不需要知道这些字符串的含义，只要把别人的Cookie向服务器提交，且能够通过验证，就可以冒充受害人的身份登陆网站，这种行为就叫做Cookie欺骗。</p>
+<h3 id="httpOnly"><a href="#httpOnly" class="headerlink" title="httpOnly"></a>httpOnly</h3><p>　　上述cookie属性中的httpOnly是安全性的解决方案之一。设置为true后，JavaScript是无法获取cookie的，可防止XSS（跨站脚本攻击）等。详见如下演示：<br>1.测试程序如下：<br>  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Home</span>\<span class="title">Controller</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Controller</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> <span class="keyword">extends</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span>&#123;</span><br><span class="line">        setcookie(<span class="string">"sid"</span>, <span class="string">"this is a cookie test"</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">false</span>);</span><br><span class="line">        $this-&gt;display();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>根据setcookie()函数的API：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/setcookieapi.png" alt=""><br>此时设置httpOnly的属性为false；客户端应该可以到sid=this is a cookie test这个cookie，验证代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">"#cookieBtn"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(<span class="built_in">document</span>.cookie);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>点击“查看cookie信息”按钮，显示结果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/setcookiefalse.png" alt=""><br>结果符合预期。</p>
+<p>现在更改为true，开启httpOnly:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Home</span>\<span class="title">Controller</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Think</span>\<span class="title">Controller</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> <span class="keyword">extends</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span>&#123;</span><br><span class="line">        setcookie(<span class="string">"sid"</span>, <span class="string">"this is a cookie test"</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">NULL</span>, <span class="keyword">true</span>);</span><br><span class="line">        $this-&gt;display();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>点击“查看cookie信息”按钮，显示结果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/setcookietrue.png" alt=""><br>可以看出此时已经无法通过JavaScript获取cookie</p>
+<p>但是，这种方式也还是有漏洞的，具体参见这篇文章：<a href="http://netsecurity.51cto.com/art/201404/435401.htm" target="_blank" rel="external">http://netsecurity.51cto.com/art/201404/435401.htm</a></p>
+<blockquote>
+<p>httpOnly作用只是限制从其他非HTTP的API（如JavaScript）访问，cookie还是有可能传递的过程中被监听捕获后信息泄漏。将 HttpOnly 属性设置为 true，并不能防止对网络频道具有访问权限的攻击者直接访问该 Cookie。针对这种情况，应考虑使用安全套接字层 (SSL) 来提供帮助。<br>secure属性是防止信息在传递的过程中被监听捕获后信息泄漏。即：<br><code>setcookie(&quot;sid&quot;, &quot;this is a cookie test&quot;, NULL, NULL, NULL, true, NULL);</code><br>HttpOnly属性的目的是防止程序获取cookie后进行攻击。即：<br><code>setcookie(&quot;sid&quot;, &quot;this is a cookie test&quot;, NULL, NULL, NULL, NULL, true);</code></p>
+</blockquote>
+<hr>
+<h2 id="JavaScript对cookie的操作与使用"><a href="#JavaScript对cookie的操作与使用" class="headerlink" title="JavaScript对cookie的操作与使用"></a>JavaScript对cookie的操作与使用</h2><p>（注：以下内容主要为引用。）</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>　　JavaScript是运行在客户端的脚本，因此一般是不能够设置Session的，因为Session是运行在服务器端的。而cookie是运行在客户端的，所以可以用JS来设置cookie。假设有这样一种情况，在某个用例流程中，由A页面跳至B页面，若在A页面中采用JS用变量temp保存了某一变量的值，在B页面的时候，同样需要使用JS来引用temp的变量值，对于JS中的全局变量或者静态变量的生命周期是有限的，当发生页面跳转或者页面关闭的时候，这些变量的值会重新载入，即没有达到保存的效果。解决这个问题的最好的方案是采用cookie(本地文件)来保存该变量的值，那么如何来设置和读取cookie呢？首先需要稍微了解一下cookie的结构，简单地说：cookie是以键值对的形式保存的，即key=value的格式。各个cookie之间一般是以“;”分隔。</p>
+<h3 id="JS设置cookie"><a href="#JS设置cookie" class="headerlink" title="JS设置cookie"></a>JS设置cookie</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">c_name,value,expiredays</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> exdate=<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    exdate.setDate(exdate.getDate()+expiredays);</span><br><span class="line">    <span class="built_in">document</span>.cookie=c_name+ <span class="string">"="</span> +<span class="built_in">escape</span>(value)+((expiredays==<span class="literal">null</span>) ? <span class="string">""</span> : <span class="string">"; expires="</span>+exdate.toGMTString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JS获取cookie"><a href="#JS获取cookie" class="headerlink" title="JS获取cookie"></a>JS获取cookie</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">c_name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.cookie.length&gt;<span class="number">0</span>)&#123; </span><br><span class="line">        c_start=<span class="built_in">document</span>.cookie.indexOf(c_name + <span class="string">"="</span>);</span><br><span class="line">        <span class="keyword">if</span> (c_start!=<span class="number">-1</span>)&#123; </span><br><span class="line">            c_start=c_start + c_name.length+<span class="number">1</span>;</span><br><span class="line">            c_end=<span class="built_in">document</span>.cookie.indexOf(<span class="string">";"</span>,c_start);</span><br><span class="line">            <span class="keyword">if</span> (c_end==<span class="number">-1</span>) &#123;</span><br><span class="line">                c_end=<span class="built_in">document</span>.cookie.length;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">unescape</span>(<span class="built_in">document</span>.cookie.substring(c_start,c_end));</span><br><span class="line">        &#125; </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JS删除cookie"><a href="#JS删除cookie" class="headerlink" title="JS删除cookie"></a>JS删除cookie</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delCookie</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> exp = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    exp.setTime(exp.getTime() - <span class="number">1</span>); <span class="comment">//删除cookie即设置expires为一个过去的时间</span></span><br><span class="line">    <span class="keyword">var</span> cval=getCookie(name);</span><br><span class="line">    <span class="keyword">if</span>(cval!=<span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="built_in">document</span>.cookie= name + <span class="string">"="</span>+cval+<span class="string">";expires="</span>+exp.toGMTString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="JS检查cookie"><a href="#JS检查cookie" class="headerlink" title="JS检查cookie"></a>JS检查cookie</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkCookie</span>(<span class="params"></span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    username=getCookie(<span class="string">'username'</span>);</span><br><span class="line">    <span class="keyword">if</span> (username!=<span class="literal">null</span> &amp;&amp; username!=<span class="string">""</span>)&#123;</span><br><span class="line">        alert(<span class="string">'Welcome again '</span>+username+<span class="string">'!'</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      username=prompt(<span class="string">'Please enter your name:'</span>,<span class="string">""</span>);</span><br><span class="line">      <span class="keyword">if</span> (username!=<span class="literal">null</span> &amp;&amp; username!=<span class="string">""</span>)&#123;</span><br><span class="line">        setCookie(<span class="string">'username'</span>,username,<span class="number">365</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：jQuery库也提供了对cookie操作的封装。具体可参见<a href="http://www.php100.com/html/program/jquery/2013/0905/6028.html" target="_blank" rel="external">http://www.php100.com/html/program/jquery/2013/0905/6028.html</a></p>
+</blockquote>
+<hr>
+<h2 id="cookie与session的对比分析"><a href="#cookie与session的对比分析" class="headerlink" title="cookie与session的对比分析"></a>cookie与session的对比分析</h2><p>　　关于session，则又是一大块内容。具体地将在后面的文章中单独总结。这里仅把一些资料中的对比内容加以总结。</p>
+<p>1.Session是服务器端使用的一种记录客户端状态的机制，使用上比Cookie简单一些，相应的也增加了服务器的存储压力。</p>
+<p>2.不同的是Cookie保存在客户端浏览器中，而Session保存在服务器上。</p>
+<p>3.客户端浏览器访问服务器的时候，服务器把客户端信息以某种形式记录在服务器上。这就是Session。客户端浏览器再次访问时只需要从该Session中查找该客户的状态就可以了。</p>
+<p>4.当多个客户端执行程序时，服务器会保存多个客户端的Session。获取Session的时候也不需要声明获取谁的Session。Session机制决定了当前客户只会获取到自己的Session，而不会获取到别人的Session。各客户的Session也彼此独立，互不可见。</p>
+<p>5.cookie和session的共同之处在于：cookie和session都是用来跟踪浏览器用户身份的会话方式。</p>
+<p>6.cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗,如果主要考虑到安全应当使用session。</p>
+<p>7.可将登陆信息等重要信息存放为session;其他信息如果需要保留，可以放在cookie中。</p>
+<p>8.虽然Session保存在服务器，对客户端是透明的，它的正常运行仍然需要客户端浏览器的支持。这是因为Session需要使用Cookie作为识别标志。HTTP协议是无状态的，Session不能依据HTTP连接来判断是否为同一客户，因此服务器向客户端浏览器发送一个名称中包含类似“SESSIONID”字样的Cookie，它的值为该Session的id（也就是HttpSession.getId()的返回值）。Session依据该Cookie来识别是否为同一用户。该Cookie为服务器自动生成的，它的maxAge属性一般为–1，表示仅当前浏览器内有效，并且各浏览器窗口间不共享，关闭浏览器就会失效。因此同一机器的两个浏览器窗口访问服务器时，会生成两个不同的Session。但是由浏览器窗口内的链接、脚本等打开的新窗口除外，这类子窗口会共享父窗口的Cookie，因此会共享一个Session。（注意：新开的浏览器窗口会生成新的Session，但子窗口除外。子窗口会共用父窗口的Session。例如，在链接上右击，在弹出的快捷菜单中选择“在新窗口中打开”时，子窗口便可以访问父窗口的Session。）</p>
+<p>9.我们知道，客户端浏览器是可以禁用Cookie的（或者可能就不支持Cookie）那么在这种情况下，为了使用session达到相应效果，就要使用另一种技术：URL地址重写。URL地址重写是对客户端不支持Cookie的解决方案。URL地址重写的原理是将该用户Session的id信息重写到URL地址中。服务器能够解析重写后的URL获取Session的id。这样即使客户端不支持Cookie，也可以使用Session来记录用户状态。</p>
+<blockquote>
+<p>参考：<br><a href="http://www.cnblogs.com/shiyangxt/archive/2008/10/07/1305506.html" target="_blank" rel="external">http://www.cnblogs.com/shiyangxt/archive/2008/10/07/1305506.html</a><br><a href="http://blog.csdn.net/axin66ok/article/details/6175522" target="_blank" rel="external">http://blog.csdn.net/axin66ok/article/details/6175522</a><br><a href="http://blog.csdn.net/fangaoxin/article/details/6952954" target="_blank" rel="external">http://blog.csdn.net/fangaoxin/article/details/6952954</a></p>
+</blockquote>
+<hr>
+<h2 id="cookie在实际开发中的使用"><a href="#cookie在实际开发中的使用" class="headerlink" title="cookie在实际开发中的使用"></a>cookie在实际开发中的使用</h2><p>　　根据上述cookie与session的对比分析可知，实际应用中cookie要配合session使用才能更好保证安全性。因此具体开发中的应用将在<a href="http://gcidea.info/2016/05/08/session/" target="_blank" rel="external">session相关总结</a>一文中一并分析。</p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>　　cookie相关内容十分丰富，这里只是对目前遇到的一些问题，根据网上已有资料和一些实际经验进行的总结，其中很多点都值得单独展开深入分析。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/gcidea" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/u/2180985772" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="http://www.gcidea.info" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/welcome-to-this-page/2016/05/30/session/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Session相关总结
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/welcome-to-this-page/2016/05/22/restful-api/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Restful风格API设计小结</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/08/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/搭建部署/gaochang/">gaochang</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/08/uniform-development-product-env-switchyomega-charles/" class="title">使用SwitchyOmega和Charles配置统一的开发和生产环境</a></p>
+                            <p class="item-date"><time datetime="2017-01-08T06:13:51.000Z" itemprop="datePublished">2017-01-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/06/apache-tomcat-war-deployment/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/build-success.png)" alt="使用Apache tomcat部署项目war包" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/06/apache-tomcat-war-deployment/" class="title">使用Apache tomcat部署项目war包</a></p>
+                            <p class="item-date"><time datetime="2017-01-06T03:29:39.000Z" itemprop="datePublished">2017-01-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/03/leetcode-409/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/03/leetcode-409/" class="title">leetcode [#409]</a></p>
+                            <p class="item-date"><time datetime="2017-01-03T03:26:39.000Z" itemprop="datePublished">2017-01-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/02/leetcode-438/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/02/leetcode-438/" class="title">leetcode [#438]</a></p>
+                            <p class="item-date"><time datetime="2017-01-02T15:26:39.000Z" itemprop="datePublished">2017-01-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/02/leetcode-463/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://leetcode.com/static/images/problemset/island.png)" alt="leetcode [#463]" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/02/leetcode-463/" class="title">leetcode [#463]</a></p>
+                            <p class="item-date"><time datetime="2017-01-02T15:26:39.000Z" itemprop="datePublished">2017-01-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AngularJs/">AngularJs</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE综合/">FE综合</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">46</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jQuery/">jQuery</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端工程化/">前端工程化</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/">搭建部署</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/gaochang/">gaochang</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">93</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJs/">AngularJs</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Charles/">Charles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Comet/">Comet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cookie/">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emmet/">Emmet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FE/">FE</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">66</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LAMP/">LAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/">Less</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Long-Polling/">Long Polling</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/">MVVM</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NodeJs/">NodeJs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestfulAPI/">RestfulAPI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SwitchyOmega/">SwitchyOmega</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jqGrid/">jqGrid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">92</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/token/">token</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webSocket/">webSocket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zTree/">zTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兼容性/">兼容性</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄漏/">内存泄漏</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端包管理工具/">前端包管理工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端自动构建/">前端自动构建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/即时通信/">即时通信</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化拖拽/">可视化拖拽</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">122</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实现-应用/">实现/应用</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/客户端存储/">客户端存储</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成CI/">持续集成CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搭建部署/">搭建部署</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模块化/">模块化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语义化/">语义化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/轮询/">轮询</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面渲染/">页面渲染</a><span class="tag-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AngularJs/" style="font-size: 15px;">AngularJs</a> <a href="/tags/CSS/" style="font-size: 14.29px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 12.86px;">CSS3</a> <a href="/tags/Charles/" style="font-size: 10px;">Charles</a> <a href="/tags/Comet/" style="font-size: 10px;">Comet</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/Emmet/" style="font-size: 10px;">Emmet</a> <a href="/tags/FE/" style="font-size: 12.14px;">FE</a> <a href="/tags/HTML/" style="font-size: 12.86px;">HTML</a> <a href="/tags/HTML5/" style="font-size: 10.71px;">HTML5</a> <a href="/tags/HTTP/" style="font-size: 17.14px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 18.57px;">JavaScript</a> <a href="/tags/LAMP/" style="font-size: 10px;">LAMP</a> <a href="/tags/Less/" style="font-size: 10px;">Less</a> <a href="/tags/Long-Polling/" style="font-size: 10px;">Long Polling</a> <a href="/tags/MVVM/" style="font-size: 15px;">MVVM</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/NodeJs/" style="font-size: 10.71px;">NodeJs</a> <a href="/tags/React/" style="font-size: 12.86px;">React</a> <a href="/tags/RestfulAPI/" style="font-size: 10px;">RestfulAPI</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/SwitchyOmega/" style="font-size: 10px;">SwitchyOmega</a> <a href="/tags/jQuery/" style="font-size: 12.86px;">jQuery</a> <a href="/tags/jqGrid/" style="font-size: 10px;">jqGrid</a> <a href="/tags/leetcode/" style="font-size: 19.29px;">leetcode</a> <a href="/tags/token/" style="font-size: 10px;">token</a> <a href="/tags/webSocket/" style="font-size: 10px;">webSocket</a> <a href="/tags/webpack/" style="font-size: 10.71px;">webpack</a> <a href="/tags/zTree/" style="font-size: 10px;">zTree</a> <a href="/tags/兼容性/" style="font-size: 11.43px;">兼容性</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/前端包管理工具/" style="font-size: 10px;">前端包管理工具</a> <a href="/tags/前端工程化/" style="font-size: 11.43px;">前端工程化</a> <a href="/tags/前端框架/" style="font-size: 16.43px;">前端框架</a> <a href="/tags/前端自动构建/" style="font-size: 10px;">前端自动构建</a> <a href="/tags/即时通信/" style="font-size: 10px;">即时通信</a> <a href="/tags/可视化拖拽/" style="font-size: 10.71px;">可视化拖拽</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/实现-应用/" style="font-size: 17.86px;">实现/应用</a> <a href="/tags/客户端存储/" style="font-size: 10px;">客户端存储</a> <a href="/tags/异步编程/" style="font-size: 10.71px;">异步编程</a> <a href="/tags/持续集成CI/" style="font-size: 10px;">持续集成CI</a> <a href="/tags/搭建部署/" style="font-size: 15.71px;">搭建部署</a> <a href="/tags/模块化/" style="font-size: 10px;">模块化</a> <a href="/tags/正则/" style="font-size: 10.71px;">正则</a> <a href="/tags/浏览器/" style="font-size: 13.57px;">浏览器</a> <a href="/tags/版本控制/" style="font-size: 11.43px;">版本控制</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/编码/" style="font-size: 11.43px;">编码</a> <a href="/tags/语义化/" style="font-size: 10px;">语义化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/转载/" style="font-size: 11.43px;">转载</a> <a href="/tags/轮询/" style="font-size: 10px;">轮询</a> <a href="/tags/闭包/" style="font-size: 11.43px;">闭包</a> <a href="/tags/页面渲染/" style="font-size: 11.43px;">页面渲染</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://bbs.byr.cn,">北邮人论坛-北邮人的温馨家园</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.ebupt.com,">东信北邮信息技术有限公司</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.zn2studio.com">Zn2Studio锌离子工作室</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 - 2017 Gao Chang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>.</p>
+                <p><b>The relentless pursuit of perfection.</b></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://www.gcidea.info/welcome-to-this-page/2016/05/27/cookie/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

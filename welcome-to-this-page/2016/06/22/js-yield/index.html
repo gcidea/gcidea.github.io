@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Mozilla的JavaScript扩展---关于JavaScript生成器generator和yield的一些理解 | GCidea&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="学习笔记,JavaScript" />
+    
+    <meta name="description" content="综述　　Generator（生成器）函数是ES6提供的一种异步编程解决方案，而yield则是配合生成器函数使用的。
+
+Generator函数定义　　function* 声明（function关键字后跟一个星号）定义一个generator（生成器）函数，返回一个Generator对象。
+语法function* name([param[, param[, ... param]]]) { stateme">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mozilla的JavaScript扩展---关于JavaScript生成器generator和yield的一些理解">
+<meta property="og:url" content="http://www.gcidea.info/welcome-to-this-page/2016/06/22/js-yield/index.html">
+<meta property="og:site_name" content="GCidea's blog">
+<meta property="og:description" content="综述　　Generator（生成器）函数是ES6提供的一种异步编程解决方案，而yield则是配合生成器函数使用的。
+
+Generator函数定义　　function* 声明（function关键字后跟一个星号）定义一个generator（生成器）函数，返回一个Generator对象。
+语法function* name([param[, param[, ... param]]]) { stateme">
+<meta property="og:updated_time" content="2016-12-05T14:45:08.604Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mozilla的JavaScript扩展---关于JavaScript生成器generator和yield的一些理解">
+<meta name="twitter:description" content="综述　　Generator（生成器）函数是ES6提供的一种异步编程解决方案，而yield则是配合生成器函数使用的。
+
+Generator函数定义　　function* 声明（function关键字后跟一个星号）定义一个generator（生成器）函数，返回一个Generator对象。
+语法function* name([param[, param[, ... param]]]) { stateme">
+    
+
+    
+        <link rel="alternate" href="http://www.gcidea.info" title="GCidea&#39;s blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad03ecfd99432fefa83cbc4dea96fac4";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">gaochang | BUPT</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/archives">归档</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/open-source">开源</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">关于</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/AngularJs/">AngularJs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FE综合/">FE综合</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTTP/">HTTP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/NodeJs/">NodeJs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/SSH/">SSH</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/jQuery/">jQuery</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端工程化/">前端工程化</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/搭建部署/">搭建部署</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/搭建部署/gaochang/">gaochang</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/正则表达式/">正则表达式</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/算法/">算法</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么（默认列表仅供参考）..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/JavaScript/">JavaScript</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-js-yield" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Mozilla的JavaScript扩展---关于JavaScript生成器generator和yield的一些理解
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/welcome-to-this-page/2016/06/22/js-yield/" class="article-date">
+    <time datetime="2016-06-22T14:40:47.000Z" itemprop="datePublished">2016-06-22</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <div id="toc" style="margin-bottom: -1.6em;margin-top: 1em">
+                <strong>目录</strong>
+            </div>
+            <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#综述"><span class="toc-number">1.</span> <span class="toc-text">综述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator函数"><span class="toc-number">2.</span> <span class="toc-text">Generator函数</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语法"><span class="toc-number">2.2.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#描述"><span class="toc-number">2.3.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-number">2.4.</span> <span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yield"><span class="toc-number">3.</span> <span class="toc-text">yield</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义-1"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语法-1"><span class="toc-number">3.2.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#描述-1"><span class="toc-number">3.3.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例-1"><span class="toc-number">3.4.</span> <span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yield-1"><span class="toc-number">4.</span> <span class="toc-text">yield*</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义-2"><span class="toc-number">4.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#语法-2"><span class="toc-number">4.2.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#描述-2"><span class="toc-number">4.3.</span> <span class="toc-text">描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例-2"><span class="toc-number">4.4.</span> <span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">5.</span> <span class="toc-text">注意事项</span></a></li></ol>
+            <h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>　　Generator（生成器）函数是ES6提供的一种异步编程解决方案，而yield则是配合生成器函数使用的。</p>
+<hr>
+<h2 id="Generator函数"><a href="#Generator函数" class="headerlink" title="Generator函数"></a>Generator函数</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>　　function* 声明（function关键字后跟一个星号）定义一个generator（生成器）函数，返回一个Generator对象。</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p><code>function* name([param[, param[, ... param]]]) { statements }</code><br>其中：</p>
+<ul>
+<li>name<br>函数名</li>
+<li>param<br>传入函数的参数名，一个函数至多可有255个参数。</li>
+<li>statements<br>函数的主体</li>
+</ul>
+<blockquote>
+<p>注：ES6没有规定，function关键字与函数名之间的星号必须写在哪个位置，因此下面的写法都正确，但是还是推荐上述写法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">name</span>(<span class="params">[param[, param[, ... param]]]</span>) </span>&#123; statements &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">name</span>(<span class="params">[param[, param[, ... param]]]</span>) </span>&#123; statements &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>*<span class="title">name</span>(<span class="params">[param[, param[, ... param]]]</span>) </span>&#123; statements &#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>　　生成器是一种可以从中退出并在之后重新进入的函数。生成器的环境（绑定的变量）会在每次执行后被保存，下次进入时可继续使用。调用一个生成器函数并不马上执行它的主体，而是返回一个这个生成器函数的迭代器（iterator）对象。当这个迭代器的next()方法被调用时：</p>
+<ul>
+<li>生成器函数的主体会被执行直至第一个yield表达式，该表达式定义了迭代器返回的值；</li>
+<li>或者，被 yield*委派至另一个生成器函数。</li>
+</ul>
+<p>next()方法返回一个对象，该对象有一个value属性，表示产出的值，和一个done属性，表示生成器是否已经产出了它最后的值。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">idMaker</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> index = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(index&lt;<span class="number">3</span>)</span><br><span class="line">    <span class="keyword">yield</span> index++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> gen = idMaker();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(gen.next().value); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(gen.next().value); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(gen.next().value); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(gen.next().value); <span class="comment">// undefined</span></span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>　　yield 关键字用来暂停和继续一个生成器函数。</p>
+<h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><p><code>yield [[expression]];</code></p>
+<ul>
+<li>expression<br>用作返回值.  如果忽略, 将返回 undefined .</li>
+</ul>
+<h3 id="描述-1"><a href="#描述-1" class="headerlink" title="描述"></a>描述</h3><p>　　yield关键字使生成器函数暂停执行，并返回跟在它后面的表达式的当前值。可以把它想成是return关键字的一个基于生成器的版本。yield 关键字实际返回一个对象，包含两个属性value和done。value属性为yield expression的值,done是一个布尔值用来指示生成器函数是否已经全部完成。<br>一旦在yield expression处暂停, 除非外部调用生成器的next()方法，否则生成器的代码将不能继续执行。这使得可以对生成器的执行以及渐进式的返回值进行直接控制。</p>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><p>同上示例。</p>
+<hr>
+<h2 id="yield-1"><a href="#yield-1" class="headerlink" title="yield*"></a>yield*</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>　　在生成器中，<code>yield*</code> 可以把需要yield的值委托给另外一个生成器或者其他任意的可迭代对象。</p>
+<h3 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h3><p><code>yield* [[expression]];</code></p>
+<ul>
+<li>expression<br>任意的可迭代对象。</li>
+</ul>
+<h3 id="描述-2"><a href="#描述-2" class="headerlink" title="描述"></a>描述</h3><p>　yield* 一个可迭代对象，就相当于把这个可迭代对象的所有迭代值分次yield出去。yield* 表达式本身的值就是当前可迭代对象迭代完毕（当done为true时）时的返回值。</p>
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">g1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">g2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span>* g1();</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> iterator = g2();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(iterator.next()); <span class="comment">// &#123; value: 1, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iterator.next()); <span class="comment">// &#123; value: 2, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iterator.next()); <span class="comment">// &#123; value: 3, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iterator.next()); <span class="comment">// &#123; value: 4, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iterator.next()); <span class="comment">// &#123; value: 5, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(iterator.next()); <span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>yield语句不能用在普通函数（即不带有*的function）中，否则会报错。</li>
+<li>Generator函数可以不用yield语句，这时就变成了一个单纯的暂缓执行函数。</li>
+<li>Generator函数是分段执行的，yield语句是暂停执行的标记，而next方法可以恢复执行。</li>
+<li>参考文档：<a href="http://es6.ruanyifeng.com/#docs/generator" target="_blank" rel="external">阮一峰 ECMAScript6入门</a>、<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/function*" target="_blank" rel="external">MDN官方文档</a>。</li>
+</ol>
+
+        </div>
+        <footer class="article-footer">
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/gcidea" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/u/2180985772" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="http://www.gcidea.info" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/welcome-to-this-page/2016/06/23/js-html5-file-api/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            使用HTML5的FileAPI完成图片预览上传
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/welcome-to-this-page/2016/06/21/leetcode-258/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">leetcode [#258]</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/08/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/搭建部署/gaochang/">gaochang</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/08/uniform-development-product-env-switchyomega-charles/" class="title">使用SwitchyOmega和Charles配置统一的开发和生产环境</a></p>
+                            <p class="item-date"><time datetime="2017-01-08T06:13:51.000Z" itemprop="datePublished">2017-01-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/06/apache-tomcat-war-deployment/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/build-success.png)" alt="使用Apache tomcat部署项目war包" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/06/apache-tomcat-war-deployment/" class="title">使用Apache tomcat部署项目war包</a></p>
+                            <p class="item-date"><time datetime="2017-01-06T03:29:39.000Z" itemprop="datePublished">2017-01-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/03/leetcode-409/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/03/leetcode-409/" class="title">leetcode [#409]</a></p>
+                            <p class="item-date"><time datetime="2017-01-03T03:26:39.000Z" itemprop="datePublished">2017-01-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/02/leetcode-438/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/02/leetcode-438/" class="title">leetcode [#438]</a></p>
+                            <p class="item-date"><time datetime="2017-01-02T15:26:39.000Z" itemprop="datePublished">2017-01-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/02/leetcode-463/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://leetcode.com/static/images/problemset/island.png)" alt="leetcode [#463]" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/02/leetcode-463/" class="title">leetcode [#463]</a></p>
+                            <p class="item-date"><time datetime="2017-01-02T15:26:39.000Z" itemprop="datePublished">2017-01-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AngularJs/">AngularJs</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE综合/">FE综合</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">46</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jQuery/">jQuery</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端工程化/">前端工程化</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/">搭建部署</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/gaochang/">gaochang</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">93</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJs/">AngularJs</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Charles/">Charles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Comet/">Comet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cookie/">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emmet/">Emmet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FE/">FE</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">66</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LAMP/">LAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/">Less</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Long-Polling/">Long Polling</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/">MVVM</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NodeJs/">NodeJs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestfulAPI/">RestfulAPI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SwitchyOmega/">SwitchyOmega</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jqGrid/">jqGrid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">92</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/token/">token</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webSocket/">webSocket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zTree/">zTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兼容性/">兼容性</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄漏/">内存泄漏</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端包管理工具/">前端包管理工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端自动构建/">前端自动构建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/即时通信/">即时通信</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化拖拽/">可视化拖拽</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">122</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实现-应用/">实现/应用</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/客户端存储/">客户端存储</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成CI/">持续集成CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搭建部署/">搭建部署</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模块化/">模块化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语义化/">语义化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/轮询/">轮询</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面渲染/">页面渲染</a><span class="tag-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AngularJs/" style="font-size: 15px;">AngularJs</a> <a href="/tags/CSS/" style="font-size: 14.29px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 12.86px;">CSS3</a> <a href="/tags/Charles/" style="font-size: 10px;">Charles</a> <a href="/tags/Comet/" style="font-size: 10px;">Comet</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/Emmet/" style="font-size: 10px;">Emmet</a> <a href="/tags/FE/" style="font-size: 12.14px;">FE</a> <a href="/tags/HTML/" style="font-size: 12.86px;">HTML</a> <a href="/tags/HTML5/" style="font-size: 10.71px;">HTML5</a> <a href="/tags/HTTP/" style="font-size: 17.14px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 18.57px;">JavaScript</a> <a href="/tags/LAMP/" style="font-size: 10px;">LAMP</a> <a href="/tags/Less/" style="font-size: 10px;">Less</a> <a href="/tags/Long-Polling/" style="font-size: 10px;">Long Polling</a> <a href="/tags/MVVM/" style="font-size: 15px;">MVVM</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/NodeJs/" style="font-size: 10.71px;">NodeJs</a> <a href="/tags/React/" style="font-size: 12.86px;">React</a> <a href="/tags/RestfulAPI/" style="font-size: 10px;">RestfulAPI</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/SwitchyOmega/" style="font-size: 10px;">SwitchyOmega</a> <a href="/tags/jQuery/" style="font-size: 12.86px;">jQuery</a> <a href="/tags/jqGrid/" style="font-size: 10px;">jqGrid</a> <a href="/tags/leetcode/" style="font-size: 19.29px;">leetcode</a> <a href="/tags/token/" style="font-size: 10px;">token</a> <a href="/tags/webSocket/" style="font-size: 10px;">webSocket</a> <a href="/tags/webpack/" style="font-size: 10.71px;">webpack</a> <a href="/tags/zTree/" style="font-size: 10px;">zTree</a> <a href="/tags/兼容性/" style="font-size: 11.43px;">兼容性</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/前端包管理工具/" style="font-size: 10px;">前端包管理工具</a> <a href="/tags/前端工程化/" style="font-size: 11.43px;">前端工程化</a> <a href="/tags/前端框架/" style="font-size: 16.43px;">前端框架</a> <a href="/tags/前端自动构建/" style="font-size: 10px;">前端自动构建</a> <a href="/tags/即时通信/" style="font-size: 10px;">即时通信</a> <a href="/tags/可视化拖拽/" style="font-size: 10.71px;">可视化拖拽</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/实现-应用/" style="font-size: 17.86px;">实现/应用</a> <a href="/tags/客户端存储/" style="font-size: 10px;">客户端存储</a> <a href="/tags/异步编程/" style="font-size: 10.71px;">异步编程</a> <a href="/tags/持续集成CI/" style="font-size: 10px;">持续集成CI</a> <a href="/tags/搭建部署/" style="font-size: 15.71px;">搭建部署</a> <a href="/tags/模块化/" style="font-size: 10px;">模块化</a> <a href="/tags/正则/" style="font-size: 10.71px;">正则</a> <a href="/tags/浏览器/" style="font-size: 13.57px;">浏览器</a> <a href="/tags/版本控制/" style="font-size: 11.43px;">版本控制</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/编码/" style="font-size: 11.43px;">编码</a> <a href="/tags/语义化/" style="font-size: 10px;">语义化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/转载/" style="font-size: 11.43px;">转载</a> <a href="/tags/轮询/" style="font-size: 10px;">轮询</a> <a href="/tags/闭包/" style="font-size: 11.43px;">闭包</a> <a href="/tags/页面渲染/" style="font-size: 11.43px;">页面渲染</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://bbs.byr.cn,">北邮人论坛-北邮人的温馨家园</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.ebupt.com,">东信北邮信息技术有限公司</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.zn2studio.com">Zn2Studio锌离子工作室</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 - 2017 Gao Chang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>.</p>
+                <p><b>The relentless pursuit of perfection.</b></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://www.gcidea.info/welcome-to-this-page/2016/06/22/js-yield/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

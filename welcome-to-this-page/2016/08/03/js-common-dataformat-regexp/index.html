@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>常见数据格式的正则表达式验证 | GCidea&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="学习笔记,正则" />
+    
+    <meta name="description" content="前言　　正则表达式是一种强大的工具，可以在很多场景下对我们需要的内容进行快速匹配过滤。比如，在前端提交表单时，就可以通过编写合理的正则表达式对用户输入进行首次过滤（当然服务端程序在接收到数据后一样要进行严格的数据检查，保证程序正常运行，防止通过postman等工具绕过前端验证进行恶意攻击。）
+正则表达式的学习　　网上有很多系统学习正则表达式的资源，掌握基本的语法和相关机制是实现常见数据格式验证的基">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见数据格式的正则表达式验证">
+<meta property="og:url" content="http://www.gcidea.info/welcome-to-this-page/2016/08/03/js-common-dataformat-regexp/index.html">
+<meta property="og:site_name" content="GCidea's blog">
+<meta property="og:description" content="前言　　正则表达式是一种强大的工具，可以在很多场景下对我们需要的内容进行快速匹配过滤。比如，在前端提交表单时，就可以通过编写合理的正则表达式对用户输入进行首次过滤（当然服务端程序在接收到数据后一样要进行严格的数据检查，保证程序正常运行，防止通过postman等工具绕过前端验证进行恶意攻击。）
+正则表达式的学习　　网上有很多系统学习正则表达式的资源，掌握基本的语法和相关机制是实现常见数据格式验证的基">
+<meta property="og:updated_time" content="2016-10-31T12:34:41.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常见数据格式的正则表达式验证">
+<meta name="twitter:description" content="前言　　正则表达式是一种强大的工具，可以在很多场景下对我们需要的内容进行快速匹配过滤。比如，在前端提交表单时，就可以通过编写合理的正则表达式对用户输入进行首次过滤（当然服务端程序在接收到数据后一样要进行严格的数据检查，保证程序正常运行，防止通过postman等工具绕过前端验证进行恶意攻击。）
+正则表达式的学习　　网上有很多系统学习正则表达式的资源，掌握基本的语法和相关机制是实现常见数据格式验证的基">
+    
+
+    
+        <link rel="alternate" href="http://www.gcidea.info" title="GCidea&#39;s blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad03ecfd99432fefa83cbc4dea96fac4";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">gaochang | BUPT</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/archives">归档</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/open-source">开源</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">关于</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/AngularJs/">AngularJs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/FE综合/">FE综合</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/HTTP/">HTTP</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/NodeJs/">NodeJs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/React/">React</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/SSH/">SSH</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/jQuery/">jQuery</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/前端工程化/">前端工程化</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/搭建部署/">搭建部署</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/搭建部署/gaochang/">gaochang</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/正则表达式/">正则表达式</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/算法/">算法</a></li></ul>
+                                    
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么（默认列表仅供参考）..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/正则表达式/">正则表达式</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-js-common-dataformat-regexp" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        常见数据格式的正则表达式验证
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/welcome-to-this-page/2016/08/03/js-common-dataformat-regexp/" class="article-date">
+    <time datetime="2016-08-03T03:27:52.000Z" itemprop="datePublished">2016-08-03</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/正则/">正则</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <div id="toc" style="margin-bottom: -1.6em;margin-top: 1em">
+                <strong>目录</strong>
+            </div>
+            <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式的学习"><span class="toc-number">2.</span> <span class="toc-text">正则表达式的学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为空"><span class="toc-number">3.</span> <span class="toc-text">验证输入是否为空</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式"><span class="toc-number">3.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释"><span class="toc-number">3.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为英文字母-大小写-数字"><span class="toc-number">4.</span> <span class="toc-text">验证输入是否为英文字母(大小写)+数字</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-1"><span class="toc-number">4.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-1"><span class="toc-number">4.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为英文字母-大小写-数字-下划线"><span class="toc-number">5.</span> <span class="toc-text">验证输入是否为英文字母(大小写)+数字+下划线</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-2"><span class="toc-number">5.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-2"><span class="toc-number">5.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为汉字"><span class="toc-number">6.</span> <span class="toc-text">验证输入是否为汉字</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-3"><span class="toc-number">6.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-3"><span class="toc-number">6.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为整数"><span class="toc-number">7.</span> <span class="toc-text">验证输入是否为整数</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-4"><span class="toc-number">7.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-4"><span class="toc-number">7.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为正整数"><span class="toc-number">8.</span> <span class="toc-text">验证输入是否为正整数</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-5"><span class="toc-number">8.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-5"><span class="toc-number">8.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为负整数"><span class="toc-number">9.</span> <span class="toc-text">验证输入是否为负整数</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-6"><span class="toc-number">9.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-6"><span class="toc-number">9.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为非负整数（正整数-0）"><span class="toc-number">10.</span> <span class="toc-text">验证输入是否为非负整数（正整数 + 0）</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-7"><span class="toc-number">10.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-7"><span class="toc-number">10.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为非正整数（负整数-0）"><span class="toc-number">11.</span> <span class="toc-text">验证输入是否为非正整数（负整数 + 0）</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-8"><span class="toc-number">11.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-8"><span class="toc-number">11.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为n位的数字"><span class="toc-number">12.</span> <span class="toc-text">验证输入是否为n位的数字</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-9"><span class="toc-number">12.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-9"><span class="toc-number">12.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为至少n位的数字"><span class="toc-number">13.</span> <span class="toc-text">验证输入是否为至少n位的数字</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-10"><span class="toc-number">13.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-10"><span class="toc-number">13.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为m-n位的数字"><span class="toc-number">14.</span> <span class="toc-text">验证输入是否为m~n位的数字</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-11"><span class="toc-number">14.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-11"><span class="toc-number">14.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为浮点数"><span class="toc-number">15.</span> <span class="toc-text">验证输入是否为浮点数</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-12"><span class="toc-number">15.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-12"><span class="toc-number">15.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为正浮点数"><span class="toc-number">16.</span> <span class="toc-text">验证输入是否为正浮点数</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-13"><span class="toc-number">16.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-13"><span class="toc-number">16.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为负浮点数"><span class="toc-number">17.</span> <span class="toc-text">验证输入是否为负浮点数</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-14"><span class="toc-number">17.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-14"><span class="toc-number">17.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为非负浮点数"><span class="toc-number">18.</span> <span class="toc-text">验证输入是否为非负浮点数</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-15"><span class="toc-number">18.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-15"><span class="toc-number">18.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为非正浮点数"><span class="toc-number">19.</span> <span class="toc-text">验证输入是否为非正浮点数</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-16"><span class="toc-number">19.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-16"><span class="toc-number">19.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为有两位小数的正实数"><span class="toc-number">20.</span> <span class="toc-text">验证输入是否为有两位小数的正实数</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-17"><span class="toc-number">20.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-17"><span class="toc-number">20.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为有1-3位小数的正数或负数"><span class="toc-number">21.</span> <span class="toc-text">验证输入是否为有1~3位小数的正数或负数</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-18"><span class="toc-number">21.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-18"><span class="toc-number">21.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为email地址"><span class="toc-number">22.</span> <span class="toc-text">验证输入是否为email地址</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-19"><span class="toc-number">22.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-19"><span class="toc-number">22.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为中国邮政编码"><span class="toc-number">23.</span> <span class="toc-text">验证输入是否为中国邮政编码</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-20"><span class="toc-number">23.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-20"><span class="toc-number">23.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为URL"><span class="toc-number">24.</span> <span class="toc-text">验证输入是否为URL</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-21"><span class="toc-number">24.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-21"><span class="toc-number">24.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为身份证号码"><span class="toc-number">25.</span> <span class="toc-text">验证输入是否为身份证号码</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-22"><span class="toc-number">25.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-22"><span class="toc-number">25.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为一年的12个月"><span class="toc-number">26.</span> <span class="toc-text">验证输入是否为一年的12个月</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-23"><span class="toc-number">26.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-23"><span class="toc-number">26.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为一月的31天"><span class="toc-number">27.</span> <span class="toc-text">验证输入是否为一月的31天</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-24"><span class="toc-number">27.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-24"><span class="toc-number">27.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为YYYY-MM-DD格式的日期"><span class="toc-number">28.</span> <span class="toc-text">验证输入是否为YYYY-MM-DD格式的日期</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-25"><span class="toc-number">28.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-25"><span class="toc-number">28.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为YYYY-MM-DD-hh-mm-ss格式的日期"><span class="toc-number">29.</span> <span class="toc-text">验证输入是否为YYYY-MM-DD hh:mm:ss格式的日期</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-26"><span class="toc-number">29.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-26"><span class="toc-number">29.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为hh-mm-ss格式的时间"><span class="toc-number">30.</span> <span class="toc-text">验证输入是否为hh:mm:ss格式的时间</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-27"><span class="toc-number">30.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-27"><span class="toc-number">30.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为手机号码"><span class="toc-number">31.</span> <span class="toc-text">验证输入是否为手机号码</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-28"><span class="toc-number">31.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-28"><span class="toc-number">31.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为中国座机号码"><span class="toc-number">32.</span> <span class="toc-text">验证输入是否为中国座机号码</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-29"><span class="toc-number">32.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-29"><span class="toc-number">32.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为IPV4地址"><span class="toc-number">33.</span> <span class="toc-text">验证输入是否为IPV4地址</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-30"><span class="toc-number">33.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-30"><span class="toc-number">33.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为IPV6地址"><span class="toc-number">34.</span> <span class="toc-text">验证输入是否为IPV6地址</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-31"><span class="toc-number">34.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-31"><span class="toc-number">34.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为密码要求的格式"><span class="toc-number">35.</span> <span class="toc-text">验证输入是否为密码要求的格式</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-32"><span class="toc-number">35.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-32"><span class="toc-number">35.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入密码安全强度"><span class="toc-number">36.</span> <span class="toc-text">验证输入密码安全强度</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-33"><span class="toc-number">36.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-33"><span class="toc-number">36.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证输入是否为常见HTML标签"><span class="toc-number">37.</span> <span class="toc-text">验证输入是否为常见HTML标签</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-34"><span class="toc-number">37.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-34"><span class="toc-number">37.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匹配HTML文档中的注释"><span class="toc-number">38.</span> <span class="toc-text">匹配HTML文档中的注释</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-35"><span class="toc-number">38.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-35"><span class="toc-number">38.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匹配HTML文档中的超链接"><span class="toc-number">39.</span> <span class="toc-text">匹配HTML文档中的超链接</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-36"><span class="toc-number">39.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-36"><span class="toc-number">39.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匹配HTML文档中的图片"><span class="toc-number">40.</span> <span class="toc-text">匹配HTML文档中的图片</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-37"><span class="toc-number">40.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-37"><span class="toc-number">40.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匹配HTML文档中的URL"><span class="toc-number">41.</span> <span class="toc-text">匹配HTML文档中的URL</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-38"><span class="toc-number">41.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-38"><span class="toc-number">41.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匹配空白行"><span class="toc-number">42.</span> <span class="toc-text">匹配空白行</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-39"><span class="toc-number">42.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-39"><span class="toc-number">42.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匹配首尾空白字符"><span class="toc-number">43.</span> <span class="toc-text">匹配首尾空白字符</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-40"><span class="toc-number">43.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-40"><span class="toc-number">43.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匹配双字节字符"><span class="toc-number">44.</span> <span class="toc-text">匹配双字节字符</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-41"><span class="toc-number">44.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-41"><span class="toc-number">44.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#匹配中文标点符号"><span class="toc-number">45.</span> <span class="toc-text">匹配中文标点符号</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-42"><span class="toc-number">45.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-42"><span class="toc-number">45.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检查URL的前缀"><span class="toc-number">46.</span> <span class="toc-text">检查URL的前缀</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-43"><span class="toc-number">46.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-43"><span class="toc-number">46.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检查文件扩展名"><span class="toc-number">47.</span> <span class="toc-text">检查文件扩展名</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式-44"><span class="toc-number">47.1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释-44"><span class="toc-number">47.2.</span> <span class="toc-text">解释</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#金额格式相关"><span class="toc-number">48.</span> <span class="toc-text">金额格式相关</span></a></li></ol>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　正则表达式是一种强大的工具，可以在很多场景下对我们需要的内容进行快速匹配过滤。比如，在前端提交表单时，就可以通过编写合理的正则表达式对用户输入进行首次过滤（当然服务端程序在接收到数据后一样要进行严格的数据检查，保证程序正常运行，防止通过postman等工具绕过前端验证进行恶意攻击。）</p>
+<h2 id="正则表达式的学习"><a href="#正则表达式的学习" class="headerlink" title="正则表达式的学习"></a>正则表达式的学习</h2><p>　　网上有很多系统学习正则表达式的资源，掌握基本的语法和相关机制是实现常见数据格式验证的基础。快速了解正则表达式的内容，推荐<a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434499503920bb7b42ff6627420da2ceae4babf6c4f2000" target="_blank" rel="external">廖雪峰JavaScript教程中的正则RegExp部分</a>。<br>　　需要单独说明的是，以下提到的各种数据格式的验证，都采用JavaScript中的如下写法：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/正则表达式/</span>;</span><br><span class="line"><span class="keyword">var</span> strToTest = <span class="string">"待测试内容"</span>;</span><br><span class="line">reg.test(strToTest); <span class="comment">//返回true或者false表明正则验证通过或失败</span></span><br><span class="line">strToTest.match(reg); <span class="comment">//以数组形式返回匹配正确的部分，若没有返回null</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="验证输入是否为空"><a href="#验证输入是否为空" class="headerlink" title="验证输入是否为空"></a>验证输入是否为空</h2><h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p><code>^</code>匹配开始，<code>$</code>匹配结束，上述表达式的意思是匹配的字符串开始结束之间没有内容。test()方法返回true则表示输入内容为空（输入空格等并不为空）。</p>
+<h2 id="验证输入是否为英文字母-大小写-数字"><a href="#验证输入是否为英文字母-大小写-数字" class="headerlink" title="验证输入是否为英文字母(大小写)+数字"></a>验证输入是否为英文字母(大小写)+数字</h2><h3 id="表达式-1"><a href="#表达式-1" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^[a-zA-Z0-9]+$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-1"><a href="#解释-1" class="headerlink" title="解释"></a>解释</h3><p>分别列出小写a-z，大写A-Z，数字0-9即可。</p>
+<h2 id="验证输入是否为英文字母-大小写-数字-下划线"><a href="#验证输入是否为英文字母-大小写-数字-下划线" class="headerlink" title="验证输入是否为英文字母(大小写)+数字+下划线"></a>验证输入是否为英文字母(大小写)+数字+下划线</h2><h3 id="表达式-2"><a href="#表达式-2" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\w+$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-2"><a href="#解释-2" class="headerlink" title="解释"></a>解释</h3><p>正则表达式中\w就表示匹配一个数字或者字母，也包含了下划线。</p>
+<h2 id="验证输入是否为汉字"><a href="#验证输入是否为汉字" class="headerlink" title="验证输入是否为汉字"></a>验证输入是否为汉字</h2><h3 id="表达式-3"><a href="#表达式-3" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^[\u4e00-\u9fa5]&#123;0,&#125;$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-3"><a href="#解释-3" class="headerlink" title="解释"></a>解释</h3><p><code>\u4e00</code>是汉字“一”，<code>\u9fa5</code>是汉字“龥”，该范围包含了汉字的Unicode编码。</p>
+<h2 id="验证输入是否为整数"><a href="#验证输入是否为整数" class="headerlink" title="验证输入是否为整数"></a>验证输入是否为整数</h2><h3 id="表达式-4"><a href="#表达式-4" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\-?[1-9]\d*$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-4"><a href="#解释-4" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>这个表达式可以用来匹配除0以外的任意正负整数。</li>
+<li>开始是一个负号“-”，用来匹配负数的负号，?表示非贪婪匹配模式（也就是说匹配尽量少的内容，一旦匹配上就不再考虑后面的字符串）。并且?表示匹配其前面的内容0次或者1次，这样就包括了正数和负数都可以。注意这里的<code>-</code>号后面不能接<code>*</code>或者<code>+</code>，必须只能至多有一个。</li>
+<li>[1-9]则表示匹配一个1-9的数字，作为整个这个整数的开头。注意这里必须将第一位这样处理，因为不能为0，无法和后面的\d*合并。</li>
+<li>\d*则表示后续接的0个或多个数字，和前面的部分共同构成整数。</li>
+</ol>
+<h2 id="验证输入是否为正整数"><a href="#验证输入是否为正整数" class="headerlink" title="验证输入是否为正整数"></a>验证输入是否为正整数</h2><h3 id="表达式-5"><a href="#表达式-5" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\+?[1-9]\d*$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-5"><a href="#解释-5" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>开始可以有一个正号（最多一个），当然也可以没有。并且由于<code>+</code>在正则表达式中有特殊含义，因此必须转义。</li>
+<li>[1-9]则表示匹配一个1-9的数字，作为整个这个整数的开头。注意这里必须将第一位这样处理，因为不能为0，无法和后面的\d*合并。</li>
+<li>\d*则表示后续接的0个或多个数字，和前面的部分共同构成整数。</li>
+</ol>
+<h2 id="验证输入是否为负整数"><a href="#验证输入是否为负整数" class="headerlink" title="验证输入是否为负整数"></a>验证输入是否为负整数</h2><h3 id="表达式-6"><a href="#表达式-6" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\-[1-9]\d*$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-6"><a href="#解释-6" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>一开始必须有一个负号，并且由于<code>-</code>在正则表达式中有特殊含义，因此转义。</li>
+<li>[1-9]则表示匹配一个1-9的数字，作为整个这个整数的开头。注意这里必须将第一位这样处理，因为不能为0，无法和后面的\d*合并。</li>
+<li>\d*则表示后续接的0个或多个数字，和前面的部分共同构成整数。</li>
+</ol>
+<h2 id="验证输入是否为非负整数（正整数-0）"><a href="#验证输入是否为非负整数（正整数-0）" class="headerlink" title="验证输入是否为非负整数（正整数 + 0）"></a>验证输入是否为非负整数（正整数 + 0）</h2><h3 id="表达式-7"><a href="#表达式-7" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^((\+?[1-9]\d*)|(0))$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-7"><a href="#解释-7" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>正数前面可能会有正号，<code>\+?</code>限制有0个或者1个正号。</li>
+<li>随后是一位1-9的数字<code>[1-9]</code>，再随后是任意多位0-9的数字<code>\d*</code>，排除掉“+02”这样无意义的写法。</li>
+<li>对于0，直接匹配(0)。</li>
+<li>上述情况，居其一，用或<code>|</code>区分，整体上必须还用括号()包起来，否则无法正确过滤”-0”这种情况。</li>
+</ol>
+<h2 id="验证输入是否为非正整数（负整数-0）"><a href="#验证输入是否为非正整数（负整数-0）" class="headerlink" title="验证输入是否为非正整数（负整数 + 0）"></a>验证输入是否为非正整数（负整数 + 0）</h2><h3 id="表达式-8"><a href="#表达式-8" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^((\-[1-9]\d*)|(0))$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-8"><a href="#解释-8" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>对于0，直接匹配(0)。</li>
+<li>对于小于零的负整数，开头是负号<code>-</code>，随后是一位1-9的数字<code>[1-9]</code>，再随后是任意多位0-9的数字<code>\d*</code>。</li>
+<li>上述两种情况，居其一，用或<code>|</code>区分，整体上必须还用括号()包起来，否则无法正确过滤”-0”这种情况。</li>
+</ol>
+<h2 id="验证输入是否为n位的数字"><a href="#验证输入是否为n位的数字" class="headerlink" title="验证输入是否为n位的数字"></a>验证输入是否为n位的数字</h2><h3 id="表达式-9"><a href="#表达式-9" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\d&#123;n&#125;$/</span>; <span class="comment">//具体使用时n取某个特定数字</span></span><br></pre></td></tr></table></figure>
+<h3 id="解释-9"><a href="#解释-9" class="headerlink" title="解释"></a>解释</h3><p>{n}表示\d数字的个数。</p>
+<h2 id="验证输入是否为至少n位的数字"><a href="#验证输入是否为至少n位的数字" class="headerlink" title="验证输入是否为至少n位的数字"></a>验证输入是否为至少n位的数字</h2><h3 id="表达式-10"><a href="#表达式-10" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\d&#123;n,&#125;$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-10"><a href="#解释-10" class="headerlink" title="解释"></a>解释</h3><p>{n,}表示\d数字的个数范围。</p>
+<h2 id="验证输入是否为m-n位的数字"><a href="#验证输入是否为m-n位的数字" class="headerlink" title="验证输入是否为m~n位的数字"></a>验证输入是否为m~n位的数字</h2><h3 id="表达式-11"><a href="#表达式-11" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\d&#123;m,n&#125;$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-11"><a href="#解释-11" class="headerlink" title="解释"></a>解释</h3><p>{n,m}表示\d数字的个数范围。</p>
+<h2 id="验证输入是否为浮点数"><a href="#验证输入是否为浮点数" class="headerlink" title="验证输入是否为浮点数"></a>验证输入是否为浮点数</h2><h3 id="表达式-12"><a href="#表达式-12" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(\-?\d+)(\.\d+)?$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-12"><a href="#解释-12" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>开始是一个负号“-”，用来匹配负数的负号，?表示非贪婪匹配模式（也就是说匹配尽量少的内容，一旦匹配上就不再考虑后面的字符串）。并且?表示匹配其前面的内容0次或者1次，这样就包括了正数和负数都可以。注意这里的<code>-</code>号后面不能接<code>*</code>或者<code>+</code>，必须只能至多有一个。</li>
+<li>随后<code>\d+</code>表示1位或者多位数字，代表该浮点数的整数部分。</li>
+<li><code>\.</code>转义表示小数点。</li>
+<li><code>\d+</code>表示1位或者多位数字，代表该浮点数的小数部分。</li>
+</ol>
+<h2 id="验证输入是否为正浮点数"><a href="#验证输入是否为正浮点数" class="headerlink" title="验证输入是否为正浮点数"></a>验证输入是否为正浮点数</h2><h3 id="表达式-13"><a href="#表达式-13" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-13"><a href="#解释-13" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>开始一位1-9的数字<code>[1-9]</code>，再随后是任意多位0-9的数字<code>\d*</code>，表示正浮点数整数部分（且是大于等于1的浮点数）。</li>
+<li><code>\.</code>转义表示小数点。</li>
+<li><code>\d*</code>表示0位或者多位数字，代表该浮点数的小数部分。</li>
+<li>再考虑0-1之间的浮点数，<code>\d*[1-9]\d*</code>的写法是为了防止0.000这种情况。</li>
+</ol>
+<h2 id="验证输入是否为负浮点数"><a href="#验证输入是否为负浮点数" class="headerlink" title="验证输入是否为负浮点数"></a>验证输入是否为负浮点数</h2><h3 id="表达式-14"><a href="#表达式-14" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-14"><a href="#解释-14" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>开头匹配负号’-‘</li>
+<li>考虑小于等于-1的浮点数，一位1-9的数字<code>[1-9]</code>，再随后是任意多位0-9的数字<code>\d*</code>，表示负浮点数整数部分。</li>
+<li><code>\.</code>转义表示小数点。</li>
+<li><code>\d*</code>表示0位或者多位数字，代表该浮点数的小数部分。</li>
+<li>再考虑-1~0之间的浮点数，<code>0</code>直接匹配0。</li>
+<li><code>\.</code>转义表示小数点。</li>
+<li><code>\d*[1-9]\d*</code>的写法是为了防止0.000这种情况。</li>
+</ol>
+<h2 id="验证输入是否为非负浮点数"><a href="#验证输入是否为非负浮点数" class="headerlink" title="验证输入是否为非负浮点数"></a>验证输入是否为非负浮点数</h2><h3 id="表达式-15"><a href="#表达式-15" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^[1-9]\d*\.\d*|0\.\d*[1-9]\d*|0?\.0+|0$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-15"><a href="#解释-15" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>前半部分<code>[1-9]\d*\.\d*|0\.\d*[1-9]\d*</code>与正浮点数一样，不再赘述。</li>
+<li><code>0?</code>表示0个或1个‘0’，这是允许的，针对的是“.666”这种写法的浮点数。</li>
+<li>最后一部分直接匹配“0”，也是可以的。</li>
+</ol>
+<h2 id="验证输入是否为非正浮点数"><a href="#验证输入是否为非正浮点数" class="headerlink" title="验证输入是否为非正浮点数"></a>验证输入是否为非正浮点数</h2><h3 id="表达式-16"><a href="#表达式-16" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(\-([1-9]\d*\.\d*|0\.\d*[1-9]\d*))|0?\.0+|0$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-16"><a href="#解释-16" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>前半部分<code>\-([1-9]\d*\.\d*|0\.\d*[1-9]\d*)</code>与负浮点数一样，不再赘述。</li>
+<li><code>0?</code>表示0个或1个‘0’，这是允许的，针对的是“.666”这种写法的浮点数。</li>
+<li>最后一部分直接匹配“0”，也是可以的。</li>
+</ol>
+<h2 id="验证输入是否为有两位小数的正实数"><a href="#验证输入是否为有两位小数的正实数" class="headerlink" title="验证输入是否为有两位小数的正实数"></a>验证输入是否为有两位小数的正实数</h2><h3 id="表达式-17"><a href="#表达式-17" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^([1-9]\d*(\.[0-9]&#123;2&#125;)?)|(0\.[1-9][0-9])|(0\.[0-9][1-9])$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-17"><a href="#解释-17" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>([1-9]\d*(.[0-9]{2})?)匹配大于等于1的两位小数实数</li>
+<li>(0.[1-9][0-9])匹配0.10~0.99的两位小数实数</li>
+<li>(0.[0-9][1-9])匹配0.01~0.99（但不含0.10 0.20 0.30 … 0.90这些数）</li>
+<li>2,3中的处理是为了排除0.00这个数（非正）</li>
+</ol>
+<h2 id="验证输入是否为有1-3位小数的正数或负数"><a href="#验证输入是否为有1-3位小数的正数或负数" class="headerlink" title="验证输入是否为有1~3位小数的正数或负数"></a>验证输入是否为有1~3位小数的正数或负数</h2><h3 id="表达式-18"><a href="#表达式-18" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(\-)?\d+(\.\d&#123;1,2&#125;)?$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-18"><a href="#解释-18" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>(-)?匹配0或1个负号</li>
+<li>\d+表示该数的整数部分</li>
+<li>(.\d{1,3})?匹配小数点和1~3位小数</li>
+</ol>
+<h2 id="验证输入是否为email地址"><a href="#验证输入是否为email地址" class="headerlink" title="验证输入是否为email地址"></a>验证输入是否为email地址</h2><h3 id="表达式-19"><a href="#表达式-19" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-19"><a href="#解释-19" class="headerlink" title="解释"></a>解释</h3><ol>
+<li><code>\w+</code>表明必须以字母数字下划线开头。</li>
+<li>随后可接任意个([-+.]\w+)的组合。组合的内容是：一个’-‘或’+’或’.’加上至少一个字母数字下划线。</li>
+<li><code>@</code>直接匹配地址符@。</li>
+<li>@后面必须接至少一个字母数字下划线。</li>
+<li>随后可接任意个([-.]\w+)的组合。组合的内容是：一个’-‘或’.’加上至少一个字母数字下划线。</li>
+<li>随后单独匹配一个<code>\.</code>，表明@后面至少是二级域名。</li>
+<li>随后仍可接任意个([-.]\w+)的组合。注意必须以字母数字下划线结尾。</li>
+</ol>
+<h2 id="验证输入是否为中国邮政编码"><a href="#验证输入是否为中国邮政编码" class="headerlink" title="验证输入是否为中国邮政编码"></a>验证输入是否为中国邮政编码</h2><h3 id="表达式-20"><a href="#表达式-20" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\d&#123;6&#125;$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-20"><a href="#解释-20" class="headerlink" title="解释"></a>解释</h3><p>邮编为6位数字。另外有些地方关于邮编的正则验证是<code>[1-9]\d{5}(?!\d)</code>。我认为有两个问题：</p>
+<ol>
+<li>邮编第一位可以为零，比如027200：内蒙古自治区 锡林郭勒盟 正蓝旗</li>
+<li>最后加一个零宽负向先行断言<code>(?!\d)</code>是没有必要的，想限制第六位后面没有数字，直接$即可。</li>
+</ol>
+<h2 id="验证输入是否为URL"><a href="#验证输入是否为URL" class="headerlink" title="验证输入是否为URL"></a>验证输入是否为URL</h2><h3 id="表达式-21"><a href="#表达式-21" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-21"><a href="#解释-21" class="headerlink" title="解释"></a>解释</h3><p>URL的灵活性很强，因此不好找到一种能包罗万象的匹配方式，上述提供的只能说可以应对大部分，但使用时要注意，如果加上了这个限制反而导致用户本来正确合理的输入无法通过验证进而提交表单，那么不如不用。</p>
+<h2 id="验证输入是否为身份证号码"><a href="#验证输入是否为身份证号码" class="headerlink" title="验证输入是否为身份证号码"></a>验证输入是否为身份证号码</h2><h3 id="表达式-22"><a href="#表达式-22" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(\d&#123;15&#125;$|^\d&#123;18&#125;$|^\d&#123;17&#125;(x|X))$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-22"><a href="#解释-22" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>早期身份证号码为15位，均为数字；后来增加为18位编码，最后一位是校验位，可能出现“10”，对应地采用罗马字母X表示。</li>
+<li>分别验证了15位数字、18位数字、17位数字+字母x/X三种情况。要注意的是每种情况必须都写结束符$，否则只要大于等于15位都会匹配成功。</li>
+<li>以上正则验证只能说是对数字位数和是否有字母做出了限定，但并不能详细校验是否符合规则-比如地区编号，性别等，这些超出了正则的验证范围（或者说正则解决起来反而会变得麻烦），这时候，想进一步验证输入，要采取更详细的办法，详见<a href="http://mp.weixin.qq.com/s?__biz=MzAwMzMxOTUxOA==&amp;mid=402994766&amp;idx=1&amp;sn=fbf98b406af41e2415b5d5e263682dd4&amp;scene=0#rd" target="_blank" rel="external">JavaScript 18位身份证验证及身份证号码规则</a>。</li>
+</ol>
+<h2 id="验证输入是否为一年的12个月"><a href="#验证输入是否为一年的12个月" class="headerlink" title="验证输入是否为一年的12个月"></a>验证输入是否为一年的12个月</h2><h3 id="表达式-23"><a href="#表达式-23" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(0?[1-9]|1[0-2])$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-23"><a href="#解释-23" class="headerlink" title="解释"></a>解释</h3><ol>
+<li><code>0?</code>这种写法保证了比如9、09都可以被接受，而不是非得两位。</li>
+<li>10，11，12月单独处理。</li>
+</ol>
+<h2 id="验证输入是否为一月的31天"><a href="#验证输入是否为一月的31天" class="headerlink" title="验证输入是否为一月的31天"></a>验证输入是否为一月的31天</h2><h3 id="表达式-24"><a href="#表达式-24" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(0?[1-9]|(1|2)[0-9]|3[0-1])$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-24"><a href="#解释-24" class="headerlink" title="解释"></a>解释</h3><p><code>0?</code>这种写法保证了比如9、09都可以被接受，而不是非得两位。</p>
+<h2 id="验证输入是否为YYYY-MM-DD格式的日期"><a href="#验证输入是否为YYYY-MM-DD格式的日期" class="headerlink" title="验证输入是否为YYYY-MM-DD格式的日期"></a>验证输入是否为YYYY-MM-DD格式的日期</h2><h3 id="表达式-25"><a href="#表达式-25" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(?:(?!0000)[0-9]&#123;4&#125;-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]&#123;2&#125;(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-25"><a href="#解释-25" class="headerlink" title="解释"></a>解释</h3><ol>
+<li><p>考虑了平年闰年。</p>
+</li>
+<li><p><code>(?:(?!0000)[0-9]{4}</code>匹配年份。<br>2.1 <code>?:</code>表明这是非捕获分组，后面括号匹配到的内容不会被存入内存中，这样是为了提高匹配效率和性能（后面大量出现<code>?:</code>，都是这个作用）。<br>2.2 <code>?!</code>表明这是零宽负向先行断言，表明在此位置后面的不是“0000”才会匹配，结合<code>[0-9]{4}</code>来看，这是为了去掉年份为“0000”的。</p>
+</li>
+<li><p>后面分多种情况匹配了月和日：<br>　3.1 “(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)”<br>　　3.1.1 “?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])”<br>　　　　3.1.1.1 “?:(?:0[1-9]|1[0-2])”<br>　　　　　　匹配01-09月，以及10-12月。<br>　　　　3.1.1.2 “(?:0[1-9]|1[0-9]|2[0-8])”<br>　　　　　　匹配01-09日，10-19日，20-28日。这些是任何一年的任何一个月都会有的日期。<br>　　3.1.2 “(?:0[13-9]|1[0-2])-(?:29|30)”<br>　　　　3.1.2.1 “(?:0[13-9]|1[0-2])”<br>　　　　　　匹配01月、03-09月，以及10-12月。也就是除去02月，考虑到02月只有28/29天。<br>　　　　3.1.2.2 “(?:29|30)”<br>　　　　　　当月份匹配01月、03-09月，以及10-12月时，对应的日就可以有29、30日。<br>　　3.1.3 “(?:0[13578]|1[02])-31)”<br>　　　　3.1.3.1 “(?:0[13578]|1[02])”<br>　　　　　　匹配01,03,05,07,08,10,12月，这些月份会有31号。<br>　　　　3.1.3.2 “-31”<br>　　　　　　匹配31日。<br>　3.2 “(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29”<br>　　3.2.1 “(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)”<br>　　　　3.2.1.1 “(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])”<br>　　　　　　从3.2开始是匹配一些特殊的年份-闰年。即年份“能被400整除”或者“能被4整除且不能被100整除”的。先考虑“能被4整除且不能被100整除”：前两位0-9皆可。后两位只要不是“00”，就能保证不被100整除，因此只需要考虑后两位被4整除的情况，也就是考虑01-99之中能被4整除的有哪些，即(?:0[48]|[2468][048]|[13579][26])。<br>　　　　3.2.1.2 “(?:0[48]|[2468][048]|[13579][26])00”<br>　　　　　　再考虑“能被400整除”的，后两位肯定是00，考虑前两位。只要前两位能被4整除即可，也即(?:0[48]|[2468][048]|[13579][26])。<br>　　3.2.2 “-02-29”<br>　　　　处理完年份后，即得到所有的闰年后，月日就是固定的02-29。</p>
+</li>
+</ol>
+<h2 id="验证输入是否为YYYY-MM-DD-hh-mm-ss格式的日期"><a href="#验证输入是否为YYYY-MM-DD-hh-mm-ss格式的日期" class="headerlink" title="验证输入是否为YYYY-MM-DD hh:mm:ss格式的日期"></a>验证输入是否为YYYY-MM-DD hh:mm:ss格式的日期</h2><h3 id="表达式-26"><a href="#表达式-26" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(?:(?!0000)[0-9]&#123;4&#125;-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]&#123;2&#125;(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29) (([0-1][0-9])|(2[0-3]))\:[0-5][0-9]\:[0-5][0-9]$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-26"><a href="#解释-26" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>YYYY-MM-DD部分与上面相同，不再赘述。</li>
+<li><code>(([0-1][0-9])|(2[0-3]))</code>整体是一个分组，要加括号，匹配时：00-23</li>
+<li><code>[0-5][0-9]</code>，匹配分：00-59</li>
+<li><code>[0-5][0-9]</code>，匹配秒：00-59</li>
+</ol>
+<h2 id="验证输入是否为hh-mm-ss格式的时间"><a href="#验证输入是否为hh-mm-ss格式的时间" class="headerlink" title="验证输入是否为hh:mm:ss格式的时间"></a>验证输入是否为hh:mm:ss格式的时间</h2><h3 id="表达式-27"><a href="#表达式-27" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(([0-1][0-9])|(2[0-3]))\:[0-5][0-9]\:[0-5][0-9]$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-27"><a href="#解释-27" class="headerlink" title="解释"></a>解释</h3><p>与上面的hh:mm:ss相同，不再赘述。</p>
+<h2 id="验证输入是否为手机号码"><a href="#验证输入是否为手机号码" class="headerlink" title="验证输入是否为手机号码"></a>验证输入是否为手机号码</h2><h3 id="表达式-28"><a href="#表达式-28" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^1[3|4|5|7|8]\d&#123;9&#125;$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-28"><a href="#解释-28" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>号段分布<br>中国移动号段：<br>134 135 136 137 138 139 147 150 151 152 157 158 159 178 182 183 184 187 188<br>中国联通号段：<br>130 131 132 145 155 156 171 175 176 185 186<br>中国电信号段：<br>133 149 153 173 177 180 181 189<br>虚拟运营商:<br>170</li>
+<li>第一位匹配1即可。</li>
+<li>第二位从上面的分布看有3,4,5,7,8。</li>
+<li>后面的9位可以是任意9位数字。</li>
+<li>该正则基于以上号段，号段可能会更新，因此相应正则表达式也需要调整。</li>
+</ol>
+<h2 id="验证输入是否为中国座机号码"><a href="#验证输入是否为中国座机号码" class="headerlink" title="验证输入是否为中国座机号码"></a>验证输入是否为中国座机号码</h2><h3 id="表达式-29"><a href="#表达式-29" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\d&#123;3&#125;-\d&#123;8&#125;|\d&#123;4&#125;-\d&#123;7&#125;$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-29"><a href="#解释-29" class="headerlink" title="解释"></a>解释</h3><ol>
+<li>考虑区号3位，电话号8位的情况，格式示例010-62281100</li>
+<li>考虑区号4位，电话号7位的情况，格式示例0532-1111111</li>
+<li>考虑区号4位，电话号8位的情况，格式示例0571-88856088</li>
+</ol>
+<h2 id="验证输入是否为IPV4地址"><a href="#验证输入是否为IPV4地址" class="headerlink" title="验证输入是否为IPV4地址"></a>验证输入是否为IPV4地址</h2><h3 id="表达式-30"><a href="#表达式-30" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.)&#123;3&#125;(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-30"><a href="#解释-30" class="headerlink" title="解释"></a>解释</h3><ol>
+<li><code>\b</code>代表着单词的开头或结尾，也就是单词的分界处。此处使用的意思是IP地址前后要是“分开的”，没有和其他任何内容连在一起</li>
+<li>“(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}”<br>IPV4格式为“xxx.xxx.xxx.xxx”,这部分匹配前三个，还带上了点号”.”。一共考虑了这几种情况：<br>　2.1 <code>[01]?[0-9][0-9]?</code>: 可能只有一位，如0.0.0.0；可能两位：如10.3.8.211；可能三位，如121.43.160.59<br>　2.2 <code>2[0-4][0-9]</code>: 考虑200~249的情况<br>　2.3 <code>25[0-5]</code>: 考虑250-255的情况</li>
+</ol>
+<h2 id="验证输入是否为IPV6地址"><a href="#验证输入是否为IPV6地址" class="headerlink" title="验证输入是否为IPV6地址"></a>验证输入是否为IPV6地址</h2><h3 id="表达式-31"><a href="#表达式-31" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(([0-9a-fA-F]&#123;1,4&#125;:)&#123;7&#125;[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,7&#125;:|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,6&#125;:[0-9a-fA-F]&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,5&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,2&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,3&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,3&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,4&#125;|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,2&#125;(:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,5&#125;|[0-9a-fA-F]&#123;1,4&#125;:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,6&#125;)|:((:[0-9a-fA-F]&#123;1,4&#125;)&#123;1,7&#125;|:)|fe80:(:[0-9a-fA-F]&#123;0,4&#125;)&#123;0,4&#125;%[0-9a-zA-Z]&#123;1,&#125;|::(ffff(:0&#123;1,4&#125;)&#123;0,1&#125;:)&#123;0,1&#125;((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])|([0-9a-fA-F]&#123;1,4&#125;:)&#123;1,4&#125;:((25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9])\.)&#123;3,3&#125;(25[0-5]|(2[0-4]|1&#123;0,1&#125;[0-9])&#123;0,1&#125;[0-9]))$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-31"><a href="#解释-31" class="headerlink" title="解释"></a>解释</h3><h2 id="验证输入是否为密码要求的格式"><a href="#验证输入是否为密码要求的格式" class="headerlink" title="验证输入是否为密码要求的格式"></a>验证输入是否为密码要求的格式</h2><h3 id="表达式-32"><a href="#表达式-32" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^[a-zA-Z]\w&#123;5,19&#125;$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-32"><a href="#解释-32" class="headerlink" title="解释"></a>解释</h3><p>密码格式要求不是固定的，上述只是其中一种：以字母开头，只能包含大小写字母、数字、下划线。长度在6~20位。</p>
+<h2 id="验证输入密码安全强度"><a href="#验证输入密码安全强度" class="headerlink" title="验证输入密码安全强度"></a>验证输入密码安全强度</h2><h3 id="表达式-33"><a href="#表达式-33" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).&#123;15,20&#125;$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-33"><a href="#解释-33" class="headerlink" title="解释"></a>解释</h3><p>1.”.”在正则中表示“元字符”，它可以匹配除”\n”以外的任何字符。<br>2.”?=pattern”是一个零宽正向先行断言，紧接该位置之后的字符序列能够匹配pattern。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。<br>3.”(?=.<em>\d)(?=.</em>[a-z])(?=.*[A-Z])”这段表示在有任意个除”\n”以外的任何字符的同时，密码中必须包括数字，大小写字母。<br>4.多长的密码算“高强度”，视需求而定，这里取15位以上为高强度。</p>
+<h2 id="验证输入是否为常见HTML标签"><a href="#验证输入是否为常见HTML标签" class="headerlink" title="验证输入是否为常见HTML标签"></a>验证输入是否为常见HTML标签</h2><h3 id="表达式-34"><a href="#表达式-34" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-34"><a href="#解释-34" class="headerlink" title="解释"></a>解释</h3><h2 id="匹配HTML文档中的注释"><a href="#匹配HTML文档中的注释" class="headerlink" title="匹配HTML文档中的注释"></a>匹配HTML文档中的注释</h2><h3 id="表达式-35"><a href="#表达式-35" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-35"><a href="#解释-35" class="headerlink" title="解释"></a>解释</h3><h2 id="匹配HTML文档中的超链接"><a href="#匹配HTML文档中的超链接" class="headerlink" title="匹配HTML文档中的超链接"></a>匹配HTML文档中的超链接</h2><h3 id="表达式-36"><a href="#表达式-36" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-36"><a href="#解释-36" class="headerlink" title="解释"></a>解释</h3><h2 id="匹配HTML文档中的图片"><a href="#匹配HTML文档中的图片" class="headerlink" title="匹配HTML文档中的图片"></a>匹配HTML文档中的图片</h2><h3 id="表达式-37"><a href="#表达式-37" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-37"><a href="#解释-37" class="headerlink" title="解释"></a>解释</h3><h2 id="匹配HTML文档中的URL"><a href="#匹配HTML文档中的URL" class="headerlink" title="匹配HTML文档中的URL"></a>匹配HTML文档中的URL</h2><h3 id="表达式-38"><a href="#表达式-38" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-38"><a href="#解释-38" class="headerlink" title="解释"></a>解释</h3><h2 id="匹配空白行"><a href="#匹配空白行" class="headerlink" title="匹配空白行"></a>匹配空白行</h2><h3 id="表达式-39"><a href="#表达式-39" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-39"><a href="#解释-39" class="headerlink" title="解释"></a>解释</h3><h2 id="匹配首尾空白字符"><a href="#匹配首尾空白字符" class="headerlink" title="匹配首尾空白字符"></a>匹配首尾空白字符</h2><h3 id="表达式-40"><a href="#表达式-40" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^\s*|\s*$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-40"><a href="#解释-40" class="headerlink" title="解释"></a>解释</h3><p><code>\s</code>匹配任何空白字符，包括空格、制表符、换页符、回车符、换行符等等。等价于 [\f\n\r\t\v]。</p>
+<h2 id="匹配双字节字符"><a href="#匹配双字节字符" class="headerlink" title="匹配双字节字符"></a>匹配双字节字符</h2><h3 id="表达式-41"><a href="#表达式-41" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-41"><a href="#解释-41" class="headerlink" title="解释"></a>解释</h3><h2 id="匹配中文标点符号"><a href="#匹配中文标点符号" class="headerlink" title="匹配中文标点符号"></a>匹配中文标点符号</h2><h3 id="表达式-42"><a href="#表达式-42" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^[\u3002|\uff1f|\uff01|\uff0c|\u3001|\uff1b|\uff1a|\u201c|\u201d|\u2018|\u2019|\uff08|\uff09|\u300a|\u300b|\u3008|\u3009|\u3010|\u3011|\u300e|\u300f|\u300c|\u300d|\ufe43|\ufe44|\u3014|\u3015|\u2026|\u2014|\uff5e|\ufe4f|\uffe5]+$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-42"><a href="#解释-42" class="headerlink" title="解释"></a>解释</h3><p>上述表达式匹配了如下常见的中文标点符号：<br>。 ？ ！ ， 、 ； ： “ ” ‘ ‘ （ ） 《 》 〈 〉 【 】 『 』 「 」 ﹃ ﹄ 〔 〕 … — ～ ﹏ ￥</p>
+<h2 id="检查URL的前缀"><a href="#检查URL的前缀" class="headerlink" title="检查URL的前缀"></a>检查URL的前缀</h2><h3 id="表达式-43"><a href="#表达式-43" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-43"><a href="#解释-43" class="headerlink" title="解释"></a>解释</h3><h2 id="检查文件扩展名"><a href="#检查文件扩展名" class="headerlink" title="检查文件扩展名"></a>检查文件扩展名</h2><h3 id="表达式-44"><a href="#表达式-44" class="headerlink" title="表达式"></a>表达式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/^$/</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解释-44"><a href="#解释-44" class="headerlink" title="解释"></a>解释</h3><h2 id="金额格式相关"><a href="#金额格式相关" class="headerlink" title="金额格式相关"></a>金额格式相关</h2>
+        </div>
+        <footer class="article-footer">
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/gcidea" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/u/2180985772" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="http://www.gcidea.info" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/welcome-to-this-page/2016/08/03/charset-encoding/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            常见编码格式分析
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/welcome-to-this-page/2016/08/02/js-table-even-odd-hover/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">使用CSS3实现斑马线表格和hover效果</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/08/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/搭建部署/gaochang/">gaochang</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/08/uniform-development-product-env-switchyomega-charles/" class="title">使用SwitchyOmega和Charles配置统一的开发和生产环境</a></p>
+                            <p class="item-date"><time datetime="2017-01-08T06:13:51.000Z" itemprop="datePublished">2017-01-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/06/apache-tomcat-war-deployment/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/build-success.png)" alt="使用Apache tomcat部署项目war包" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/06/apache-tomcat-war-deployment/" class="title">使用Apache tomcat部署项目war包</a></p>
+                            <p class="item-date"><time datetime="2017-01-06T03:29:39.000Z" itemprop="datePublished">2017-01-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/03/leetcode-409/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/03/leetcode-409/" class="title">leetcode [#409]</a></p>
+                            <p class="item-date"><time datetime="2017-01-03T03:26:39.000Z" itemprop="datePublished">2017-01-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/02/leetcode-438/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/02/leetcode-438/" class="title">leetcode [#438]</a></p>
+                            <p class="item-date"><time datetime="2017-01-02T15:26:39.000Z" itemprop="datePublished">2017-01-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/welcome-to-this-page/2017/01/02/leetcode-463/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://leetcode.com/static/images/problemset/island.png)" alt="leetcode [#463]" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/算法/">算法</a></p>
+                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/02/leetcode-463/" class="title">leetcode [#463]</a></p>
+                            <p class="item-date"><time datetime="2017-01-02T15:26:39.000Z" itemprop="datePublished">2017-01-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AngularJs/">AngularJs</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE综合/">FE综合</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">46</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jQuery/">jQuery</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端工程化/">前端工程化</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/">搭建部署</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/gaochang/">gaochang</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">93</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJs/">AngularJs</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Charles/">Charles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Comet/">Comet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cookie/">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emmet/">Emmet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FE/">FE</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">66</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LAMP/">LAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/">Less</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Long-Polling/">Long Polling</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/">MVVM</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NodeJs/">NodeJs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestfulAPI/">RestfulAPI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SwitchyOmega/">SwitchyOmega</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jqGrid/">jqGrid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">92</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/token/">token</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webSocket/">webSocket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zTree/">zTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兼容性/">兼容性</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄漏/">内存泄漏</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端包管理工具/">前端包管理工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端自动构建/">前端自动构建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/即时通信/">即时通信</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化拖拽/">可视化拖拽</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">122</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实现-应用/">实现/应用</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/客户端存储/">客户端存储</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成CI/">持续集成CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搭建部署/">搭建部署</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模块化/">模块化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语义化/">语义化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/轮询/">轮询</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面渲染/">页面渲染</a><span class="tag-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AngularJs/" style="font-size: 15px;">AngularJs</a> <a href="/tags/CSS/" style="font-size: 14.29px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 12.86px;">CSS3</a> <a href="/tags/Charles/" style="font-size: 10px;">Charles</a> <a href="/tags/Comet/" style="font-size: 10px;">Comet</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/Emmet/" style="font-size: 10px;">Emmet</a> <a href="/tags/FE/" style="font-size: 12.14px;">FE</a> <a href="/tags/HTML/" style="font-size: 12.86px;">HTML</a> <a href="/tags/HTML5/" style="font-size: 10.71px;">HTML5</a> <a href="/tags/HTTP/" style="font-size: 17.14px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 18.57px;">JavaScript</a> <a href="/tags/LAMP/" style="font-size: 10px;">LAMP</a> <a href="/tags/Less/" style="font-size: 10px;">Less</a> <a href="/tags/Long-Polling/" style="font-size: 10px;">Long Polling</a> <a href="/tags/MVVM/" style="font-size: 15px;">MVVM</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/NodeJs/" style="font-size: 10.71px;">NodeJs</a> <a href="/tags/React/" style="font-size: 12.86px;">React</a> <a href="/tags/RestfulAPI/" style="font-size: 10px;">RestfulAPI</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/SwitchyOmega/" style="font-size: 10px;">SwitchyOmega</a> <a href="/tags/jQuery/" style="font-size: 12.86px;">jQuery</a> <a href="/tags/jqGrid/" style="font-size: 10px;">jqGrid</a> <a href="/tags/leetcode/" style="font-size: 19.29px;">leetcode</a> <a href="/tags/token/" style="font-size: 10px;">token</a> <a href="/tags/webSocket/" style="font-size: 10px;">webSocket</a> <a href="/tags/webpack/" style="font-size: 10.71px;">webpack</a> <a href="/tags/zTree/" style="font-size: 10px;">zTree</a> <a href="/tags/兼容性/" style="font-size: 11.43px;">兼容性</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/前端包管理工具/" style="font-size: 10px;">前端包管理工具</a> <a href="/tags/前端工程化/" style="font-size: 11.43px;">前端工程化</a> <a href="/tags/前端框架/" style="font-size: 16.43px;">前端框架</a> <a href="/tags/前端自动构建/" style="font-size: 10px;">前端自动构建</a> <a href="/tags/即时通信/" style="font-size: 10px;">即时通信</a> <a href="/tags/可视化拖拽/" style="font-size: 10.71px;">可视化拖拽</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/实现-应用/" style="font-size: 17.86px;">实现/应用</a> <a href="/tags/客户端存储/" style="font-size: 10px;">客户端存储</a> <a href="/tags/异步编程/" style="font-size: 10.71px;">异步编程</a> <a href="/tags/持续集成CI/" style="font-size: 10px;">持续集成CI</a> <a href="/tags/搭建部署/" style="font-size: 15.71px;">搭建部署</a> <a href="/tags/模块化/" style="font-size: 10px;">模块化</a> <a href="/tags/正则/" style="font-size: 10.71px;">正则</a> <a href="/tags/浏览器/" style="font-size: 13.57px;">浏览器</a> <a href="/tags/版本控制/" style="font-size: 11.43px;">版本控制</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/编码/" style="font-size: 11.43px;">编码</a> <a href="/tags/语义化/" style="font-size: 10px;">语义化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/转载/" style="font-size: 11.43px;">转载</a> <a href="/tags/轮询/" style="font-size: 10px;">轮询</a> <a href="/tags/闭包/" style="font-size: 11.43px;">闭包</a> <a href="/tags/页面渲染/" style="font-size: 11.43px;">页面渲染</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://bbs.byr.cn,">北邮人论坛-北邮人的温馨家园</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.ebupt.com,">东信北邮信息技术有限公司</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.zn2studio.com">Zn2Studio锌离子工作室</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 - 2017 Gao Chang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>.</p>
+                <p><b>The relentless pursuit of perfection.</b></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://www.gcidea.info/welcome-to-this-page/2016/08/03/js-common-dataformat-regexp/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
