@@ -1631,7 +1631,6 @@ a.article-title:hover {
   line-height: 22px;
 }
 #footer #back-to-top2 {
-  background: #eaeaea;
   color: #777;
   overflow: hidden;
   text-align: center;
@@ -1639,8 +1638,9 @@ a.article-title:hover {
   height: 30px;
   display: none;
   margin: 0 auto -30px;
-  -webkit-border-radius: 0 0 3px 3px;
-  border-radius: 0 0 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+  padding-top: 12px;
 }
 #footer #back-to-top2:hover {
   color: #444;

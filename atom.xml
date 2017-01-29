@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>GCidea&#39;s blog</title>
+  <subtitle>The relentless pursuit of perfection.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.gcidea.info/"/>
+  <updated>2017-01-28T14:01:06.748Z</updated>
+  <id>http://www.gcidea.info/</id>
+  
+  <author>
+    <name>Gao Chang</name>
+    <email>gaochang@ebupt.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>移动端HTML5响应式布局解决方案</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2017/01/14/mobile-flexible-solution/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2017/01/14/mobile-flexible-solution/</id>
+    <published>2017-01-14T05:22:04.000Z</published>
+    <updated>2017-01-28T14:01:06.748Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="FE综合" scheme="http://www.gcidea.info/categories/FE%E7%BB%BC%E5%90%88/"/>
+    
+    
+      <category term="学习笔记" scheme="http://www.gcidea.info/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="CSS3" scheme="http://www.gcidea.info/tags/CSS3/"/>
+    
+      <category term="HTML5" scheme="http://www.gcidea.info/tags/HTML5/"/>
+    
+      <category term="Less" scheme="http://www.gcidea.info/tags/Less/"/>
+    
+      <category term="响应式" scheme="http://www.gcidea.info/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Dora Server同时部署多个项目开发环境</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2017/01/10/dora-multiple-dev-env/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2017/01/10/dora-multiple-dev-env/</id>
+    <published>2017-01-10T05:22:04.000Z</published>
+    <updated>2017-01-26T08:47:12.467Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="搭建部署" scheme="http://www.gcidea.info/categories/%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2/"/>
+    
+    
+      <category term="搭建部署" scheme="http://www.gcidea.info/tags/%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2/"/>
+    
+      <category term="学习笔记" scheme="http://www.gcidea.info/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用SwitchyOmega和Charles配置统一的开发和生产环境</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2017/01/08/uniform-development-product-env-switchyomega-charles/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2017/01/08/uniform-development-product-env-switchyomega-charles/</id>
+    <published>2017-01-08T06:13:51.000Z</published>
+    <updated>2017-01-28T12:59:02.936Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="搭建部署" scheme="http://www.gcidea.info/categories/%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2/"/>
+    
+    
+      <category term="搭建部署" scheme="http://www.gcidea.info/tags/%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2/"/>
+    
+      <category term="SwitchyOmega" scheme="http://www.gcidea.info/tags/SwitchyOmega/"/>
+    
+      <category term="Charles" scheme="http://www.gcidea.info/tags/Charles/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HTTP协议的持久连接-&quot;keep-alive&quot;与&quot;persistent&quot;</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2017/01/06/http-persistent-connection/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2017/01/06/http-persistent-connection/</id>
+    <published>2017-01-06T07:27:31.000Z</published>
+    <updated>2017-01-27T05:41:48.950Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="HTTP" scheme="http://www.gcidea.info/categories/HTTP/"/>
+    
+    
+      <category term="学习笔记" scheme="http://www.gcidea.info/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="HTTP" scheme="http://www.gcidea.info/tags/HTTP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Apache tomcat部署项目war包</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2017/01/06/apache-tomcat-war-deployment/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2017/01/06/apache-tomcat-war-deployment/</id>
+    <published>2017-01-06T03:29:39.000Z</published>
+    <updated>2017-01-18T07:53:41.095Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/build-success.png" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xrz3r.com1.z0.glb.clouddn.com/build-success.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/
+    
+    </summary>
+    
+      <category term="搭建部署" scheme="http://www.gcidea.info/categories/%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2/"/>
+    
+    
+      <category term="搭建部署" scheme="http://www.gcidea.info/tags/%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2/"/>
+    
+      <category term="学习笔记" scheme="http://www.gcidea.info/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode [#409]</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2017/01/03/leetcode-409/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2017/01/03/leetcode-409/</id>
+    <published>2017-01-03T03:26:39.000Z</published>
+    <updated>2017-01-29T03:16:34.769Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg" alt=""></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given a string which consists of lowercase or uppercase letters, find the length of the longest palindromes that can be built with those letters.<br>This is case sensitive, for example “Aa” is not considered a palindrome here.</p>
+<p><strong>Example1</strong>:<br>Input:<br>“abccccdd”</p>
+<p>Output:<br>7</p>
+<p>Explanation:<br>One longest palindrome that can be built is “dccaccd”, whose length is 7.</p>
+</blockquote>
+<hr>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        HashMap&lt;Character, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!map.containsKey(s.charAt(i)))&#123;</span><br><span class="line">                map.put(s.charAt(i), <span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                map.put(s.charAt(i), map.get(s.charAt(i)) + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Iterator it = map.entrySet().iterator();</span><br><span class="line">        <span class="keyword">boolean</span> oddFlag = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">            Map.Entry entry = (Map.Entry) it.next();</span><br><span class="line">            <span class="keyword">if</span>((Integer)entry.getValue() % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span>(!oddFlag) &#123;</span><br><span class="line">                    res += (Integer)entry.getValue();</span><br><span class="line">                    oddFlag = <span class="keyword">true</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    res += ((Integer)entry.getValue() - <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                res += (Integer)entry.getValue();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>遍历字符串，使用hashmap存储，key为字符，value为出现次数。</li>
+<li>遍历hashmap进行统计。设置针对奇数个数的字符的标记位，如果当前还未出现过奇数个数的字符，则直接将该个数添加到结果，表明这奇数个字符都可以参与构成回文。否则，表明已经有奇数参与，则当前字符只能取出最大的偶数个（即减1）；对于个数为偶数的字符，直接添加到结果。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://www.gcidea.info/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://www.gcidea.info/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode [#438]</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2017/01/02/leetcode-438/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2017/01/02/leetcode-438/</id>
+    <published>2017-01-02T15:26:39.000Z</published>
+    <updated>2017-01-29T03:25:52.977Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg" alt=""></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given a string s and a non-empty string p, find all the start indices of p’s anagrams in s.<br>Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.<br>The order of output does not matter.</p>
+<p><strong>Example1</strong>:<br>Input:<br>s: “cbaebabacd” p: “abc”</p>
+<p>Output:<br>[0, 6]</p>
+<p>Explanation:<br>The substring with start index = 0 is “cba”, which is an anagram of “abc”.<br>The substring with start index = 6 is “bac”, which is an anagram of “abc”.</p>
+<p><strong>Example2</strong>:<br>Input:<br>s: “abab” p: “ab”</p>
+<p>Output:<br>[0, 1, 2]</p>
+<p>Explanation:<br>The substring with start index = 0 is “ab”, which is an anagram of “ab”.<br>The substring with start index = 1 is “ba”, which is an anagram of “ab”.<br>The substring with start index = 2 is “ab”, which is an anagram of “ab”.</p>
+</blockquote>
+<hr>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">findAnagrams</span><span class="params">(String s, String p)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; list = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (p == <span class="keyword">null</span> || s == <span class="keyword">null</span> || s.length() &lt; p.length()) <span class="keyword">return</span> list;</span><br><span class="line">        <span class="keyword">int</span> pLen = p.length();</span><br><span class="line">        <span class="keyword">int</span> sLen = s.length();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i + pLen -<span class="number">1</span> &lt; sLen; i++)&#123;</span><br><span class="line">            String cur = s.substring(i, i + pLen);</span><br><span class="line">            <span class="keyword">if</span> (helper(cur, p)) list.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">helper</span><span class="params">(String a, String b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (a == <span class="keyword">null</span> || b == <span class="keyword">null</span> || a.length() != b.length()) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span>[] dict = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> ch = a.charAt(i);</span><br><span class="line">            dict[ch-<span class="string">'a'</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; b.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">char</span> ch = b.charAt(i);</span><br><span class="line">            dict[ch-<span class="string">'a'</span>]--;</span><br><span class="line">            <span class="keyword">if</span> (dict[ch-<span class="string">'a'</span>] &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>遍历s字符串（以pLen为每段长度）</li>
+<li>准备数组int[] dict = new int[26];用于统计出现次数：在p中出现对应位加1，在s中出现对应位减1</li>
+<li>如果最后数组该位小于零，则说明片段未能对应，不是Anagrams；否则能对应</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://www.gcidea.info/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://www.gcidea.info/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode [#463]</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2017/01/02/leetcode-463/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2017/01/02/leetcode-463/</id>
+    <published>2017-01-02T15:26:39.000Z</published>
+    <updated>2017-01-29T03:25:53.055Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg" alt=""></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>You are given a map in form of a two-dimensional integer grid where 1 represents land and 0 represents water. Grid cells are connected horizontally/vertically (not diagonally). The grid is completely surrounded by water, and there is exactly one island (i.e., one or more connected land cells). The island doesn’t have “lakes” (water inside that isn’t connected to the water around the island). One cell is a square with side length 1. The grid is rectangular, width and height don’t exceed 100. Determine the perimeter of the island.</p>
+<p><strong>Example</strong>:<br>[[0,1,0,0],<br> [1,1,1,0],<br> [0,1,0,0],<br> [1,1,0,0]]<br>Answer: 16<br>Explanation: The perimeter is the 16 yellow stripes in the image below:<br><img src="https://leetcode.com/static/images/problemset/island.png" alt=""></p>
+</blockquote>
+<hr>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">islandPerimeter</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> islandNum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> rightOrBottomNum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m = grid.length;</span><br><span class="line">        <span class="keyword">int</span> n = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j] == <span class="number">1</span>) &#123;</span><br><span class="line">                    islandNum++;</span><br><span class="line">                    <span class="keyword">if</span>(i &lt; m-<span class="number">1</span>)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(grid[i+<span class="number">1</span>][j] == <span class="number">1</span>) rightOrBottomNum++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span>(j &lt; n-<span class="number">1</span>)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(grid[i][j+<span class="number">1</span>] == <span class="number">1</span>) rightOrBottomNum++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> islandNum * <span class="number">4</span> - rightOrBottomNum * <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>遍历二维数组，统计陆地块总个数islandNum</li>
+<li>统计的同时，如果当前块为陆地，则考察其右边或者下边（也可以左边或者上边）的情况，如果是陆地，则rightOrBottomNum加1</li>
+<li>最后，周长的计算，如果各个陆地块是分开的，那么周长为islandNum*4，现在由于有一些合并，且每合并一次，减少两条边，减去 rightOrBottomNum*2即可。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://www.gcidea.info/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://www.gcidea.info/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode [#448]</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2017/01/01/leetcode-448/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2017/01/01/leetcode-448/</id>
+    <published>2017-01-01T15:26:39.000Z</published>
+    <updated>2017-01-29T03:25:53.023Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg" alt=""></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.<br>Find all the elements of [1, n] inclusive that do not appear in this array.<br>Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.</p>
+<p><strong>Example</strong>:<br>Input:<br>[4,3,2,7,8,2,3,1]</p>
+<p>Output:<br>[5,6]</p>
+</blockquote>
+<hr>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">findDisappearedNumbers</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; list = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            nums[(nums[i] - <span class="number">1</span>) % n] += n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] &lt;= n)&#123;</span><br><span class="line">                list.add(i+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>实质上要将数组中的每一个元素看做存储的是该数组的下标（每个数需要减1）</li>
+<li>遍历一遍，取到每个数组元素的值，将其看做下标的情况下，将该数组对应位置加n</li>
+<li>凡是在该数组不存在的元素（指范围1-n）内，对应下标的值就无法被加n（一次或多次加n都不可能）</li>
+<li>再遍历一遍，找到现在元素值小于等于n的就是缺失的元素</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://www.gcidea.info/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://www.gcidea.info/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AngularJs中$scope.$apply()方法总结</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2016/12/29/angular-$scope-$apply/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2016/12/29/angular-$scope-$apply/</id>
+    <published>2016-12-29T06:15:25.000Z</published>
+    <updated>2017-01-04T06:22:30.296Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="AngularJs" scheme="http://www.gcidea.info/categories/AngularJs/"/>
+    
+    
+      <category term="学习笔记" scheme="http://www.gcidea.info/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="JavaScript" scheme="http://www.gcidea.info/tags/JavaScript/"/>
+    
+      <category term="AngularJs" scheme="http://www.gcidea.info/tags/AngularJs/"/>
+    
+      <category term="前端框架" scheme="http://www.gcidea.info/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="MVVM" scheme="http://www.gcidea.info/tags/MVVM/"/>
+    
+      <category term="实现/应用" scheme="http://www.gcidea.info/tags/%E5%AE%9E%E7%8E%B0-%E5%BA%94%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用dora-proxy-plugin处理异步请求跨域问题</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2016/12/25/cross-origin-dora-proxy-plugin/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2016/12/25/cross-origin-dora-proxy-plugin/</id>
+    <published>2016-12-25T05:22:04.000Z</published>
+    <updated>2017-01-01T06:55:25.935Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="前端工程化" scheme="http://www.gcidea.info/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
+    
+    
+      <category term="学习笔记" scheme="http://www.gcidea.info/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="JavaScript" scheme="http://www.gcidea.info/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React Router的history属性总结</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2016/12/23/react-router-history/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2016/12/23/react-router-history/</id>
+    <published>2016-12-23T05:54:23.000Z</published>
+    <updated>2016-12-27T08:12:35.042Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="React" scheme="http://www.gcidea.info/categories/React/"/>
+    
+    
+      <category term="前端框架" scheme="http://www.gcidea.info/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="实现/应用" scheme="http://www.gcidea.info/tags/%E5%AE%9E%E7%8E%B0-%E5%BA%94%E7%94%A8/"/>
+    
+      <category term="React" scheme="http://www.gcidea.info/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React脚手架-阿里dvajs项目结构分析</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2016/12/22/react-dva-structure/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2016/12/22/react-dva-structure/</id>
+    <published>2016-12-22T05:54:23.000Z</published>
+    <updated>2016-12-27T08:10:23.059Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="React" scheme="http://www.gcidea.info/categories/React/"/>
+    
+    
+      <category term="前端框架" scheme="http://www.gcidea.info/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="实现/应用" scheme="http://www.gcidea.info/tags/%E5%AE%9E%E7%8E%B0-%E5%BA%94%E7%94%A8/"/>
+    
+      <category term="React" scheme="http://www.gcidea.info/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git merge 与 git rebase 的对比分析</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2016/12/20/git-merge-git-rebase/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2016/12/20/git-merge-git-rebase/</id>
+    <published>2016-12-20T13:45:08.000Z</published>
+    <updated>2016-12-27T08:05:13.520Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="FE综合" scheme="http://www.gcidea.info/categories/FE%E7%BB%BC%E5%90%88/"/>
+    
+    
+      <category term="学习笔记" scheme="http://www.gcidea.info/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="版本控制" scheme="http://www.gcidea.info/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript中值传递和引用传递的典例探究</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2016/12/02/js-value-copy-reference-copy/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2016/12/02/js-value-copy-reference-copy/</id>
+    <published>2016-12-02T03:18:20.000Z</published>
+    <updated>2016-12-05T07:59:18.431Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>　　在Javascript中，基本类型（null, undefined, number, string, boolean, symbol）是通过值传递方式进行，而复合类型（object, array, function）则是通过引用传递方式进行。<br>　　但是，由于Javascript工作机制所决定，在js中，引用指向的其实是值，而无法指向其他引用，这和其他语言中的指针并不相同。<br>　　其实，两者都可以算是“值”传递，只不过“值传递”传递的是基本类型本来的值，而“引用传递”传递的则是复合对象的地址值。</p>
+<hr>
+<h2 id="值传递"><a href="#值传递" class="headerlink" title="值传递"></a>值传递</h2><p>案例一：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line">b++;</span><br><span class="line">b;  <span class="comment">//3</span></span><br><span class="line">a;  <span class="comment">//2</span></span><br></pre></td></tr></table></figure></p>
+<p>上例说明基本类型的a的值在赋值给b时，是将2这个值赋给了b，此后b++不会改变a的值。</p>
+<p>案例二：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line">b.push(<span class="number">4</span>);</span><br><span class="line">b;  <span class="comment">//[1,2,3,4]</span></span><br><span class="line">a;  <span class="comment">//[1,2,3,4]</span></span><br></pre></td></tr></table></figure></p>
+<p>上例说明复合类型的a在赋值给b时，是将2内存中[1,2,3,4]这个对象的引用赋给了b，因此a,b实际上操作的是一个地址中的内容。</p>
+<hr>
+<h2 id="引用传递"><a href="#引用传递" class="headerlink" title="引用传递"></a>引用传递</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">	x.push(<span class="number">4</span>);</span><br><span class="line">	x;  <span class="comment">//[1,2,3,4]</span></span><br><span class="line"></span><br><span class="line">	x = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line">	x.push(<span class="number">7</span>);</span><br><span class="line">	x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">foo(a);</span><br><span class="line"></span><br><span class="line">a;  <span class="comment">//[1,2,3,4]</span></span><br></pre></td></tr></table></figure>
+<p>该例中函数foo()接收一个复合类型对象作为参数。按照引用传递的规则，可以理解为变量a所引用的对象[1,2,3]在内存中的地址被赋给了x，在foo()内部所做的操作，会直接影响到a所代表的值。但是，<code>x = [4,5,6];</code>相当于以字面量的形式将x所指向的内存中的地址进行了改变（一个新对象，其值为[4,5,6]），因此这部分不会体现在a中。</p>
+<hr>
+<h2 id="两者的“互相转换”"><a href="#两者的“互相转换”" class="headerlink" title="两者的“互相转换”"></a>两者的“互相转换”</h2><p>1.对于符合类型的，即对象，如果想按照值传递来实现某些功能（即不影响传入的实参本身），那么就要创建一个副本。比如对于数组，使用<code>foo(a.slice())</code>，通过slice()方法对a进行一次浅复制。</p>
+<p>2.对于基本类型的，如果想按照引用传递的效果实现某些功能（即能够改变传入函数并将其本身进行修改），那么就要将该值封装到一个复合类型（数组，对象等）中，然后通过引用传递的方式进行传递。如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">obj</span>)</span>&#123;</span><br><span class="line">	obj.a = <span class="string">"new value"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = &#123;</span><br><span class="line">	a : <span class="string">"old value"</span></span><br><span class="line">&#125;</span><br><span class="line">foo(bar);</span><br><span class="line">bar.a; <span class="comment">// new value</span></span><br></pre></td></tr></table></figure></p>
+<p>但是，这并不是说将基本类型装箱为对应的包装类型再传入函数就可以达到这种效果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">	x = x + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Number</span>(a);</span><br><span class="line">foo(b);</span><br><span class="line">a; <span class="comment">// 2</span></span><br><span class="line">b; <span class="comment">// 2</span></span><br></pre></td></tr></table></figure></p>
+<p>原因是foo()内部在进行加法操作时候对x进行了自动拆箱。x变成了基本类型值，但是外部的b仍然指向有Number()构造出的对象，因此是2，不是加1后的3。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;　　在Javascript中，基本类型（null, undefined, number, string, boolean, symbol）是
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://www.gcidea.info/categories/JavaScript/"/>
+    
+    
+      <category term="学习笔记" scheme="http://www.gcidea.info/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="JavaScript" scheme="http://www.gcidea.info/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode [#22]</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2016/11/29/leetcode-22/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2016/11/29/leetcode-22/</id>
+    <published>2016-11-29T02:26:39.000Z</published>
+    <updated>2017-01-29T03:23:42.155Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg" alt=""></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.</p>
+<p>For example, given n = 3, a solution set is:</p>
+<p>[<br>  “((()))”,<br>  “(()())”,<br>  “(())()”,<br>  “()(())”,<br>  “()()()”<br>]</p>
+</blockquote>
+<hr>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">generateParenthesis</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        recursivelyGetParenthesis(res, <span class="string">""</span>, <span class="number">0</span>, <span class="number">0</span>, n);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">recursivelyGetParenthesis</span><span class="params">(List&lt;String&gt; list, String s, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s.length() == n * <span class="number">2</span>) &#123;</span><br><span class="line">            list.add(s);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left &lt; n) recursivelyGetParenthesis(list, s + <span class="string">"("</span>, left + <span class="number">1</span>, right, n);</span><br><span class="line">        <span class="keyword">if</span>(right &lt; left) recursivelyGetParenthesis(list, s + <span class="string">")"</span>, left, right + <span class="number">1</span>, n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>不应该从找规律的角度入手，这样即便得到可能情况的总数，但生成具体字符串时还比较麻烦。</li>
+<li>recursivelyGetParenthesis()方法的作用是，逐步生成结果字符串，当长度满足时就作为一个符合要求的结果返回，否则，在当前片段的基础上递归调用自身，生成新的结果。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://www.gcidea.info/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://www.gcidea.info/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode [#341]</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2016/11/28/leetcode-341/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2016/11/28/leetcode-341/</id>
+    <published>2016-11-28T09:26:39.000Z</published>
+    <updated>2017-01-29T03:25:52.655Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg" alt=""></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given a nested list of integers, implement an iterator to flatten it.</p>
+<p>Each element is either an integer, or a list – whose elements may also be integers or other lists.</p>
+<p><strong>Example</strong>:<br>Given the list [[1,1],2,[1,1]],</p>
+<p>By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,1,2,1,1].</p>
+<p>Given the list [1,[4,[6]]],</p>
+<p>By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6].</p>
+</blockquote>
+<hr>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * // This is the interface that allows for creating nested lists.</span><br><span class="line"> * // You should not implement it, or speculate about its implementation</span><br><span class="line"> * public interface NestedInteger &#123;</span><br><span class="line"> *</span><br><span class="line"> *     // <span class="doctag">@return</span> true if this NestedInteger holds a single integer, rather than a nested list.</span><br><span class="line"> *     public boolean isInteger();</span><br><span class="line"> *</span><br><span class="line"> *     // <span class="doctag">@return</span> the single integer that this NestedInteger holds, if it holds a single integer</span><br><span class="line"> *     // Return null if this NestedInteger holds a nested list</span><br><span class="line"> *     public Integer getInteger();</span><br><span class="line"> *</span><br><span class="line"> *     // <span class="doctag">@return</span> the nested list that this NestedInteger holds, if it holds a nested list</span><br><span class="line"> *     // Return null if this NestedInteger holds a single integer</span><br><span class="line"> *     public List&lt;NestedInteger&gt; getList();</span><br><span class="line"> * &#125;</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NestedIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;NestedInteger&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; num = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NestedIterator</span><span class="params">(List&lt;NestedInteger&gt; nestedList)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.list = nestedList;</span><br><span class="line">        getFlatternInteger(list);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">getFlatternInteger</span><span class="params">(List&lt;NestedInteger&gt; nest)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = nest.size() - <span class="number">1</span>; k &gt;= <span class="number">0</span>; k--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nest.get(k).isInteger())&#123;</span><br><span class="line">                num.push(nest.get(k).getInteger());</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                List&lt;NestedInteger&gt; nestList = nest.get(k).getList();</span><br><span class="line">                getFlatternInteger(nestList);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> num.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !num.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * Your NestedIterator object will be instantiated and called as such:</span><br><span class="line"> * NestedIterator i = new NestedIterator(nestedList);</span><br><span class="line"> * while (i.hasNext()) v[f()] = i.next();</span><br><span class="line"> */</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>接口NestedInteger无需实现，可以直接调用相应方法。</li>
+<li>私有方法getFlatternInteger用于对输入的List<nestedinteger> nestedList做展开并存入一个堆栈。对于是数字的项，直接存入堆栈，对于是List<nestedinteger>类型的元素，递归调用该方法。</nestedinteger></nestedinteger></li>
+<li>next()和hasNext()方法对栈做弹出和判空即可。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://www.gcidea.info/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://www.gcidea.info/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode [#394]</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2016/11/27/leetcode-394/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2016/11/27/leetcode-394/</id>
+    <published>2016-11-27T09:26:39.000Z</published>
+    <updated>2017-01-29T03:25:52.873Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg" alt=""></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given an encoded string, return it’s decoded string.</p>
+<p>The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is guaranteed to be a positive integer.</p>
+<p>You may assume that the input string is always valid; No extra white spaces, square brackets are well-formed, etc.</p>
+<p>Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k. For example, there won’t be input like 3a or 2[4].</p>
+<p><strong>Example</strong>:<br>s = “3[a]2[bc]”, return “aaabcbc”.<br>s = “3[a2[c]]”, return “accaccacc”.<br>s = “2[abc]3[cd]ef”, return “abcabccdcdcdef”.</p>
+</blockquote>
+<hr>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">decodeString</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s.length() == <span class="number">0</span> || s.indexOf(<span class="string">"["</span>) == -<span class="number">1</span>) <span class="keyword">return</span> s;</span><br><span class="line">        </span><br><span class="line">        Stack&lt;Integer&gt; kStack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        Stack&lt;String&gt; strStack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        String lastSec = s.substring(s.lastIndexOf(<span class="string">']'</span>) + <span class="number">1</span>);</span><br><span class="line">        String firstSec = <span class="string">""</span>;</span><br><span class="line">        String lastBracket = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">int</span> lastCharIndex = -<span class="number">1</span>;</span><br><span class="line">        Boolean firstNotLetter = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> firstNotLetterIndex = -<span class="number">1</span>;</span><br><span class="line">        StringBuilder res = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i) &gt;= <span class="string">'a'</span> &amp;&amp; s.charAt(i) &lt;= <span class="string">'z'</span>)&#123;</span><br><span class="line">                lastCharIndex = i;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i) == <span class="string">'['</span>)&#123;</span><br><span class="line">                String tmpNum = s.substring(lastCharIndex + <span class="number">1</span>, i);</span><br><span class="line">                kStack.push(Integer.valueOf(tmpNum));</span><br><span class="line">                <span class="keyword">int</span> m = i + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span>(s.charAt(m) &gt;= <span class="string">'a'</span> &amp;&amp; s.charAt(m) &lt;= <span class="string">'z'</span>) m++;</span><br><span class="line">                String tmpStr = s.substring(i + <span class="number">1</span>, m);</span><br><span class="line">                strStack.push(tmpStr);</span><br><span class="line">                lastCharIndex = i;</span><br><span class="line">                lastBracket = <span class="string">"["</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i) == <span class="string">']'</span>)&#123;</span><br><span class="line">                StringBuilder x = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">                String topStr = strStack.pop();</span><br><span class="line">                Integer topNum = kStack.pop();</span><br><span class="line">                <span class="keyword">if</span>(lastBracket.equals(<span class="string">"["</span>))&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; topNum; k++) x.append(topStr);</span><br><span class="line">                    res = res.append(x);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    StringBuilder tmp = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">                    tmp.append(topStr);</span><br><span class="line">                    tmp.append(res);</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; topNum; k++) x.append(tmp);</span><br><span class="line">                    res = x;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> m = i+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (m &lt; s.length() &amp;&amp; s.charAt(m) &gt;= <span class="string">'a'</span> &amp;&amp; s.charAt(m) &lt;= <span class="string">'z'</span>)&#123;</span><br><span class="line">                    res = res.append(s.charAt(m));</span><br><span class="line">                    m++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(m == s.length()) lastSec = <span class="string">""</span>;</span><br><span class="line">                lastCharIndex = i;</span><br><span class="line">                lastBracket = <span class="string">"]"</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(firstNotLetter == <span class="keyword">false</span>)&#123;</span><br><span class="line">                    firstNotLetterIndex = i;</span><br><span class="line">                    firstNotLetter = <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        firstSec = s.substring(<span class="number">0</span>, firstNotLetterIndex);</span><br><span class="line">        <span class="keyword">return</span> firstSec + res.toString() + lastSec;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>先考虑特殊情况，对于长度为零的或者没有方括号的输入字符串，直接返回。</li>
+<li>需要两个栈，一个保存倍数K，一个保存字符串片段。</li>
+<li>firstSec表示第一个字符串片段（不包含数字，方括号），这部分作为结果的开头部分直接返回。firstNotLetter标志位就是用于找到第一个不为数字的地方，从而firstNotLetterIndex就是其对应的下标，截取后可得到firstSec。</li>
+<li>lastBracket表示上一个方括号是左括号还是右括号，用于判断是嵌套方括号还是并列方括号。</li>
+<li>lastCharIndex表示最近遇到的字母的下标，用于做字符串截取从而获得K值（具体意义见遍历过程）</li>
+<li>遍历字符串：<br>6.1 如果遇到字母，更新lastCharIndex即可；<br>6.2 如果遇到左方括号：<br>　　6.2.1 截取左方括号左边的紧邻的数字字符串片段，压入kStack，作为K值；<br>　　6.2.2 截取左方括号右边的紧邻的字母字符串片段，压入strStack，作为str值；<br>　　6.2.3 更新lastCharIndex，指向当前下标；<br>　　6.2.4 更新lastBracket，为”[“。<br>6.3 如果遇到右方括号：<br>　　6.3.1 strStack弹出一个元素topStr，kStack弹出一个元素topNum<br>　　6.3.2 根据lastBracket的情况，决定是否拼接上当前结果res再进行倍增（即考虑是否有括号嵌套的问题）<br>　　　　6.3.2.1 如果lastBracket是”[“，说明当前右方括号内部不是嵌套的，因此直接将topStr倍乘topNum次即可；<br>　　　　6.3.2.2 如果lastBracket是”]”，说明当前右方括号内部有嵌套的，因此需要将topStr和当前res结合在一起进行倍乘<br>　　6.3.3 处理完倍乘后，考虑右方括号右面可能存在的字母（无数字k，即单倍的），这些显然也有拼接进res中；<br>　　6.3.4 更新lastBracket，为”]”。<br>6.4 对于遇到的第一个数字字符，要根据其下标决定firstSec的内容。<br>6.5 最后，将firstSec和res拼接在一起返回，即为最后的结果。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://www.gcidea.info/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://www.gcidea.info/tags/leetcode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript中比较运算的详细总结</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2016/11/25/js-compare/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2016/11/25/js-compare/</id>
+    <published>2016-11-25T14:11:06.000Z</published>
+    <updated>2016-12-08T02:33:19.965Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　在javascript开发中，比较操作是十分常见的。由于显式/隐式强制类型转换机制的存在，我们在使用比较运算时显得过于随意，也许表面上看并没有什么错误（比如在if()语句中判断两值相等时顺手就写成 == ），但是这可能会埋下很多不易发现的隐患。对于比较操作（相等关系和不等关系），在javascript中其实是有一套完善的机制的。本文依据ES5规范<strong>《ECMAScript Language Specification ECMA-262<br>5.1 Edition / June 2011》</strong>的11.8节和11.9节：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/ecma-relational-equality-operator.png" alt=""></p>
+<p>对javascript中比较操作相关内容进行系统总结。</p>
+<hr>
+<h2 id="相等比较"><a href="#相等比较" class="headerlink" title="相等比较"></a>相等比较</h2><h3 id="严格相等"><a href="#严格相等" class="headerlink" title="严格相等"></a>严格相等</h3><p>　　严格相等指“===”，它<strong>不允许比较双方进行强制类型转换</strong>。因此，问题考虑变得简单，对于<code>x === y</code>，javascript引擎在进行判断时所遵循的算法如下：</p>
+<ol>
+<li>如果x和y的数据类型不同，返回false。</li>
+<li>如果x是undefined，返回true。</li>
+<li>如果x是null，返回true。</li>
+<li>如果x是number类型：<br>　4.1 如果x是NaN，返回false。<br>　4.2 如果y是NaN，返回false。<br>　4.3 如果x和y的值相等，返回true。<br>　4.4 如果x是+0，y是-0，返回true。<br>　4.5 如果x是-0，y是+0，返回true。<br>　4.6 否则，返回false。</li>
+<li>如果x是string类型，如果x和y是长度相等且对应位置上字符相同的序列，返回true；否则返回false。</li>
+<li>如果x是Boolean类型，如果x和y均为true或者x和y均为false，返回true；否则，返回false。</li>
+<li>如果x是对象（普通对象，函数，数组等），那么如果x和y指向同一个对象（是内存中同一个对象的引用），返回true；否则，返回false。</li>
+</ol>
+<hr>
+<h3 id="宽松相等"><a href="#宽松相等" class="headerlink" title="宽松相等"></a>宽松相等</h3><p>　　宽松相等指“==”，它<strong>会对比较双方进行隐式强制类型转换</strong>。下面先根据ES5规范进行系统说明：</p>
+<ol>
+<li>如果x和y的数据类型相同：<br>　1.1 如果x的类型是undefined，返回true。<br>　1.2 如果x的类型是null，返回true。<br>　1.3 如果x的类型是number：<br>　　1.3.1 如果x是NaN，返回false。<br>　　1.3.2 如果y是NaN，返回false。<br>　　1.3.3 如果x和y的值相同，返回true。<br>　　1.3.4 如果x是+0，y是-0，返回true。<br>　　1.3.5 如果x是-0，y是+0，返回true。<br>　　1.3.6 否则，返回false。<br>　1.4 如果x是string类型，如果x和y是长度相等且对应位置上字符相同的序列，返回true；否则返回false。<br>　1.5 如果x是Boolean类型，如果x和y均为true或者x和y均为false，返回true；否则，返回false。<br>　1.6 如果x是对象（普通对象，函数，数组等），那么如果x和y指向同一个对象（是内存中同一个对象的引用），返回true；否则，返回false。</li>
+<li>如果x是null，y是undefined，返回true。</li>
+<li>如果x是undefined，y是null，返回true。</li>
+<li>如果x是number类型，y是string类型，则对y进行类型转换，转换为number类型，返回 x == ToNumber(y) 的结果（参见上述1.3）。</li>
+<li>如果x是string类型，y是number类型，则对x进行类型转换，转换为number类型，返回 ToNumber(x) == y 的结果（参见上述1.3）。</li>
+<li>如果x是Boolean类型，则对x进行类型转换，转换为number类型，返回 ToNumber(x) == y 的结果（此时y的类型还是不确定的，应将其转换为number类型后进行比较）。</li>
+<li>如果y是Boolean类型，则对y进行类型转换，转换为number类型，返回 x == ToNumber(y) 的结果（此时x的类型还是不确定的，应将其转换为number类型后进行比较）。</li>
+<li>如果x是string类型或者number类型，y是一个对象（普通对象，函数，数组等），则对y进行类型转换—使用内置的[[ToPrimitive]]方法转换（该方法简单来说，就是先调用该对象上的<code>valueOf()</code>方法，如果有该方法且返回基本类型值，就使用该值进行强制类型转换；如果不存在，就调用该对象上的<code>toString()</code>方法，如果有该方法，就使用其返回值来进行强制类型转换；如果这两个方法都不存在，就产生TypeError错误。），返回 x == ToPrimitive(y) 的结果。</li>
+<li>如果x是一个对象（普通对象，函数，数组等），y是string类型或者number类型，则对x进行类型转换—使用内置的[[ToPrimitive]]，返回 ToPrimitive(x) == y 的结果。</li>
+<li>否则（非上述所有情况），返回false。</li>
+</ol>
+<blockquote>
+<p>注：针对以上10条有几点注意事项：<br>1.对a,b强制按字符串string类型进行比较，可采用如下方法：<br><code>&quot;&quot; + a == &quot;&quot; + b</code></p>
+<p>2.对a,b强制按数字number类型进行比较，可采用如下方法：<br><code>+a == +b</code></p>
+<p>3.对a,b强制按布尔值boolean类型进行比较，可采用如下方法：<br><code>!!a == !!b</code></p>
+<p>4.相等比较操作有以下恒等性：</p>
+<ul>
+<li>A != B 等价于 !(A == B)</li>
+<li>A == B 等价于 B == A (除非A B有顺序上的互相计算关系)</li>
+</ul>
+<p>5.相等操作并不是总具有传递性。<br>new String(“a”) == “a” 和 “a” == new String(“a”) 结果都返回true；<br>new String(“a”) == new String(“a”) 却返回false。<br>因为new String(“a”)是一个对象，按照上述规则会被转换为”a”，因此相等；而new String(“a”) == new String(“a”)，==左右两边是两个不同的对象，在内存中位于不同地址，因此结果返回false。</p>
+</blockquote>
+<hr>
+<p>由于强制类型转换的存在，宽松相等的情况变得复杂，比较容易出现问题的有以下几种：</p>
+<h4 id="更改内置原生原型后的相等比较"><a href="#更改内置原生原型后的相等比较" class="headerlink" title="更改内置原生原型后的相等比较"></a>更改内置原生原型后的相等比较</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.prototype.valueOf = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">2</span>) == <span class="number">3</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>这只是为了说明这种情况的存在，应该不会有人这么去改原型上的方法。</p>
+<h4 id="假值的相等比较"><a href="#假值的相等比较" class="headerlink" title="假值的相等比较"></a>假值的相等比较</h4><p>这部分应该是比较复杂的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"0"</span> == <span class="literal">null</span>;			</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="string">"0"</span> == <span class="literal">undefined</span>;			</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="string">"0"</span> == <span class="literal">false</span>;			</span><br><span class="line"><span class="comment">//true</span></span><br><span class="line"><span class="string">"0"</span> == <span class="literal">NaN</span>;			</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="string">"0"</span> == <span class="number">0</span>;			</span><br><span class="line"><span class="comment">//true</span></span><br><span class="line"><span class="string">"0"</span> == <span class="string">""</span>;			</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="literal">false</span> == <span class="literal">null</span>;		</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="literal">false</span> == <span class="literal">undefined</span>;	</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="literal">false</span> == <span class="literal">NaN</span>;		</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="literal">false</span> == <span class="number">0</span>;			</span><br><span class="line"><span class="comment">//true</span></span><br><span class="line"><span class="literal">false</span> == <span class="string">""</span>;		</span><br><span class="line"><span class="comment">//true</span></span><br><span class="line"><span class="literal">false</span> == [];		</span><br><span class="line"><span class="comment">//true</span></span><br><span class="line"><span class="literal">false</span> == &#123;&#125;;		</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="string">""</span> == <span class="literal">null</span>;			</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="string">""</span> == <span class="literal">undefined</span>;	</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="string">""</span> == <span class="literal">NaN</span>;			</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="string">""</span> == <span class="number">0</span>;			</span><br><span class="line"><span class="comment">//true</span></span><br><span class="line"><span class="string">""</span> == [];			</span><br><span class="line"><span class="comment">//true</span></span><br><span class="line"><span class="string">""</span> == &#123;&#125;;			</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> == <span class="literal">null</span>;			</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="number">0</span> == <span class="literal">undefined</span>;		</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="number">0</span> == <span class="literal">NaN</span>;			</span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="number">0</span> == [];			</span><br><span class="line"><span class="comment">//true</span></span><br><span class="line"><span class="number">0</span> == &#123;&#125;;			</span><br><span class="line"><span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<p>解释如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"0"</span> == <span class="literal">null</span>;  		</span><br><span class="line"><span class="comment">//false：null转换为"null"</span></span><br><span class="line"><span class="string">"0"</span> == <span class="literal">undefined</span>;   </span><br><span class="line"><span class="comment">//false：undefined转换为"undefined"</span></span><br><span class="line"><span class="string">"0"</span> == <span class="literal">false</span>;  		</span><br><span class="line"><span class="comment">//true：false转换为0；"0"转换为0</span></span><br><span class="line"><span class="string">"0"</span> == <span class="literal">NaN</span>;         </span><br><span class="line"><span class="comment">//false：NaN转换为"NaN"</span></span><br><span class="line"><span class="string">"0"</span> == <span class="number">0</span>; 			</span><br><span class="line"><span class="comment">//true："0"转换为0</span></span><br><span class="line"><span class="string">"0"</span> == <span class="string">""</span>; 			</span><br><span class="line"><span class="comment">//false：都是字符串，值不同</span></span><br><span class="line"></span><br><span class="line"><span class="literal">false</span> == <span class="literal">null</span>; 		</span><br><span class="line"><span class="comment">//false：false转换为0；null转换为"null"，进而转换为数字，得到NaN</span></span><br><span class="line"><span class="literal">false</span> == <span class="literal">undefined</span>; </span><br><span class="line"><span class="comment">//false：false转换为0；undefined转换为"undefined"，进而转换为数字，得到NaN</span></span><br><span class="line"><span class="literal">false</span> == <span class="literal">NaN</span>; 		</span><br><span class="line"><span class="comment">//false：false转换为0；与NaN不同</span></span><br><span class="line"><span class="literal">false</span> == <span class="number">0</span>; 		</span><br><span class="line"><span class="comment">//true：false转换为0</span></span><br><span class="line"><span class="literal">false</span> == <span class="string">""</span>; 		</span><br><span class="line"><span class="comment">//true：false转换为0；""转换为0</span></span><br><span class="line"><span class="literal">false</span> == []; 		</span><br><span class="line"><span class="comment">//true：false转换为0；[]转换为0</span></span><br><span class="line"><span class="literal">false</span> == &#123;&#125;; 		</span><br><span class="line"><span class="comment">//false：false转换为0；&#123;&#125;转换为NaN</span></span><br><span class="line"></span><br><span class="line"><span class="string">""</span> == <span class="literal">null</span>; 		</span><br><span class="line"><span class="comment">//false：""转换为0；null转换为"null"，进而转换为数字，得到NaN</span></span><br><span class="line"><span class="string">""</span> == <span class="literal">undefined</span>; 	</span><br><span class="line"><span class="comment">//false：""转换为0；undefined转换为"undefined"，进而转换为数字，得到NaN</span></span><br><span class="line"><span class="string">""</span> == <span class="literal">NaN</span>; 			</span><br><span class="line"><span class="comment">//false：""转换为0；与NaN不同</span></span><br><span class="line"><span class="string">""</span> == <span class="number">0</span>; 			</span><br><span class="line"><span class="comment">//true：""转换为0</span></span><br><span class="line"><span class="string">""</span> == []; 			</span><br><span class="line"><span class="comment">//true：""转换为0；[]转换为0</span></span><br><span class="line"><span class="string">""</span> == &#123;&#125;; 			</span><br><span class="line"><span class="comment">//false：""转换为0；&#123;&#125;转换为NaN</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> == <span class="literal">null</span>; 			</span><br><span class="line"><span class="comment">//false：null转换为"null"，进而转换为数字，得到NaN</span></span><br><span class="line"><span class="number">0</span> == <span class="literal">undefined</span>; 	</span><br><span class="line"><span class="comment">//false：undefined转换为"undefined"，进而转换为数字，得到NaN</span></span><br><span class="line"><span class="number">0</span> == <span class="literal">NaN</span>; 			</span><br><span class="line"><span class="comment">//false：0与NaN不同</span></span><br><span class="line"><span class="number">0</span> == []; 			</span><br><span class="line"><span class="comment">//true：[]转换为0</span></span><br><span class="line"><span class="number">0</span> == &#123;&#125;; 			</span><br><span class="line"><span class="comment">//false：&#123;&#125;转换为NaN</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="一些极端情况"><a href="#一些极端情况" class="headerlink" title="一些极端情况"></a>一些极端情况</h4><p>a. [] == ![]; //true<br>　　[]被转换为0，![]被转换为false，进而被转换为0。<br>b. 2 == [2];  //true<br>　　[2]调用数组的<code>valueOf()</code>方法，返回”2”，进而被转换为2。<br>c. “” == [null]; //true<br>　　[null]调用数组的<code>valueOf()</code>方法，进而调用<code>toString()</code>方法，返回””。
+　　</p>
+<hr>
+<h3 id="一些选用的原则"><a href="#一些选用的原则" class="headerlink" title="一些选用的原则"></a>一些选用的原则</h3><ol>
+<li>如果==两边有true或者false（指本身，不是经过类型转换以后的），绝对不使用==。</li>
+<li>如果==两边有[]，””，0，尽量不使用==。</li>
+<li>==和===选取哪一个取决于是否允许比较双方进行强制类型转换。</li>
+<li>不应该一味地使用===来避免考虑这些可能的问题，因为有时候隐式类型转换可以让代码更加简洁，只要用的对。‘</li>
+<li><code>typeof x == &quot;function&quot;</code>、<code>typeof x ！= &quot;undefined&quot;</code>这样的用法是完全正确且安全的，开发中也常用。</li>
+</ol>
+<hr>
+<h3 id="经典的相等比较关系图"><a href="#经典的相等比较关系图" class="headerlink" title="经典的相等比较关系图"></a>经典的相等比较关系图</h3><p>GitHub上有一个经典的比较关系图，<a href="http://dorey.github.io/JavaScript-Equality-Table/" target="_blank" rel="external">http://dorey.github.io/JavaScript-Equality-Table/</a>，以表格的形式系统总结了宽松相等==，严格相等===，if()条件语句中使用不同数据类型对应的结果，很有意义：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-equality-table-1.png" alt=""></p>
+<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-equality-table-2.png" alt=""></p>
+<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-equality-table-3.png" alt=""></p>
+<hr>
+<h2 id="不等比较"><a href="#不等比较" class="headerlink" title="不等比较"></a>不等比较</h2><h3 id="和"><a href="#和" class="headerlink" title="!= 和 !=="></a>!= 和 !==</h3><p>　　只要搞清楚上面详细描述的==和===，对应取反即可。</p>
+<h3 id="gt-lt-gt-lt"><a href="#gt-lt-gt-lt" class="headerlink" title="&gt;  &lt;  &gt;=  &lt;="></a>&gt;  &lt;  &gt;=  &lt;=</h3><blockquote>
+<p>这些比较的基础是 x &lt; y:</p>
+<p>x &lt; y会返回true或者false或者undefined。如果返回undefined，说明x,y两者至少有一个是NaN。比较算法中需要使用一个布尔值的标记LeftFirst作为参数。这个参数的作用是控制可能具有副作用的操作作用于x和y的顺序。这个标志是有必要的，因为在ECMAScript指定了从左到右的运算顺序，LeftFirst的默认值是true，表示x的表达式是在y的表达式左边的。如果LeftFirst值为false，情况相反，表明关于y的操作必须先于x进行。据此，比较操作规则如下：</p>
+<ol>
+<li>如果LeftFirst值为true：<br>　1.1 ToPrimitive(x, hint Number)的结果记为px<br>　1.2 ToPrimitive(y, hint Number)的结果记为py</li>
+<li>否则，运算顺序改为从右向左：<br>　2.1 ToPrimitive(y, hint Number)的结果记为py<br>　2.2 ToPrimitive(x, hint Number)的结果记为px</li>
+<li>经过如上转换，如果px和py至少有一个的类型不为string：<br>　3.1 ToNumber(px)的结果记为nx<br>　3.2 ToNumber(py)的结果记为ny<br>　3.3 如果nx是NaN，返回undefined<br>　3.4 如果ny是NaN，返回undefined<br>　3.5 如果nx和ny的值相同，返回false<br>　3.6 如果nx是+0，ny是-0，返回false<br>　3.7 如果nx是-0，ny是+0，返回false<br>　3.8 如果nx是+Infinity，返回false<br>　3.9 如果ny是+Infinity，返回true<br>　3.10 如果ny是-Infinity，返回false<br>　3.11 如果nx是-Infinity，返回true<br>　3.12 如果nx的值小于ny，返回true；否则，返回false</li>
+<li>如果px和py都是string：<br>　4.1 如果py是px的前缀，返回false<br>　4.2 如果px是py的前缀，返回true<br>　4.3 设置变量k，k表示px和py对应位上出现不同值时，位置的索引。<br>　4.4 记px的位置k上的字母对应的字符编码值为m<br>　4.5 记py的位置k上的字母对应的字符编码值为n<br>　4.6 如果m &lt; n，返回true；否则返回false</li>
+</ol>
+</blockquote>
+<p>因此，&gt;  &lt;  &gt;=  &lt;=就有如下的规则：
+　</p>
+<h4 id="RelationalExpression-gt-ShiftExpression"><a href="#RelationalExpression-gt-ShiftExpression" class="headerlink" title="RelationalExpression &gt; ShiftExpression"></a>RelationalExpression &gt; ShiftExpression</h4><ol>
+<li>记lref为RelationalExpression的运算结果值。</li>
+<li>记lval为lref类型转换后获取的value值。</li>
+<li>记rref为ShiftExpression的运算结果值。</li>
+<li>记rval为rref类型转换后获取的value值。</li>
+<li>设LeftFirst为false，将rval &lt; lval按照上述规则进行运算，结果为r。</li>
+<li>如果r是undefined返回false，否则返回r。</li>
+</ol>
+<h4 id="RelationalExpression-lt-ShiftExpression"><a href="#RelationalExpression-lt-ShiftExpression" class="headerlink" title="RelationalExpression &lt; ShiftExpression"></a>RelationalExpression &lt; ShiftExpression</h4><ol>
+<li>记lref为RelationalExpression的运算结果值。</li>
+<li>记lval为lref类型转换后获取的value值。</li>
+<li>记rref为ShiftExpression的运算结果值。</li>
+<li>记rval为rref类型转换后获取的value值。</li>
+<li>将lval &lt; rval按照上述规则进行运算，结果为r。</li>
+<li>如果r是undefined返回false，否则返回r。</li>
+</ol>
+<h4 id="RelationalExpression-gt-ShiftExpression-1"><a href="#RelationalExpression-gt-ShiftExpression-1" class="headerlink" title="RelationalExpression &gt;= ShiftExpression"></a>RelationalExpression &gt;= ShiftExpression</h4><ol>
+<li>记lref为RelationalExpression的运算结果值。</li>
+<li>记lval为lref类型转换后获取的value值。</li>
+<li>记rref为ShiftExpression的运算结果值。</li>
+<li>记rval为rref类型转换后获取的value值。</li>
+<li>设LeftFirst为false，将rval &lt; lval按照上述规则进行运算，结果为r。</li>
+<li>如果r是true或者undefined返回false，否则返回true。</li>
+</ol>
+<h4 id="RelationalExpression-lt-ShiftExpression-1"><a href="#RelationalExpression-lt-ShiftExpression-1" class="headerlink" title="RelationalExpression &lt;= ShiftExpression"></a>RelationalExpression &lt;= ShiftExpression</h4><ol>
+<li>记lref为RelationalExpression的运算结果值。</li>
+<li>记lval为lref类型转换后获取的value值。</li>
+<li>记rref为ShiftExpression的运算结果值。</li>
+<li>记rval为rref类型转换后获取的value值。</li>
+<li>将lval &lt; rval按照上述规则进行运算，结果为r。</li>
+<li>如果r是true或者undefined返回false，否则返回true。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;　　在javascript开发中，比较操作是十分常见的。由于显式/隐式强制类型转换机制的存在，我们在使用比较运算时显得过于随意，也许表面上看
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://www.gcidea.info/categories/JavaScript/"/>
+    
+    
+      <category term="学习笔记" scheme="http://www.gcidea.info/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="JavaScript" scheme="http://www.gcidea.info/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode [#171]</title>
+    <link href="http://www.gcidea.info/welcome-to-this-page/2016/11/25/leetcode-171/"/>
+    <id>http://www.gcidea.info/welcome-to-this-page/2016/11/25/leetcode-171/</id>
+    <published>2016-11-25T10:26:39.000Z</published>
+    <updated>2017-01-29T03:22:22.949Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg" alt=""></p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given a column title as appear in an Excel sheet, return its corresponding column number.</p>
+<p><strong>Note</strong>:<br>A -&gt; 1<br>B -&gt; 2<br>C -&gt; 3<br>…<br>Z -&gt; 26<br>AA -&gt; 27<br>AB -&gt; 28 </p>
+</blockquote>
+<hr>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">titleToNumber</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) result += Math.pow(<span class="number">26</span>, (s.length() - <span class="number">1</span> - i)) * (s.charAt(i) - <span class="string">'A'</span> + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>遍历字符串，每一位的权重是26的(s.length() - 1 - i)次幂，结果求和即可。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://7xrz3r.com1.z0.glb.clouddn.com/leetcode-oj.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://www.gcidea.info/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="http://www.gcidea.info/tags/leetcode/"/>
+    
+  </entry>
+  
+</feed>
