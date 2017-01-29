@@ -4,6 +4,10 @@
         $('body, html').animate({ scrollTop: 0 }, 600);
     });
 
+    $("#back-to-top2").on('click', function () {
+        $('body, html').animate({ scrollTop: 0 }, 600);
+    });
+
     // Nav bar toggle
     $('#main-nav-toggle').on('click', function () {
         $('.nav-container-inner').slideToggle();
@@ -121,9 +125,15 @@
     });
     
     $('.main-nav-list-link').each(function (index) {
-        if(index <= 3) {
-            $(this).css('color', 'lightskyblue');
-        }
+        $(this).css('color', 'lightskyblue');
     })
+
+    $(window).scroll(function(){
+        if ($(window).scrollTop()>100){
+            $("#back-to-top2").fadeIn(150);
+        } else {
+            $("#back-to-top2").fadeOut(150);
+        }
+    });
 
 })(jQuery);
