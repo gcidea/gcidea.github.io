@@ -101,7 +101,7 @@ var _hmt = _hmt || [];
                                 </li>
                             
                                 <li class="main-nav-list-item" >
-                                    <a class="main-nav-list-link" href="/open-source">开源组件</a>
+                                    <a class="main-nav-list-link" href="/projects">开源组件</a>
                                 </li>
                             
                                 <li class="main-nav-list-item" >
@@ -175,6 +175,165 @@ var _hmt = _hmt || [];
 
         <section class="archives-wrap">
             <div class="archive-year-wrap">
+                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
+            </div>
+            <div class="archives">
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/01/12/js-compare/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p77.jpg)" alt="JavaScript中比较运算的详细总结" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2017/01/12/js-compare/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+            </p>
+            <p class="date"><time datetime="2017-01-12T14:11:06.000Z" itemprop="datePublished">2017-01-12</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/01/12/js-compare/">JavaScript中比较运算的详细总结</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+前言　　在javascript开发中，比较操作是十分常见的。由于显式/隐式强制类型转换机制的存在，我们在使用比较运算时显得过于随意，也许表面上看并没有什么错误（比如在if()语句中判断两值相等时顺手就写成 == ），但是这可能会埋下很多不易发现的隐患。对于比较操作（相等关系和不等关系），在javascript中其实是有一套完善的机制的。本文依据ES5规范《ECMAScript Language 
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/01/11/js-obj-attr-exist-or-not-and-related-detect-function/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p89.jpg)" alt="JavaScript中对象属性存在性及相关检测方法总结" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2017/01/11/js-obj-attr-exist-or-not-and-related-detect-function/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+            </p>
+            <p class="date"><time datetime="2017-01-11T03:14:54.000Z" itemprop="datePublished">2017-01-11</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/01/11/js-obj-attr-exist-or-not-and-related-detect-function/">JavaScript中对象属性存在性及相关检测方法总结</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+前言　　访问一个对象中的某个属性时，返回的结果可能是undefined，这有可能是本身该属性存储的值就是undefined，也有可能是该属性在对象中不存在。对此，就产生了判断属性存在性的相关问题和解决方法。
+
+in操作符语法格式1234567var obj = &#123;	name : "Bob",	age : 24&#125;;("name" in obj);  //true("sex" i
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2017/01/09/ajax-status-when-browser-window-close/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p4.jpg)" alt="【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2017/01/09/ajax-status-when-browser-window-close/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+            </p>
+            <p class="date"><time datetime="2017-01-09T09:23:24.000Z" itemprop="datePublished">2017-01-09</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2017/01/09/ajax-status-when-browser-window-close/">【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+前言　　以使用$.ajax()方法发出一个异步请求为例，探究当执行完发出异步请求的同步代码但尚未执行异步回调的函数的时候，关闭浏览器，不同浏览器对此有何处理。并且，这个问题是因为看到了一种不规范写法而发现的—场景是，执行完相关保存任务（异步请求）后关闭当前页面。这种写法把window.close()相关代码却写在了$ajax()的外面（后面）。违背了在成功保存的回调内关闭页面的做法。
+
+Chro
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+        
+            </div></section>
+        
+        
+
+        <section class="archives-wrap">
+            <div class="archive-year-wrap">
                 <a href="/archives/2016" class="archive-year"><i class="icon fa fa-calendar-o"></i>2016</a>
             </div>
             <div class="archives">
@@ -186,17 +345,17 @@ var _hmt = _hmt || [];
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/welcome-to-this-page/2016/12/02/js-value-copy-reference-copy/" class="thumbnail">
+        <a href="/2016/12/31/js-constructor-prototype/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p78.jpg)" alt="JavaScript中的对象、constructor属性、prototype属性对比分析" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/12/02/js-value-copy-reference-copy/">0</span>
+        <span class="ds-thread-count" data-thread-key="2016/12/31/js-constructor-prototype/">0</span>
     
 </span>
 
@@ -208,17 +367,18 @@ var _hmt = _hmt || [];
             <p class="category">
             <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
             </p>
-            <p class="date"><time datetime="2016-12-02T03:18:20.000Z" itemprop="datePublished">2016-12-02</time></p>
+            <p class="date"><time datetime="2016-12-31T15:13:37.000Z" itemprop="datePublished">2016-12-31</time></p>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/12/02/js-value-copy-reference-copy/">JavaScript中值传递和引用传递的典例探究</a>
+        <a href="/2016/12/31/js-constructor-prototype/">JavaScript中的对象、constructor属性、prototype属性对比分析</a>
         </h1>
     
 
         <p class="article-excerpt">
-            概述　　在Javascript中，基本类型（null, undefined, number, string, boolean, symbol）是通过值传递方式进行，而复合类型（object, array, function）则是通过引用传递方式进行。　　但是，由于Javascript工作机制所决定，在js中，引用指向的其实是值，而无法指向其他引用，这和其他语言中的指针并不相同。　　其实，两者都可以
+            
+前言　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的
         </p>
     </div>
 </article>
@@ -231,17 +391,17 @@ var _hmt = _hmt || [];
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/welcome-to-this-page/2016/11/25/js-compare/" class="thumbnail">
+        <a href="/2016/12/27/js-value-copy-reference-copy/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/ecma-relational-equality-operator.png)" alt="JavaScript中比较运算的详细总结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p93.jpg)" alt="JavaScript中值传递和引用传递的典例探究" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/11/25/js-compare/">0</span>
+        <span class="ds-thread-count" data-thread-key="2016/12/27/js-value-copy-reference-copy/">0</span>
     
 </span>
 
@@ -253,113 +413,18 @@ var _hmt = _hmt || [];
             <p class="category">
             <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
             </p>
-            <p class="date"><time datetime="2016-11-25T14:11:06.000Z" itemprop="datePublished">2016-11-25</time></p>
+            <p class="date"><time datetime="2016-12-27T03:18:20.000Z" itemprop="datePublished">2016-12-27</time></p>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/11/25/js-compare/">JavaScript中比较运算的详细总结</a>
+        <a href="/2016/12/27/js-value-copy-reference-copy/">JavaScript中值传递和引用传递的典例探究</a>
         </h1>
     
 
         <p class="article-excerpt">
-            前言　　在javascript开发中，比较操作是十分常见的。由于显式/隐式强制类型转换机制的存在，我们在使用比较运算时显得过于随意，也许表面上看并没有什么错误（比如在if()语句中判断两值相等时顺手就写成 == ），但是这可能会埋下很多不易发现的隐患。对于比较操作（相等关系和不等关系），在javascript中其实是有一套完善的机制的。本文依据ES5规范《ECMAScript Language S
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/welcome-to-this-page/2016/11/25/js-obj-attr-exist-or-not-and-related-detect-function/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/11/25/js-obj-attr-exist-or-not-and-related-detect-function/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-            </p>
-            <p class="date"><time datetime="2016-11-25T03:14:54.000Z" itemprop="datePublished">2016-11-25</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/11/25/js-obj-attr-exist-or-not-and-related-detect-function/">JavaScript中对象属性存在性及相关检测方法总结</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言　　访问一个对象中的某个属性时，返回的结果可能是undefined，这有可能是本身该属性存储的值就是undefined，也有可能是该属性在对象中不存在。对此，就产生了判断属性存在性的相关问题和解决方法。
-
-in操作符语法格式1234567var obj = &#123;	name : "Bob",	age : 24&#125;;("name" in obj);  //true("sex" in
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/welcome-to-this-page/2016/11/24/2d-array-miss-a-comma/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/miss-a-comma-1.png)" alt="JavaScript中二维数组声明时漏写一个逗号所产生现象的探究" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/11/24/2d-array-miss-a-comma/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-            </p>
-            <p class="date"><time datetime="2016-11-24T03:32:20.000Z" itemprop="datePublished">2016-11-24</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/11/24/2d-array-miss-a-comma/">JavaScript中二维数组声明时漏写一个逗号所产生现象的探究</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            场景与现象　　具体业务逻辑：在组件进行初始化时需要赋值一个二维数组（4 * 12），如下所示：123456$scope.data = [  	[-1, 1, 3, 7, 13, 16, 18, 16, 15, 9, 4, 2]	[0, 1, 4, 7, 12, 15, 16, 15, 15, 10, 6, 5],	[4, 4, 5, 10, 16, 22, 25, 24, 20, 14, 9, 3
+            
+概述　　在Javascript中，基本类型（null, undefined, number, string, boolean, symbol）是通过值传递方式进行，而复合类型（object, array, function）则是通过引用传递方式进行。　　但是，由于Javascript工作机制所决定，在js中，引用指向的其实是值，而无法指向其他引用，这和其他语言中的指针并不相同。　　其实，两者都可
         </p>
     </div>
 </article>
@@ -376,17 +441,17 @@ in操作符语法格式1234567var obj = &#123;	name : "Bob",	age : 24&#125;;("na
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/welcome-to-this-page/2016/11/24/js-call-apply/" class="thumbnail">
+        <a href="/2016/12/20/js-7-create-object-solutions-6-inherit-solutions/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/js-call-1.png)" alt="JavaScript的call()、apply()、bind()方法对比总结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p64.jpg)" alt="JavaScript中创建对象的7种模式和实现继承的6种方式" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/11/24/js-call-apply/">0</span>
+        <span class="ds-thread-count" data-thread-key="2016/12/20/js-7-create-object-solutions-6-inherit-solutions/">0</span>
     
 </span>
 
@@ -398,17 +463,21 @@ in操作符语法格式1234567var obj = &#123;	name : "Bob",	age : 24&#125;;("na
             <p class="category">
             <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
             </p>
-            <p class="date"><time datetime="2016-11-24T03:27:31.000Z" itemprop="datePublished">2016-11-24</time></p>
+            <p class="date"><time datetime="2016-12-20T14:40:47.000Z" itemprop="datePublished">2016-12-20</time></p>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/11/24/js-call-apply/">JavaScript的call()、apply()、bind()方法对比总结</a>
+        <a href="/2016/12/20/js-7-create-object-solutions-6-inherit-solutions/">JavaScript中创建对象的7种模式和实现继承的6种方式</a>
         </h1>
     
 
         <p class="article-excerpt">
-            前言　　JavaScript中的函数其实就是一种对象。函数对象也有自己的很多方法。其中，call()方法和apply()方法就是两个用来间接调用函数的方法。两个方法都允许显式地指明调用时的上下文环境（即this的值）。也就是说，这给我们提供了一种自由—任何函数可以作为任何对象的方法来进行调用。并且，两个方法也都允许显式地指明调用时需要用到的实参。函数经call()或apply()调用后会立即执行，
+            
+前言　　JavaScript是一种面向对象（OO）的语言，但由于ECMAScript没有类的概念（ES6引入关键字class），所以在js中创建对象的方法也与其他基于类的语言有所不同。本篇总结在JavaScript中创建对象的7种方法；并在此基础上，总结实现继承的6种方式。
+
+JavaScript中对象的基本概念创建对象的2种基本方法
+创建一个Object实例123456789101112131
         </p>
     </div>
 </article>
@@ -421,17 +490,17 @@ in操作符语法格式1234567var obj = &#123;	name : "Bob",	age : 24&#125;;("na
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/welcome-to-this-page/2016/11/23/js-array-duplicate-removal/" class="thumbnail">
+        <a href="/2016/12/19/js-yield/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p95.jpg)" alt="关于JavaScript生成器generator和yield的一些理解" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/11/23/js-array-duplicate-removal/">0</span>
+        <span class="ds-thread-count" data-thread-key="2016/12/19/js-yield/">0</span>
     
 </span>
 
@@ -443,17 +512,21 @@ in操作符语法格式1234567var obj = &#123;	name : "Bob",	age : 24&#125;;("na
             <p class="category">
             <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
             </p>
-            <p class="date"><time datetime="2016-11-23T03:19:54.000Z" itemprop="datePublished">2016-11-23</time></p>
+            <p class="date"><time datetime="2016-12-19T13:07:31.000Z" itemprop="datePublished">2016-12-19</time></p>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/11/23/js-array-duplicate-removal/">使用JavaScript实现数组去重的4种方法及性能比较</a>
+        <a href="/2016/12/19/js-yield/">关于JavaScript生成器generator和yield的一些理解</a>
         </h1>
     
 
         <p class="article-excerpt">
-            前言
+            
+综述　　Generator（生成器）函数是ES6提供的一种异步编程解决方案，而yield则是配合生成器函数使用的。
+
+Generator函数定义　　function* 声明（function关键字后跟一个星号）定义一个generator（生成器）函数，返回一个Generator对象。
+语法function* name([param[, param[, ... param]]]) { statem
         </p>
     </div>
 </article>
@@ -470,17 +543,70 @@ in操作符语法格式1234567var obj = &#123;	name : "Bob",	age : 24&#125;;("na
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/welcome-to-this-page/2016/11/22/js-preload-lazyload/" class="thumbnail">
+        <a href="/2016/12/12/js-proto-prototype/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p91.jpg)" alt="JavaScript中的__proto__、[[prototype]]和prototype" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/11/22/js-preload-lazyload/">0</span>
+        <span class="ds-thread-count" data-thread-key="2016/12/12/js-proto-prototype/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+            </p>
+            <p class="date"><time datetime="2016-12-12T04:52:56.000Z" itemprop="datePublished">2016-12-12</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2016/12/12/js-proto-prototype/">JavaScript中的__proto__、[[prototype]]和prototype</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+前言　　proto、[[prototype]]和prototype三个概念及相关内容是javascript比较复杂且容易混淆的内容。本文尝试进行总结和分析。
+
+prototype相关介绍　　待续。
+
+__proto__与[[prototype]]相关介绍　　待续。
+一张图分析三者的关系
+
+一系列案例分析12345function Foo()&#123;  console.log(1);&#125
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2016/11/22/js-preload-lazyload/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p90.jpg)" alt="JavaScript的预加载与懒加载" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2016/11/22/js-preload-lazyload/">0</span>
     
 </span>
 
@@ -497,346 +623,13 @@ in操作符语法格式1234567var obj = &#123;	name : "Bob",	age : 24&#125;;("na
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/11/22/js-preload-lazyload/">JavaScript的预加载与懒加载</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/welcome-to-this-page/2016/11/20/js-array-prototype-slice-call-arguments/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/11/20/js-array-prototype-slice-call-arguments/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-            </p>
-            <p class="date"><time datetime="2016-11-20T04:40:47.000Z" itemprop="datePublished">2016-11-20</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/11/20/js-array-prototype-slice-call-arguments/">Array.prototype.slice.call()的典型应用</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            作用　　一句话来讲，这是一种将类数组对象转换为真正数组的方法。很多时候我们会遇到“类数组对象”，比如在操作DOM元素的时候，查询符合某种class的DOM节点会返回一个NodeList，它就是一个类数组对象。真正数组的很多成员方法不能直接用于类数组对象，因此就需要将其转换为真正的数组。
-
-示例123456789Function.prototype.bind = function(context)&
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/welcome-to-this-page/2016/10/11/invalid-char-filter/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/invalid-char-filter-1.png)" alt="使用JavaScript实现非法输入字符实时过滤" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/10/11/invalid-char-filter/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-            </p>
-            <p class="date"><time datetime="2016-10-11T05:54:23.000Z" itemprop="datePublished">2016-10-11</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/10/11/invalid-char-filter/">使用JavaScript实现非法输入字符实时过滤</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言　　表单提交是一项常见操作，对于输入内容的合法性必须在前后端都做验证才能保证可靠性。表单验证有很重要的意义，除了防止注入攻击之类的安全问题外，有时如果不能正确的进行验证，可能会使合法的页面渲染受到影响。比如在实际开发中遇到的一种问题，jsp页面使用JSTL库自定义标签渲染后台传来的数据时，需要将这组数据作为参数传入相应点击事件的回调函数，如果参数中一旦也有双引号”，就会导致解析错误—oncli
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/welcome-to-this-page/2016/10/02/js-closure-3/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/10/02/js-closure-3/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-            </p>
-            <p class="date"><time datetime="2016-10-02T14:29:34.000Z" itemprop="datePublished">2016-10-02</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/10/02/js-closure-3/">JavaScript的闭包案例3---关于闭包的深入理解</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言　　本篇在之前两篇关于闭包的文章JavaScript的闭包案例—1、JavaScript的闭包案例—2的基础上，更加深入的理解闭包的本质问题—作用域链；并简要对比在ES6中关于该问题的规避方法。
-
-描述
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/welcome-to-this-page/2016/10/01/js-7-create-object-solutions-6-inherit-solutions/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/10/01/js-7-create-object-solutions-6-inherit-solutions/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-            </p>
-            <p class="date"><time datetime="2016-10-01T14:40:47.000Z" itemprop="datePublished">2016-10-01</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/10/01/js-7-create-object-solutions-6-inherit-solutions/">JavaScript中创建对象的7种模式和实现继承的6种方式</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言　　JavaScript是一种面向对象（OO）的语言，但由于ECMAScript没有类的概念（ES6引入关键字class），所以在js中创建对象的方法也与其他基于类的语言有所不同。本篇总结在JavaScript中创建对象的7种方法；并在此基础上，总结实现继承的6种方式。
-
-JavaScript中对象的基本概念创建对象的2种基本方法
-创建一个Object实例1234567891011121314
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/welcome-to-this-page/2016/09/29/ajax-status-when-browser-window-close/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/09/29/ajax-status-when-browser-window-close/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-            </p>
-            <p class="date"><time datetime="2016-09-29T09:23:24.000Z" itemprop="datePublished">2016-09-29</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/09/29/ajax-status-when-browser-window-close/">【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/welcome-to-this-page/2016/09/24/js-3d-random-tags/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/09/24/js-3d-random-tags/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-            </p>
-            <p class="date"><time datetime="2016-09-24T14:40:47.000Z" itemprop="datePublished">2016-09-24</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/09/24/js-3d-random-tags/">使用Javascript实现随机漂浮的3D标签云效果</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/welcome-to-this-page/2016/09/21/mouse-wheel-event-compatibility/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/09/21/mouse-wheel-event-compatibility/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-            </p>
-            <p class="date"><time datetime="2016-09-21T05:22:04.000Z" itemprop="datePublished">2016-09-21</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/09/21/mouse-wheel-event-compatibility/">鼠标滚轮事件的浏览器兼容性处理</a>
+        <a href="/2016/11/22/js-preload-lazyload/">JavaScript的预加载与懒加载</a>
         </h1>
     
 
         <p class="article-excerpt">
             
+预加载目的　　增强用户的体验，当用户需要查看时可直接从本地缓存中渲染。。否则，如果一个页面的内容过于庞大，没有使用预加载技术的页面就会长时间的展现为一片空白。但会加载服务器的负担。并且，如果不设置预加载，那么当需要渲染十分大的图片时，可能就会有“逐行扫描渲染”的感觉，用户体验不好。使用预加载的话，我们可以在图片完整渲染完成之前在页面上设置“loading”类的图标提示，而当图片数据完全获取后一次
         </p>
     </div>
 </article>
@@ -853,17 +646,66 @@ JavaScript中对象的基本概念创建对象的2种基本方法
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/welcome-to-this-page/2016/09/20/document-ready-window-onload/" class="thumbnail">
+        <a href="/2016/09/22/client-side-js-event-propagation/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p25.jpg)" alt="JavaScript中的事件传播机制" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/09/20/document-ready-window-onload/">0</span>
+        <span class="ds-thread-count" data-thread-key="2016/09/22/client-side-js-event-propagation/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+            </p>
+            <p class="date"><time datetime="2016-09-22T14:40:47.000Z" itemprop="datePublished">2016-09-22</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2016/09/22/client-side-js-event-propagation/">JavaScript中的事件传播机制</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+前言　　javascript与html的交互是通过事件实现的。在DOM2级模型中，为DOM元素绑定的事件有一套完整的事件传播机制，主要有3个阶段，本文进行小结。
+
+## 
+
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2016/09/20/document-ready-window-onload/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p41.jpg)" alt="$(document).ready与window.onload的区别" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2016/09/20/document-ready-window-onload/">0</span>
     
 </span>
 
@@ -880,12 +722,68 @@ JavaScript中对象的基本概念创建对象的2种基本方法
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/09/20/document-ready-window-onload/">document.ready与window.onload的区别</a>
+        <a href="/2016/09/20/document-ready-window-onload/">$(document).ready与window.onload的区别</a>
         </h1>
     
 
         <p class="article-excerpt">
-            前言
+            
+document.ready执行时机　　只要页面DOM结构绘制完毕就执行，不必等到外部资源（图片，css等）加载完毕。 并且，在jquery中，$(function(){}) 和$(document).ready(function(){})两种写法是等价的。
+特点　　在同一个页面中可以写多次，会顺序执行，见下面测试。
+
+window.onload执行时机　　必须等到页面内包括图片的所有元素加载完
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2016/09/19/js-async-programming/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p69.jpg)" alt="JavaScript异步编程案例" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2016/09/19/js-async-programming/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+            </p>
+            <p class="date"><time datetime="2016-09-19T03:18:20.000Z" itemprop="datePublished">2016-09-19</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2016/09/19/js-async-programming/">JavaScript异步编程案例</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            【转载】阮一峰 Javascript异步编程的4种方法
+前言你可能知道，Javascript语言的执行环境是”单线程”（single thread）。
+所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。
+这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执
         </p>
     </div>
 </article>
@@ -898,17 +796,17 @@ JavaScript中对象的基本概念创建对象的2种基本方法
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/welcome-to-this-page/2016/09/12/js-draggable/" class="thumbnail">
+        <a href="/2016/09/12/js-draggable/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p84.jpg)" alt="使用原生js实现元素拖拽功能" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/09/12/js-draggable/">0</span>
+        <span class="ds-thread-count" data-thread-key="2016/09/12/js-draggable/">0</span>
     
 </span>
 
@@ -925,12 +823,14 @@ JavaScript中对象的基本概念创建对象的2种基本方法
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/09/12/js-draggable/">使用原生js实现元素拖拽功能</a>
+        <a href="/2016/09/12/js-draggable/">使用原生js实现元素拖拽功能</a>
         </h1>
     
 
         <p class="article-excerpt">
-            前言
+            
+前言　　本篇仅对拖拽过程中核心几个事件监听的写法进行小结，不涉及页面样式效果的展现。
+实现1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818
         </p>
     </div>
 </article>
@@ -947,17 +847,17 @@ JavaScript中对象的基本概念创建对象的2种基本方法
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/welcome-to-this-page/2016/09/05/js-date-format/" class="thumbnail">
+        <a href="/2016/08/26/js-call-apply/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p71.jpg)" alt="JavaScript的call()、apply()、bind()方法对比总结" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/09/05/js-date-format/">0</span>
+        <span class="ds-thread-count" data-thread-key="2016/08/26/js-call-apply/">0</span>
     
 </span>
 
@@ -969,17 +869,18 @@ JavaScript中对象的基本概念创建对象的2种基本方法
             <p class="category">
             <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
             </p>
-            <p class="date"><time datetime="2016-09-05T14:40:47.000Z" itemprop="datePublished">2016-09-05</time></p>
+            <p class="date"><time datetime="2016-08-26T03:27:31.000Z" itemprop="datePublished">2016-08-26</time></p>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/09/05/js-date-format/">使用Javascript封装常用的时间格式化函数</a>
+        <a href="/2016/08/26/js-call-apply/">JavaScript的call()、apply()、bind()方法对比总结</a>
         </h1>
     
 
         <p class="article-excerpt">
-            前言
+            
+前言　　JavaScript中的函数其实就是一种对象。函数对象也有自己的很多方法。其中，call()方法和apply()方法就是两个用来间接调用函数的方法。两个方法都允许显式地指明调用时的上下文环境（即this的值）。也就是说，这给我们提供了一种自由—任何函数可以作为任何对象的方法来进行调用。并且，两个方法也都允许显式地指明调用时需要用到的实参。函数经call()或apply()调用后会立即执行
         </p>
     </div>
 </article>
@@ -992,17 +893,17 @@ JavaScript中对象的基本概念创建对象的2种基本方法
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/welcome-to-this-page/2016/09/03/js-getevent/" class="thumbnail">
+        <a href="/2016/08/21/js-three-level-linkage-and-dynamic-search/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p92.jpg)" alt="使用JavaScript实现三级联动和实时搜索" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/09/03/js-getevent/">0</span>
+        <span class="ds-thread-count" data-thread-key="2016/08/21/js-three-level-linkage-and-dynamic-search/">0</span>
     
 </span>
 
@@ -1014,17 +915,19 @@ JavaScript中对象的基本概念创建对象的2种基本方法
             <p class="category">
             <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
             </p>
-            <p class="date"><time datetime="2016-09-03T14:40:47.000Z" itemprop="datePublished">2016-09-03</time></p>
+            <p class="date"><time datetime="2016-08-21T03:27:46.000Z" itemprop="datePublished">2016-08-21</time></p>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/09/03/js-getevent/">使用Javascript封装获取页面事件对象的getEvent函数</a>
+        <a href="/2016/08/21/js-three-level-linkage-and-dynamic-search/">使用JavaScript实现三级联动和实时搜索</a>
         </h1>
     
 
         <p class="article-excerpt">
-            前言
+            
+前言　　本篇仅对三级联动和实时搜索的核心给出说明，对于页面设计、整个工程结构等不做说明。
+三级联动根据交互操作异步触发获取第一列数据12345678910111213141516171819202122232425262728293031323334353637383940//异步请求第一列数据-可选指标名称 $.ajax(&#123;     type: "POST",     async: 
         </p>
     </div>
 </article>
@@ -1041,17 +944,17 @@ JavaScript中对象的基本概念创建对象的2种基本方法
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/welcome-to-this-page/2016/08/28/js-window-location/" class="thumbnail">
+        <a href="/2016/08/09/js-caller-callee/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p72.jpg)" alt="JavaScript的caller属性和callee属性对比总结" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/08/28/js-window-location/">0</span>
+        <span class="ds-thread-count" data-thread-key="2016/08/09/js-caller-callee/">0</span>
     
 </span>
 
@@ -1063,17 +966,18 @@ JavaScript中对象的基本概念创建对象的2种基本方法
             <p class="category">
             <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
             </p>
-            <p class="date"><time datetime="2016-08-28T03:19:54.000Z" itemprop="datePublished">2016-08-28</time></p>
+            <p class="date"><time datetime="2016-08-09T03:27:46.000Z" itemprop="datePublished">2016-08-09</time></p>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/08/28/js-window-location/">JavaScript的window.location相关方法总结</a>
+        <a href="/2016/08/09/js-caller-callee/">JavaScript的caller属性和callee属性对比总结</a>
         </h1>
     
 
         <p class="article-excerpt">
-            前言
+            
+背景　　要说这两个方法，必须先说另一个东西—实参对象（arguments）。标识符arguments是指向实参对象的引用。当传入某个函数的参数个数超过函数定义时指定的形参个数时，默认的处理方法是自动忽略多出来的参数。也就是说，默认这不会引起错误。但是这会有另一个问题：无法获取多出来的参数的引用了（无法知道多出来的参数具体值是什么）。这也正是实参对象arguments可以解决的问题。通过argum
         </p>
     </div>
 </article>
@@ -1086,17 +990,17 @@ JavaScript中对象的基本概念创建对象的2种基本方法
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/welcome-to-this-page/2016/08/23/js-css-relative-path/" class="thumbnail">
+        <a href="/2016/05/29/js-array-method-sum-up/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p67.jpg)" alt="JavaScript数组方法对比总结" class="thumbnail-image"></span>
     
     
         
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://www.gcidea.info/welcome-to-this-page/2016/08/23/js-css-relative-path/">0</span>
+        <span class="ds-thread-count" data-thread-key="2016/05/29/js-array-method-sum-up/">0</span>
     
 </span>
 
@@ -1108,22 +1012,175 @@ JavaScript中对象的基本概念创建对象的2种基本方法
             <p class="category">
             <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
             </p>
-            <p class="date"><time datetime="2016-08-23T03:27:31.000Z" itemprop="datePublished">2016-08-23</time></p>
+            <p class="date"><time datetime="2016-05-29T03:28:27.000Z" itemprop="datePublished">2016-05-29</time></p>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/welcome-to-this-page/2016/08/23/js-css-relative-path/">在页面引入js文件和css文件的相对路径的区别</a>
+        <a href="/2016/05/29/js-array-method-sum-up/">JavaScript数组方法对比总结</a>
         </h1>
     
 
         <p class="article-excerpt">
-            前言
+            
+前言　　本文对JavaScript中数组类型（Array）的常用方法进行总结，主要包括其API，使用示例和是否直接操作/修改原数组的分析。文章最后会对ECMAScript5中提供的数组方法进行小结。
+
+join()作用　　将数组元素衔接为字符串。参数　　array.join()　　array.join(separator)　　separator： 在返回的拼接字符串中，用以连接原来数组元素的分隔
         </p>
     </div>
 </article>
     
         </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2016/05/24/js-carousel/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/js-carousel-1.gif)" alt="使用JavaScript实现轮播图效果(JavaScript运动框架案例)" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2016/05/24/js-carousel/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+            </p>
+            <p class="date"><time datetime="2016-05-23T16:40:00.000Z" itemprop="datePublished">2016-05-24</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2016/05/24/js-carousel/">使用JavaScript实现轮播图效果(JavaScript运动框架案例)</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            前言　　轮播图组件是一种网站中常见的表现形式。常用于广告位，头条新闻等重要信息的展示而且将图片和信息结合起来，引人注意。轮播图最重要的自然是“轮播”，也就是要让页面中的DOM元素“动”起来。这就自然需要先简单提一下JavaScript的运动框架。
+
+JavaScript运动框架简介　　JavaScript运动框架就是指利用js和DOM元素配合，利用js的相关函数以一定的频率操作改变DOM元素的位置
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2016/05/19/js-array-prototype-slice-call-arguments/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p68.jpg)" alt="Array.prototype.slice.call()的典型应用" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2016/05/19/js-array-prototype-slice-call-arguments/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+            </p>
+            <p class="date"><time datetime="2016-05-19T04:40:47.000Z" itemprop="datePublished">2016-05-19</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2016/05/19/js-array-prototype-slice-call-arguments/">Array.prototype.slice.call()的典型应用</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            
+作用　　一句话来讲，这是一种将类数组对象转换为真正数组的方法。很多时候我们会遇到“类数组对象”，比如在操作DOM元素的时候，查询符合某种class的DOM节点会返回一个NodeList，它就是一个类数组对象。真正数组的很多成员方法不能直接用于类数组对象，因此就需要将其转换为真正的数组。
+
+示例123456789Function.prototype.bind = function(context)
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2016/05/16/js-two-way-selector/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/js-two-way-select-1.gif)" alt="JavaScript双向选择器的实现" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2016/05/16/js-two-way-selector/">0</span>
+    
+</span>
+
+    
+</a>
+
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+            </p>
+            <p class="date"><time datetime="2016-05-16T14:16:16.000Z" itemprop="datePublished">2016-05-16</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2016/05/16/js-two-way-selector/">JavaScript双向选择器的实现</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            前言　　双向选择器是网站中经常使用的一种组件，适合于要求用户输入固定的一个或多个标签内容的场景，这种格式比普通input输入框的交互方式更加友好，而且可以防止因用户输入的随意性而导致的其他多余工作（比如表单验证）甚至错误。
+
+效果　　在说具体细节之前，可以先看一下效果，下图中就实现了一个最基本的双向选择器。  
+
+注意事项1.以上组件的编写没有基于原生的CSS，而是引入了AmazeUI框架，利用了
+        </p>
+    </div>
+</article>
     
 
 
@@ -1131,8 +1188,8 @@ JavaScript中对象的基本概念创建对象的2种基本方法
 
 
     <nav id="page-nav">
-        <span class="pages">第 1 页， 20 篇每页，共 3 页</span>
-        <span class="page-number current">1</span><a class="page-number" href="/categories/JavaScript/page/2/">2</a><a class="page-number" href="/categories/JavaScript/page/3/">3</a><a class="extend next" rel="next" href="/categories/JavaScript/page/2/">&raquo;</a>
+        <span class="pages">第 1 页， 20 篇每页，共 2 页</span>
+        <span class="page-number current">1</span><a class="page-number" href="/categories/JavaScript/page/2/">2</a><a class="extend next" rel="next" href="/categories/JavaScript/page/2/">&raquo;</a>
     </nav>
 
 
@@ -1197,10 +1254,10 @@ JavaScript中对象的基本概念创建对象的2种基本方法
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/welcome-to-this-page/2017/01/14/mobile-flexible-solution/" class="thumbnail">
+                            <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -1209,18 +1266,18 @@ JavaScript中对象的基本概念创建对象的2种基本方法
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
-                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/14/mobile-flexible-solution/" class="title">移动端HTML5响应式布局解决方案</a></p>
-                            <p class="item-date"><time datetime="2017-01-14T05:22:04.000Z" itemprop="datePublished">2017-01-14</time></p>
+                            <p class="item-title"><a href="/2017/01/25/mobile-flexible-solution/" class="title">移动端HTML5响应式布局适配解决方案</a></p>
+                            <p class="item-date"><time datetime="2017-01-25T05:22:04.000Z" itemprop="datePublished">2017-01-25</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/welcome-to-this-page/2017/01/10/dora-multiple-dev-env/" class="thumbnail">
+                            <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -1228,19 +1285,19 @@ JavaScript中对象的基本概念创建对象的2种基本方法
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a></p>
-                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/10/dora-multiple-dev-env/" class="title">使用Dora Server同时部署多个项目开发环境</a></p>
-                            <p class="item-date"><time datetime="2017-01-10T05:22:04.000Z" itemprop="datePublished">2017-01-10</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/搭建部署/环境统一/">环境统一</a></p>
+                            <p class="item-title"><a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="title">使用SwitchyOmega和Charles配置统一的开发和生产环境</a></p>
+                            <p class="item-date"><time datetime="2017-01-23T06:13:51.000Z" itemprop="datePublished">2017-01-23</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/welcome-to-this-page/2017/01/08/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
+                            <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -1248,19 +1305,19 @@ JavaScript中对象的基本概念创建对象的2种基本方法
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a></p>
-                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/08/uniform-development-product-env-switchyomega-charles/" class="title">使用SwitchyOmega和Charles配置统一的开发和生产环境</a></p>
-                            <p class="item-date"><time datetime="2017-01-08T06:13:51.000Z" itemprop="datePublished">2017-01-08</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端工程化/">前端工程化</a></p>
+                            <p class="item-title"><a href="/2017/01/20/react-dva-structure/" class="title">React开发框架Dva.js项目结构简单小结</a></p>
+                            <p class="item-date"><time datetime="2017-01-20T05:54:23.000Z" itemprop="datePublished">2017-01-20</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/welcome-to-this-page/2017/01/06/http-persistent-connection/" class="thumbnail">
+                            <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>
@@ -1268,19 +1325,19 @@ JavaScript中对象的基本概念创建对象的2种基本方法
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/HTTP/">HTTP</a></p>
-                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/06/http-persistent-connection/" class="title">HTTP协议的持久连接-&quot;keep-alive&quot;与&quot;persistent&quot;</a></p>
-                            <p class="item-date"><time datetime="2017-01-06T07:27:31.000Z" itemprop="datePublished">2017-01-06</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/17/git-merge-git-rebase/" class="title">git merge 与 git rebase 的对比分析</a></p>
+                            <p class="item-date"><time datetime="2017-01-17T13:45:08.000Z" itemprop="datePublished">2017-01-17</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/welcome-to-this-page/2017/01/06/apache-tomcat-war-deployment/" class="thumbnail">
+                            <a href="/2017/01/12/js-compare/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/build-success.png)" alt="使用Apache tomcat部署项目war包" class="thumbnail-image"></span>
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p77.jpg)" alt="JavaScript中比较运算的详细总结" class="thumbnail-image"></span>
     
     
 </a>
@@ -1288,9 +1345,9 @@ JavaScript中对象的基本概念创建对象的2种基本方法
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a></p>
-                            <p class="item-title"><a href="/welcome-to-this-page/2017/01/06/apache-tomcat-war-deployment/" class="title">使用Apache tomcat部署项目war包</a></p>
-                            <p class="item-date"><time datetime="2017-01-06T03:29:39.000Z" itemprop="datePublished">2017-01-06</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/01/12/js-compare/" class="title">JavaScript中比较运算的详细总结</a></p>
+                            <p class="item-date"><time datetime="2017-01-12T14:11:06.000Z" itemprop="datePublished">2017-01-12</time></p>
                         </div>
                     </li>
                 
@@ -1303,7 +1360,7 @@ JavaScript中对象的基本概念创建对象的2种基本方法
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AngularJs/">AngularJs</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE综合/">FE综合</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">46</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSH/">SSH</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jQuery/">jQuery</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端工程化/">前端工程化</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/">搭建部署</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">93</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AngularJs/">AngularJs</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE综合/">FE综合</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jQuery/">jQuery</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端工程化/">前端工程化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/">搭建部署</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/代理/">代理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/工程/">工程</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/环境统一/">环境统一</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/阿里云/">阿里云</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">93</span></li></ul>
         </div>
     </div>
 
@@ -1313,7 +1370,7 @@ JavaScript中对象的基本概念创建对象的2种基本方法
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">43</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">62</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">47</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">45</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -1323,7 +1380,7 @@ JavaScript中对象的基本概念创建对象的2种基本方法
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJs/">AngularJs</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Charles/">Charles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Comet/">Comet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cookie/">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Emmet/">Emmet</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FE/">FE</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML5/">HTML5</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">66</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LAMP/">LAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/">Less</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Long-Polling/">Long Polling</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/">MVVM</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NodeJs/">NodeJs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestfulAPI/">RestfulAPI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SwitchyOmega/">SwitchyOmega</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jqGrid/">jqGrid</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">92</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/token/">token</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webSocket/">webSocket</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zTree/">zTree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兼容性/">兼容性</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/内存泄漏/">内存泄漏</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端包管理工具/">前端包管理工具</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端自动构建/">前端自动构建</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/即时通信/">即时通信</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化拖拽/">可视化拖拽</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/响应式/">响应式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">125</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实现-应用/">实现/应用</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/客户端存储/">客户端存储</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成CI/">持续集成CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搭建部署/">搭建部署</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模块化/">模块化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语义化/">语义化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/跨域/">跨域</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/轮询/">轮询</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面渲染/">页面渲染</a><span class="tag-list-count">3</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJs/">AngularJs</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-CSS3/">CSS/CSS3</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Charles/">Charles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cookie/">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FE/">FE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-HTML5/">HTML/HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">45</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LAMP/">LAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/">Less</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/">MVVM</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestfulAPI/">RestfulAPI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SwitchyOmega/">SwitchyOmega</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">92</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss源订阅/">rss源订阅</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sitemap/">sitemap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理配置/">代理配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兼容性/">兼容性</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化拖拽/">可视化拖拽</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/响应式/">响应式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">76</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实现-应用/">实现/应用</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成CI/">持续集成CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搭建部署/">搭建部署</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面渲染/">页面渲染</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1333,7 +1390,7 @@ JavaScript中对象的基本概念创建对象的2种基本方法
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/AngularJs/" style="font-size: 15.33px;">AngularJs</a> <a href="/tags/CSS/" style="font-size: 14.67px;">CSS</a> <a href="/tags/CSS3/" style="font-size: 13.33px;">CSS3</a> <a href="/tags/Charles/" style="font-size: 10px;">Charles</a> <a href="/tags/Comet/" style="font-size: 10px;">Comet</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/Emmet/" style="font-size: 10px;">Emmet</a> <a href="/tags/FE/" style="font-size: 12px;">FE</a> <a href="/tags/HTML/" style="font-size: 12.67px;">HTML</a> <a href="/tags/HTML5/" style="font-size: 11.33px;">HTML5</a> <a href="/tags/HTTP/" style="font-size: 17.33px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 18.67px;">JavaScript</a> <a href="/tags/LAMP/" style="font-size: 10px;">LAMP</a> <a href="/tags/Less/" style="font-size: 10.67px;">Less</a> <a href="/tags/Long-Polling/" style="font-size: 10px;">Long Polling</a> <a href="/tags/MVVM/" style="font-size: 15.33px;">MVVM</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/NodeJs/" style="font-size: 10.67px;">NodeJs</a> <a href="/tags/React/" style="font-size: 12.67px;">React</a> <a href="/tags/RestfulAPI/" style="font-size: 10px;">RestfulAPI</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/SwitchyOmega/" style="font-size: 10px;">SwitchyOmega</a> <a href="/tags/jQuery/" style="font-size: 12.67px;">jQuery</a> <a href="/tags/jqGrid/" style="font-size: 10px;">jqGrid</a> <a href="/tags/leetcode/" style="font-size: 19.33px;">leetcode</a> <a href="/tags/token/" style="font-size: 10px;">token</a> <a href="/tags/webSocket/" style="font-size: 10px;">webSocket</a> <a href="/tags/webpack/" style="font-size: 10.67px;">webpack</a> <a href="/tags/zTree/" style="font-size: 10px;">zTree</a> <a href="/tags/兼容性/" style="font-size: 11.33px;">兼容性</a> <a href="/tags/内存泄漏/" style="font-size: 10px;">内存泄漏</a> <a href="/tags/前端包管理工具/" style="font-size: 10px;">前端包管理工具</a> <a href="/tags/前端工程化/" style="font-size: 11.33px;">前端工程化</a> <a href="/tags/前端框架/" style="font-size: 16.67px;">前端框架</a> <a href="/tags/前端自动构建/" style="font-size: 10px;">前端自动构建</a> <a href="/tags/即时通信/" style="font-size: 10px;">即时通信</a> <a href="/tags/可视化拖拽/" style="font-size: 10.67px;">可视化拖拽</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/学习笔记/" style="font-size: 20px;">学习笔记</a> <a href="/tags/实现-应用/" style="font-size: 18px;">实现/应用</a> <a href="/tags/客户端存储/" style="font-size: 10px;">客户端存储</a> <a href="/tags/异步编程/" style="font-size: 10.67px;">异步编程</a> <a href="/tags/持续集成CI/" style="font-size: 10px;">持续集成CI</a> <a href="/tags/搭建部署/" style="font-size: 16px;">搭建部署</a> <a href="/tags/模块化/" style="font-size: 10px;">模块化</a> <a href="/tags/正则/" style="font-size: 10.67px;">正则</a> <a href="/tags/浏览器/" style="font-size: 14px;">浏览器</a> <a href="/tags/版本控制/" style="font-size: 11.33px;">版本控制</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/编码/" style="font-size: 11.33px;">编码</a> <a href="/tags/语义化/" style="font-size: 10px;">语义化</a> <a href="/tags/跨域/" style="font-size: 10px;">跨域</a> <a href="/tags/转载/" style="font-size: 11.33px;">转载</a> <a href="/tags/轮询/" style="font-size: 10px;">轮询</a> <a href="/tags/闭包/" style="font-size: 11.33px;">闭包</a> <a href="/tags/页面渲染/" style="font-size: 11.33px;">页面渲染</a>
+            <a href="/tags/AngularJs/" style="font-size: 13.64px;">AngularJs</a> <a href="/tags/CSS-CSS3/" style="font-size: 14.55px;">CSS/CSS3</a> <a href="/tags/Charles/" style="font-size: 10px;">Charles</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/FE/" style="font-size: 11.82px;">FE</a> <a href="/tags/HTML-HTML5/" style="font-size: 12.73px;">HTML/HTML5</a> <a href="/tags/HTTP/" style="font-size: 12.73px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 18.18px;">JavaScript</a> <a href="/tags/LAMP/" style="font-size: 10px;">LAMP</a> <a href="/tags/Less/" style="font-size: 10.91px;">Less</a> <a href="/tags/MVVM/" style="font-size: 13.64px;">MVVM</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/React/" style="font-size: 11.82px;">React</a> <a href="/tags/RestfulAPI/" style="font-size: 10px;">RestfulAPI</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/SwitchyOmega/" style="font-size: 10px;">SwitchyOmega</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/rss源订阅/" style="font-size: 10px;">rss源订阅</a> <a href="/tags/sitemap/" style="font-size: 10px;">sitemap</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/代理配置/" style="font-size: 10px;">代理配置</a> <a href="/tags/兼容性/" style="font-size: 10.91px;">兼容性</a> <a href="/tags/前端工程化/" style="font-size: 16.36px;">前端工程化</a> <a href="/tags/前端框架/" style="font-size: 15.45px;">前端框架</a> <a href="/tags/可视化拖拽/" style="font-size: 10.91px;">可视化拖拽</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/学习笔记/" style="font-size: 19.09px;">学习笔记</a> <a href="/tags/实现-应用/" style="font-size: 17.27px;">实现/应用</a> <a href="/tags/异步编程/" style="font-size: 10.91px;">异步编程</a> <a href="/tags/持续集成CI/" style="font-size: 10px;">持续集成CI</a> <a href="/tags/搭建部署/" style="font-size: 14.55px;">搭建部署</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器/" style="font-size: 10.91px;">浏览器</a> <a href="/tags/版本控制/" style="font-size: 11.82px;">版本控制</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/转载/" style="font-size: 11.82px;">转载</a> <a href="/tags/闭包/" style="font-size: 10.91px;">闭包</a> <a href="/tags/页面渲染/" style="font-size: 10px;">页面渲染</a>
         </div>
     </div>
 
@@ -1346,7 +1403,7 @@ JavaScript中对象的基本概念创建对象的2种基本方法
             <ul>
                 
                     <li>
-                        <a href="http://bbs.byr.cn" target="_blank">北邮人论坛-北邮人的温馨家园</a>
+                        <a href="http://www.zn2studio.com" target="_blank">Zn2Studio 锌离子工作室</a>
                     </li>
                 
                     <li>
@@ -1354,7 +1411,7 @@ JavaScript中对象的基本概念创建对象的2种基本方法
                     </li>
                 
                     <li>
-                        <a href="http://www.zn2studio.com" target="_blank">Zn2Studio 锌离子工作室</a>
+                        <a href="http://bbs.byr.cn" target="_blank">北邮人论坛-北邮人的温馨家园</a>
                     </li>
                 
             </ul>
@@ -1390,16 +1447,15 @@ JavaScript中对象的基本概念创建对象的2种基本方法
 </footer>
         
     
-    <script>
-    var disqus_shortname = 'hexo-theme-hueman';
-    
-    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gcidea'};
     (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
     })();
     </script>
 

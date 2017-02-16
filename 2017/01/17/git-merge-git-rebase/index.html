@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="gcidea">
+    <meta name="description" content="gcidea's blog">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+    
+    <title>git merge 与 git rebase 的对比分析 | GCidea&#39;s blog</title>
+    
+        <meta name="keywords" content="学习笔记,版本控制" />
+    
+    <meta name="description" content="相关概念　　以下概念和示例参考http://blog.csdn.net/wh_19910525/article/details/7554489
+背景假设现在基于远程分支”origin”，创建一个叫”mywork”的分支。$ git checkout -b mywork origin假设远程分支”origin”已经有了2个提交，那么新创建的mywork分支在现在未修改的状态下是和origin具有相">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git merge 与 git rebase 的对比分析">
+<meta property="og:url" content="http://www.gcidea.info/2017/01/17/git-merge-git-rebase/index.html">
+<meta property="og:site_name" content="GCidea's blog">
+<meta property="og:description" content="相关概念　　以下概念和示例参考http://blog.csdn.net/wh_19910525/article/details/7554489
+背景假设现在基于远程分支”origin”，创建一个叫”mywork”的分支。$ git checkout -b mywork origin假设远程分支”origin”已经有了2个提交，那么新创建的mywork分支在现在未修改的状态下是和origin具有相">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg">
+<meta property="og:updated_time" content="2017-02-11T05:25:34.061Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git merge 与 git rebase 的对比分析">
+<meta name="twitter:description" content="相关概念　　以下概念和示例参考http://blog.csdn.net/wh_19910525/article/details/7554489
+背景假设现在基于远程分支”origin”，创建一个叫”mywork”的分支。$ git checkout -b mywork origin假设远程分支”origin”已经有了2个提交，那么新创建的mywork分支在现在未修改的状态下是和origin具有相">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="GCidea&#39;s blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad03ecfd99432fefa83cbc4dea96fac4";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p style="font-size: 23px; color: #fa862e; text-align: center;
+                                font-family: PingFangSC-Medium, Hiragino Sans GB, Heiti SC,
+                                Microsoft YaHei, WenQuanYi Micro Hei, sans-serif">gaochang | BUPT</p>
+                            <p class="subtitle">The relentless pursuit of perfection.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/archives">归档</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories">分类</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">标签</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tag-cloud">标签云</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/projects">开源组件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...（以下列表内容顺序不分先后）" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/FE综合/">FE综合</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-git-merge-git-rebase" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        git merge 与 git rebase 的对比分析
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2017/01/17/git-merge-git-rebase/" class="article-date">
+    <time datetime="2017-01-17T13:45:08.000Z" itemprop="datePublished">2017-01-17</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/版本控制/">版本控制</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <div id="toc" style="margin-bottom: -1.6em;margin-top: 1em">
+                <strong>目录</strong>
+            </div>
+            <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#相关概念"><span class="toc-number">1.</span> <span class="toc-text">相关概念</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#背景"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-merge"><span class="toc-number">1.2.</span> <span class="toc-text">git merge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-rebase"><span class="toc-number">1.3.</span> <span class="toc-text">git rebase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-merge-与-git-rebase的区别和适用场景"><span class="toc-number">1.4.</span> <span class="toc-text">git merge 与 git rebase的区别和适用场景</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实际测试"><span class="toc-number">2.</span> <span class="toc-text">实际测试</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#git-merge的过程"><span class="toc-number">2.1.</span> <span class="toc-text">git merge的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-rebase的过程"><span class="toc-number">2.2.</span> <span class="toc-text">git rebase的过程</span></a></li></ul></li></ul>
+            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg" alt=""></p>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><p>　　以下概念和示例参考<a href="http://blog.csdn.net/wh_19910525/article/details/7554489" target="_blank" rel="external">http://blog.csdn.net/wh_19910525/article/details/7554489</a></p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>假设现在基于远程分支”origin”，创建一个叫”mywork”的分支。<br><code>$ git checkout -b mywork origin</code><br>假设远程分支”origin”已经有了2个提交，那么新创建的mywork分支在现在未修改的状态下是和origin具有相同指向的。如图<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-1.jpg" alt=""><br>现在我们在这个分支做一些修改，然后生成两个提交(commit)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ vi file.txt</span><br><span class="line">$ git commit</span><br><span class="line">$ vi otherfile.txt</span><br><span class="line">$ git commit</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>但是与此同时，有些人也在”origin”分支上做了一些修改并且做了提交了. 这就意味着”origin”和”mywork”这两个分支各自”前进”了，它们之间”分叉”了。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-2.jpg" alt=""><br>在这里，你可以用”pull”命令把”origin”分支上的修改拉下来并且和你的修改合并； 结果看起来就像一个新的”合并的提交”(merge commit)。而具体合并的方式，则有以下要说的git merge 与 git rebase两种。</p>
+<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 将b分支合并到当前分支</span><br><span class="line">git merge b</span><br></pre></td></tr></table></figure>
+<p>　　git merge有很多参数，可通过<code>git merge --help</code>查看其命令。关于其详细使用，可参考<a href="http://blog.csdn.net/hudashi/article/details/7664382" target="_blank" rel="external">http://blog.csdn.net/hudashi/article/details/7664382</a><br>　　经过merge合并的分支示意如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-3.jpg" alt="">
+　　</p>
+<h3 id="git-rebase"><a href="#git-rebase" class="headerlink" title="git rebase"></a>git rebase</h3><p>如果想让”mywork”分支历史看起来像没有经过任何合并一样（没有上边的“diamond shape”），也许可以用 git rebase:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 将b分支合并到当前分支</span><br><span class="line">git rebase b</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout mywork</span><br><span class="line">$ git rebase origin</span><br></pre></td></tr></table></figure>
+<p>这些命令会把你的”mywork”分支里的每个提交(commit)取消掉，并且把它们临时 保存为补丁(patch)(这些补丁放到”.git/rebase”目录中),然后把”mywork”分支更新 为最新的”origin”分支，最后把保存的这些补丁应用到”mywork”分支上。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-4.jpg" alt=""><br>当’mywork’分支更新之后，它会指向这些新创建的提交(commit),而那些老的提交会被丢弃。 如果运行垃圾收集命令(pruning garbage collection), 这些被丢弃的提交就会删除.<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-5.jpg" alt=""><br>在rebase的过程中，也许会出现冲突(conflict)。在这种情况，Git会停止rebase并会让你去解决冲突；在解决完冲突后，用”git-add”命令去更新这些内容的索引(index), 然后，你无需执行 git-commit,只要执行:<br><code>$ git rebase --continue</code><br>git会继续应用(apply)余下的补丁。<br>在任何时候，你可以用–abort参数来终止rebase的行动，并且”mywork” 分支会回到rebase开始前的状态。<br><code>$ git rebase --abort</code></p>
+<h3 id="git-merge-与-git-rebase的区别和适用场景"><a href="#git-merge-与-git-rebase的区别和适用场景" class="headerlink" title="git merge 与 git rebase的区别和适用场景"></a>git merge 与 git rebase的区别和适用场景</h3><ul>
+<li>区别<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-6.jpg" alt=""></li>
+</ul>
+<p>当我们使用Git log来参看commit时，其commit的顺序也有所不同。<br>假设C3提交于9:00AM,C5提交于10:00AM,C4提交于11:00AM，C6提交于12:00AM,<br>对于使用git merge来合并所看到的commit的顺序（从新到旧）是：C7 ,C6,C4,C5,C3,C2,C1<br>对于使用git rebase来合并所看到的commit的顺序（从新到旧）是：C7 ,C6‘,C5’,C4,C3,C2,C1<br> 因为C6’提交只是C6提交的克隆，C5’提交只是C5提交的克隆，从用户的角度看使用git rebase来合并后所看到的commit的顺序（从新到旧）是：C7 ,C6,C5,C4,C3,C2,C1 </p>
+<p>　　对于两个分支而言，rebase和merge没有区别，但是rebase更干净，因为log hisitory是线性的，但commit不一定按日期先后排，而是local commit总在后面,merge之后history变得比较复杂，但是commit按日期排序<br>　　更多地，stackoverflow上对两者的区别有很好的回答：<br><a href="http://stackoverflow.com/questions/16666089/whats-the-difference-between-Git-merge-and-git-rebase" target="_blank" rel="external">What’s the difference between ‘git merge’ and ‘git rebase’?</a></p>
+<ul>
+<li>适用场景<br>可参考<a href="http://blog.csdn.net/rryqsh/article/details/8230560" target="_blank" rel="external">http://blog.csdn.net/rryqsh/article/details/8230560</a></li>
+</ul>
+<hr>
+<h2 id="实际测试"><a href="#实际测试" class="headerlink" title="实际测试"></a>实际测试</h2><h3 id="git-merge的过程"><a href="#git-merge的过程" class="headerlink" title="git merge的过程"></a>git merge的过程</h3><p>　　根据以上概念和示例，做如下测试：<br>1.新建文件夹并初始化为git仓库<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-8.png" alt=""></p>
+<p>2.默认是master分支，先在这个分支上做一次修改并commit，否则git不会真正创建master分支（git branch -a命令结果为空）<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-9.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-10.png" alt=""><br>使用git log查看历史，只有一次提交，符合预期。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-11.png" alt=""></p>
+<p>3.切换分支dev，在dev分支上对同一个文件进行修改（制造冲突的地方，观察合并效果）后commit<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-12.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-13.png" alt=""><br>使用git log查看历史，有2次提交，一次是master分支的，一次是dev分支自己的，符合预期。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-14.png" alt=""></p>
+<p>4.切换回master分支，在master分支上对同一个文件进行第二次修改后commit。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-15.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-16.png" alt=""><br>使用git log查看历史，有2次master上的提交，符合预期。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-17.png" alt=""></p>
+<p>5.在master分支上合并（git merge）dev的内容，会出现冲突，如下所示<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-18.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-19.png" alt=""></p>
+<p>6.解决冲突后，在master上再次commit<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-20.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-21.png" alt=""></p>
+<p>7.使用git log观察历史版本情况<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-22.png" alt=""></p>
+<p>可以看出，将dev分支合并过来以后，dev分支上的历史记录也是被合并过来了的。并且，所有commit记录的顺序严格遵守时间先后。</p>
+<h3 id="git-rebase的过程"><a href="#git-rebase的过程" class="headerlink" title="git rebase的过程"></a>git rebase的过程</h3><p>1-4地步骤与git merge中的相同，都是为了构造两个分支并模拟冲突情况，不再重复（但是是创建的全新文件夹，内容上与上面没有重复），下面从第五步合并使用git rebase开始。</p>
+<p>5..在master分支上合并（git rebase）dev的内容，会出现冲突，如下所示<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-23.png" alt=""><br>可以看到提示我们由于冲突rebase过程暂时停止，并且patch文件保存在.git\rebase-apply，查看其内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/test.txt b/test.txt</span><br><span class="line">index 3dd79bb0b2a0e259cfac50c354f16a537c8217b9..d9180eaac8dd0a81ba9cad1e08a69a0ebd0d6646 100644</span><br><span class="line">--- a/test.txt</span><br><span class="line">+++ b/test.txt</span><br><span class="line">@@ -1 +1 @@</span><br><span class="line">-master:edit-1</span><br><span class="line">+master:edit-1///master:edit-2</span><br></pre></td></tr></table></figure></p>
+<p>根据提示在冲突解决完成后使用git rebase –continue继续合并过程</p>
+<p>6.手动解决冲突后使用git rebase –continue继续合并<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-24.png" alt=""></p>
+<p>发现提示我们在解决完成后要使用git add命令将其标记为解决。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-25.png" alt=""></p>
+<p>7.git add后继续git rebase –continue<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-26.png" alt=""></p>
+<p>8.使用git log查看历史<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/merge-rebase-27.png" alt=""></p>
+<p>可以看到，在文件操作完全相同的情况下，与git merge的历史相比，所合并的dev分支只保留了一次在dev分支上最新的提交记录（将其合并进master分支，由于本例在dev上只commit了一次，没有明显看出）。这样，提交记录就是线性的了。并且，我们可以明显看到，使用git rebase进行合并的时候不会产生新的commit（对应git merge中的那次“resolve conflict”）</p>
+
+        </div>
+        <footer class="article-footer">
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2017/01/17/git-merge-git-rebase/" data-title="git merge 与 git rebase 的对比分析" data-url="http://www.gcidea.info/2017/01/17/git-merge-git-rebase/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/gcidea" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/u/2180985772" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="envelope" href="/about/#联系方式" target="_blank">
+                        <i class="icon fa fa-envelope"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/01/20/react-dva-structure/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            React开发框架Dva.js项目结构简单小结
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/01/12/js-compare/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">JavaScript中比较运算的详细总结</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        <div class="widget-wrap widget-wechat">
+            <a href="javascript:;">
+                <img src="http://7xrz3r.com1.z0.glb.clouddn.com/wechat.jpg" width="280" alt="微信扫一扫 gaochang932372" title="微信扫一扫 gaochang932372">
+            </a>
+        </div>
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/25/mobile-flexible-solution/" class="title">移动端HTML5响应式布局适配解决方案</a></p>
+                            <p class="item-date"><time datetime="2017-01-25T05:22:04.000Z" itemprop="datePublished">2017-01-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/搭建部署/环境统一/">环境统一</a></p>
+                            <p class="item-title"><a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="title">使用SwitchyOmega和Charles配置统一的开发和生产环境</a></p>
+                            <p class="item-date"><time datetime="2017-01-23T06:13:51.000Z" itemprop="datePublished">2017-01-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端工程化/">前端工程化</a></p>
+                            <p class="item-title"><a href="/2017/01/20/react-dva-structure/" class="title">React开发框架Dva.js项目结构简单小结</a></p>
+                            <p class="item-date"><time datetime="2017-01-20T05:54:23.000Z" itemprop="datePublished">2017-01-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/17/git-merge-git-rebase/" class="title">git merge 与 git rebase 的对比分析</a></p>
+                            <p class="item-date"><time datetime="2017-01-17T13:45:08.000Z" itemprop="datePublished">2017-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/12/js-compare/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p77.jpg)" alt="JavaScript中比较运算的详细总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/01/12/js-compare/" class="title">JavaScript中比较运算的详细总结</a></p>
+                            <p class="item-date"><time datetime="2017-01-12T14:11:06.000Z" itemprop="datePublished">2017-01-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AngularJs/">AngularJs</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE综合/">FE综合</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jQuery/">jQuery</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端工程化/">前端工程化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/">搭建部署</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/代理/">代理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/工程/">工程</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/环境统一/">环境统一</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/阿里云/">阿里云</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">93</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">47</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">45</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJs/">AngularJs</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-CSS3/">CSS/CSS3</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Charles/">Charles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cookie/">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FE/">FE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-HTML5/">HTML/HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">45</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LAMP/">LAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/">Less</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/">MVVM</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestfulAPI/">RestfulAPI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SwitchyOmega/">SwitchyOmega</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">92</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss源订阅/">rss源订阅</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sitemap/">sitemap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理配置/">代理配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兼容性/">兼容性</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化拖拽/">可视化拖拽</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/响应式/">响应式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">76</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实现-应用/">实现/应用</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成CI/">持续集成CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搭建部署/">搭建部署</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面渲染/">页面渲染</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AngularJs/" style="font-size: 13.64px;">AngularJs</a> <a href="/tags/CSS-CSS3/" style="font-size: 14.55px;">CSS/CSS3</a> <a href="/tags/Charles/" style="font-size: 10px;">Charles</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/FE/" style="font-size: 11.82px;">FE</a> <a href="/tags/HTML-HTML5/" style="font-size: 12.73px;">HTML/HTML5</a> <a href="/tags/HTTP/" style="font-size: 12.73px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 18.18px;">JavaScript</a> <a href="/tags/LAMP/" style="font-size: 10px;">LAMP</a> <a href="/tags/Less/" style="font-size: 10.91px;">Less</a> <a href="/tags/MVVM/" style="font-size: 13.64px;">MVVM</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/React/" style="font-size: 11.82px;">React</a> <a href="/tags/RestfulAPI/" style="font-size: 10px;">RestfulAPI</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/SwitchyOmega/" style="font-size: 10px;">SwitchyOmega</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/rss源订阅/" style="font-size: 10px;">rss源订阅</a> <a href="/tags/sitemap/" style="font-size: 10px;">sitemap</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/代理配置/" style="font-size: 10px;">代理配置</a> <a href="/tags/兼容性/" style="font-size: 10.91px;">兼容性</a> <a href="/tags/前端工程化/" style="font-size: 16.36px;">前端工程化</a> <a href="/tags/前端框架/" style="font-size: 15.45px;">前端框架</a> <a href="/tags/可视化拖拽/" style="font-size: 10.91px;">可视化拖拽</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/学习笔记/" style="font-size: 19.09px;">学习笔记</a> <a href="/tags/实现-应用/" style="font-size: 17.27px;">实现/应用</a> <a href="/tags/异步编程/" style="font-size: 10.91px;">异步编程</a> <a href="/tags/持续集成CI/" style="font-size: 10px;">持续集成CI</a> <a href="/tags/搭建部署/" style="font-size: 14.55px;">搭建部署</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器/" style="font-size: 10.91px;">浏览器</a> <a href="/tags/版本控制/" style="font-size: 11.82px;">版本控制</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/转载/" style="font-size: 11.82px;">转载</a> <a href="/tags/闭包/" style="font-size: 10.91px;">闭包</a> <a href="/tags/页面渲染/" style="font-size: 10px;">页面渲染</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://www.zn2studio.com" target="_blank">Zn2Studio 锌离子工作室</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.ebupt.com" target="_blank">东信北邮信息技术有限公司</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://bbs.byr.cn" target="_blank">北邮人论坛-北邮人的温馨家园</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <!--<a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>-->
+            <a id="back-to-top" href="javascript:;"><b>gcidea</b></a>
+            <div style="position: fixed;bottom: 195px;right: 26px;">
+                <a id="back-to-top2" href="javascript:;" title="回到顶部"><i class="icon fa fa-angle-up"></i></a>
+            </div>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 - 2017 Gao Chang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>.</p>
+                <p><b>The relentless pursuit of perfection.</b></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gcidea'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="gcidea">
+    <meta name="description" content="gcidea's blog">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+    
+    <title>使用WebStorm创建webpack工作流的前端项目 | GCidea&#39;s blog</title>
+    
+        <meta name="keywords" content="前端工程化,webpack" />
+    
+    <meta name="description" content="前言　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：
+
+为了完成更加复杂的交互逻辑，一个网页中使用的js代码数量越来越多；
+即便有了更多代码，却要求使用中有更少的整页面重新加载；
+现代浏览器提供了更多的API接口。
+
+　　基于这样的情况，大量代码就需要能够被良好地管理起来，像webpack这样的模块系统就为我们将代码切分为若干模块提供了很好的选择">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用WebStorm创建webpack工作流的前端项目">
+<meta property="og:url" content="http://www.gcidea.info/2016/12/16/webpack-demos/index.html">
+<meta property="og:site_name" content="GCidea's blog">
+<meta property="og:description" content="前言　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：
+
+为了完成更加复杂的交互逻辑，一个网页中使用的js代码数量越来越多；
+即便有了更多代码，却要求使用中有更少的整页面重新加载；
+现代浏览器提供了更多的API接口。
+
+　　基于这样的情况，大量代码就需要能够被良好地管理起来，像webpack这样的模块系统就为我们将代码切分为若干模块提供了很好的选择">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p113.jpg">
+<meta property="og:updated_time" content="2017-02-16T03:19:51.034Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用WebStorm创建webpack工作流的前端项目">
+<meta name="twitter:description" content="前言　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：
+
+为了完成更加复杂的交互逻辑，一个网页中使用的js代码数量越来越多；
+即便有了更多代码，却要求使用中有更少的整页面重新加载；
+现代浏览器提供了更多的API接口。
+
+　　基于这样的情况，大量代码就需要能够被良好地管理起来，像webpack这样的模块系统就为我们将代码切分为若干模块提供了很好的选择">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p113.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="GCidea&#39;s blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad03ecfd99432fefa83cbc4dea96fac4";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p style="font-size: 23px; color: #fa862e; text-align: center;
+                                font-family: PingFangSC-Medium, Hiragino Sans GB, Heiti SC,
+                                Microsoft YaHei, WenQuanYi Micro Hei, sans-serif">gaochang | BUPT</p>
+                            <p class="subtitle">The relentless pursuit of perfection.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/archives">归档</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories">分类</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">标签</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tag-cloud">标签云</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/projects">开源组件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...（以下列表内容顺序不分先后）" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/前端工程化/">前端工程化</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-webpack-demos" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        使用WebStorm创建webpack工作流的前端项目
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2016/12/16/webpack-demos/" class="article-date">
+    <time datetime="2016-12-16T15:33:51.000Z" itemprop="datePublished">2016-12-16</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端工程化/">前端工程化</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <div id="toc" style="margin-bottom: -1.6em;margin-top: 1em">
+                <strong>目录</strong>
+            </div>
+            <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS模块化编程相关背景"><span class="toc-number">2.</span> <span class="toc-text">JS模块化编程相关背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是webpack？"><span class="toc-number">3.</span> <span class="toc-text">什么是webpack？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的安装"><span class="toc-number">4.</span> <span class="toc-text">webpack的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的使用"><span class="toc-number">5.</span> <span class="toc-text">webpack的使用</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单示例"><span class="toc-number">5.1.</span> <span class="toc-text">简单示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规范使用"><span class="toc-number">5.2.</span> <span class="toc-text">规范使用</span></a><ul class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目结构"><span class="toc-number">5.2.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件配置"><span class="toc-number">5.2.2.</span> <span class="toc-text">文件配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用loaders"><span class="toc-number">5.2.3.</span> <span class="toc-text">使用loaders</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装其他可能需要的库"><span class="toc-number">5.2.4.</span> <span class="toc-text">安装其他可能需要的库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改app-js文件（ES6语法-jquery库）"><span class="toc-number">5.2.5.</span> <span class="toc-text">修改app.js文件（ES6语法+jquery库）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编辑index-html文件"><span class="toc-number">5.2.6.</span> <span class="toc-text">编辑index.html文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重新打包"><span class="toc-number">5.2.7.</span> <span class="toc-text">重新打包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问index-html"><span class="toc-number">5.2.8.</span> <span class="toc-text">访问index.html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用plugins"><span class="toc-number">5.2.9.</span> <span class="toc-text">使用plugins</span></a></li></ul></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack中的重要工具：webpack-dev-server"><span class="toc-number">6.</span> <span class="toc-text">webpack中的重要工具：webpack-dev-server</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装webpack-dev-server"><span class="toc-number">6.1.</span> <span class="toc-text">安装webpack-dev-server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动webpack-dev-server"><span class="toc-number">6.2.</span> <span class="toc-text">启动webpack-dev-server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定content-base"><span class="toc-number">6.3.</span> <span class="toc-text">指定content base</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动刷新"><span class="toc-number">6.4.</span> <span class="toc-text">自动刷新</span></a><ul class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#iframe模式"><span class="toc-number">6.4.1.</span> <span class="toc-text">iframe模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inline模式"><span class="toc-number">6.4.2.</span> <span class="toc-text">inline模式</span></a></li></ul></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块热替换-Hot-Module-Replacement-的应用"><span class="toc-number">7.</span> <span class="toc-text">模块热替换 Hot Module Replacement 的应用</span></a></li></ul>
+            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p113.jpg" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：</p>
+<ul>
+<li>为了完成更加复杂的交互逻辑，一个网页中使用的js代码数量越来越多；</li>
+<li>即便有了更多代码，却要求使用中有更少的整页面重新加载；</li>
+<li>现代浏览器提供了更多的API接口。</li>
+</ul>
+<p>　　基于这样的情况，大量代码就需要能够被良好地管理起来，像webpack这样的模块系统就为我们将代码切分为若干模块提供了很好的选择。本篇在webstorm编辑器中构建了一个最简单的使用webpack管理的前端项目，算是对webpack使用的入门探究。</p>
+<hr>
+<h2 id="JS模块化编程相关背景"><a href="#JS模块化编程相关背景" class="headerlink" title="JS模块化编程相关背景"></a>JS模块化编程相关背景</h2><p>　　在前端开发中有很多定义模块依赖的方法：</p>
+<ul>
+<li>在html页面中使用<code>&lt;script&gt;</code>标签手动引入（这并没有使用模块管理系统）<br>　　在这种方式下，各模块是将接口暴露给了全局对象，比如window。常见问题：</li>
+</ul>
+<ol>
+<li>全局对象中的命名变量冲突</li>
+<li>各js文件加载顺序十分重要，一旦A依赖B而A又在B之前引入，则会报错</li>
+<li>需要开发者自己来维护和解决依赖的问题</li>
+<li>在大型项目中可能需要引入数十个js文件，代码冗长，难于管理</li>
+</ol>
+<ul>
+<li>编写符合CommonJS规范的代码<br>　　这种规范使用同步的<code>require</code>方法加载依赖，并返回一个暴露出的接口，一个模块可以通过给<code>export</code>对象指定属性的方式来指定输出：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">"module"</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">"../file.js"</span>);</span><br><span class="line">exports.doStuff = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="built_in">module</span>.exports = someValue;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>　　这种方式主要用在服务端，比如Node.js。</p>
+<ul>
+<li><p>编写符合AMD规范的代码<br>　　这种规范使用异步的<code>require</code>方法加载依赖，主要适用于客户端，因为在客户端如果同步加载的话会阻塞页面渲染等其他内容的进行，造成假死。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>([<span class="string">"module"</span>, <span class="string">"../file"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">module, file</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;);</span><br><span class="line">define(<span class="string">"mymodule"</span>, [<span class="string">"dep1"</span>, <span class="string">"dep2"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">d1, d2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> someExportedValue;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用ES6标准原生模块<br>　　ECMAScript 2015 (6th Edition)给javascript语言增加了新的内容-import关键字，从而构成了另一个模块系统</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"jquery"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">doStuff</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="built_in">module</span> <span class="string">"localModule"</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="什么是webpack？"><a href="#什么是webpack？" class="headerlink" title="什么是webpack？"></a>什么是webpack？</h2><p>一句话来概括：webpack能够将相互依赖的模块进行打包，并生成代表着这些模块的静态文件。<br>官网上给出的示意图如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack.png" alt=""></p>
+<p>　　市面上已经存在的模块管理和打包工具并不适合大型的项目，尤其单页面Web应用程序。最紧迫的原因是如何在一个大规模的代码库中，维护各种模块资源的分割和存放，维护它们之间的依赖关系，并且无缝的将它们整合到一起生成适合浏览器端请求加载的静态资源。这些已有的模块化工具并不能很好的完成如下的目标：</p>
+<ul>
+<li>将依赖树拆分成按需加载的块</li>
+<li>初始化加载的耗时尽量少</li>
+<li>各种静态资源都可以视作模块</li>
+<li>将第三方库整合成模块的能力</li>
+<li>可以自定义打包逻辑的能力</li>
+<li>适合大项目，无论是单页还是多页的Web应用</li>
+</ul>
+<p>webpack有以下明显特点：</p>
+<ol>
+<li>代码拆分<br>　　Webpack 有两种组织模块依赖的方式，同步和异步。异步依赖作为分割点，形成一个新的块。在优化了依赖树后，每一个异步区块都作为一个文件被打包。</li>
+<li>Loader<br>　　Webpack 本身只能处理原生的 JavaScript 模块，但是 loader 转换器可以将各种类型的资源转换成 JavaScript 模块。这样，任何资源都可以成为 Webpack 可以处理的模块。</li>
+<li>智能解析<br>　　Webpack 有一个智能解析器，几乎可以处理任何第三方库，无论它们的模块形式是 CommonJS、 AMD 还是普通的 JS 文件。甚至在加载依赖的时候，允许使用动态表达式 require(“./templates/“ + name + “.jade”)。</li>
+<li>插件系统<br>　　Webpack 还有一个功能丰富的插件系统。大多数内容功能都是基于这个插件系统运行的，还可以开发和使用开源的 Webpack 插件，来满足各式各样的需求。</li>
+<li>快速运行<br>　　Webpack 使用异步 I/O 和多级缓存提高运行效率，这使得 Webpack 能够以令人难以置信的速度快速增量编译。</li>
+</ol>
+<hr>
+<h2 id="webpack的安装"><a href="#webpack的安装" class="headerlink" title="webpack的安装"></a>webpack的安装</h2><p>1.安装Node.js<br>　　关于Node.js的安装有很多参考，在之前的文章<a href="http://localhost:4000/2016/03/16/2016-03-16-my-first-blog/#安装Node-js" target="_blank" rel="external">【首篇】记录本博客www.gcidea.info的搭建过程</a>也有提及。</p>
+<p>2.安装webpack<br>2.1 打开webstorm，创建一个新文件夹webpack-usage作为根目录，后续所有操作都在该项目中完成：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-2.png" alt=""></p>
+<p>2.2 Node.js安装完成后，会同时安装npm这个Node.js的包管理工具。我们使用这个工具全局安装webpack。打开Terminal窗口输入如下命令：<br><code>$ npm install webpack -g</code><br>可以看到安装过程正在进行：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-3.png" alt=""></p>
+<p>完成后，显示信息如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-4.png" alt=""></p>
+<p>3.在项目中添加webpack<br>　　根据最佳实践，最好也在具体的项目中添加webpack。这样的话你可以任意指定在该项目中使用的webpack版本，而不至于局限于使用全局的唯一版本。<br>3.1 为此，通过命令在项目根目录下创建package.json文件，将项目通过npm管理起来：<br><code>npm init</code><br>这个过程中需要填写一些信息，最终会写入package.json：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-5.png" alt=""></p>
+<p>之后，项目根目录下多了一个文件，正是package.json：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-6.png" alt=""></p>
+<p>3.2 此时，再通过如下命令安装webpack，其中<code>--save-dev</code>表示会将webpack添加到package.json的devDependencies中：<br><code>npm install webpack --save-dev</code></p>
+<p>并且，该命令会自动检查安装webpack所需的全部依赖，执行该命令后，项目有3处变化：控制台打印出依赖结构树；根目录下生成node_modules文件夹用于存放所有依赖包；package.json中多出一个devDependencies属性。如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-7.png" alt=""></p>
+<p>4.安装webpack-dev-server<br>　　这是一个Node.js Express server，可以帮我们在本地建立一个服务器。此处仅安装，具体使用在下文描述。<br><code>npm install webpack-dev-server --save-dev</code></p>
+<p>可以预想，现在package.json文件的依赖项已经变为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"webpack"</span>: <span class="string">"^1.13.2"</span>,</span><br><span class="line">    <span class="string">"webpack-dev-server"</span>: <span class="string">"^1.16.2"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="webpack的使用"><a href="#webpack的使用" class="headerlink" title="webpack的使用"></a>webpack的使用</h2><h3 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h3><p>1.新建cats.js文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cats = [<span class="string">'dave'</span>, <span class="string">'henry'</span>, <span class="string">'martha'</span>];</span><br><span class="line"><span class="built_in">module</span>.exports = cats;</span><br></pre></td></tr></table></figure></p>
+<p>2.新建app.js文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cats = <span class="built_in">require</span>(<span class="string">'./cats.js'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(cats);</span><br></pre></td></tr></table></figure></p>
+<p>3.使用webpack命令进行打包<br><code>webpack ./app.js app.bundle.js</code><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-8.png" alt=""></p>
+<p>结果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-9.png" alt=""></p>
+<p>可以发现webpack已经帮我们将两个文件合并在一起并加入很多其他内容，这个过程在官方上详细描述如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-10.png" alt=""></p>
+<p>现在，假如我们要将项目部署上线，那么只需要打包后的静态文件即可，实验如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-11.png" alt=""></p>
+<p>可以看出，在node环境下执行打包文件，可以正常输出源文件的执行结果。</p>
+<hr>
+<h3 id="规范使用"><a href="#规范使用" class="headerlink" title="规范使用"></a>规范使用</h3><hr>
+<h4 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h4><p>　　现在我们已经具备基本的webpack环境且大致了解了webpack的打包使用。为了规范使用，删除app.bundle.js,app.js,cat.js,重新规定项目目录结构如下：</p>
+<ul>
+<li>src：存放源码</li>
+<li>build: 打包后静态文件目录</li>
+<li>node_modules: node模块依赖目录</li>
+<li>webpack.config.js：webpack配置目录–使用命令行携带参数的方式不便于扩展，统一用此文件管理</li>
+<li>index.html: 项目入口页面</li>
+</ul>
+<p>修改后的项目结构如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-12.png" alt=""></p>
+<hr>
+<h4 id="文件配置"><a href="#文件配置" class="headerlink" title="文件配置"></a>文件配置</h4><p><strong>配置webpack.config.js</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">'./src/app.js'</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: <span class="string">'./build'</span>,</span><br><span class="line">        filename: <span class="string">'app.bundle.js'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p> 　　以上简单的配置表示指定webpack打包入口为./src/app.js文件，打包结果为app.bundle.js，在./build目录下。</p>
+<p> 　　该文件还有很多配置项，详见：<a href="http://webpack.github.io/docs/configuration.html" target="_blank" rel="external">http://webpack.github.io/docs/configuration.html</a></p>
+<p> 现在，只需要简单的命令<code>webpack</code>而不需要参数，就可以执行打包。</p>
+<hr>
+<h4 id="使用loaders"><a href="#使用loaders" class="headerlink" title="使用loaders"></a>使用loaders</h4><p> 　　webpack只能对原生javascript文件打包，但是通过各种强大的loaders，我们可以处理各种类型的文件。Loader 可以理解为是模块和资源的转换器，它本身是一个函数，接受源文件作为参数，返回转换的结果。这样，我们就可以通过 require 来加载任何类型的模块或文件，比如 CoffeeScript、 JSX、 LESS 或图片。<br> 　　loaders具备以下特性：</p>
+<ul>
+<li>Loader 可以通过管道方式链式调用，每个 loader 可以把资源转换成任意格式并传递给下一个<br>loader ，但是最后一个 loader 必须返回 JavaScript。</li>
+<li>Loader 可以同步或异步执行。</li>
+<li>Loader 运行在 node.js 环境中，所以可以做任何可能的事情。</li>
+<li>Loader 可以接受参数，以此来传递配置项给 loader。</li>
+<li>Loader 可以通过文件扩展名（或正则表达式）绑定给不同类型的文件。</li>
+<li>Loader 可以通过 npm 发布和安装。</li>
+</ul>
+<p>　　为了使浏览器能够解析，使用ES6语法编写的代码需要使用babel进行转码，为此我们安装babel-loader。<br>1.安装Babel 和 presets<br><code>npm install --save-dev babel-core babel-preset-es2015</code><br>2.安装babel-loader<br><code>npm install --save-dev babel-loader</code><br>3.在根目录创建Babel配置文件—.babelrc<br>内容为： <code>{ &quot;presets&quot;: [ &quot;es2015&quot; ] }</code><br>4.修改webpack.config.js如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">'./src/app.js'</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: <span class="string">'./build'</span>,</span><br><span class="line">        filename: <span class="string">'app.bundle.js'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        loaders: [&#123;</span><br><span class="line">            test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">            exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">            loader: <span class="string">'babel-loader'</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h4 id="安装其他可能需要的库"><a href="#安装其他可能需要的库" class="headerlink" title="安装其他可能需要的库"></a>安装其他可能需要的库</h4><p> <code>npm install --save jquery babel-polyfill</code></p>
+<blockquote>
+<p><code>--save</code>而非<code>--save-dev</code>表示库将会在运行环境使用<br><code>--save-dev</code>的内容将会放在package.json 的devDependencies<br>而<code>--save</code>会放在dependencies里面<br>产品模式用dependencies，开发模式用devDependencies<br>因此将会实际运行在用户端浏览器环境中的库就要采用<code>--save</code>安装<br>通过使用babel-polyfill可以让老版本浏览器能够使用ES6新提供的API</p>
+</blockquote>
+<hr>
+<h4 id="修改app-js文件（ES6语法-jquery库）"><a href="#修改app-js文件（ES6语法-jquery库）" class="headerlink" title="修改app.js文件（ES6语法+jquery库）"></a>修改app.js文件（ES6语法+jquery库）</h4> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'babel-polyfill'</span>;</span><br><span class="line"><span class="keyword">import</span> cats <span class="keyword">from</span> <span class="string">'./cats'</span>;</span><br><span class="line"><span class="keyword">import</span> $ <span class="keyword">from</span> <span class="string">'jquery'</span>;</span><br><span class="line"></span><br><span class="line">$(<span class="string">'&lt;h1&gt;Cats&lt;/h1&gt;'</span>).appendTo(<span class="string">'body'</span>);</span><br><span class="line"><span class="keyword">const</span> ul = $(<span class="string">'&lt;ul&gt;&lt;/ul&gt;'</span>).appendTo(<span class="string">'body'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> cat <span class="keyword">of</span> cats) &#123;</span><br><span class="line">    $(<span class="string">'&lt;li&gt;&lt;/li&gt;'</span>).text(cat).appendTo(ul);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>将以上代码写入后，编辑器会报错：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-13.png" alt=""></p>
+<p>原因是编辑器未能识别ES6语法，在webstorm的settings中做如下配置即可：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-14.png" alt=""></p>
+</blockquote>
+<hr>
+<h4 id="编辑index-html文件"><a href="#编辑index-html文件" class="headerlink" title="编辑index.html文件"></a>编辑index.html文件</h4> <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"build/app.bundle.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="重新打包"><a href="#重新打包" class="headerlink" title="重新打包"></a>重新打包</h4><p> <code>webpack</code></p>
+<hr>
+<h4 id="访问index-html"><a href="#访问index-html" class="headerlink" title="访问index.html"></a>访问index.html</h4><p>可以看到正确结果<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-15.png" alt=""></p>
+<hr>
+<h4 id="使用plugins"><a href="#使用plugins" class="headerlink" title="使用plugins"></a>使用plugins</h4><p>　　在打包的工作流中可能还会有一些其他的操作，会使用到不同的插件plugins，比较典型的就是uglify plugin这个压缩工具。为此，在webpack.config.js中增加配置项plugins：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">'./src/app.js'</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: <span class="string">'./build'</span>,</span><br><span class="line">        filename: <span class="string">'app.bundle.js'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        loaders: [&#123;</span><br><span class="line">            test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">            exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">            loader: <span class="string">'babel-loader'</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">            compress: &#123;</span><br><span class="line">                warnings: <span class="literal">false</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            output: &#123;</span><br><span class="line">                comments: <span class="literal">false</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在执行命令<code>webpack</code>重新打包之前，我们先看看app.bundle.js的文件大小,为523KB：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-16.png" alt=""></p>
+<p>现在执行命令<code>webpack</code>重新打包，再看app.bundle.js的文件大小,为171KB：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-17.png" alt=""></p>
+<p>可以看到，压缩工具去掉了无用的空字符等：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-18.png" alt=""></p>
+<hr>
+<h2 id="webpack中的重要工具：webpack-dev-server"><a href="#webpack中的重要工具：webpack-dev-server" class="headerlink" title="webpack中的重要工具：webpack-dev-server"></a>webpack中的重要工具：webpack-dev-server</h2><p>　　webpack-dev-server本质上是一个小型的Node.js的Express服务器，使用webpack-dev-middleware作为中间件来支持webpack打包。</p>
+<h3 id="安装webpack-dev-server"><a href="#安装webpack-dev-server" class="headerlink" title="安装webpack-dev-server"></a>安装webpack-dev-server</h3><p><code>npm install webpack-dev-server</code><br>package.json变为如下形式：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"webpack-usage"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">"webpack-usage-demo"</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">"gaochang"</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"babel-core"</span>: <span class="string">"^6.17.0"</span>,</span><br><span class="line">    <span class="attr">"babel-loader"</span>: <span class="string">"^6.2.5"</span>,</span><br><span class="line">    <span class="attr">"babel-preset-es2015"</span>: <span class="string">"^6.16.0"</span>,</span><br><span class="line">    <span class="attr">"webpack"</span>: <span class="string">"^1.13.2"</span>,</span><br><span class="line">    <span class="attr">"webpack-dev-server"</span>: <span class="string">"^1.16.2"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"babel-polyfill"</span>: <span class="string">"^6.16.0"</span>,</span><br><span class="line">    <span class="attr">"jquery"</span>: <span class="string">"^3.1.1"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="启动webpack-dev-server"><a href="#启动webpack-dev-server" class="headerlink" title="启动webpack-dev-server"></a>启动webpack-dev-server</h3><p>　　安装完成后，在不指定任何参数的情况下，可以直接通过命令<code>webpack-dev-server</code>在本地8080端口运行一个服务器，访问<code>http://localhost:8080</code>可以看到效果：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-19.png" alt=""></p>
+<p>访问<code>http://localhost:8080/webpack-dev-server/</code> 可以显示webpack服务器状态条<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-20.png" alt=""></p>
+<h3 id="指定content-base"><a href="#指定content-base" class="headerlink" title="指定content base"></a>指定content base</h3><p>webpack-dev-server默认监控的是当前目录的文件，除非声明一个特殊的基本路径：<br><code>webpack-dev-server --content-base build/</code><br>这样的话，webpack就会只监控build文件夹下的静态文件。当你的文件在任何时候发生变化时，都会触发重新编译打包。验证如下：<br>1.使用上述命令启动server：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-21.png" alt=""></p>
+<p>控制台会显示打包过程日志，并最终提示打包完成已经可用：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-22.png" alt=""></p>
+<p>2.此时，访问<code>http://localhost:8080/webpack-dev-server/</code>可看到：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-23.png" alt=""></p>
+<p>即显示了build目录下的文件列表，此时只有app.bundle.js，点开内容如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-24.png" alt=""></p>
+<p>红色框中是我们app.js中的部分源码。</p>
+<p>3.现在修改上述部分源码，观察控制台日志和<code>http://localhost:8080/webpack-dev-server/</code>目录下文件变化。<br>修改<code>&lt;h1&gt;</code>内容后，发现控制台日志在之前“bundle is now VALID”的基础上，自动开始重新编译，进入“bundle is now INVALID”的状态：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-25.png" alt=""></p>
+<p>同时，看到页面状态条变为：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-26.png" alt=""></p>
+<p>等待重编译完成后，发现页面文件内容确实变为我们修改后的内容：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-27.png" alt=""></p>
+<p>但是，<strong>值得注意的是，这个修改的内容是保存在内存中的</strong>，并没有写入我们在webpack.config.js的output中指定的文件：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-28.png" alt=""></p>
+<p>发现文件还是修改之前的内容。也就是说，当相同URL下已经有一个打包的文件时，默认情况下内存中的文件享有优先权。<strong>而如果想要让build目录下的输出文件的内容也跟随发生变化，则要使用<code>webpack</code>命令重新打包</strong>。</p>
+<hr>
+<p>除了以上分析，还有一点要注意，通过给webpack.config.js的output指定publicPath，可以定制浏览器中的项目访问路径。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">    path: <span class="string">'./build'</span>,</span><br><span class="line">    publicPath: <span class="string">"/assets/"</span>,</span><br><span class="line">    filename: <span class="string">'app.bundle.js'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>重新打包，可以在如下路径访问相应文件：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-29.png" alt=""></p>
+<p>由于之前content-base指定了监控build目录，我们<strong>在该目录下</strong>创建一个index.html文件，用来加载并使用我们打包好的js文件，而原先在项目根目录webpack-usage下创建的index.html文件就不起作用了：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>在build目录下创建的index.html文件<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"assets/app.bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>访问<code>http://localhost:8080/</code>：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-30.png" alt=""></p>
+<p>访问<code>http://localhost:8080/webpack-dev-server</code>:<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-31.png" alt=""></p>
+<p>其中，第一个是打包文件app.bundle.js本身：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-32.png" alt=""><br>注意路径为<code>http://localhost:8080/assets/app.bundle.js</code>，符合publicPath的配置。</p>
+<p>第二个是根据打包文件生成的html文件，注意路径为<code>http://localhost:8080/assets/app.bundle</code>，符合publicPath的配置<br>点击“app.bundle”:<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-33.png" alt=""></p>
+<p>点击“webpack-dev-server”:<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-34.png" alt=""><br>（<font color="red">该html文件仅针对app.bundle.js，和直接访问<code>http://localhost:8080/</code>对应的index.html并不相同，以上两图中没有“在build目录下创建的index.html文件”这句话就说明了这一点。</font>）</p>
+<blockquote>
+<p>关于js文件引入的路径，经测试发现以下几种情况，应该与webpack的文件查找算法有关，具体待进一步探究：</p>
+<p>1.<code>src=&quot;assets/app.bundle.js&quot;</code> 由于publicPath指定了”/assets/“，因此这种方式肯定能找到app.bundle.js文件；</p>
+<p>2.<code>src=&quot;app.bundle.js&quot;</code> 默认在build目录下找该文件，能找到</p>
+<p>3.<code>src=&quot;/app.bundle.js&quot;</code> 默认在build目录下找该文件，能找到</p>
+<p>4.<code>src=&quot;./app.bundle.js&quot;</code> 默认在build目录下找该文件，能找到</p>
+<p>5.<code>src=&quot;../app.bundle.js&quot;</code> 默认在build目录下找该文件，能找到</p>
+</blockquote>
+<hr>
+<h3 id="自动刷新"><a href="#自动刷新" class="headerlink" title="自动刷新"></a>自动刷新</h3><p>　　webpack-dev-server支持两种自动刷新页面的方式。并且两种方式都支持模块热替换。</p>
+<h4 id="iframe模式"><a href="#iframe模式" class="headerlink" title="iframe模式"></a>iframe模式</h4><p>　　在这种方式下，页面实际上是被嵌入了一个iframe，使用这种方式不需要额外配置，只要js文件以改变，就会自动”recompiling”。直接访问<code>http://«host»:«port»/webpack-dev-server/«path»</code>，在我们的配置中就是访问<code>http://localhost:8080/webpack-dev-server/index.html</code>。该方式的特点是：</p>
+<ul>
+<li>无需改变配置</li>
+<li>编译信息通过页面顶部信息条体现</li>
+<li>浏览器地址栏不会体现出地址的变化</li>
+</ul>
+<h4 id="inline模式"><a href="#inline模式" class="headerlink" title="inline模式"></a>inline模式</h4><p>　　在这种方式下，我们需要额外的配置，使用以下两种方式之一：</p>
+<ul>
+<li>在启动命令上加参数”–inline”:<br><code>webpack-dev-server --content-base build/ --inline</code></li>
+<li>在webpack.config.js加上<code>devServer: { inline: true }</code></li>
+</ul>
+<p>　　使用这种方式不需要给URL加上/webpack-dev-server/，直接访问<code>http://«host»:«port»/«path»</code>，在我们的配置中就是访问<code>http://localhost:8080/index.html</code></p>
+<p>该方式的特点是：</p>
+<ul>
+<li>需要改变配置</li>
+<li>编译信息通过浏览器的console体现：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-35.png" alt=""></li>
+<li>浏览器地址栏会体现出地址的变化</li>
+</ul>
+<hr>
+<h2 id="模块热替换-Hot-Module-Replacement-的应用"><a href="#模块热替换-Hot-Module-Replacement-的应用" class="headerlink" title="模块热替换 Hot Module Replacement 的应用"></a>模块热替换 Hot Module Replacement 的应用</h2><p>　　在webpack-dev-server中使用模块热替换 Hot Module Replacement最简单的办法就是在inline模式中使用。我们只需要在参数中加上”–hot”即可。<br><code>webpack-dev-server --content-base build/ --inline --hot</code></p>
+<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-36.png" alt=""></p>
+<p>这样，就进入了监听状态，当文件发生修改，看到console打出如下日志：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-37.png" alt=""></p>
+<p>发现提示错误，热替换失败，整个页面进行了重载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[HMR] Cannot apply update. Need to do a full reload!</span><br><span class="line">[HMR] Error: Aborted because 77 is not accepted</span><br><span class="line">    at l (http://localhost:8080/assets/app.bundle.js:1:4169)</span><br><span class="line">    at f (http://localhost:8080/assets/app.bundle.js:1:3117)</span><br><span class="line">    at u (http://localhost:8080/assets/app.bundle.js:1:3017)</span><br><span class="line">    at webpackHotUpdate (http://localhost:8080/assets/app.bundle.js:1:5790)</span><br><span class="line">    at http://localhost:8080/assets/0.ae586ae503d4fe64ca9a.hot-update.js:1:1</span><br></pre></td></tr></table></figure></p>
+<p>查阅了很多资料，如<a href="https://github.com/webpack/webpack-dev-server/issues/395" target="_blank" rel="external">https://github.com/webpack/webpack-dev-server/issues/395</a>，但并没有找到准确原因，暂时搁置。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2016/12/16/webpack-demos/" data-title="使用WebStorm创建webpack工作流的前端项目" data-url="http://www.gcidea.info/2016/12/16/webpack-demos/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/gcidea" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/u/2180985772" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="envelope" href="/about/#联系方式" target="_blank">
+                        <i class="icon fa fa-envelope"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/12/17/base64/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Base64编码探究
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2016/12/12/js-proto-prototype/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">JavaScript中的__proto__、[[prototype]]和prototype</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        <div class="widget-wrap widget-wechat">
+            <a href="javascript:;">
+                <img src="http://7xrz3r.com1.z0.glb.clouddn.com/wechat.jpg" width="280" alt="微信扫一扫 gaochang932372" title="微信扫一扫 gaochang932372">
+            </a>
+        </div>
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/25/mobile-flexible-solution/" class="title">移动端HTML5响应式布局适配解决方案</a></p>
+                            <p class="item-date"><time datetime="2017-01-25T05:22:04.000Z" itemprop="datePublished">2017-01-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/搭建部署/环境统一/">环境统一</a></p>
+                            <p class="item-title"><a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="title">使用SwitchyOmega和Charles配置统一的开发和生产环境</a></p>
+                            <p class="item-date"><time datetime="2017-01-23T06:13:51.000Z" itemprop="datePublished">2017-01-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端工程化/">前端工程化</a></p>
+                            <p class="item-title"><a href="/2017/01/20/react-dva-structure/" class="title">React开发框架Dva.js项目结构简单小结</a></p>
+                            <p class="item-date"><time datetime="2017-01-20T05:54:23.000Z" itemprop="datePublished">2017-01-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/17/git-merge-git-rebase/" class="title">git merge 与 git rebase 的对比分析</a></p>
+                            <p class="item-date"><time datetime="2017-01-17T13:45:08.000Z" itemprop="datePublished">2017-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/12/js-compare/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p77.jpg)" alt="JavaScript中比较运算的详细总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/01/12/js-compare/" class="title">JavaScript中比较运算的详细总结</a></p>
+                            <p class="item-date"><time datetime="2017-01-12T14:11:06.000Z" itemprop="datePublished">2017-01-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AngularJs/">AngularJs</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE综合/">FE综合</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jQuery/">jQuery</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端工程化/">前端工程化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/">搭建部署</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/代理/">代理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/工程/">工程</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/环境统一/">环境统一</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/阿里云/">阿里云</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">93</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">47</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">45</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJs/">AngularJs</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-CSS3/">CSS/CSS3</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Charles/">Charles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cookie/">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FE/">FE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-HTML5/">HTML/HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">45</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LAMP/">LAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/">Less</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/">MVVM</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestfulAPI/">RestfulAPI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SwitchyOmega/">SwitchyOmega</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">92</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss源订阅/">rss源订阅</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sitemap/">sitemap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理配置/">代理配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兼容性/">兼容性</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化拖拽/">可视化拖拽</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/响应式/">响应式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">76</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实现-应用/">实现/应用</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成CI/">持续集成CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搭建部署/">搭建部署</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面渲染/">页面渲染</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AngularJs/" style="font-size: 13.64px;">AngularJs</a> <a href="/tags/CSS-CSS3/" style="font-size: 14.55px;">CSS/CSS3</a> <a href="/tags/Charles/" style="font-size: 10px;">Charles</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/FE/" style="font-size: 11.82px;">FE</a> <a href="/tags/HTML-HTML5/" style="font-size: 12.73px;">HTML/HTML5</a> <a href="/tags/HTTP/" style="font-size: 12.73px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 18.18px;">JavaScript</a> <a href="/tags/LAMP/" style="font-size: 10px;">LAMP</a> <a href="/tags/Less/" style="font-size: 10.91px;">Less</a> <a href="/tags/MVVM/" style="font-size: 13.64px;">MVVM</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/React/" style="font-size: 11.82px;">React</a> <a href="/tags/RestfulAPI/" style="font-size: 10px;">RestfulAPI</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/SwitchyOmega/" style="font-size: 10px;">SwitchyOmega</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/rss源订阅/" style="font-size: 10px;">rss源订阅</a> <a href="/tags/sitemap/" style="font-size: 10px;">sitemap</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/代理配置/" style="font-size: 10px;">代理配置</a> <a href="/tags/兼容性/" style="font-size: 10.91px;">兼容性</a> <a href="/tags/前端工程化/" style="font-size: 16.36px;">前端工程化</a> <a href="/tags/前端框架/" style="font-size: 15.45px;">前端框架</a> <a href="/tags/可视化拖拽/" style="font-size: 10.91px;">可视化拖拽</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/学习笔记/" style="font-size: 19.09px;">学习笔记</a> <a href="/tags/实现-应用/" style="font-size: 17.27px;">实现/应用</a> <a href="/tags/异步编程/" style="font-size: 10.91px;">异步编程</a> <a href="/tags/持续集成CI/" style="font-size: 10px;">持续集成CI</a> <a href="/tags/搭建部署/" style="font-size: 14.55px;">搭建部署</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器/" style="font-size: 10.91px;">浏览器</a> <a href="/tags/版本控制/" style="font-size: 11.82px;">版本控制</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/转载/" style="font-size: 11.82px;">转载</a> <a href="/tags/闭包/" style="font-size: 10.91px;">闭包</a> <a href="/tags/页面渲染/" style="font-size: 10px;">页面渲染</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://www.zn2studio.com" target="_blank">Zn2Studio 锌离子工作室</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.ebupt.com" target="_blank">东信北邮信息技术有限公司</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://bbs.byr.cn" target="_blank">北邮人论坛-北邮人的温馨家园</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <!--<a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>-->
+            <a id="back-to-top" href="javascript:;"><b>gcidea</b></a>
+            <div style="position: fixed;bottom: 195px;right: 26px;">
+                <a id="back-to-top2" href="javascript:;" title="回到顶部"><i class="icon fa fa-angle-up"></i></a>
+            </div>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 - 2017 Gao Chang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>.</p>
+                <p><b>The relentless pursuit of perfection.</b></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gcidea'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

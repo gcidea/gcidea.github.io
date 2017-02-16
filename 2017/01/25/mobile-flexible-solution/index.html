@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="gcidea">
+    <meta name="description" content="gcidea's blog">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+    
+    <title>移动端HTML5响应式布局适配解决方案 | GCidea&#39;s blog</title>
+    
+        <meta name="keywords" content="学习笔记,前端工程化,HTML/HTML5,CSS/CSS3,响应式,Less" />
+    
+    <meta name="description" content="前言　　移动端适配是一个十分重要的问题。在移动端页面中，其布局和交互方式可能相比于PC端少一些，但是由于设备的多样化，其适配问题就必须多加关注。设备情况种类繁多复杂，从网上的几张图中足以看出：
+
+基本概念物理像素(physical pixel)一个物理像素是显示器(手机屏幕)上最小的物理显示单元，在操作系统的调度下，每一个设备像素都有自己的颜色值和亮度值。
+设备独立像素(density-inde">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端HTML5响应式布局适配解决方案">
+<meta property="og:url" content="http://www.gcidea.info/2017/01/25/mobile-flexible-solution/index.html">
+<meta property="og:site_name" content="GCidea's blog">
+<meta property="og:description" content="前言　　移动端适配是一个十分重要的问题。在移动端页面中，其布局和交互方式可能相比于PC端少一些，但是由于设备的多样化，其适配问题就必须多加关注。设备情况种类繁多复杂，从网上的几张图中足以看出：
+
+基本概念物理像素(physical pixel)一个物理像素是显示器(手机屏幕)上最小的物理显示单元，在操作系统的调度下，每一个设备像素都有自己的颜色值和亮度值。
+设备独立像素(density-inde">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg">
+<meta property="og:updated_time" content="2017-02-16T03:15:04.792Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端HTML5响应式布局适配解决方案">
+<meta name="twitter:description" content="前言　　移动端适配是一个十分重要的问题。在移动端页面中，其布局和交互方式可能相比于PC端少一些，但是由于设备的多样化，其适配问题就必须多加关注。设备情况种类繁多复杂，从网上的几张图中足以看出：
+
+基本概念物理像素(physical pixel)一个物理像素是显示器(手机屏幕)上最小的物理显示单元，在操作系统的调度下，每一个设备像素都有自己的颜色值和亮度值。
+设备独立像素(density-inde">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="GCidea&#39;s blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad03ecfd99432fefa83cbc4dea96fac4";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p style="font-size: 23px; color: #fa862e; text-align: center;
+                                font-family: PingFangSC-Medium, Hiragino Sans GB, Heiti SC,
+                                Microsoft YaHei, WenQuanYi Micro Hei, sans-serif">gaochang | BUPT</p>
+                            <p class="subtitle">The relentless pursuit of perfection.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/archives">归档</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories">分类</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">标签</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tag-cloud">标签云</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/projects">开源组件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...（以下列表内容顺序不分先后）" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/FE综合/">FE综合</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-mobile-flexible-solution" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        移动端HTML5响应式布局适配解决方案
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2017/01/25/mobile-flexible-solution/" class="article-date">
+    <time datetime="2017-01-25T05:22:04.000Z" itemprop="datePublished">2017-01-25</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS-CSS3/">CSS/CSS3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML-HTML5/">HTML/HTML5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Less/">Less</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端工程化/">前端工程化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/响应式/">响应式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <div id="toc" style="margin-bottom: -1.6em;margin-top: 1em">
+                <strong>目录</strong>
+            </div>
+            <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">2.</span> <span class="toc-text">基本概念</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#物理像素-physical-pixel"><span class="toc-number">2.1.</span> <span class="toc-text">物理像素(physical pixel)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设备独立像素-density-independent-pixel"><span class="toc-number">2.2.</span> <span class="toc-text">设备独立像素(density-independent pixel)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设备像素比-device-pixel-ratio，即简称dpr"><span class="toc-number">2.3.</span> <span class="toc-text">设备像素比(device pixel ratio，即简称dpr)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#viewport"><span class="toc-number">2.4.</span> <span class="toc-text">viewport</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PPI-Pixels-Per-Inch"><span class="toc-number">2.5.</span> <span class="toc-text">PPI(Pixels Per Inch)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DPI-Dots-Per-Inch"><span class="toc-number">2.6.</span> <span class="toc-text">DPI(Dots Per Inch)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#倍率与逻辑像素"><span class="toc-number">2.7.</span> <span class="toc-text">倍率与逻辑像素</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖库-lib-flexible"><span class="toc-number">3.</span> <span class="toc-text">依赖库 lib-flexible</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用实践"><span class="toc-number">4.</span> <span class="toc-text">使用实践</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入"><span class="toc-number">4.1.</span> <span class="toc-text">引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对于长度、宽度等“距离”的写法-less文件"><span class="toc-number">4.2.</span> <span class="toc-text">对于长度、宽度等“距离”的写法(less文件)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对于文字字号大小的写法-less文件"><span class="toc-number">4.3.</span> <span class="toc-text">对于文字字号大小的写法(less文件)</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码、原理分析"><span class="toc-number">5.</span> <span class="toc-text">源码、原理分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#手淘团队相关文献参考"><span class="toc-number">6.</span> <span class="toc-text">手淘团队相关文献参考</span></a></li></ul>
+            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　移动端适配是一个十分重要的问题。在移动端页面中，其布局和交互方式可能相比于PC端少一些，但是由于设备的多样化，其适配问题就必须多加关注。设备情况种类繁多复杂，从网上的几张图中足以看出：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/flexible-1.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/flexible-2.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/flexible-3.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/flexible-4.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/flexible-10.jpg" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/flexible-5.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/flexible-6.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/flexible-7.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/flexible-8.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/flexible-9.png" alt=""></p>
+<hr>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="物理像素-physical-pixel"><a href="#物理像素-physical-pixel" class="headerlink" title="物理像素(physical pixel)"></a>物理像素(physical pixel)</h3><p>一个物理像素是显示器(手机屏幕)上最小的物理显示单元，在操作系统的调度下，每一个设备像素都有自己的颜色值和亮度值。</p>
+<h3 id="设备独立像素-density-independent-pixel"><a href="#设备独立像素-density-independent-pixel" class="headerlink" title="设备独立像素(density-independent pixel)"></a>设备独立像素(density-independent pixel)</h3><p>设备独立像素(也叫密度无关像素)，可以认为是计算机坐标系统中得一个点，这个点代表一个可以由程序使用的虚拟像素(比如: css像素)，然后由相关系统转换为物理像素。可以理解为就是下面要说的逻辑像素。所以说，物理像素和设备独立像素之间存在着一定的对应关系，这就是接下来要说的设备像素比。</p>
+<h3 id="设备像素比-device-pixel-ratio，即简称dpr"><a href="#设备像素比-device-pixel-ratio，即简称dpr" class="headerlink" title="设备像素比(device pixel ratio，即简称dpr)"></a>设备像素比(device pixel ratio，即简称dpr)</h3><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/flexible-13.jpg" alt=""><br>设备像素比(简称dpr)定义了物理像素和设备独立像素的对应关系，它的值可以按如下的公式的得到：<br><code>设备像素比 = 物理像素 / 设备独立像素</code></p>
+<ul>
+<li>在javascript中，可以通过window.devicePixelRatio获取到当前设备的dpr。</li>
+<li>在css中，可以通过-webkit-device-pixel-ratio，-webkit-min-device-pixel-ratio和 -webkit-max-device-pixel-ratio进行媒体查询，对不同dpr的设备，做一些样式适配(这里只针对webkit内核的浏览器和webview)。</li>
+</ul>
+<h3 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h3><p>通俗来讲，移动端的viewport就是我们所能看到的手机端浏览器的可视窗口大小，但viewport又不仅仅局限于可视窗口的大小，一般情况下，它是比默认窗口大小要大的，这是因为考虑到移动设备的分辨率相对于桌面电脑来说都比较小，所以为了能在移动端正常显示为桌面浏览器而设计的网页，移动端的浏览器都会默认把自己的默认的viewport设为980px到1024px不等，但其后果就是会出现横向滚动条，因为移动端浏览器可视区域的大小是比默认的viewport宽度要小的。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>该meta标签的作用是让当前viewport的宽度等于设备的宽度，同时不允许用户手动缩放。</p>
+<h3 id="PPI-Pixels-Per-Inch"><a href="#PPI-Pixels-Per-Inch" class="headerlink" title="PPI(Pixels Per Inch)"></a>PPI(Pixels Per Inch)</h3><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/flexible-11.png" alt=""><br>像素密度，这项指标是连接数字世界与物理世界的桥梁。Pixels per inch，准确的说是每英寸的长度上排列的像素点数量。1英寸是一个固定长度，等于2.54厘米，大约是食指最末端那根指节的长度。像素密度越高，代表屏幕显示效果越精细。Retina屏比普通屏清晰很多，就是因为它的像素密度翻了一倍。<br><img src="" alt=""></p>
+<h3 id="DPI-Dots-Per-Inch"><a href="#DPI-Dots-Per-Inch" class="headerlink" title="DPI(Dots Per Inch)"></a>DPI(Dots Per Inch)</h3><p>每英寸所打印的点数，是打印机、鼠标等设备分辨率的单位。这是衡量打印机打印精度的主要参数之一，一般来说，该值越大，表明打印机的打印精度越高。dpi是指每英寸的像素，也就是扫描精度。国际上都是计算一平方英寸面积内像素的多少。</p>
+<h3 id="倍率与逻辑像素"><a href="#倍率与逻辑像素" class="headerlink" title="倍率与逻辑像素"></a>倍率与逻辑像素</h3><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/flexible-12.png" alt=""><br>　　我们在css中声明的是逻辑像素值，而不同设备具体用多少物理像素进行显示有所不同。Retina屏幕把2x2个像素当1个像素使用。比如原本44像素高的顶部导航栏，在Retina屏上用了88个像素的高度来显示。导致界面元素都变成2倍大小，画质更清晰。iOS应用的资源图片中，同一张图通常有多个尺寸。你会看到文件名有的带@2x、@3x字样，有的不带。其中不带@2x、@3x的用在普通屏上，带@2x的用在Retina屏上(iPhone6等尺寸)，带@3x的也用在Retina屏上(iPhone6plus等尺寸)。只要图片准备好，iOS会自己判断用哪张，Android道理也一样。而在web app开发中，则需要自己对图片进行选择。苹果以普通屏为基准，给Retina屏定义了一个2倍或3倍的倍率。实际像素除以倍率，就得到逻辑像素尺寸。只要两个屏幕逻辑像素相同，它们的显示效果就是相同的。</p>
+<hr>
+<h2 id="依赖库-lib-flexible"><a href="#依赖库-lib-flexible" class="headerlink" title="依赖库 lib-flexible"></a>依赖库 lib-flexible</h2><hr>
+<h2 id="使用实践"><a href="#使用实践" class="headerlink" title="使用实践"></a>使用实践</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>1.npm包安装<br><code>npm install --save-dev lib-flexible</code><br>2.在基础js文件靠前位置引入包文件(ES6写法)<br><code>import &#39;lib-flexible&#39;;</code></p>
+<h3 id="对于长度、宽度等“距离”的写法-less文件"><a href="#对于长度、宽度等“距离”的写法-less文件" class="headerlink" title="对于长度、宽度等“距离”的写法(less文件)"></a>对于长度、宽度等“距离”的写法(less文件)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@font-size-base: 75;</span><br><span class="line"></span><br><span class="line">.home &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  top: 88rem / @font-size-base;</span><br><span class="line">  bottom: 98rem / @font-size-base;</span><br><span class="line">  width: 100%;</span><br><span class="line">  background-color: #ddd;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="对于文字字号大小的写法-less文件"><a href="#对于文字字号大小的写法-less文件" class="headerlink" title="对于文字字号大小的写法(less文件)"></a>对于文字字号大小的写法(less文件)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@font-size-base: 75;</span><br><span class="line">.name &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  font-family: @font-family-base;</span><br><span class="line">  color: #000000;</span><br><span class="line">  letter-spacing: 0;</span><br><span class="line">  font-size: 17px;</span><br><span class="line">  [data-dpr=&quot;2&quot;] &amp; &#123;</span><br><span class="line">    font-size: 34px;</span><br><span class="line">  &#125;</span><br><span class="line">  [data-dpr=&quot;3&quot;] &amp; &#123;</span><br><span class="line">    font-size: 51px;</span><br><span class="line">  &#125;</span><br><span class="line">  font-weight: bold;</span><br><span class="line">  padding-bottom: 20rem/@font-size-base</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="源码、原理分析"><a href="#源码、原理分析" class="headerlink" title="源码、原理分析"></a>源码、原理分析</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">win, lib</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> doc = win.document;</span><br><span class="line">    <span class="keyword">var</span> docEl = doc.documentElement;</span><br><span class="line">    <span class="keyword">var</span> metaEl = doc.querySelector(<span class="string">'meta[name="viewport"]'</span>);</span><br><span class="line">    <span class="keyword">var</span> flexibleEl = doc.querySelector(<span class="string">'meta[name="flexible"]'</span>);</span><br><span class="line">    <span class="keyword">var</span> dpr = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> scale = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> tid;</span><br><span class="line">    <span class="keyword">var</span> flexible = lib.flexible || (lib.flexible = &#123;&#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (metaEl) &#123;</span><br><span class="line">        <span class="built_in">console</span>.warn(<span class="string">'将根据已有的meta标签来设置缩放比例'</span>);</span><br><span class="line">        <span class="keyword">var</span> match = metaEl.getAttribute(<span class="string">'content'</span>).match(<span class="regexp">/initial\-scale=([\d\.]+)/</span>);</span><br><span class="line">        <span class="keyword">if</span> (match) &#123;</span><br><span class="line">            scale = <span class="built_in">parseFloat</span>(match[<span class="number">1</span>]);</span><br><span class="line">            dpr = <span class="built_in">parseInt</span>(<span class="number">1</span> / scale);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (flexibleEl) &#123;</span><br><span class="line">        <span class="keyword">var</span> content = flexibleEl.getAttribute(<span class="string">'content'</span>);</span><br><span class="line">        <span class="keyword">if</span> (content) &#123;</span><br><span class="line">            <span class="keyword">var</span> initialDpr = content.match(<span class="regexp">/initial\-dpr=([\d\.]+)/</span>);</span><br><span class="line">            <span class="keyword">var</span> maximumDpr = content.match(<span class="regexp">/maximum\-dpr=([\d\.]+)/</span>);</span><br><span class="line">            <span class="keyword">if</span> (initialDpr) &#123;</span><br><span class="line">                dpr = <span class="built_in">parseFloat</span>(initialDpr[<span class="number">1</span>]);</span><br><span class="line">                scale = <span class="built_in">parseFloat</span>((<span class="number">1</span> / dpr).toFixed(<span class="number">2</span>));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (maximumDpr) &#123;</span><br><span class="line">                dpr = <span class="built_in">parseFloat</span>(maximumDpr[<span class="number">1</span>]);</span><br><span class="line">                scale = <span class="built_in">parseFloat</span>((<span class="number">1</span> / dpr).toFixed(<span class="number">2</span>));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!dpr &amp;&amp; !scale) &#123;</span><br><span class="line">        <span class="keyword">var</span> isAndroid = win.navigator.appVersion.match(<span class="regexp">/android/gi</span>);</span><br><span class="line">        <span class="keyword">var</span> isIPhone = win.navigator.appVersion.match(<span class="regexp">/iphone/gi</span>);</span><br><span class="line">        <span class="keyword">var</span> devicePixelRatio = win.devicePixelRatio;</span><br><span class="line">        <span class="keyword">if</span> (isIPhone) &#123;</span><br><span class="line">            <span class="comment">// iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案</span></span><br><span class="line">            <span class="keyword">if</span> (devicePixelRatio &gt;= <span class="number">3</span> &amp;&amp; (!dpr || dpr &gt;= <span class="number">3</span>)) &#123;</span><br><span class="line">                dpr = <span class="number">3</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (devicePixelRatio &gt;= <span class="number">2</span> &amp;&amp; (!dpr || dpr &gt;= <span class="number">2</span>))&#123;</span><br><span class="line">                dpr = <span class="number">2</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dpr = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 其他设备下，仍旧使用1倍的方案</span></span><br><span class="line">            dpr = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        scale = <span class="number">1</span> / dpr;</span><br><span class="line">    &#125;</span><br><span class="line">    docEl.setAttribute(<span class="string">'data-dpr'</span>, dpr);</span><br><span class="line">    <span class="keyword">if</span> (!metaEl) &#123;</span><br><span class="line">        metaEl = doc.createElement(<span class="string">'meta'</span>);</span><br><span class="line">        metaEl.setAttribute(<span class="string">'name'</span>, <span class="string">'viewport'</span>);</span><br><span class="line">        metaEl.setAttribute(<span class="string">'content'</span>, <span class="string">'initial-scale='</span> + scale + <span class="string">', maximum-scale='</span> + scale + <span class="string">', minimum-scale='</span> + scale + <span class="string">', user-scalable=no'</span>);</span><br><span class="line">        <span class="keyword">if</span> (docEl.firstElementChild) &#123;</span><br><span class="line">            docEl.firstElementChild.appendChild(metaEl);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> wrap = doc.createElement(<span class="string">'div'</span>);</span><br><span class="line">            wrap.appendChild(metaEl);</span><br><span class="line">            doc.write(wrap.innerHTML);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">refreshRem</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> width = docEl.getBoundingClientRect().width;</span><br><span class="line">        <span class="keyword">if</span> (width / dpr &gt; <span class="number">540</span>) &#123;</span><br><span class="line">            width = <span class="number">540</span> * dpr;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> rem = width / <span class="number">10</span>;</span><br><span class="line">        docEl.style.fontSize = rem + <span class="string">'px'</span>;</span><br><span class="line">        flexible.rem = win.rem = rem;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    win.addEventListener(<span class="string">'resize'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        clearTimeout(tid);</span><br><span class="line">        tid = setTimeout(refreshRem, <span class="number">300</span>);</span><br><span class="line">    &#125;, <span class="literal">false</span>);</span><br><span class="line">    win.addEventListener(<span class="string">'pageshow'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (e.persisted) &#123;</span><br><span class="line">            clearTimeout(tid);</span><br><span class="line">            tid = setTimeout(refreshRem, <span class="number">300</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (doc.readyState === <span class="string">'complete'</span>) &#123;</span><br><span class="line">        doc.body.style.fontSize = <span class="number">12</span> * dpr + <span class="string">'px'</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        doc.addEventListener(<span class="string">'DOMContentLoaded'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">            doc.body.style.fontSize = <span class="number">12</span> * dpr + <span class="string">'px'</span>;</span><br><span class="line">        &#125;, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    refreshRem();</span><br><span class="line"></span><br><span class="line">    flexible.dpr = win.dpr = dpr;</span><br><span class="line">    flexible.refreshRem = refreshRem;</span><br><span class="line">    flexible.rem2px = <span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> val = <span class="built_in">parseFloat</span>(d) * <span class="keyword">this</span>.rem;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> d === <span class="string">'string'</span> &amp;&amp; d.match(<span class="regexp">/rem$/</span>)) &#123;</span><br><span class="line">            val += <span class="string">'px'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> val;</span><br><span class="line">    &#125;</span><br><span class="line">    flexible.px2rem = <span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> val = <span class="built_in">parseFloat</span>(d) / <span class="keyword">this</span>.rem;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> d === <span class="string">'string'</span> &amp;&amp; d.match(<span class="regexp">/px$/</span>)) &#123;</span><br><span class="line">            val += <span class="string">'rem'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;)(<span class="built_in">window</span>, <span class="built_in">window</span>[<span class="string">'lib'</span>] || (<span class="built_in">window</span>[<span class="string">'lib'</span>] = &#123;&#125;));</span><br></pre></td></tr></table></figure>
+<h2 id="手淘团队相关文献参考"><a href="#手淘团队相关文献参考" class="headerlink" title="手淘团队相关文献参考"></a>手淘团队相关文献参考</h2><p><a href="https://github.com/amfe/article/issues/17" target="_blank" rel="external">使用Flexible实现手淘H5页面的终端适配 </a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2017/01/25/mobile-flexible-solution/" data-title="移动端HTML5响应式布局适配解决方案" data-url="http://www.gcidea.info/2017/01/25/mobile-flexible-solution/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/gcidea" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/u/2180985772" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="envelope" href="/about/#联系方式" target="_blank">
+                        <i class="icon fa fa-envelope"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">使用SwitchyOmega和Charles配置统一的开发和生产环境</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        <div class="widget-wrap widget-wechat">
+            <a href="javascript:;">
+                <img src="http://7xrz3r.com1.z0.glb.clouddn.com/wechat.jpg" width="280" alt="微信扫一扫 gaochang932372" title="微信扫一扫 gaochang932372">
+            </a>
+        </div>
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/25/mobile-flexible-solution/" class="title">移动端HTML5响应式布局适配解决方案</a></p>
+                            <p class="item-date"><time datetime="2017-01-25T05:22:04.000Z" itemprop="datePublished">2017-01-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/搭建部署/环境统一/">环境统一</a></p>
+                            <p class="item-title"><a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="title">使用SwitchyOmega和Charles配置统一的开发和生产环境</a></p>
+                            <p class="item-date"><time datetime="2017-01-23T06:13:51.000Z" itemprop="datePublished">2017-01-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端工程化/">前端工程化</a></p>
+                            <p class="item-title"><a href="/2017/01/20/react-dva-structure/" class="title">React开发框架Dva.js项目结构简单小结</a></p>
+                            <p class="item-date"><time datetime="2017-01-20T05:54:23.000Z" itemprop="datePublished">2017-01-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/17/git-merge-git-rebase/" class="title">git merge 与 git rebase 的对比分析</a></p>
+                            <p class="item-date"><time datetime="2017-01-17T13:45:08.000Z" itemprop="datePublished">2017-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/12/js-compare/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p77.jpg)" alt="JavaScript中比较运算的详细总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/01/12/js-compare/" class="title">JavaScript中比较运算的详细总结</a></p>
+                            <p class="item-date"><time datetime="2017-01-12T14:11:06.000Z" itemprop="datePublished">2017-01-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AngularJs/">AngularJs</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE综合/">FE综合</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jQuery/">jQuery</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端工程化/">前端工程化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/">搭建部署</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/代理/">代理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/工程/">工程</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/环境统一/">环境统一</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/阿里云/">阿里云</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">93</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">47</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">45</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJs/">AngularJs</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-CSS3/">CSS/CSS3</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Charles/">Charles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cookie/">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FE/">FE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-HTML5/">HTML/HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">45</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LAMP/">LAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/">Less</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/">MVVM</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestfulAPI/">RestfulAPI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SwitchyOmega/">SwitchyOmega</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">92</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss源订阅/">rss源订阅</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sitemap/">sitemap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理配置/">代理配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兼容性/">兼容性</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化拖拽/">可视化拖拽</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/响应式/">响应式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">76</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实现-应用/">实现/应用</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成CI/">持续集成CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搭建部署/">搭建部署</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面渲染/">页面渲染</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AngularJs/" style="font-size: 13.64px;">AngularJs</a> <a href="/tags/CSS-CSS3/" style="font-size: 14.55px;">CSS/CSS3</a> <a href="/tags/Charles/" style="font-size: 10px;">Charles</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/FE/" style="font-size: 11.82px;">FE</a> <a href="/tags/HTML-HTML5/" style="font-size: 12.73px;">HTML/HTML5</a> <a href="/tags/HTTP/" style="font-size: 12.73px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 18.18px;">JavaScript</a> <a href="/tags/LAMP/" style="font-size: 10px;">LAMP</a> <a href="/tags/Less/" style="font-size: 10.91px;">Less</a> <a href="/tags/MVVM/" style="font-size: 13.64px;">MVVM</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/React/" style="font-size: 11.82px;">React</a> <a href="/tags/RestfulAPI/" style="font-size: 10px;">RestfulAPI</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/SwitchyOmega/" style="font-size: 10px;">SwitchyOmega</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/rss源订阅/" style="font-size: 10px;">rss源订阅</a> <a href="/tags/sitemap/" style="font-size: 10px;">sitemap</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/代理配置/" style="font-size: 10px;">代理配置</a> <a href="/tags/兼容性/" style="font-size: 10.91px;">兼容性</a> <a href="/tags/前端工程化/" style="font-size: 16.36px;">前端工程化</a> <a href="/tags/前端框架/" style="font-size: 15.45px;">前端框架</a> <a href="/tags/可视化拖拽/" style="font-size: 10.91px;">可视化拖拽</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/学习笔记/" style="font-size: 19.09px;">学习笔记</a> <a href="/tags/实现-应用/" style="font-size: 17.27px;">实现/应用</a> <a href="/tags/异步编程/" style="font-size: 10.91px;">异步编程</a> <a href="/tags/持续集成CI/" style="font-size: 10px;">持续集成CI</a> <a href="/tags/搭建部署/" style="font-size: 14.55px;">搭建部署</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器/" style="font-size: 10.91px;">浏览器</a> <a href="/tags/版本控制/" style="font-size: 11.82px;">版本控制</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/转载/" style="font-size: 11.82px;">转载</a> <a href="/tags/闭包/" style="font-size: 10.91px;">闭包</a> <a href="/tags/页面渲染/" style="font-size: 10px;">页面渲染</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://www.zn2studio.com" target="_blank">Zn2Studio 锌离子工作室</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.ebupt.com" target="_blank">东信北邮信息技术有限公司</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://bbs.byr.cn" target="_blank">北邮人论坛-北邮人的温馨家园</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <!--<a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>-->
+            <a id="back-to-top" href="javascript:;"><b>gcidea</b></a>
+            <div style="position: fixed;bottom: 195px;right: 26px;">
+                <a id="back-to-top2" href="javascript:;" title="回到顶部"><i class="icon fa fa-angle-up"></i></a>
+            </div>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 - 2017 Gao Chang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>.</p>
+                <p><b>The relentless pursuit of perfection.</b></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gcidea'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

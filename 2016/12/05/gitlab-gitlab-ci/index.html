@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="gcidea">
+    <meta name="description" content="gcidea's blog">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+    
+    <title>【阿里云ECS】GitLab的搭建配置过程和GitLab-CI服务的使用 | GCidea&#39;s blog</title>
+    
+        <meta name="keywords" content="搭建部署,版本控制,持续集成CI" />
+    
+    <meta name="description" content="前言　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：
+
+Git安装与使用
+GitLab相关知识介绍
+GitLab搭建配置的完整过程
+GitLab-CI相关知识介绍
+GitLab-CI安装配置的完">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【阿里云ECS】GitLab的搭建配置过程和GitLab-CI服务的使用">
+<meta property="og:url" content="http://www.gcidea.info/2016/12/05/gitlab-gitlab-ci/index.html">
+<meta property="og:site_name" content="GCidea's blog">
+<meta property="og:description" content="前言　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：
+
+Git安装与使用
+GitLab相关知识介绍
+GitLab搭建配置的完整过程
+GitLab-CI相关知识介绍
+GitLab-CI安装配置的完">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p48.jpg">
+<meta property="og:updated_time" content="2017-02-11T06:31:11.692Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【阿里云ECS】GitLab的搭建配置过程和GitLab-CI服务的使用">
+<meta name="twitter:description" content="前言　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：
+
+Git安装与使用
+GitLab相关知识介绍
+GitLab搭建配置的完整过程
+GitLab-CI相关知识介绍
+GitLab-CI安装配置的完">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p48.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="GCidea&#39;s blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad03ecfd99432fefa83cbc4dea96fac4";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p style="font-size: 23px; color: #fa862e; text-align: center;
+                                font-family: PingFangSC-Medium, Hiragino Sans GB, Heiti SC,
+                                Microsoft YaHei, WenQuanYi Micro Hei, sans-serif">gaochang | BUPT</p>
+                            <p class="subtitle">The relentless pursuit of perfection.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/archives">归档</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories">分类</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">标签</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tag-cloud">标签云</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/projects">开源组件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...（以下列表内容顺序不分先后）" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/搭建部署/">搭建部署</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/搭建部署/阿里云/">阿里云</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-gitlab-gitlab-ci" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        【阿里云ECS】GitLab的搭建配置过程和GitLab-CI服务的使用
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2016/12/05/gitlab-gitlab-ci/" class="article-date">
+    <time datetime="2016-12-05T15:21:14.000Z" itemprop="datePublished">2016-12-05</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/持续集成CI/">持续集成CI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/搭建部署/">搭建部署</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/版本控制/">版本控制</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <div id="toc" style="margin-bottom: -1.6em;margin-top: 1em">
+                <strong>目录</strong>
+            </div>
+            <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工具"><span class="toc-number">2.</span> <span class="toc-text">准备工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git安装与使用"><span class="toc-number">3.</span> <span class="toc-text">Git安装与使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitLab相关知识介绍"><span class="toc-number">4.</span> <span class="toc-text">GitLab相关知识介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitLab搭建配置的完整过程"><span class="toc-number">5.</span> <span class="toc-text">GitLab搭建配置的完整过程</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">5.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">5.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试"><span class="toc-number">5.3.</span> <span class="toc-text">测试</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitLab-CI相关知识介绍"><span class="toc-number">6.</span> <span class="toc-text">GitLab-CI相关知识介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitLab-CI安装配置的完整过程"><span class="toc-number">7.</span> <span class="toc-text">GitLab-CI安装配置的完整过程</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-1"><span class="toc-number">7.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注册"><span class="toc-number">7.2.</span> <span class="toc-text">注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行"><span class="toc-number">7.3.</span> <span class="toc-text">运行</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitLab-CI持续集成服务的测试"><span class="toc-number">8.</span> <span class="toc-text">GitLab-CI持续集成服务的测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">9.</span> <span class="toc-text">小结</span></a></li></ul>
+            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p48.jpg" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　GitHub是一个十分著名并相当活跃的社区，每天有世界各地的程序员在这里分享与交流。作为开源项目或者技术分享，我们当然可以将代码维护在这里。但是对于内部项目，我们应该具备私有仓库来进行维护。GitLab就是一个很好的选择。本文主要包括以下几个方面：</p>
+<ol>
+<li>Git安装与使用</li>
+<li>GitLab相关知识介绍</li>
+<li>GitLab搭建配置的完整过程</li>
+<li>GitLab-CI相关知识介绍</li>
+<li>GitLab-CI安装配置的完整过程</li>
+<li>GitLab-CI持续集成服务的测试</li>
+<li>小结</li>
+</ol>
+<hr>
+<h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><p>　　部署环境：阿里云ECS Centos7.0 64bit(已具备完整LAMP环境)<br>　　远程连接：Xshell 5<br>　　文件传输：Xftp 5</p>
+<hr>
+<h2 id="Git安装与使用"><a href="#Git安装与使用" class="headerlink" title="Git安装与使用"></a>Git安装与使用</h2><p>　　Git的安装是必要的，安装后我们可以从服务器clone下来GitLab仓库中的最新代码进行开发维护。Centos7自带Git，但是版本为1.8，考虑到使用新版本减少问题，决定升级至2.7.4。具体过程如下：</p>
+<ol>
+<li>卸载Centos7自带的Git1.8<br><code># yum remove git</code></li>
+<li>下载Git2.7.4<br><code># wget https://github.com/git/git/archive/v2.7.4.tar.gz</code></li>
+<li>解压该文件<br><code># tar zxvf v2.7.4.tar.gz</code></li>
+<li>【配置】，configure用来生成Makefile，指定安装到 /usr/local/git，为下一步的编译做准备<br><code># ./configure --prefix=/usr/local/git</code></li>
+<li>【编译】，根据makefile的定义，调用源代码、函数库、编译器来编译<br><code># make configure</code></li>
+<li>【安装】<br><code># make install</code></li>
+<li>将Git添加至环境变量中<br><code># echo &quot;export PATH=$PATH:/usr/local/git/bin&quot; &gt;&gt; /etc/bashrc</code></li>
+<li>在当前bash环境下读取并执行/etc/bashrc中的每一条命令，使之立刻生效<br><code># source /etc/bashrc</code></li>
+</ol>
+<p>经过以上过程，Git就安装完成了，我们可以查看Git的版本：<br><code># git --version</code></p>
+<p>如下所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/git-version.png" alt=""></p>
+<p>具体git知识的学习与git使用，参见<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的git教程</a>。</p>
+<hr>
+<h2 id="GitLab相关知识介绍"><a href="#GitLab相关知识介绍" class="headerlink" title="GitLab相关知识介绍"></a>GitLab相关知识介绍</h2><p>　　首先，GitLab的官网是<a href="https://about.gitlab.com/gitlab-com/" target="_blank" rel="external">https://about.gitlab.com/gitlab-com/</a>，这里有最权威的文档与介绍。其次，GitLab中文社区<a href="http://www.gitlab.cc/" target="_blank" rel="external">http://www.gitlab.cc/</a>也比较活跃，可以在上面找找有没有类似的问题。<br>　　Gitlab是一个用Ruby on Rails开发的开源项目管理程序，可以通过WEB界面进行访问公开的或者私人项目。它和GitHub有类似的功能，能够浏览源代码，管理缺陷和注释。GitLab拥有Git仓库管理，code reviews(代码审查)，issue tracking(问题跟踪)，wikis等功能，GitLab搭配GitLab CI，能更简单的实现持续集成和自动部署。还可以使用issue，milestones，逐行code reviwe等功能进行团队协作，查看项目动态。GitLab可无缝集成Slack，Hipchat，LDAP，JIRA，Jenkins等其他流行的工具，提供了非常多的webhooks和完善的API。<br>　　GitLab社区版是开源的，可以免费下载使用。GitLab由超过1000人的社区维护。GitLab企业版提供深度的LDAP和Active Directory集成，以及Jira和Jenkins集成。<br>　　而无论是GitLab还是GitHub，都可以说是一种管理工具，其本质都是要学会Git的思想与使用。推荐<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰的git教程</a>。<br>　　Gitlab官方文档对于Gitlab的原理和重要组件有详细的说明，这里就不再展开了，但要推荐<a href="http://www.jianshu.com/p/a22eaa1fcfe7" target="_blank" rel="external">一位学长的帖子</a>，他在帖子中讲述了一些对于Gitlab工作流程和重要组件的理解，值得一读。</p>
+<hr>
+<h2 id="GitLab搭建配置的完整过程"><a href="#GitLab搭建配置的完整过程" class="headerlink" title="GitLab搭建配置的完整过程"></a>GitLab搭建配置的完整过程</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>　　GitLab官网上有详细的安装说明，选择操作系统版本后按步骤操作即可。但是<strong>阿里云主机无法连接GitLab Yum源</strong>，因此选择rpm包安装方式。</p>
+<ol>
+<li>使用curl命令获取相应文件<br><code># curl -LJO https://mirror.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-8.5.4-ce.0.el7.x86_64.rpm</code></li>
+<li>rpm方式安装<br><code># rpm -i gitlab-ce-8.5.4-ce.0.el7.x86_64.rpm</code><br>结果如图：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab%E5%AE%89%E8%A3%85.png" alt=""></li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>　　我们在<a href="http://gcidea.info/2016/12/02/lamp/" target="_blank" rel="external">上一篇文章</a>的“phpMyAdmin的安装与配置 3.测试”中提到，由于我的网站线上环境、GitLab都是搭建在一台服务器上的，因此在默认情况下会产生端口冲突。于是做出如下处理。</p>
+<ol>
+<li>修改Apache端口为4040<br>使用命令：<br><code># cd etc/httpd/conf/</code><br><code># vi httpd.conf</code><br>注释掉Listen 80，改为Listen 4040<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/listen4040.png" alt=""></li>
+<li><p>配置GitLab<br>GitLab的配置文件默认位于/etc/gitlab/gitlab.rb<br>使用命令：<br><code># cd /etc/gitlab</code><br><code># vi gitlab.rb</code><br>在该文件的一开始就有关于external_url的配置，这里我填的就是我的阿里云ECS主机的ip地址。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-port-conf.png" alt=""></p>
+<p>这里注意，在配置url时直接指定一个未被占用的端口即可。如果不指定端口（仅填写域名或者IP地址），那么默认的是80端口，此时就必须保证Apache使用的不是80默认端口（修改方法见上述内容），否则冲突。<br>配置完成后，还要使用如下命令使之生效：<br><code># gitlab-ctl reconfigure</code></p>
+</li>
+</ol>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>　　按照上述过程，GitLab本身的基本配置就可以了。打开浏览器输入external_url地址访问GitLab，却出现了如下界面：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-502.png" alt=""><br><strong>原因</strong>：<br>查阅了相关资料，引起502的原因多样，比如设置的超时时间过短等。经过排查，我这里遇到这个问题是因为阿里云centos7默认的虚拟内存swap交换分区设置过小导致的。<br><strong>解决方法</strong>：<br>增加系统的swap分区：</p>
+<ol>
+<li>新建一个分区，创建/home/swap分区文件。文件的大小是1024000个block，1个block为1024，所以这里空间是1G<br><code># dd if=/dev/zero of=/home/swap/swap bs=1024 count=1024000</code></li>
+<li>将该分区格式化成swap分区，使其成为有效状态<br><code># swapon /home/swap/swap</code></li>
+<li>查看最新的分区情况：</li>
+</ol>
+<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/free.png" alt=""></p>
+<p>发现swap分区已经创建成功。但这里还有一个问题，<strong>当系统重启后，这块分区将会消失</strong>。为此，我们需要将新分区设置为开机自动挂载。/etc/fstab文件正是负责配置Linux开机时自动挂载分区的，对其进行修改。<br>使用命令：<br><code># cd /etc</code><br><code># vi fstab</code><br>在最后增加如下一句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/swap/swap/swap swap swap defaults 0 0</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/fstab-swap.png" alt=""></p>
+<p>配置完分区后，再次访问external_url的地址，就可以看到正常的GitLab登录页。默认用户名：admin@local.host，密码5iveL!fe，登陆后可修改。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-ce.png" alt=""><br>GitLab的管理员面板(Admin area)如下，在这里我们可以新增成员，创建项目，新建分组，邀请成员进入项目，项目持续集成配置等等，具体的问题可以进行相应搜索。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-panel.png" alt=""></p>
+<p>至此，我们就成功搭建了GitLab~</p>
+<hr>
+<h2 id="GitLab-CI相关知识介绍"><a href="#GitLab-CI相关知识介绍" class="headerlink" title="GitLab-CI相关知识介绍"></a>GitLab-CI相关知识介绍</h2><p>　　目前，我们已经拥有了自己的GitLab仓库，可以进行正常的开发和版本控制了。我们现在需要考虑这样的场景：<font color="#2ca6cb">在团队合作开发中，每天每位成员都要做出很多修改，向GitHub仓库提交大量代码，且时间不定。版本库中代码虽是最新的，可是线上部署的却没有同时更新，如果测试人员需要及时跟进，或者比如APP端的同学需要调用最新的接口进行测试，就需要手动在线上进行部署，为了保证实时性一天可能就要部署很多次，烦。</font><br>　　这种场景，当然被很多人注意到了，CI–持续集成正是说的这样的问题。</p>
+<blockquote>
+<p>持续集成(Continuous integration)是一种软件开发实践，即团队开发成员经常集成它们的工作，通过每个成员每天至少集成一次，也就意味着每天可能会发生多次集成。每次集成都通过自动化的构建（包括编译，发布，自动化测试）来验证，从而尽早地发现集成错误。</p>
+</blockquote>
+<p>　　强大的GitLab自然也考虑到了这个问题。GitLab-CE 8.0以上的版本已经将GitLab-CI集成进了GitLab，并且默认开启。所以不需要像以前一样再单独安装GitLab-CI并且为GitLab-CI开启单独的Server。但是GitLab-Runner还是需要我们单独安装的，来配合GitLab-CI使用。为此，这部分我们来详细讨论一下GitLab-CI相关问题。<br>　　GitLab官网上提供了详尽的CI文档<a href="http://doc.gitlab.com/ce/ci/" target="_blank" rel="external">http://doc.gitlab.com/ce/ci/</a>，可以查阅。<br>　　关于GitLab-Runner的介绍，这里我要<strong><font color="red">引用</font></strong>一下<a href="">那位学长的另一篇帖子</a>中的一部分介绍，如下。</p>
+<blockquote>
+<p>　　GitLab-Runner是配合GitLab-CI进行使用的。一般地，GitLab里面的每一个工程都会定义一个属于这个工程的软件集成脚本，用来自动化地完成一些软件集成工作。当这个工程的仓库代码发生变动时，比如有人push了代码，GitLab就会将这个变动通知GitLab-CI。这时GitLab-CI会找出与这个工程相关联的Runner，并通知这些Runner把代码更新到本地并执行预定义好的执行脚本。</p>
+<p>　　所以，GitLab-Runner就是一个用来执行软件集成脚本的东西。你可以想象一下：Runner就像一个个的工人，而GitLab-CI就是这些工人的一个管理中心，所有工人都要在GitLab-CI里面登记注册，并且表明自己是为哪个工程服务的。当相应的工程发生变化时，GitLab-CI就会通知相应的工人执行软件集成脚本。如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-runner.png" alt=""><br>Runner类型<br>　　GitLab-Runner可以分类两种类型：Shared Runner（共享型）和Specific Runner（指定型）。<br><strong>Shared Runner</strong>：这种Runner（工人）是所有工程都能够用的。只有系统管理员能够创建Shared Runner。<br><strong>Specific Runner</strong>：这种Runner（工人）只能为指定的工程服务。拥有该工程访问权限的人都能够为该工程创建Shared Runner。</p>
+<p>文／tsyeyuanfeng（简书作者）<br>原文链接：<a href="http://www.jianshu.com/p/2b43151fb92e" target="_blank" rel="external">http://www.jianshu.com/p/2b43151fb92e</a><br>著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。</p>
+</blockquote>
+<hr>
+<h2 id="GitLab-CI安装配置的完整过程"><a href="#GitLab-CI安装配置的完整过程" class="headerlink" title="GitLab-CI安装配置的完整过程"></a>GitLab-CI安装配置的完整过程</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>　　之前已经说过，GitLab-CE 8.0以上的版本已经将GitLab-CI集成进了GitLab，因此下面安装GitLab-Runner。<br>　　官网确实给出了详细的安装方式（针对各种操作系统）<a href="https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/blob/master/docs/install/linux-repository.md" target="_blank" rel="external">https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/blob/master/docs/install/linux-repository.md</a>，但是，我也确实无论如何都无法下载下来文档中提到的yum源。。。<br>为此，我“换了种方式”下载了rpm包，使用Xftp将rpm文件放进了阿里云ECS的centos系统中，再通过rpm命令进行了安装，绕了个大圈，如图：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/multi-runner%E5%AE%89%E8%A3%85.png" alt=""></p>
+<h3 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h3><p>　　安装好gitlab-ci-multi-runner后，我们就可以用它向GitLab-CI注册Runner了。<br>　　根据官网的介绍，如果我们需要注册Shared Runner，就在管理员面板Admin Area中获取token和url，如下图：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/shared-runner.png" alt=""></p>
+<p>　　如果我们需要注册Specific Runner，就要在该项目的setting中的runner面板中获取token和url，如下图：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/specific-runner-1.png" alt=""><br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/specific-runner-2.png" alt=""></p>
+<p>  这里，我是新建了一个Specific Runner，使用命令：<code># gitlab-ci-multi-runner register</code> 操作如下:<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/register.png" alt=""></p>
+<p>  注册成功后，我们可以在/etc/gitlab-runner/config.toml中看到runner的配置信息：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/toml.png" alt=""></p>
+<p>  但是这个配置信息在runner运行时候并没有起到实质作用，因为在接下来要讲到的运行runner中，命令中必须还要带上这个配置信息中的一些内容，可以说这个配置信息只是起到了一个记录作用。</p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>runner注册完成之后还必须让它运行起来，否则无法接收到GitLab-CI的通知或执行脚本。我们使用命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># gitlab-ci-multi-runner run-single --url http://***.***.***.***/ci --token ************** --executor shell</span><br></pre></td></tr></table></figure></p>
+<p>运行配置好的runner，其中–url、–token和–executor参数是必须的，具体值与配置文件中的相同。其他参数可根据具体情况设置。</p>
+<p>使用如下命令了解更多：<br><code># gitlab-ci-multi-runner run-single --help</code></p>
+<p>当具有多个runner，可以使用命令：<br><code># gitlab-ci-multi-runner run</code><br>来批量运行，使用如下命令了解更多：<br><code># gitlab-ci-multi-runner run --help</code></p>
+<p>目前还有一个问题，当runner运行后，它是保持在前台的，这时候terminal不能再做其他事情，这当然不行。因此我们要把runner运行这件事做成一个服务。<br>  使用命令：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># gitlab-ci-multi-runner install --service gitlab-runner --working-directory /home/gitlab-runner --config /etc/gitlab-runner/config.toml --user gitlab-runner</span><br></pre></td></tr></table></figure></p>
+<p>  将这个runner做成服务，并启动：<br>  <code># gitlab-ci-multi-runner start --service gitlab-runner</code><br>  这时候，在terminal中可以继续操作，查看后台进程：<br>  <code># ps -aux | grep gitlab-runner</code><br>  发现正常运行：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/ps-gitlab-runner.png" alt=""></p>
+<p>  至此，GitLab-CI和GitLab-Runner配置完成。</p>
+<hr>
+<h2 id="GitLab-CI持续集成服务的测试"><a href="#GitLab-CI持续集成服务的测试" class="headerlink" title="GitLab-CI持续集成服务的测试"></a>GitLab-CI持续集成服务的测试</h2><p>　　前文完成了GitLab-CI持续集成服务的配置，那么它是如何起作用的呢？<br>　　我们已知，我们针对我们项目的仓库已经建立了一个Specific Runner，并且将它运行起来了，runner就处于一种“监听状态”。当项目成员向仓库提交代码，runner检测到像git push这样的事件后，就会做出一些处理，实现项目的自动部署持续集成。具体的：<br>　　我们需要在根目录下建立一个名为.gitlab-ci.yml的文件。当整个项目进行git push的时候，runner会去检查这个文件，去执行里面的脚本。<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/gitlab-ci-yml.png" alt=""></p>
+<p>　　我们想实现的效果是：每次提交的新代码都可以自动部署到/var/www/html目录下，这样访问网站或者API接口就可以获取最新情况。那么，其实就相当于删除原先该目录下的代码，将新提交的内容放在该目录下。这样就很清楚脚本怎么写了，只需要两句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  script:</span><br><span class="line">    - rm -rf /var/www/html/project_name</span><br><span class="line">    - cp -r ../project_name /var/www/html/project_name</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>解释：</p>
+<ol>
+<li>使用rm命令加上-rf递归强制删除项目文件/var/www/html/project_name。</li>
+<li>使用命令cp加上-r参数递归复制相对于当前.gitlab-ci.yml文件的上一层目录的整个项目文件，复制到/var/www/html/project_name目录。</li>
+<li>之所以是复制../project_name目录，是因为runner检测到.gitlab-ci.yml文件时，是处于最新的工程文件夹的根目录下，这样的话../project_name就表示了最新的代码。(更多的，我们可以了解到项目文件其实是位于这个runner的子目录下的：<br>/home/gitlab-runner/builds/runner_name/0/root/project_name)</li>
+</ol>
+</blockquote>
+<p>　　实践一下，在工程中建立.gitlab-ci.yml文件，并对项目中代码做出一些修改（内容随意，主要是想看到修改效果），检查冲突后git push。这时在GitLab中该项目的控制面板的Builds菜单中监测，发现build失败了：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/build-failed.png" alt=""></p>
+<p>  查看以上日志可以发现是在删除时遇到了权限问题，没有写的权限，于是更改整个项目目录的权限为777，保证删除顺利。<br>  之后再次git push测试，发现build成功：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/build-success.png" alt=""></p>
+<p>  (注：如果考虑直接将权限变为777这种比较暴力的方法的安全性问题，也可以采用更换文件夹所属用户组的方法，改owner为gitlab-runner：)<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># chown -R gitlab-runner /var/www/html/ebfinance</span><br></pre></td></tr></table></figure></p>
+<p>  这时，去Apache配置的4040端口去查看网站的效果，发现已经是最新代码对应的效果，说明自动部署成功！</p>
+<hr>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>　　至此，本文的主要内容就结束了。我们拥有了自己的项目仓库并且可以自动部署持续集成，这大大提高了我们的效率。同时，这套完整的配置过程中也可以学习到很多东西，踩了不少坑，积累了一些经验，明白了一些原理，总之还是收获很大的。</p>
+<p>　　</p>
+<p>　　</p>
+
+        </div>
+        <footer class="article-footer">
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2016/12/05/gitlab-gitlab-ci/" data-title="【阿里云ECS】GitLab的搭建配置过程和GitLab-CI服务的使用" data-url="http://www.gcidea.info/2016/12/05/gitlab-gitlab-ci/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/gcidea" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/u/2180985772" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="envelope" href="/about/#联系方式" target="_blank">
+                        <i class="icon fa fa-envelope"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/12/09/css-center/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            CSS居中问题总结
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2016/12/02/lamp/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">【阿里云ECS】LAMP开发环境的完整搭建配置过程</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        <div class="widget-wrap widget-wechat">
+            <a href="javascript:;">
+                <img src="http://7xrz3r.com1.z0.glb.clouddn.com/wechat.jpg" width="280" alt="微信扫一扫 gaochang932372" title="微信扫一扫 gaochang932372">
+            </a>
+        </div>
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/25/mobile-flexible-solution/" class="title">移动端HTML5响应式布局适配解决方案</a></p>
+                            <p class="item-date"><time datetime="2017-01-25T05:22:04.000Z" itemprop="datePublished">2017-01-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/搭建部署/环境统一/">环境统一</a></p>
+                            <p class="item-title"><a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="title">使用SwitchyOmega和Charles配置统一的开发和生产环境</a></p>
+                            <p class="item-date"><time datetime="2017-01-23T06:13:51.000Z" itemprop="datePublished">2017-01-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端工程化/">前端工程化</a></p>
+                            <p class="item-title"><a href="/2017/01/20/react-dva-structure/" class="title">React开发框架Dva.js项目结构简单小结</a></p>
+                            <p class="item-date"><time datetime="2017-01-20T05:54:23.000Z" itemprop="datePublished">2017-01-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/17/git-merge-git-rebase/" class="title">git merge 与 git rebase 的对比分析</a></p>
+                            <p class="item-date"><time datetime="2017-01-17T13:45:08.000Z" itemprop="datePublished">2017-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/12/js-compare/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p77.jpg)" alt="JavaScript中比较运算的详细总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/01/12/js-compare/" class="title">JavaScript中比较运算的详细总结</a></p>
+                            <p class="item-date"><time datetime="2017-01-12T14:11:06.000Z" itemprop="datePublished">2017-01-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AngularJs/">AngularJs</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE综合/">FE综合</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jQuery/">jQuery</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端工程化/">前端工程化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/">搭建部署</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/代理/">代理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/工程/">工程</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/环境统一/">环境统一</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/阿里云/">阿里云</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">93</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">47</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">45</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJs/">AngularJs</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-CSS3/">CSS/CSS3</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Charles/">Charles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cookie/">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FE/">FE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-HTML5/">HTML/HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">45</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LAMP/">LAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/">Less</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/">MVVM</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestfulAPI/">RestfulAPI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SwitchyOmega/">SwitchyOmega</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">92</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss源订阅/">rss源订阅</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sitemap/">sitemap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理配置/">代理配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兼容性/">兼容性</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化拖拽/">可视化拖拽</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/响应式/">响应式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">76</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实现-应用/">实现/应用</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成CI/">持续集成CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搭建部署/">搭建部署</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面渲染/">页面渲染</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AngularJs/" style="font-size: 13.64px;">AngularJs</a> <a href="/tags/CSS-CSS3/" style="font-size: 14.55px;">CSS/CSS3</a> <a href="/tags/Charles/" style="font-size: 10px;">Charles</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/FE/" style="font-size: 11.82px;">FE</a> <a href="/tags/HTML-HTML5/" style="font-size: 12.73px;">HTML/HTML5</a> <a href="/tags/HTTP/" style="font-size: 12.73px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 18.18px;">JavaScript</a> <a href="/tags/LAMP/" style="font-size: 10px;">LAMP</a> <a href="/tags/Less/" style="font-size: 10.91px;">Less</a> <a href="/tags/MVVM/" style="font-size: 13.64px;">MVVM</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/React/" style="font-size: 11.82px;">React</a> <a href="/tags/RestfulAPI/" style="font-size: 10px;">RestfulAPI</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/SwitchyOmega/" style="font-size: 10px;">SwitchyOmega</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/rss源订阅/" style="font-size: 10px;">rss源订阅</a> <a href="/tags/sitemap/" style="font-size: 10px;">sitemap</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/代理配置/" style="font-size: 10px;">代理配置</a> <a href="/tags/兼容性/" style="font-size: 10.91px;">兼容性</a> <a href="/tags/前端工程化/" style="font-size: 16.36px;">前端工程化</a> <a href="/tags/前端框架/" style="font-size: 15.45px;">前端框架</a> <a href="/tags/可视化拖拽/" style="font-size: 10.91px;">可视化拖拽</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/学习笔记/" style="font-size: 19.09px;">学习笔记</a> <a href="/tags/实现-应用/" style="font-size: 17.27px;">实现/应用</a> <a href="/tags/异步编程/" style="font-size: 10.91px;">异步编程</a> <a href="/tags/持续集成CI/" style="font-size: 10px;">持续集成CI</a> <a href="/tags/搭建部署/" style="font-size: 14.55px;">搭建部署</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器/" style="font-size: 10.91px;">浏览器</a> <a href="/tags/版本控制/" style="font-size: 11.82px;">版本控制</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/转载/" style="font-size: 11.82px;">转载</a> <a href="/tags/闭包/" style="font-size: 10.91px;">闭包</a> <a href="/tags/页面渲染/" style="font-size: 10px;">页面渲染</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://www.zn2studio.com" target="_blank">Zn2Studio 锌离子工作室</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.ebupt.com" target="_blank">东信北邮信息技术有限公司</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://bbs.byr.cn" target="_blank">北邮人论坛-北邮人的温馨家园</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <!--<a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>-->
+            <a id="back-to-top" href="javascript:;"><b>gcidea</b></a>
+            <div style="position: fixed;bottom: 195px;right: 26px;">
+                <a id="back-to-top2" href="javascript:;" title="回到顶部"><i class="icon fa fa-angle-up"></i></a>
+            </div>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 - 2017 Gao Chang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>.</p>
+                <p><b>The relentless pursuit of perfection.</b></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gcidea'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

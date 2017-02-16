@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="gcidea">
+    <meta name="description" content="gcidea's blog">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+    
+    <title>【转·译】编写不唐突的JavaScript(unobtrusive-javascript)的七条准则 | GCidea&#39;s blog</title>
+    
+        <meta name="keywords" content="学习笔记,JavaScript,转载" />
+    
+    <meta name="description" content="前言　　“unobtrusive javascript—不唐突的JavaScript”最早是从《JavaScript权威指南》中看到，13.2节最先出现了这个概念。我认为也可以描述成“优雅的JavaScript”，指的是那些拥有良好的编码规范，易于维护的JavaScript写法和注意事项。进而在网上看到了这篇“编写不唐突的JavaScript(unobtrusive-javascript)的七条">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转·译】编写不唐突的JavaScript(unobtrusive-javascript)的七条准则">
+<meta property="og:url" content="http://www.gcidea.info/2016/03/27/seven-rules-of-unobtrusive-javascript/index.html">
+<meta property="og:site_name" content="GCidea's blog">
+<meta property="og:description" content="前言　　“unobtrusive javascript—不唐突的JavaScript”最早是从《JavaScript权威指南》中看到，13.2节最先出现了这个概念。我认为也可以描述成“优雅的JavaScript”，指的是那些拥有良好的编码规范，易于维护的JavaScript写法和注意事项。进而在网上看到了这篇“编写不唐突的JavaScript(unobtrusive-javascript)的七条">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p110.jpg">
+<meta property="og:updated_time" content="2017-02-11T05:42:03.040Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转·译】编写不唐突的JavaScript(unobtrusive-javascript)的七条准则">
+<meta name="twitter:description" content="前言　　“unobtrusive javascript—不唐突的JavaScript”最早是从《JavaScript权威指南》中看到，13.2节最先出现了这个概念。我认为也可以描述成“优雅的JavaScript”，指的是那些拥有良好的编码规范，易于维护的JavaScript写法和注意事项。进而在网上看到了这篇“编写不唐突的JavaScript(unobtrusive-javascript)的七条">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p110.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="GCidea&#39;s blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad03ecfd99432fefa83cbc4dea96fac4";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p style="font-size: 23px; color: #fa862e; text-align: center;
+                                font-family: PingFangSC-Medium, Hiragino Sans GB, Heiti SC,
+                                Microsoft YaHei, WenQuanYi Micro Hei, sans-serif">gaochang | BUPT</p>
+                            <p class="subtitle">The relentless pursuit of perfection.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/archives">归档</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories">分类</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">标签</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tag-cloud">标签云</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/projects">开源组件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...（以下列表内容顺序不分先后）" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/JavaScript/">JavaScript</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-seven-rules-of-unobtrusive-javascript" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        【转·译】编写不唐突的JavaScript(unobtrusive-javascript)的七条准则
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2016/03/27/seven-rules-of-unobtrusive-javascript/" class="article-date">
+    <time datetime="2016-03-27T09:09:38.000Z" itemprop="datePublished">2016-03-27</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <div id="toc" style="margin-bottom: -1.6em;margin-top: 1em">
+                <strong>目录</strong>
+            </div>
+            <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原文内容"><span class="toc-number">2.</span> <span class="toc-text">原文内容</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不要做任何假设（JavaScript是一个不可靠的助手）"><span class="toc-number">2.1.</span> <span class="toc-text">不要做任何假设（JavaScript是一个不可靠的助手）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#找出钩子和节点关系（HTML是脚本的基石）"><span class="toc-number">2.2.</span> <span class="toc-text">找出钩子和节点关系（HTML是脚本的基石）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#把遍历交给专家来做-（CSS，更快地遍历DOM）"><span class="toc-number">2.3.</span> <span class="toc-text">把遍历交给专家来做 （CSS，更快地遍历DOM）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解浏览器和用户（在既有的使用模式上创建你所需要的东西）"><span class="toc-number">2.4.</span> <span class="toc-text">理解浏览器和用户（在既有的使用模式上创建你所需要的东西）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解事件（事件处理会引起改变）"><span class="toc-number">2.5.</span> <span class="toc-text">理解事件（事件处理会引起改变）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为他人着想（命名空间，作用域和模式）"><span class="toc-number">2.6.</span> <span class="toc-text">为他人着想（命名空间，作用域和模式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为接手的开发者考虑（使维护更加容易）"><span class="toc-number">2.7.</span> <span class="toc-text">为接手的开发者考虑（使维护更加容易）</span></a></li></ul></li></ul>
+            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p110.jpg" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　“unobtrusive javascript—不唐突的JavaScript”最早是从《JavaScript权威指南》中看到，13.2节最先出现了这个概念。我认为也可以描述成“优雅的JavaScript”，指的是那些拥有良好的编码规范，易于维护的JavaScript写法和注意事项。进而在网上看到了这篇“编写不唐突的JavaScript(unobtrusive-javascript)的七条准则”，做以记录和分享。</p>
+<hr>
+<h2 id="原文内容"><a href="#原文内容" class="headerlink" title="原文内容"></a>原文内容</h2><h3 id="不要做任何假设（JavaScript是一个不可靠的助手）"><a href="#不要做任何假设（JavaScript是一个不可靠的助手）" class="headerlink" title="不要做任何假设（JavaScript是一个不可靠的助手）"></a>不要做任何假设（JavaScript是一个不可靠的助手）</h3><ul>
+<li>不要假设JavaScript是可用的，你最好认为它很有可能是不可用的，而不是直接依赖于它。</li>
+<li>在你经过测试确认一些方法和属性可以使用之前，不要假设浏览器支持它们。</li>
+<li>不要假设HTML代码如你想象的那样正确，每次都要进行检查，并且当其不可用的时候就什么也不要做。</li>
+<li>让JavaScript的功能独立于输入设备。</li>
+<li>要记住其他的脚本可能会影响你的JavaScript的功能，所以要保证你的脚本的作用域尽可能地安全。</li>
+</ul>
+<p>在开始设计你的脚本之前，要考虑的第一件事情就是检查一下你要为其编写脚本的HTML代码，看看有什么东西可以帮助你达到目的。</p>
+<hr>
+<h3 id="找出钩子和节点关系（HTML是脚本的基石）"><a href="#找出钩子和节点关系（HTML是脚本的基石）" class="headerlink" title="找出钩子和节点关系（HTML是脚本的基石）"></a>找出钩子和节点关系（HTML是脚本的基石）</h3><p>　　在开始编写脚本之前，要先看一下你要为之编写JavaScript的HTML。如果HTML是未经组织的或者未知的，那么你几乎不可能有一个好的脚本编写方案——很可能就会出现下面的情况：要么是会用JavaScript创建太多标记，要么就是应用太依赖于JavaScript。<br>　　在HTML中有一些东西需要考虑，那就是钩子和节点关系。<br>(1) HTML 钩子<br>　　HTML最初的和最重要的钩子就是ID，而且ID可以通过最快的DOM方法——getElementById访问到。如果在一个有效的HTML文档中所有的ID都是独一无二的话（在IE中关于name和ID有一个bug，不过有些好的类库解决了这个问题），使用ID就是安全可靠的，并且易于测试，而且如果直接用name来作为对象进行操作，在FF下是无效的，会报此对象未定义的错误。<br>　　其他一些钩子就是是HTML元素和CSS类，HTML元素可以通过getElementsByTagName方法访问，而在多数浏览器中都还不能通过原生的DOM方法来访问CSS类。不过，有很多外部类库提供了可以访问CSS类名（类似于 getElementsByClassName） 的方法。</p>
+<p>(2) HTML 节点关系<br>　　关于HTML的另外比较有意思的一点就是标记之间的关系，思考下面的问题：</p>
+<ul>
+<li>要怎样才可以最容易地、通过最少的DOM遍历来到达目标节点？</li>
+<li>通过修改什么标记，可以尽可能多地访问到需要修改的子节点？</li>
+<li>一个给定的元素有什么属性或信息可以用来到达另外一个元素？</li>
+</ul>
+<p>遍历DOM很耗资源而且速度很慢，这就是为什么要尽量使用浏览器中已经在使用的技术来做这件事情。</p>
+<hr>
+<h3 id="把遍历交给专家来做-（CSS，更快地遍历DOM）"><a href="#把遍历交给专家来做-（CSS，更快地遍历DOM）" class="headerlink" title="把遍历交给专家来做 （CSS，更快地遍历DOM）"></a>把遍历交给专家来做 （CSS，更快地遍历DOM）</h3><p>　　有关DOM的脚本和使用方法或属性（getElementsByTagName, nextSibling, previousSibling,parentNode以及其它）来遍历DOM似乎迷惑了很多人，这点很有意思。而有趣的是，我们其实早已经通过另外一种技术—CSS—做了这些事情。<br>　　CSS是这样一种技术，它使用CSS选择器，通过遍历DOM来访问目标元素并改变它们的视觉属性。一段复杂的使用DOM的JavaScript可以用一个CSS选择器取代：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var n = document.getElementById('nav');  </span><br><span class="line">if(n)&#123;  </span><br><span class="line">    var as = n.getElementsByTagName('a');  </span><br><span class="line">    if(as.length &gt; 0)&#123;  </span><br><span class="line">        for(var i=0;as[i];i++)&#123;  </span><br><span class="line">            as[i].style.color = '#369';  </span><br><span class="line">            as[i].style.textDecoration = 'none';  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"> </span><br><span class="line">/* 下面的代码与上面功能一样 */ </span><br><span class="line"> </span><br><span class="line">#nav a&#123;  </span><br><span class="line">    color:#369;  </span><br><span class="line">    text-decoration:none;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这是一个可以好好利用的很强大的技巧。你可以通过动态为DOM中高层的元素添加class或者更改元素ID来实现这一点。如果你使用DOM为文档的body添加了一个CSS类，那么设计师就很可以容易地定义文档的静态版本和动态版本。如下所示：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">JavaScript:  </span><br><span class="line"> </span><br><span class="line">var dynamicClass = 'js';  </span><br><span class="line">var b = document.body;  </span><br><span class="line">b.className = b.className ? b.className + ' js' : 'js';  </span><br><span class="line"> </span><br><span class="line">CSS:  </span><br><span class="line"> </span><br><span class="line">/* 静态版本 */ </span><br><span class="line"> </span><br><span class="line">#nav &#123;  </span><br><span class="line">...</span><br><span class="line">&#125;  </span><br><span class="line"> </span><br><span class="line">/* 动态版本 */ </span><br><span class="line"> </span><br><span class="line">body.js #nav &#123;  </span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="理解浏览器和用户（在既有的使用模式上创建你所需要的东西）"><a href="#理解浏览器和用户（在既有的使用模式上创建你所需要的东西）" class="headerlink" title="理解浏览器和用户（在既有的使用模式上创建你所需要的东西）"></a>理解浏览器和用户（在既有的使用模式上创建你所需要的东西）</h3><p>　　理解浏览器是如何工作的（尤其是浏览器是如何崩溃的）以及用户期望的是什么。不考虑浏览器你也可以很容易地使用JavaScript创建一个完全不同的界面。拖拽界面，折叠区域，滚动条和滑动块都可以使用JavaScript创建，但是这个问题并不是个简单的技术问题，你需要思考下面的问题：</p>
+<ul>
+<li>这个新界面可以独立于输入设备么？如果不能，那么可以依赖哪些东西？</li>
+<li>我创建的这个新界面是否遵循了浏览器或者其它富界面的准则（你可以通过鼠标在多级菜单中直接切换吗？还是需要使用tab键？）</li>
+<li>我需要提供什么功能但是这个功能是依赖于JavaScript的?</li>
+</ul>
+<p>　　最后一个问题其实不是问题，因为如果需要你就可以使用DOM来凭空创建HTML。关于这点的一个例子就是“打印”链接，由于浏览器没有提供一个非JavaScript的打印文档功能，所以你需要使用DOM来创建这类链接。同样地，一个实现了展开和收缩内容模块的、可以点击的标题栏也属于这种情况。标题栏不能被键盘激活，但是链接可以。所以为了创建一个可以点击的标题栏你需要使用JavaScript将链接加入进去，然后所有使用键盘的用户就可以收缩和展开内容模块了。解决这类问题的极好的资源就是设计模式库。至于要知道浏览器中的哪些东西是独立于输入设备的，那就要靠经验的积累了。首先你要理解的就是事件处理机制。</p>
+<hr>
+<h3 id="理解事件（事件处理会引起改变）"><a href="#理解事件（事件处理会引起改变）" class="headerlink" title="理解事件（事件处理会引起改变）"></a>理解事件（事件处理会引起改变）</h3><p>　　事件处理是走向不唐突的JavaScript的第二步。重点不是让所有的东西都变得可以拖拽、可以点击或者为它们添加内联处理，而是理解事件处理是一个可以完全分离出来的东西。我们已经将HTML，CSS和JavaScript分离开来，但是在事件处理的分离方面却没有走得很远。<br>　　事件处理器会监听发生在文档中元素上的变化，如果有事件发生，处理器就会找到一个很奇妙的对象（一般会是一个名为e的参数），这个对象会告诉元素发生了什么以及可以用它做什么。<br>　　对于大多数事件处理来说，真正有趣的是它不止发生在你想要访问的元素上，还会在DOM中较高层级的所有元素上发生（即事件冒泡，但是并不是所有的事件都是这样，focus和blur事件是例外）。举例来说，利用这个特性你可以为一个导航列表只添加一个事件处理器，并且使用事件处理器的方法来获取真正触发事件的元素。这种技术叫做事件委托，它有几点好处：</p>
+<ul>
+<li>你只需要检查一个元素是否存在，而不需要检查每个元素 </li>
+<li>你可以动态地添加或者删除子节点而并不需要删除相应的事件处理器 </li>
+<li>你可以在不同的元素上对相同的事件做出响应 </li>
+</ul>
+<p>　　需要记住的另一件事是，在事件向父元素传播的时候你可以停止它而且你可以覆写掉HTML元素（比如链接）的缺省行为。不过，有时候这并不是个好主意，因为浏览器赋予HTML元素那些行为是有原因的。举个例子，链接可能会指向页面内的某个目标，不去修改它们能确保用户可以将页面当前的脚本状态也加入书签。</p>
+<hr>
+<h3 id="为他人着想（命名空间，作用域和模式）"><a href="#为他人着想（命名空间，作用域和模式）" class="headerlink" title="为他人着想（命名空间，作用域和模式）"></a>为他人着想（命名空间，作用域和模式）</h3><p>　　你的代码几乎从来不会是文档中的唯一的脚本代码。所以保证你的代码里没有其它脚本可以覆盖的全局函数或者全局变量就显得尤为重要。有一些可用的模式可以来避免这个问题，最基础的一点就是要使用<code>var</code>关键字来初始化所有的变量。假设我们编写了下面的脚本：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nav = <span class="built_in">document</span>.getElementById(<span class="string">'nav'</span>);  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    show();  </span><br><span class="line">    <span class="keyword">if</span>(nav.className === <span class="string">'show'</span>)&#123;  </span><br><span class="line">        reset();  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line"><span class="comment">// do stuff  </span></span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reset</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line"><span class="comment">// do stuff  </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码中包含了一个叫做nav的全局变量和名字分别为 init,show 和 reset 的三个函数。这些函数都可以访问到nav这个变量并且可以通过函数名互相访问:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nav = <span class="built_in">document</span>.getElementById(<span class="string">'nav'</span>);  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    show();  </span><br><span class="line">    <span class="keyword">if</span>(nav.className === <span class="string">'show'</span>)&#123;  </span><br><span class="line">    reset();  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">// do stuff  </span></span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> c = nav.className;  </span><br><span class="line">    <span class="comment">// do stuff  </span></span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reset</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="comment">// do stuff  </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>你可以将代码封装到一个对象中来避免上面的那种全局式编码，这样就可以将函数变成对象中的方法，将全局变量变成对象中的属性。你需要使用“名字+冒号”的方式来定义方法和属性，并且需要在每个属性或方法后面加上逗号作为分割符。如下所示：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myScript = &#123;  </span><br><span class="line">    nav: <span class="built_in">document</span>.getElementById(<span class="string">'nav'</span>),  </span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;,  </span><br><span class="line">    show: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;,  </span><br><span class="line">    reset: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所有的方法和属性都可以通过使用“类名+点操作符”的方式从外部和内部访问到。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myScript = &#123;  </span><br><span class="line">    nav: <span class="built_in">document</span>.getElementById(<span class="string">'nav'</span>),  </span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        myScript.show();  </span><br><span class="line">        <span class="keyword">if</span>(myScript.nav.className === <span class="string">'show'</span>)&#123;  </span><br><span class="line">            myScript.reset();  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;,  </span><br><span class="line">    show:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        <span class="keyword">var</span> c = myScript.nav.className;  </span><br><span class="line">        <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;,  </span><br><span class="line">    reset:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这种模式的缺点就是，你每次从一个方法中访问其它方法或属性都必须在前面加上对象的名字，而且对象中的所有东西都是可以从外部访问的。如果你只是想要部分代码可以被文档中的其他脚本访问，可以考虑下面的模块（module）模式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myScript = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="comment">//这些都是私有方法和属性  </span></span><br><span class="line">    <span class="keyword">var</span> nav = <span class="built_in">document</span>.getElementById(<span class="string">'nav'</span>);  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">reset</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;  </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//公有的方法和属性被使用对象语法包装在return 语句里面  </span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        public:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        &#125;,</span><br><span class="line">        foo:<span class="string">'bar'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure></p>
+<p>你可以使用和前面的代码同样的方式访问返回的公有的属性和方法，在本示例中可以这么访问：myScript.public() 和 myScript.foo 。但是这里还有一点让人觉得不舒服：当你想要从外部或者从内部的一个私有方法中访问公有方法的时候，还是要写一个冗长的名字（对象的名字可以非常长）。为了避免这一点，你需要将它们定义为私有的并且在return语句中只返回一个别名：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myScript = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="comment">// 这些都是私有方法和属性  </span></span><br><span class="line">    <span class="keyword">var</span> nav = <span class="built_in">document</span>.getElementById(<span class="string">'nav'</span>);  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">reset</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">var</span> foo = <span class="string">'bar'</span>;  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">public</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line"></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">//只返回指向那些你想要访问的私有方法和属性的指针 </span></span><br><span class="line">    <span class="keyword">return</span> &#123;  </span><br><span class="line">        public:public,  </span><br><span class="line">        foo:foo  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure></p>
+<p>这就保证了代码风格一致性，并且你可以使用短一点的别名来访问其中的方法或属性。 </p>
+<p>如果你不想对外部暴露任何的方法或属性，你可以将所有的代码封装到一个匿名方法中，并在它的定义结束后立刻执行它：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="comment">// these are all private methods and properties  </span></span><br><span class="line">    <span class="keyword">var</span> nav = <span class="built_in">document</span>.getElementById(<span class="string">'nav'</span>);  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        <span class="comment">// do stuff  </span></span><br><span class="line">        show(); <span class="comment">// 这里不需要类名前缀  </span></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">reset</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;  </span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<p>对于那些只执行一次并且对其它函数没有依赖的代码模块来说，这种模式非常好。 </p>
+<p>通过遵循上面的那些规则，你的代码更好地为用户工作，也可以使你的代码在机器上更好地运行并与其他开发者的代码和睦相处。不过，还有一个群体需要考虑到。 </p>
+<hr>
+<h3 id="为接手的开发者考虑（使维护更加容易）"><a href="#为接手的开发者考虑（使维护更加容易）" class="headerlink" title="为接手的开发者考虑（使维护更加容易）"></a>为接手的开发者考虑（使维护更加容易）</h3><p>使你的脚本真正地unobtrusive的最后一步是在编写完代码之后仔细检查一遍，并且要照顾到一旦脚本上线之后要接手你的代码的开发者。考虑下面的问题： </p>
+<ul>
+<li>所有的变量和函数名字是否合理并且易于理解？ </li>
+<li>代码是否经过了合理的组织？从头到尾都很流畅吗？ </li>
+<li>所有的依赖都显而易见吗？ </li>
+<li>在那些可能引起混淆的地方都添加了注释吗？ </li>
+</ul>
+<p>最重要的一点是：要认识到文档中的HTML和CSS代码相对于JavaScript来说更有可能被改变（因为它们负责视觉效果）。所以不要在脚本代码中包含任何可以让终端用户看到的class和ID，而是要将它们分离出来放到一个保存配置信息的对象中:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">myscript = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> config = &#123;  </span><br><span class="line">        navigationID:<span class="string">'nav'</span>,  </span><br><span class="line">        visibleClass:<span class="string">'show'</span>  </span><br><span class="line">    &#125;;  </span><br><span class="line">    <span class="keyword">var</span> nav = <span class="built_in">document</span>.getElementById(config.navigationID);  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        show();  </span><br><span class="line">        <span class="keyword">if</span>(nav.className === config.visibleClass)&#123;  </span><br><span class="line">        reset();  </span><br><span class="line">        &#125;;  </span><br><span class="line">        <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;;  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        <span class="keyword">var</span> c = nav.className;  </span><br><span class="line">        <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;;  </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">reset</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        <span class="comment">// do stuff  </span></span><br><span class="line">    &#125;;  </span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure></p>
+<p>这样维护者就知道去哪里修改这些属性，而不需要改动其他代码，这一点对于大量版本迭代维护十分重要。 </p>
+<hr>
+
+        </div>
+        <footer class="article-footer">
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2016/03/27/seven-rules-of-unobtrusive-javascript/" data-title="【转·译】编写不唐突的JavaScript(unobtrusive-javascript)的七条准则" data-url="http://www.gcidea.info/2016/03/27/seven-rules-of-unobtrusive-javascript/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/gcidea" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/u/2180985772" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="envelope" href="/about/#联系方式" target="_blank">
+                        <i class="icon fa fa-envelope"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/03/28/html-character-entity/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            HTML转义字符
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2016/03/19/2d-array-miss-a-comma/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">JavaScript中二维数组声明时漏写一个逗号所产生现象的探究</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        <div class="widget-wrap widget-wechat">
+            <a href="javascript:;">
+                <img src="http://7xrz3r.com1.z0.glb.clouddn.com/wechat.jpg" width="280" alt="微信扫一扫 gaochang932372" title="微信扫一扫 gaochang932372">
+            </a>
+        </div>
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/25/mobile-flexible-solution/" class="title">移动端HTML5响应式布局适配解决方案</a></p>
+                            <p class="item-date"><time datetime="2017-01-25T05:22:04.000Z" itemprop="datePublished">2017-01-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/搭建部署/环境统一/">环境统一</a></p>
+                            <p class="item-title"><a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="title">使用SwitchyOmega和Charles配置统一的开发和生产环境</a></p>
+                            <p class="item-date"><time datetime="2017-01-23T06:13:51.000Z" itemprop="datePublished">2017-01-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端工程化/">前端工程化</a></p>
+                            <p class="item-title"><a href="/2017/01/20/react-dva-structure/" class="title">React开发框架Dva.js项目结构简单小结</a></p>
+                            <p class="item-date"><time datetime="2017-01-20T05:54:23.000Z" itemprop="datePublished">2017-01-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/17/git-merge-git-rebase/" class="title">git merge 与 git rebase 的对比分析</a></p>
+                            <p class="item-date"><time datetime="2017-01-17T13:45:08.000Z" itemprop="datePublished">2017-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/12/js-compare/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p77.jpg)" alt="JavaScript中比较运算的详细总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/01/12/js-compare/" class="title">JavaScript中比较运算的详细总结</a></p>
+                            <p class="item-date"><time datetime="2017-01-12T14:11:06.000Z" itemprop="datePublished">2017-01-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AngularJs/">AngularJs</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE综合/">FE综合</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jQuery/">jQuery</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端工程化/">前端工程化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/">搭建部署</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/代理/">代理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/工程/">工程</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/环境统一/">环境统一</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/阿里云/">阿里云</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">93</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">47</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">45</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJs/">AngularJs</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-CSS3/">CSS/CSS3</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Charles/">Charles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cookie/">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FE/">FE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-HTML5/">HTML/HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">45</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LAMP/">LAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/">Less</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/">MVVM</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestfulAPI/">RestfulAPI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SwitchyOmega/">SwitchyOmega</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">92</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss源订阅/">rss源订阅</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sitemap/">sitemap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理配置/">代理配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兼容性/">兼容性</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化拖拽/">可视化拖拽</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/响应式/">响应式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">76</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实现-应用/">实现/应用</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成CI/">持续集成CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搭建部署/">搭建部署</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面渲染/">页面渲染</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AngularJs/" style="font-size: 13.64px;">AngularJs</a> <a href="/tags/CSS-CSS3/" style="font-size: 14.55px;">CSS/CSS3</a> <a href="/tags/Charles/" style="font-size: 10px;">Charles</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/FE/" style="font-size: 11.82px;">FE</a> <a href="/tags/HTML-HTML5/" style="font-size: 12.73px;">HTML/HTML5</a> <a href="/tags/HTTP/" style="font-size: 12.73px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 18.18px;">JavaScript</a> <a href="/tags/LAMP/" style="font-size: 10px;">LAMP</a> <a href="/tags/Less/" style="font-size: 10.91px;">Less</a> <a href="/tags/MVVM/" style="font-size: 13.64px;">MVVM</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/React/" style="font-size: 11.82px;">React</a> <a href="/tags/RestfulAPI/" style="font-size: 10px;">RestfulAPI</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/SwitchyOmega/" style="font-size: 10px;">SwitchyOmega</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/rss源订阅/" style="font-size: 10px;">rss源订阅</a> <a href="/tags/sitemap/" style="font-size: 10px;">sitemap</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/代理配置/" style="font-size: 10px;">代理配置</a> <a href="/tags/兼容性/" style="font-size: 10.91px;">兼容性</a> <a href="/tags/前端工程化/" style="font-size: 16.36px;">前端工程化</a> <a href="/tags/前端框架/" style="font-size: 15.45px;">前端框架</a> <a href="/tags/可视化拖拽/" style="font-size: 10.91px;">可视化拖拽</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/学习笔记/" style="font-size: 19.09px;">学习笔记</a> <a href="/tags/实现-应用/" style="font-size: 17.27px;">实现/应用</a> <a href="/tags/异步编程/" style="font-size: 10.91px;">异步编程</a> <a href="/tags/持续集成CI/" style="font-size: 10px;">持续集成CI</a> <a href="/tags/搭建部署/" style="font-size: 14.55px;">搭建部署</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器/" style="font-size: 10.91px;">浏览器</a> <a href="/tags/版本控制/" style="font-size: 11.82px;">版本控制</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/转载/" style="font-size: 11.82px;">转载</a> <a href="/tags/闭包/" style="font-size: 10.91px;">闭包</a> <a href="/tags/页面渲染/" style="font-size: 10px;">页面渲染</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://www.zn2studio.com" target="_blank">Zn2Studio 锌离子工作室</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.ebupt.com" target="_blank">东信北邮信息技术有限公司</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://bbs.byr.cn" target="_blank">北邮人论坛-北邮人的温馨家园</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <!--<a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>-->
+            <a id="back-to-top" href="javascript:;"><b>gcidea</b></a>
+            <div style="position: fixed;bottom: 195px;right: 26px;">
+                <a id="back-to-top2" href="javascript:;" title="回到顶部"><i class="icon fa fa-angle-up"></i></a>
+            </div>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 - 2017 Gao Chang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>.</p>
+                <p><b>The relentless pursuit of perfection.</b></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gcidea'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

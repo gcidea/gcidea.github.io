@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="gcidea">
+    <meta name="description" content="gcidea's blog">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+    
+    <title>jQuery的ajax()方法详细分析 | GCidea&#39;s blog</title>
+    
+        <meta name="keywords" content="学习笔记,JavaScript,jQuery" />
+    
+    <meta name="description" content="前言　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。
+
+核心　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery的ajax()方法详细分析">
+<meta property="og:url" content="http://www.gcidea.info/2016/04/11/ajax-param/index.html">
+<meta property="og:site_name" content="GCidea's blog">
+<meta property="og:description" content="前言　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。
+
+核心　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p3.jpg">
+<meta property="og:updated_time" content="2017-02-11T05:34:29.718Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery的ajax()方法详细分析">
+<meta name="twitter:description" content="前言　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。
+
+核心　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p3.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="GCidea&#39;s blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad03ecfd99432fefa83cbc4dea96fac4";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p style="font-size: 23px; color: #fa862e; text-align: center;
+                                font-family: PingFangSC-Medium, Hiragino Sans GB, Heiti SC,
+                                Microsoft YaHei, WenQuanYi Micro Hei, sans-serif">gaochang | BUPT</p>
+                            <p class="subtitle">The relentless pursuit of perfection.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/archives">归档</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories">分类</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">标签</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tag-cloud">标签云</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/projects">开源组件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...（以下列表内容顺序不分先后）" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/jQuery/">jQuery</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-ajax-param" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        jQuery的ajax()方法详细分析
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2016/04/11/ajax-param/" class="article-date">
+    <time datetime="2016-04-11T09:23:24.000Z" itemprop="datePublished">2016-04-11</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <div id="toc" style="margin-bottom: -1.6em;margin-top: 1em">
+                <strong>目录</strong>
+            </div>
+            <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心"><span class="toc-number">2.</span> <span class="toc-text">核心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类"><span class="toc-number">3.</span> <span class="toc-text">分类</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#全局Ajax事件处理函数（Global-Ajax-Event-Handlers）"><span class="toc-number">3.1.</span> <span class="toc-text">全局Ajax事件处理函数（Global Ajax Event Handlers）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#辅助函数（Helper-Functions）"><span class="toc-number">3.2.</span> <span class="toc-text">辅助函数（Helper Functions）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础接口（Low-Level-Interface）"><span class="toc-number">3.3.</span> <span class="toc-text">基础接口（Low-Level Interface）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速写函数（Shorthand-Methods）"><span class="toc-number">3.4.</span> <span class="toc-text">速写函数（Shorthand Methods）</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ajax-详细介绍"><span class="toc-number">4.</span> <span class="toc-text">$.ajax()详细介绍</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#描述：使用该方法可发起一个异步HTTP请求。"><span class="toc-number">4.1.</span> <span class="toc-text">描述：使用该方法可发起一个异步HTTP请求。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#version1-5-格式：jQuery-ajax-url-settings"><span class="toc-number">4.2.</span> <span class="toc-text">version1.5 格式：jQuery.ajax( url [, settings ] )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#version1-0-格式：jQuery-ajax-settings"><span class="toc-number">4.3.</span> <span class="toc-text">version1.0 格式：jQuery.ajax( [ settings ] )</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">5.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jqXHR对象"><span class="toc-number">6.</span> <span class="toc-text">jqXHR对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回调函数队列（Callback-Function-Queues）"><span class="toc-number">7.</span> <span class="toc-text">回调函数队列（Callback Function Queues）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型（Data-Types）"><span class="toc-number">8.</span> <span class="toc-text">数据类型（Data Types）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#向服务器发送数据（Sending-Data-to-the-Server）"><span class="toc-number">9.</span> <span class="toc-text">向服务器发送数据（Sending Data to the Server）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高级选项（Advanced-Options）"><span class="toc-number">10.</span> <span class="toc-text">高级选项（Advanced Options）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可扩展的Ajax（Extending-Ajax）"><span class="toc-number">11.</span> <span class="toc-text">可扩展的Ajax（Extending Ajax）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用转换器（Using-Converters）"><span class="toc-number">12.</span> <span class="toc-text">使用转换器（Using Converters）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附加提醒"><span class="toc-number">13.</span> <span class="toc-text">附加提醒</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">14.</span> <span class="toc-text">总结</span></a></li></ul>
+            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p3.jpg" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。</p>
+<hr>
+<h2 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h2><p>　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对象。通过以下jQuery源码片段可以看出(jquery-2.2.0)：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jQuery.ajaxSettings.xhr = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">window</span>.XMLHttpRequest();</span><br><span class="line">    &#125; <span class="keyword">catch</span> ( e ) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>  关于XMLHttpRequest的更多属性、方法和演示，可以参考<a href="http://www.w3school.com.cn/xmldom/dom_http.asp" target="_blank" rel="external">W3School XML DOM - XMLHttpRequest 对象</a>。</p>
+<hr>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>　　其实，$.ajax只是jQuery对异步加载封装的函数之一。jQuery对Ajax相关内容分为了4类：</p>
+<h3 id="全局Ajax事件处理函数（Global-Ajax-Event-Handlers）"><a href="#全局Ajax事件处理函数（Global-Ajax-Event-Handlers）" class="headerlink" title="全局Ajax事件处理函数（Global Ajax Event Handlers）"></a>全局Ajax事件处理函数（Global Ajax Event Handlers）</h3><p>　　说明：这些函数定义了页面上任何特定ajax事件（比如初始化或完成）触发时将会被调用的处理程序。有：</p>
+<ul>
+<li>.ajaxComplete()<br>　　当ajax请求执行完成时触发，与.ajaxSuccess()不同，通过ajaxComplete()方法规定的函数会在请求完成时运行，即使请求并未成功。</li>
+<li>.ajaxError()<br>　　当ajax请求执行错误时触发。</li>
+<li>.ajaxSend()<br>　　当ajax请求将要发送时触发。</li>
+<li>.ajaxStart()<br>　　当ajax请求将要发送时，jQuery将会检查此时是否有其他ajax请求正在进行。如果进程中没有，那么jQuery将会触发.ajaxStart()事件。</li>
+<li>.ajaxStop()<br>　　当一个ajax请求执行完成时，jQuery将会检查此时是否还有其他ajax请求。如果没有了，jQuery将会触发.ajaxStop()事件。另外，如果上一个ajax请求的beforeSend()回调函数的返回值为false，也会触发.ajaxStop()事件。</li>
+<li>.ajaxSuccess()<br>　　当ajax请求成功完成（无论何时）触发。此时，由.ajaxSuccess()方法定义的任何函数都会被执行。</li>
+</ul>
+<blockquote>
+<p>注：jQuery ajax中各个事件执行顺序如下：<br>1.ajaxStart(全局事件)<br>2.beforeSend<br>3.ajaxSend(全局事件)<br>4.success<br>5.ajaxSuccess(全局事件)<br>6.error<br>7.ajaxError (全局事件)<br>8.complete<br>9.ajaxComplete(全局事件)<br>10.ajaxStop(全局事件)</p>
+</blockquote>
+<h3 id="辅助函数（Helper-Functions）"><a href="#辅助函数（Helper-Functions）" class="headerlink" title="辅助函数（Helper Functions）"></a>辅助函数（Helper Functions）</h3><p>　　说明：这些函数在执行ajax任务时起到辅助作用，对参数变量等进行一些转化处理。</p>
+<ul>
+<li>.param()<br>　　这个函数是内部用来将表单元素值转换为序列化字符串表达式的。使用该函数将会把一个数组，空对象或者jQuery对象序列化成适合于URL查询或者ajax请求的形式。（键值对形式）</li>
+<li>.serialize()<br>　　使用该方法将会得到标准URL编码格式的字符串，可作用于已选择（或填写）确定值的jQuery对象。</li>
+<li>.serializeArray()<br>　　该方法会返回JavaScript对象数组，可用于编码成JSON字符串，可作用于jQuery表单对象集合。</li>
+</ul>
+<h3 id="基础接口（Low-Level-Interface）"><a href="#基础接口（Low-Level-Interface）" class="headerlink" title="基础接口（Low-Level Interface）"></a>基础接口（Low-Level Interface）</h3><p>　　说明：这些方法可用于编写任意的ajax请求。</p>
+<ul>
+<li>.ajax()<br>　　使用该方法可发起一个异步HTTP请求。<font color="red">具体内容是本文重点，稍后单独描述</font>。</li>
+<li>.ajaxPrefilter()<br>　　该函数在请求被发出及执行$.ajax过程前，可定制ajax请求的选项或修改已有选项。</li>
+<li>.ajaxSetup()<br>　　该函数用于定制后续将要使用的ajax请求的参数的默认值。该方法目前已不推荐使用。</li>
+<li>.ajaxTransport()<br>　　该函数用于创建实际承载ajax数据传输的对象。</li>
+</ul>
+<h3 id="速写函数（Shorthand-Methods）"><a href="#速写函数（Shorthand-Methods）" class="headerlink" title="速写函数（Shorthand Methods）"></a>速写函数（Shorthand Methods）</h3><p>　　说明：这些函数将更加常用的ajax请求抽出来，从而可以使用更简短的名字调用更明确的方法。</p>
+<ul>
+<li>.get()<br>　　使用HTTP的GET请求从服务器获取数据。</li>
+<li>.getJSON()<br>　　使用HTTP的GET请求从服务器获取JSON格式编码的数据。</li>
+<li>.getScript()<br>　　使用HTTP的GET请求从服务器获取一个JavaScript文件，然后执行之。</li>
+<li>.post()<br>　　使用HTTP的POST请求从服务器获取数据。</li>
+<li>.load()<br>　　从服务器获取数据并且将返回的HTML代码放在匹配的元素中。</li>
+</ul>
+<hr>
+<h2 id="ajax-详细介绍"><a href="#ajax-详细介绍" class="headerlink" title="$.ajax()详细介绍"></a>$.ajax()详细介绍</h2><h3 id="描述：使用该方法可发起一个异步HTTP请求。"><a href="#描述：使用该方法可发起一个异步HTTP请求。" class="headerlink" title="描述：使用该方法可发起一个异步HTTP请求。"></a>描述：使用该方法可发起一个异步HTTP请求。</h3><h3 id="version1-5-格式：jQuery-ajax-url-settings"><a href="#version1-5-格式：jQuery-ajax-url-settings" class="headerlink" title="version1.5 格式：jQuery.ajax( url [, settings ] )"></a>version1.5 格式：jQuery.ajax( url [, settings ] )</h3><p><strong>url</strong><br>　　类型：String<br>　　该字符串所代表的URL即请求将要发送到的地方。<br><strong>settings</strong><br>　　类型：PlainObject（PlainObject是一种包含0个或多个键值对的JavaScript对象，换句话说，就是“对象的对象”。之所以被称为“PlainObject”，是为了和其他类型的JavaScript对象作区分：比如说，null，用户自定义数组，或者宿主对象-document/window。这些对象使用typeof方法都会得到“Object”返回值。而对于PlainObject，则可以使用jQuery.isPlainObject()来判断是否成立。）<br>　　settings中一系列的键值对集合配置了一个ajax请求。所有设置都是可选的。默认设置可以使用之前提到的.ajaxSetup()。下面的内容则针对所有的setting选项给出了详细解释。</p>
+<h3 id="version1-0-格式：jQuery-ajax-settings"><a href="#version1-0-格式：jQuery-ajax-settings" class="headerlink" title="version1.0 格式：jQuery.ajax( [ settings ] )"></a>version1.0 格式：jQuery.ajax( [ settings ] )</h3><p>settings的所有可选项：<br><strong>1.accepts</strong>(缺省：取决于DataType)<br>　　类型：PlainObject<br>　　是键值对的集合，将一种给定的dataType转化为对应的MIME type(MIME类型就是设定某种扩展名的文件用一种应用程序来打开的方式类型)。它将会在请求头中发送。这个头告诉服务器它需要什么类型的返回值。比如说，下面就定义了一种自定义类型：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  accepts: &#123;</span><br><span class="line">    mycustomtype: <span class="string">'application/x-some-custom-type'</span></span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// Instructions for how to deserialize a `mycustomtype`</span></span><br><span class="line">  converters: &#123;</span><br><span class="line">    <span class="string">'text mycustomtype'</span>: <span class="function"><span class="keyword">function</span>(<span class="params">result</span>) </span>&#123;</span><br><span class="line">      <span class="comment">// Do Stuff</span></span><br><span class="line">      <span class="keyword">return</span> newresult;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// Expect a `mycustomtype` back from server</span></span><br><span class="line">  dataType: <span class="string">'mycustomtype'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：为了让accepts正常工作，必须配套声明converters。</p>
+</blockquote>
+<p><strong>2.async</strong>(缺省：true)<br>　　类型：Boolean<br>　　默认情况下，所有请求都是异步传送的，如果想要一个同步的请求，可以把该参数设置为false。跨域请求以及dataType为“jsonp”的请求不支持同步选项。值得注意的是，同步请求可能造成浏览器短时的“锁定”，在请求执行期间无法做出任何其他响应。在jQuery1.8版本中，对jqXHR使用async: false会引起过时声明；并且，你不能使用jqXHR的jqXHR.done()或者jqXHR.success()方法，相应的要使用success/error/complete回调参数选项才行。</p>
+<p><strong>3.beforeSend</strong><br>　　类型：Function( jqXHR jqXHR, PlainObject settings )<br>　　这是一个请求前回调函数，可以用来在请求发送之前修改jqXHR(在jQuery1.4.x版本中是XMLHTTPRequest对象)。如果返回值为false，将会取消该次请求。在jQuery1.5中，无论什么请求类型，beforeSend函数都会被调用。</p>
+<p><strong>4.cache</strong>(缺省：true，但当dataType为“script”或者“jsonp”时候，缺省值是false)<br>　　类型：Boolean<br>  如果设置为false，将会强制浏览器不缓存请求的页面。<font color="red">注意：设置为false时，只在HEAD或者GET请求下能正确工作</font>。它的工作方式是在GET请求参数后面拼接上“_={timestamp}”。</p>
+<p><strong>5.complete</strong><br>　　类型：Function( jqXHR jqXHR, String textStatus )<br>　　当一个请求完成后将会调用该函数（<font color="red">特别注意：是当success或者error回调函数执行完成后才调用该函数</font>）。参数中的textStatus有”success”, “notmodified”, “nocontent”, “error”, “timeout”, “abort”, “parsererror” 这些种类。在jQuery1.5版本中，该选项还可以接收函数数组，其中的各个函数将会按顺序调用。</p>
+<p><strong>6.contents</strong><br>　　类型：PlainObject<br>　　这个对象是“字符串/正则表达式”这样的键值对的集合，这决定了jQuery如何解析返回值，一般是鉴定content type。</p>
+<p><strong>7.contentType</strong>(缺省：’application/x-www-form-urlencoded; charset=UTF-8’)<br>　　类型：String<br>　　当给服务器发送数据时会使用这个参数指定的类型。默认值能很好地适用于大多数情况。如果你在$.ajax()中显示地写明了该参数，那么即使没有数据，也会给服务器发送数据。在jQuery1.6中，可以通过设置为false来告诉jQuery不要设置http请求头中的content type参数。注意：W3C的XMLHttpRequest规范规定，字符集总是UTF-8。因此指定其他字符集不会让浏览器强制转换编码方式。还要注意：对于跨域请求，如果contentType设置的不是application/x-www-form-urlencoded, multipart/form-data, or text/plain这三个中的一个，将会触发浏览器向服务器发送一个含有预检功能HTTP-OPTIONS方法的请求，用以判断实际发送的请求是否安全。</p>
+<p><strong>8.context</strong><br>　　类型：PlainObject<br>　　这个参数指定的对象是ajax相关的所有回调函数的作用域。默认情况下，是一个代表着在调用中使用的ajax配置项的对象。比如，指定一个DOM元素作为context将会使得它（这个元素）成为complete这个回调函数的上下文环境（作用域），如下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: <span class="string">"test.html"</span>,</span><br><span class="line">  context: <span class="built_in">document</span>.body</span><br><span class="line">&#125;).done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $( <span class="keyword">this</span> ).addClass( <span class="string">"done"</span> );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>9.converters</strong>(缺省：{“* text”: window.String, “text html”: true, “text json”: jQuery.parseJSON, “text xml”: jQuery.parseXML})<br>　　类型：PlainObject<br>　　这是一个数据类型到数据类型转换的配置项，每个值都是一个函数，它返回响应值转换好的值。以上默认值表示：</p>
+<ul>
+<li>“* text”: window.String—调用String方法将任意内容转换为字符串。</li>
+<li>“text html”: true—文本转换为HTML（true表示不需要转换，直接返回）。</li>
+<li>“text json”: jQuery.parseJSON—调用jQuery.parseJSON方法将文本转换为JSON。</li>
+<li>“text xml”: jQuery.parseXML—调用jQuery.parseXML方法将文本转换为XML。</li>
+</ul>
+<p><strong>10.crossDomain</strong>(缺省：同域请求为false，跨域请求为true)<br>　　类型：Boolean<br>　　设置为true后将允许服务端重定向至另一个域名。</p>
+<p><strong>11.data</strong><br>　　类型：PlainObject 或 String 或 Array<br>　　这里设置的是将要发送给服务端的数据。如果不是一个字符串，将会被转换成查询字符串的形式。对于GET请求，它将会被添加在url尾部。可以参考“processData”这个选项来阻止这个自动的过程。给data设置的值必须是键值对形式。如果data的类型是array，那么如果序列化同键多值的元素，将取决于“traditional”这个配置项（下面将会讲述）。</p>
+<p><strong>12.dataFilter</strong><br>　　类型：Function( String data, String type ) =&gt; Anything<br>　　这个是用来处理XMLHttpRequest原生响应数据的函数。有预处理净化响应的功能。你应该返回净化后的数据。函数接收两个参数，一个是服务器返回的原生数据，另一个是dataType参数指定的内容。</p>
+<p><strong>13.dataType</strong>(缺省：Intelligent Guess (xml, json, script, or html))<br>　　类型：String<br>　　该参数指定你想要从服务器获取的数据类型。如果你没有指定，那么jQuery会尝试根据响应的MIME类型来推断。 (XML MIME type 将会输出XML, 在jQuery1.4中JSON将会输出一个JavaScript对象, script将会执行一段脚本, 其他任何类型将会作为字符串返回)，可选项（同时也是下面将要提到的success回调函数的第一个参数）有：</p>
+<ul>
+<li>“xml”:返回一个jQuery能够处理的XML文档。</li>
+<li>“html”:将HTML作为纯文本返回，其中包含的<script></script>标签将会在插入DOM元素时起作用。</li>
+<li>“script”:将响应结果视为js代码执行，并且返回纯文本。默认情况下会通过在URL中附加查询字符串“_=[TIMESTAMP]”的方式来禁用缓存结果，除非显式设置了cache参数为true。注意: 在远程请求时(不在同一个域下)，所有POST请求都将转为GET请求。</li>
+<li>“json”:将响应结果视为JSON进行解析，并且返回一个JavaScript对象。除非在请求参数中显式声明<code>jsonp: false</code>，否则跨域时写为“json”都会被转化为“jsonp”。JSON数据将会以严格方式进行解析，任何格式有误的JSON都会被拒绝并抛出错误。另外，在jQuery1.9中，空的返回值也是不被允许的，取而代之地，服务端必须返回一个null或者{}</li>
+<li>“jsonp”:以 JSONP 的方式载入 JSON 数据块。会自动在所请求的URL最后添加”?callback=?”。默认情况下会通过在URL中附加查询字符串“_=[TIMESTAMP]”的方式来禁用缓存结果，除非显式设置了cache参数为true。使用 JSONP 形式调用函数时，如 “myurl?callback=?” jQuery 将自动替换 ? 为正确的函数名，以执行回调函数。</li>
+<li><p>“text”: 指定返回纯文本字符串。</p>
+<blockquote>
+<p>注：一种“多样，以空格分隔”的写法—在jQuery1.5中，jQuery可以对dataType进行转化，从请求头中Content-Type转化成你需要的形式。比如，如果你想让一个text响应被视作XML进行处理，那么dataType这个参数就可以写为”text xml”。再有，你也可以让一个返回JSONP类型数据的请求的响应被视为text进行接收，并且视为XML进行解析：”jsonp text xml”。类似的，可以使用”jsonp xml”简写,首先会尝试从jsonp到xml的转换，如果转换失败，就先将jsonp转换成text, 然后再由 text转换成xml。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>14.error</strong><br>　　类型：Function( jqXHR jqXHR, String textStatus, String errorThrown )<br>　　如果请求失败将会调用此函数。该函数接收3个参数：第一个是jqXHR（jQuery1.4.x版本中是XMLHttpRequest）对象；第二个是描述错误类型的字符串；第三个是可选的异常对象。其中，第二个参数除了“null”以外的可能值有“timeout”，“error”，“abort”，“parsererror”。当发生一个HTTP错误时，第三个参数将会接收HTTP响应状态的文本部分，比如“Not Found”或“Internal Server Error”。在jQuery1.5版本中，该选项还可以接收函数数组，其中的各个函数将会按顺序调用。注意：该参数不会被跨域脚本或者跨域JSONP请求调用。</p>
+<p><strong>15.global</strong>(缺省：true)<br>　　类型：Boolean<br>　　该参数决定是否触发上文中分类里提到的第一类函数—全局Ajax事件处理函数（Global Ajax Event Handlers）。此参数可用来控制不同的ajax事件。</p>
+<p><strong>16.headers</strong>(缺省：{})<br>　　类型：PlainObject<br>　　该参数附加的键值对将随使用XMLHttpRequest传输的请求一起发送。<code>X-Requested-With: XMLHttpRequest</code>总是会被添加上，但是它的默认值XMLHttpRequest在此可以改变。此处设置的值可以被beforeSend中的设置覆盖。</p>
+<p><strong>17.ifModified</strong>(缺省：false)<br>　　类型：Boolean<br>　　该参数将设置只有当上次请求的响应改变时，请求才能成功。这是通过检查HTTP响应报文中的Last-Modified字段实现的。默认值是false，忽略HTTP头信息。在jQuery1.4中，也会检查服务器指定的’etag’属性来确定数据没有被修改过。</p>
+<p><strong>18.isLocal</strong>(缺省：取决于当前的位置协议)<br>　　类型：Boolean<br>　　允许当前环境被认定为“本地”，（如文件系统），即使jQuery默认情况下不会这么做。以下协议目前公认为本地：<code>file</code>, <code>*-extension</code>和 <code>widget</code>。如果isLocal设置需要修改，建议在$.ajaxSetup()方法中这样做一次。</p>
+<p><strong>19.jsonp</strong><br>　　类型：String<br>　　通过该参数可以在一个jsonp跨域请求中重写回调函数的名字。这个值用来替代在”callback=?”这种GET或POST请求中URL参数里的”callback”部分，比如说，<code>{jsonp:&#39;onJSONPLoad&#39;}</code>的结果就是传给服务器的该部分参数将会变成<code>&#39;onJSONPLoad=?&#39;</code>。在jQuery1.5版本中，设置jsonp为false将阻止jQuery向请求URL中添加 “?callback”或试图使用”=?”转换。在这种情况下，你还应该明确设置jsonpCallback参数。例如, { jsonp: false, jsonpCallback: “callbackName” }。如果你不信任ajax请求的接收服务器，那么考虑到安全因素应该将jsonp设置为false。</p>
+<p><strong>20.jsonpCallback</strong><br>　　类型：String 或 Function()<br>　　为一个JSONP请求指明回调函数的名字。这个值将用来取代jQuery自动生成的随机函数名。这主要用来让jQuery生成一个独特的函数名，这样管理请求更容易，也能方便地提供回调函数和错误处理。当你想让浏览器缓存GET请求时，可能会需要指明回调函数。在jQuery1.5中，还可以将此参数的值设置为一个函数，在这种情况下函数的返回值就是jsonpCallback的值。</p>
+<p><strong>21.method</strong>(缺省：“GET”)<br>　　类型：String<br>　　该参数指明HTTP请求将要使用的方法（比如“GET”,“POST”,“PUT”）。</p>
+<p><strong>22.mimeType</strong><br>　　类型：String<br>　　该参数用来覆盖XHR的MIME类型。</p>
+<p><strong>23.password</strong><br>　　类型：String<br>　　用于响应HTTP访问认证请求的密码。</p>
+<p><strong>24.processData</strong>(缺省：true)<br>　　类型：Boolean<br>　　默认情况下，通过data选项传递进来的数据，如果是一个对象(技术上讲只要不是字符串)，都会处理转化成一个查询字符串，以配合默认内容类型 “application/x-www-form-urlencoded”。如果要发送DOM文档信息或其它不希望转换的信息，请设置为false。</p>
+<p><strong>25.scriptCharset</strong><br>　　类型：String<br>　　仅适用于当”script”传输使用时（例如，跨域的”jsonp”或 dataType选项为”script” 和 “GET”类型）。请求中使用在script标签上设置charset 属性。通常只在本地和远程的内容编码不同时使用。</p>
+<p><strong>26.statusCode</strong>(缺省：{})<br>　　类型：PlainObject<br>　　一组数值的HTTP代码和函数对象，当响应中有对应的状态码时，相应的函数将会被调用。例如，如果响应状态是404，将触发以下警报：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  $.ajax(&#123;</span><br><span class="line">  statusCode: &#123;</span><br><span class="line">    <span class="number">404</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      alert( <span class="string">"page not found"</span> );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  如果请求成功，则状态码函数将会获得与success回调函数相同的参数；如果返回了错误（包括3XX重定向），则会获得与error回调函数相同的参数。</p>
+<p><strong>27.success</strong><br>　　类型：Function( Anything data, String textStatus, jqXHR jqXHR )<br>　　请求成功将会调用该函数，该函数有3个函数：第一个是data，如果请求中指明了dataType参数或者dataFilter回调函数，返回数据将会按照指定格式进行格式化；第二个是描述状态的字符串；第三个是jqXHR（jQuery1.4.x版本中是XMLHttpRequest）对象。在jQuery1.5版本中，该选项还可以接收函数数组，其中的各个函数将会按顺序调用。</p>
+<p><strong>28.timeout</strong><br>　　类型：Number<br>　　设置请求超时时间（毫秒为单位）。此设置将覆盖$.ajaxSetup() 里的全局设置。超时时间的计算是根据$.ajax成功调用的时间，如果有其他请求正在进行并且浏览器没有可用连接，那么有可能一个请求在发送之前就已经超时了。在 jQuery 1.4.x 及更低版本中, 如果请求超时，XMLHttpRequest对象是处于无效状态;访问任何对象的成员可能会抛出一个异常。只有在 Firefox 3.0+,script 和 JSONP请求不会因超时而取消;即使是超时后到达的脚本也将运行。</p>
+<p><strong>29.traditional</strong><br>　　类型：Boolean<br>　　如果你想要用传统的方式来序列化数据，那么就设置为true。</p>
+<p><strong>30.type</strong>(缺省：’GET’)<br>　　类型：String<br>　　是<code>method</code>的别名，如果使用jQuery1.9.0之前的版本，应使用<code>type</code>。</p>
+<p><strong>31.url</strong>(缺省：当前页URL)<br>　　类型：String<br>　　请求将要送达的地址。</p>
+<p><strong>32.username</strong><br>　　类型：String<br>　　用于响应HTTP访问认证请求的用户名。</p>
+<p><strong>33.xhr</strong>(缺省：ActiveXObject (IE), XMLHttpRequest (其他))<br>　　类型：Function()<br>　　用于重写或者提供一个增强的XMLHttpRequest 对象。</p>
+<p><strong>34.xhrFields</strong><br>　　类型：PlainObject<br>　　“文件名-文件值”对构成的对象，用于设定原生的 XHR对象。例如，如果需要的话，在进行跨域请求时，你可以用它来设置withCredentials为true。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line"> url: a_cross_domain_url,</span><br><span class="line"> xhrFields: &#123;</span><br><span class="line">    withCredentials: <span class="literal">true</span></span><br><span class="line"> &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  在 jQuery 1.5中， withCredentials属性不会传递给原生的XHR,从而对于需要使用此属性的CORS请求，则只能忽略这个属性。出于这个原因，应使用jQuery1.5.1以上版本。</p>
+<hr>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>　　$.ajax()方法是jQuery中所有和ajax（异步请求）相关内容的基础。有时候我们不需要非得直接调用这个函数，因为有其他更高层一些的可选函数比如<code>$.get()</code>、<code>.load()</code>可供我们使用并且更易用。但是，如果有一些生僻的参数需要指定，还是$.ajax()更加灵活。$.ajax()是更加全面的，这也是为什么要深入讨论其每一个参数的目的。<br>　　在最简单的情况下，$.ajax()可以无参数使用：<code>$.ajax();</code>。<br>注意：上述使用方式是无参的，默认参数的设定可以通过$.ajaxSetup()函数来指定。另外，这种无参的使用方法，对加载当前页面的内容，并且对这个内容没有任何操作。如果想使用这个结果，则可以自己写一个回调函数。</p>
+<hr>
+<h2 id="jqXHR对象"><a href="#jqXHR对象" class="headerlink" title="jqXHR对象"></a>jqXHR对象</h2><p>　　在jQuery1.5及以上版本中，由$.ajax()返回的jQuery XMLHttpRequest (jqXHR)是浏览器原生XMLHttpRequest的一个超集。比如说，它具有responseText、responseXML属性以及getResponseHeader()方法。当传输机制不是是XMLHttpRequest时（例如，一个JSONP请求脚本，返回一个<script></script> 时），jqXHR对象尽可能的模拟原生的XHR功能。<br>　　在jQuery1.5.1及以上版本中，jqXHR对象还包含了overrideMimeType方法 (它在jQuery 1.4.x中是有效的，但是在jQuery 1.5中暂时的被移除)。.overrideMimeType()方法可用在beforeSend()的回调函数中，例如，修改响应的Content-Type信息头：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  $.ajax(&#123;</span><br><span class="line">  url: <span class="string">"http://fiddle.jshell.net/favicon.png"</span>,</span><br><span class="line">  beforeSend: <span class="function"><span class="keyword">function</span>(<span class="params"> xhr </span>) </span>&#123;</span><br><span class="line">    xhr.overrideMimeType( <span class="string">"text/plain; charset=x-user-defined"</span> );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"> data </span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ( <span class="built_in">console</span> &amp;&amp; <span class="built_in">console</span>.log ) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log( <span class="string">"Sample of data:"</span>, data.slice( <span class="number">0</span>, <span class="number">100</span> ) );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>  从 jQuery1.5开始，$.ajax()返回的jqXHR对象实现了Promise接口, 使它拥有了Promise的所有属性，方法和行为。当$.ajax()请求结束后，这些方法将有一个或多个函数作为参数传入。通常对于一个请求允许对多个回调函数进行赋值，甚至允许你在请求已经完成后，对回调函数进行赋值(如果该请求已经完成，则回调函数会被立刻调用)。</p>
+<ul>
+<li><strong>jqXHR.done(function( data, textStatus, jqXHR ) {});</strong><br>　　一个可供选择的 success 回调选项的构造函数，.done()方法取代了的过时的jqXHR.success()方法。</li>
+<li><strong>jqXHR.fail(function( jqXHR, textStatus, errorThrown ) {});</strong><br>　　一种可供选择的 error 回调选项的构造函数，.fail()方法取代了的过时的.error()方法。</li>
+<li><strong>jqXHR.always(function( data|jqXHR, textStatus, jqXHR|errorThrown ) { });</strong><br>　　一种可供选择的 complete 回调选项的构造函数，.always()方法取代了的过时的.complete()方法。<br>　　在响应一个成功的请求后，该函数的参数和.done()的参数是相同的：data, textStatus, 和 jqXHR 对象.对于失败的请求，参数和.fail()的参数是相同的：jqXHR 对象, textStatus, 和 errorThrown。</li>
+<li><strong>jqXHR.then(function( data, textStatus, jqXHR ) {}, function( jqXHR, textStatus, errorThrown ) {});</strong><br>　　包含了 .done() 和 .fail()方法的功能，（从 jQuery 1.8 开始）允许底层被操纵。</li>
+</ul>
+<blockquote>
+<p>弃用注意：jqXHR.success(), jqXHR.error(), 和 jqXHR.complete()回调从jQuery 1.8开始被弃用。它们将最终被取消，应做好准备使用jqXHR.done(), jqXHR.fail(), 和 jqXHR.always() 代替。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Assign handlers immediately after making the request,</span></span><br><span class="line"><span class="comment">// and remember the jqXHR object for this request</span></span><br><span class="line"><span class="keyword">var</span> jqxhr = $.ajax( <span class="string">"example.php"</span> )</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert( <span class="string">"success"</span> );</span><br><span class="line">  &#125;)</span><br><span class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert( <span class="string">"error"</span> );</span><br><span class="line">  &#125;)</span><br><span class="line">  .always(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert( <span class="string">"complete"</span> );</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// Perform other work here ...</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// Set another completion function for the request above</span></span><br><span class="line">jqxhr.always(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert( <span class="string">"second complete"</span> );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>this在所有的回调中所指向的引用，是上文提到的参数之一-context所指定的内容；如果没有指定context这个参数，那么this所引用的是Ajax配置项本身。</p>
+<p>　　为了向后兼容XMLHttpRequest ，jqXHR对象暴露了下列属性和方法：</p>
+<ul>
+<li>readyState</li>
+<li>status</li>
+<li>statusText</li>
+<li>responseXML 和/或 responseText：视底层响应是xml还是text而不同。</li>
+<li>setRequestHeader(name, value)：从标准出发，将旧值替换为新值，而不是将旧值和新值联系起来。</li>
+<li>getAllResponseHeaders()</li>
+<li>getResponseHeader()</li>
+<li>statusCode()</li>
+<li>abort()</li>
+</ul>
+<p>  　　这里并没有提供onreadystatechange属性，因为所有可以想到的需求都可以通过done, fail, always, 和 statusCode来实现。</p>
+<hr>
+<h2 id="回调函数队列（Callback-Function-Queues）"><a href="#回调函数队列（Callback-Function-Queues）" class="headerlink" title="回调函数队列（Callback Function Queues）"></a>回调函数队列（Callback Function Queues）</h2><p>　　beforeSend, error, dataFilter, success 和 complete都可以接收（多个）适时调用的回调函数。从jQuery1.5开始， fail ， done ，和从jQuery 1.6开始的always回调钩子（hooks）采用先入先出队列管理。这意味着你可以为每个挂钩分配多个回调。<br>  $.ajax()提供的回调hooks如下：</p>
+<ol>
+<li><code>beforeSend</code> 在发送请求之前调用，它接收jqXHR对象和settings作为参数对象。</li>
+<li><code>error</code> 在请求出错时调用。它们接受jqXHR ，字符串表示的错误类型，以及异常对象（如果有的话）。一些内置的错误会将 “abort”, “timeout”, “No Transport” 等字符串作为异常对象。</li>
+<li><code>dataFilter</code>  在请求成功之后调用。传入返回的数据以及dataType参数的值。并且必须返回新的数据（可能是处理过的）传递给success回调函数。</li>
+<li><code>success</code>  当请求成功并接收到返回数据之后调用。传入返回后的数据，以及包含成功代码的字符串和jqXHR对象。</li>
+<li><strong>Promise callbacks</strong>—<code>.done()</code>, <code>.fail()</code>, <code>.always()</code>, 和 <code>.then()</code>，按注册顺序依次调用。</li>
+<li><code>error</code> 请求完成时，无论是在失败或成功，它们按顺序依次执行回调。他们收到jqXHR对象，以及一个包含成功或错误代码。</li>
+</ol>
+<hr>
+<h2 id="数据类型（Data-Types）"><a href="#数据类型（Data-Types）" class="headerlink" title="数据类型（Data Types）"></a>数据类型（Data Types）</h2><p>　　不同类型的$.ajax()调用返回值在传递给success处理之前会交付给不同的预处理过程。至于交给哪种过程，默认是根据响应的Content-Type属性，但是也可以通过dataType属性显式声明。<br>　　可接受的类型有： text, html, xml, json, jsonp, 和 script.<br>　　如果指明了text或者html，将不会有预处理过程。数据只是简单地传递给了success处理程序，并且通过jqXHR对象的responseText属性也可以访问到。<br>　　如果指明了xml，那么在交付success处理之前，会先由jQuery.parseXML进行处理得到一个XMLDocument再传递。同时，这个XML文档通过jqXHR对象的responseXML属性也可以访问到。<br>  　如果指明了json，那么在交付success处理之前，会先由jQuery.parseJSON进行处理得到一个对象再传递。同时，这个XML文档通过jqXHR对象的responseJSON属性也可以访问到。<br>　　如果指明了script，那么在交付success处理之前，$.ajax()会直接执行从服务器接收到的脚本。<br>　　如果指明了jsonp，那么在交付success处理之前，$.ajax()会自动在URL后面拼接查询字符串<code>callback=?</code>。此时，$.ajax()的jsonp和jsonpCallback参数可以分别用于指明查询参数的名字和JSONP回调函数的名字。服务器应该返回合法的JavaScript传递给JSON响应回调函数。在将包含JSON对象的响应交付给success处理之前，$.ajax()会执行返回的JavaScript，并调用回调函数。</p>
+<hr>
+<h2 id="向服务器发送数据（Sending-Data-to-the-Server）"><a href="#向服务器发送数据（Sending-Data-to-the-Server）" class="headerlink" title="向服务器发送数据（Sending Data to the Server）"></a>向服务器发送数据（Sending Data to the Server）</h2><p>　　默认情况下，ajax方法使用HTTP的GET发送，如果需要POST，可以通过type参数指明。这个选项决定了data参数中的内容将以何种形式发送给服务器。由w3c标准可知，使用POST方法时，数据总是以UTF-8编码进行传送。<br>　　data参数的内容，既可以使用<code>key1=value1&amp;key2=value2</code>这种形式，也可以使用<code>{key1: &#39;value1&#39;, key2: &#39;value2&#39;}</code>这种形式。如果使用了后者，那么数据在发送之前将会使用jQuery.param()方法将之转化为查询字符串。如果想避免这种转化过程，可以将processData设置为false。如果想要给服务器发送XML对象，那么这种转化过程可能会出问题，这时候，最好把contentType=”application/x-www-form-urlencoded”换为其他更合适的MIME类型。</p>
+<hr>
+<h2 id="高级选项（Advanced-Options）"><a href="#高级选项（Advanced-Options）" class="headerlink" title="高级选项（Advanced Options）"></a>高级选项（Advanced Options）</h2><p>　　<code>global</code>选项用于阻止响应注册的回调函数，比如.ajaxSend(), .ajaxError()，以及类似的方法。这在有些时候很有用，比如发送的请求非常频繁且简短的时候，就可以在.ajaxSend()里禁用这个。跨域脚本和JSONP请求，全局选项自动设置为false。<br>　　如果服务器需要HTTP认证，可以使用用户名和密码可以通过 username 和 password 选项来设置。<br>　　Ajax请求是限时的，所以错误警告被捕获并处理后，可以用来提升用户体验。请求超时这个参数通常就保留其默认值，要不就通过$.ajaxSetup()来全局设定，很少为特定的请求重新设置timeout选项。<br>　　默认情况下，请求总会被发出去，但浏览器有可能从他的缓存中调取数据。要禁止使用缓存的结果，可以设置cache参数为false。如果希望判断数据自从上次请求后没有更改过就报告出错的话，可以设置ifModified为true。<br>  scriptCharset允许给<script></script>标签的请求设定一个特定的字符集，用于script 或者 jsonp类似的数据。当脚本和页面字符集不同时，这特别好用。<br>  <font color="red">Ajax中的第一个字母“A”是指“asynchronous”，意味着操作是并行完成的且完成的顺序没有先后关系。</font>$.ajax()方法的<code>async</code>参数默认是true，表明请求发送出去后代码还可以继续执行。<font color="red">将该参数设置为false是强烈不建议的，因为这可能在成浏览器无响应</font>。<br>　　$.ajax()函数返回它创建的XMLHttpRequest对象。通常jQuery只在内部处理并创建这个对象，但用户也可以通过xhr选项来传递一个自己创建的xhr对象。返回的对象通常已经被丢弃了，但依然提供一个底层接口来观察和操控请求。比如说，调用对象上的.abort()可以在请求完成前挂起请求。</p>
+<hr>
+<h2 id="可扩展的Ajax（Extending-Ajax）"><a href="#可扩展的Ajax（Extending-Ajax）" class="headerlink" title="可扩展的Ajax（Extending Ajax）"></a>可扩展的Ajax（Extending Ajax）</h2><p>　　对于jQuery1.5及以上版本，jQuery的ajax实现包含了prefilters, transports, 和 converters，这为你扩展ajax提供了极大地灵活性。</p>
+<hr>
+<h2 id="使用转换器（Using-Converters）"><a href="#使用转换器（Using-Converters）" class="headerlink" title="使用转换器（Using Converters）"></a>使用转换器（Using Converters）</h2><p>　　$.ajax()的转换器支持的数据类型映射到其它数据类型。但是，如果你想把自定义数据类型映射到一个已知的类型（json等）,必须通过contents选项在响应的Content-Type属性和实际的数据类型之间的添加一个相关的转换函数：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  $.ajaxSetup(&#123;</span><br><span class="line">  contents: &#123;</span><br><span class="line">    mycustomtype: <span class="regexp">/mycustomtype/</span></span><br><span class="line">  &#125;,</span><br><span class="line">  converters: &#123;</span><br><span class="line">    <span class="string">"mycustomtype json"</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> result </span>) </span>&#123;</span><br><span class="line">      <span class="comment">// Do stuff</span></span><br><span class="line">      <span class="keyword">return</span> newresult;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这个额外的对象是必要的 ，因为响应中的Content-Types和实际数据类型之间从未有过严格的一对一对应关系。</p>
+<p>转换一个支持的类型（例如text, json）成自定义数据类型，然后再转换成另一个支持的类型，使用直通转换器：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajaxSetup(&#123;</span><br><span class="line">  contents: &#123;</span><br><span class="line">    mycustomtype: <span class="regexp">/mycustomtype/</span></span><br><span class="line">  &#125;,</span><br><span class="line">  converters: &#123;</span><br><span class="line">    <span class="string">"text mycustomtype"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">"mycustomtype json"</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> result </span>) </span>&#123;</span><br><span class="line">      <span class="comment">// Do stuff</span></span><br><span class="line">      <span class="keyword">return</span> newresult;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="附加提醒"><a href="#附加提醒" class="headerlink" title="附加提醒"></a>附加提醒</h2><ol>
+<li>考虑到浏览器安全限制，大多数ajax请求遵循同源策略。请求不能成功从其他域名，子域名，端口或者协议获取数据。</li>
+<li>script和JSONP请求不受同源策略限制。</li>
+</ol>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>　　本篇详细总结了$.ajax()方法相关的方方面面。平时只是使用到了一种很少一部分参数，其实$.ajax()考虑到了这么多细节。本篇主要参考了jQuery官网的API文档，现在也有一些中文文档，但是其中有的翻译很晦涩。于是结合原文和这些中文翻译进行了重新整理，其中肯定有一些不清楚的或者错误的地方，还需要进一步发现。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2016/04/11/ajax-param/" data-title="jQuery的ajax()方法详细分析" data-url="http://www.gcidea.info/2016/04/11/ajax-param/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/gcidea" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/u/2180985772" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="envelope" href="/about/#联系方式" target="_blank">
+                        <i class="icon fa fa-envelope"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/04/13/js-array-duplicate-removal/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            使用JavaScript实现数组去重的4种方法及性能比较
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2016/04/11/invalid-char-filter/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">使用JavaScript实现非法输入字符实时过滤</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        <div class="widget-wrap widget-wechat">
+            <a href="javascript:;">
+                <img src="http://7xrz3r.com1.z0.glb.clouddn.com/wechat.jpg" width="280" alt="微信扫一扫 gaochang932372" title="微信扫一扫 gaochang932372">
+            </a>
+        </div>
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/25/mobile-flexible-solution/" class="title">移动端HTML5响应式布局适配解决方案</a></p>
+                            <p class="item-date"><time datetime="2017-01-25T05:22:04.000Z" itemprop="datePublished">2017-01-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/搭建部署/环境统一/">环境统一</a></p>
+                            <p class="item-title"><a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="title">使用SwitchyOmega和Charles配置统一的开发和生产环境</a></p>
+                            <p class="item-date"><time datetime="2017-01-23T06:13:51.000Z" itemprop="datePublished">2017-01-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端工程化/">前端工程化</a></p>
+                            <p class="item-title"><a href="/2017/01/20/react-dva-structure/" class="title">React开发框架Dva.js项目结构简单小结</a></p>
+                            <p class="item-date"><time datetime="2017-01-20T05:54:23.000Z" itemprop="datePublished">2017-01-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/17/git-merge-git-rebase/" class="title">git merge 与 git rebase 的对比分析</a></p>
+                            <p class="item-date"><time datetime="2017-01-17T13:45:08.000Z" itemprop="datePublished">2017-01-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/12/js-compare/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p77.jpg)" alt="JavaScript中比较运算的详细总结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/JavaScript/">JavaScript</a></p>
+                            <p class="item-title"><a href="/2017/01/12/js-compare/" class="title">JavaScript中比较运算的详细总结</a></p>
+                            <p class="item-date"><time datetime="2017-01-12T14:11:06.000Z" itemprop="datePublished">2017-01-12</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AngularJs/">AngularJs</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE综合/">FE综合</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jQuery/">jQuery</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端工程化/">前端工程化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/">搭建部署</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/代理/">代理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/工程/">工程</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/环境统一/">环境统一</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/阿里云/">阿里云</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">93</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">47</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">45</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJs/">AngularJs</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-CSS3/">CSS/CSS3</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Charles/">Charles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cookie/">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FE/">FE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-HTML5/">HTML/HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">45</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LAMP/">LAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/">Less</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/">MVVM</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestfulAPI/">RestfulAPI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SwitchyOmega/">SwitchyOmega</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">92</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss源订阅/">rss源订阅</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sitemap/">sitemap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理配置/">代理配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兼容性/">兼容性</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化拖拽/">可视化拖拽</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/响应式/">响应式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">76</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实现-应用/">实现/应用</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成CI/">持续集成CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搭建部署/">搭建部署</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面渲染/">页面渲染</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AngularJs/" style="font-size: 13.64px;">AngularJs</a> <a href="/tags/CSS-CSS3/" style="font-size: 14.55px;">CSS/CSS3</a> <a href="/tags/Charles/" style="font-size: 10px;">Charles</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/FE/" style="font-size: 11.82px;">FE</a> <a href="/tags/HTML-HTML5/" style="font-size: 12.73px;">HTML/HTML5</a> <a href="/tags/HTTP/" style="font-size: 12.73px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 18.18px;">JavaScript</a> <a href="/tags/LAMP/" style="font-size: 10px;">LAMP</a> <a href="/tags/Less/" style="font-size: 10.91px;">Less</a> <a href="/tags/MVVM/" style="font-size: 13.64px;">MVVM</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/React/" style="font-size: 11.82px;">React</a> <a href="/tags/RestfulAPI/" style="font-size: 10px;">RestfulAPI</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/SwitchyOmega/" style="font-size: 10px;">SwitchyOmega</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/rss源订阅/" style="font-size: 10px;">rss源订阅</a> <a href="/tags/sitemap/" style="font-size: 10px;">sitemap</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/代理配置/" style="font-size: 10px;">代理配置</a> <a href="/tags/兼容性/" style="font-size: 10.91px;">兼容性</a> <a href="/tags/前端工程化/" style="font-size: 16.36px;">前端工程化</a> <a href="/tags/前端框架/" style="font-size: 15.45px;">前端框架</a> <a href="/tags/可视化拖拽/" style="font-size: 10.91px;">可视化拖拽</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/学习笔记/" style="font-size: 19.09px;">学习笔记</a> <a href="/tags/实现-应用/" style="font-size: 17.27px;">实现/应用</a> <a href="/tags/异步编程/" style="font-size: 10.91px;">异步编程</a> <a href="/tags/持续集成CI/" style="font-size: 10px;">持续集成CI</a> <a href="/tags/搭建部署/" style="font-size: 14.55px;">搭建部署</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器/" style="font-size: 10.91px;">浏览器</a> <a href="/tags/版本控制/" style="font-size: 11.82px;">版本控制</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/转载/" style="font-size: 11.82px;">转载</a> <a href="/tags/闭包/" style="font-size: 10.91px;">闭包</a> <a href="/tags/页面渲染/" style="font-size: 10px;">页面渲染</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://www.zn2studio.com" target="_blank">Zn2Studio 锌离子工作室</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.ebupt.com" target="_blank">东信北邮信息技术有限公司</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://bbs.byr.cn" target="_blank">北邮人论坛-北邮人的温馨家园</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <!--<a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>-->
+            <a id="back-to-top" href="javascript:;"><b>gcidea</b></a>
+            <div style="position: fixed;bottom: 195px;right: 26px;">
+                <a id="back-to-top2" href="javascript:;" title="回到顶部"><i class="icon fa fa-angle-up"></i></a>
+            </div>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 - 2017 Gao Chang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>.</p>
+                <p><b>The relentless pursuit of perfection.</b></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gcidea'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
