@@ -21,7 +21,7 @@
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="场景与现象　　具体业务逻辑：在组件进行初始化时需要赋值一个二维数组（4 * 12），如下所示：123456$scope.data = [  	[-1, 1, 3, 7, 13, 16, 18, 16, 15, 9, 4, 2]	[0, 1, 4, 7, 12, 15, 16, 15, 15, 10, 6, 5],	[4, 4, 5, 10, 16, 22, 25, 24, 20, 14, 9,">
 <meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p2.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:34:23.887Z">
+<meta property="og:updated_time" content="2017-02-16T17:03:31.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中二维数组声明时漏写一个逗号所产生现象的探究">
 <meta name="twitter:description" content="场景与现象　　具体业务逻辑：在组件进行初始化时需要赋值一个二维数组（4 * 12），如下所示：123456$scope.data = [  	[-1, 1, 3, 7, 13, 16, 18, 16, 15, 9, 4, 2]	[0, 1, 4, 7, 12, 15, 16, 15, 15, 10, 6, 5],	[4, 4, 5, 10, 16, 22, 25, 24, 20, 14, 9,">
@@ -208,11 +208,11 @@ var _hmt = _hmt || [];
 <ol>
 <li>与java等语言不同，javascript中数组的各个元素可以是不同数据类型。比如一个数组中有字符串，有数字，有布尔值。</li>
 <li>在javascript中，数组也是对象，且可以通过方括号[下标]的形式取出某个元素，比如”[0,4,2][1]”的值是4，即数组[0,4,2]中下标为1的元素。</li>
-<li>逗号“,”在javascript中是“逗号运算符”，解析时，js引擎会先计算逗号左边的值，再计算逗号右边的值，<strong>但只返回逗号右边的值</strong>。比如：<code>var a = (1+1, 2+2, 3+3);</code>结果a会为6。</li>
-</ol>
-<blockquote>
+<li>逗号“,”在javascript中是“逗号运算符”，解析时，js引擎会先计算逗号左边的值，再计算逗号右边的值，<strong>但只返回逗号右边的值</strong>。比如：<code>var a = (1+1, 2+2, 3+3);</code>结果a会为6。<br>4<blockquote>
 <p>根据以上几点，可以清楚解释上面的现象“16”：<br>漏写了一个逗号，违背了我们的本意（4个数组），但js引擎并不认为这是错误的，而认为是想在[-1, 1, 3, 7, 13, 16, 18, 16, 15, 9, 4, 2]中取值，取值方括号中本来只应该放一个下标（如上面解释第二点所说），这里却放了由逗号连接的很多个值[0, 1, 4, 7, 12, 15, 16, 15, 15, 10, 6, 5]，js引擎也不会认为这是错误的，因为实质上在进行“逗号运算”，运算结果是最后一个逗号右边的值，即5。也就是说：<br>[-1, 1, 3, 7, 13, 16, 18, 16, 15, 9, 4, 2][0, 1, 4, 7, 12, 15, 16, 15, 15, 10, 6, 5]<br>相当于<br>[-1, 1, 3, 7, 13, 16, 18, 16, 15, 9, 4, 2][5]<br>也就是取下标为5的元素，即16。</p>
 </blockquote>
+</li>
+</ol>
 
         </div>
         <footer class="article-footer">
