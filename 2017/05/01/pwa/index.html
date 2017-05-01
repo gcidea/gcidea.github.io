@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="gcidea">
+    <meta name="description" content="gcidea's blog">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1">
+    
+    <title>PWA-渐进式Web应用探究 | GCidea&#39;s blog</title>
+    
+        <meta name="keywords" content="前端工程化,PWA,渐进式web应用" />
+    
+    <meta name="description" content="定义
+Progressive Web Apps are experiences that combine the best of the web and the best of apps.They are useful to users from the very first visit in a browser tab, no install required.As the user prog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PWA-渐进式Web应用探究">
+<meta property="og:url" content="http://www.gcidea.info/2017/05/01/pwa/index.html">
+<meta property="og:site_name" content="GCidea's blog">
+<meta property="og:description" content="定义
+Progressive Web Apps are experiences that combine the best of the web and the best of apps.They are useful to users from the very first visit in a browser tab, no install required.As the user prog">
+<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg">
+<meta property="og:updated_time" content="2017-05-01T14:32:31.985Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PWA-渐进式Web应用探究">
+<meta name="twitter:description" content="定义
+Progressive Web Apps are experiences that combine the best of the web and the best of apps.They are useful to users from the very first visit in a browser tab, no install required.As the user prog">
+<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="GCidea&#39;s blog" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?ad03ecfd99432fefa83cbc4dea96fac4";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p style="font-size: 23px; color: #fa862e; text-align: center;
+                                font-family: PingFangSC-Medium, Hiragino Sans GB, Heiti SC,
+                                Microsoft YaHei, WenQuanYi Micro Hei, sans-serif">gaochang | BUPT</p>
+                            <p class="subtitle">The relentless pursuit of perfection.</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">首页</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/archives">归档</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categories">分类</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">标签</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tag-cloud">标签云</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/projects">开源组件</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...（以下列表内容顺序不分先后）" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/FE综合/">FE综合</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-pwa" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        PWA-渐进式Web应用探究
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-subtitle">
+                <a href="/2017/05/01/pwa/" class="article-date">
+    <time datetime="2017-05-01T13:52:04.000Z" itemprop="datePublished">2017-05-01</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PWA/">PWA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端工程化/">前端工程化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/渐进式web应用/">渐进式web应用</a></li></ul>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <div id="toc" style="margin-bottom: -1.6em;margin-top: 1em">
+                <strong>目录</strong>
+            </div>
+            <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特点"><span class="toc-number">2.</span> <span class="toc-text">特点</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Progressive"><span class="toc-number">2.1.</span> <span class="toc-text">Progressive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Responsive"><span class="toc-number">2.2.</span> <span class="toc-text">Responsive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Connectivity-Independent"><span class="toc-number">2.3.</span> <span class="toc-text">Connectivity Independent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-like"><span class="toc-number">2.4.</span> <span class="toc-text">App-like</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fresh"><span class="toc-number">2.5.</span> <span class="toc-text">Fresh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Safe"><span class="toc-number">2.6.</span> <span class="toc-text">Safe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Discoverable"><span class="toc-number">2.7.</span> <span class="toc-text">Discoverable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Re-engageable"><span class="toc-number">2.8.</span> <span class="toc-text">Re-engageable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Installable"><span class="toc-number">2.9.</span> <span class="toc-text">Installable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linkable"><span class="toc-number">2.10.</span> <span class="toc-text">Linkable</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#历史"><span class="toc-number">3.</span> <span class="toc-text">历史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境要求"><span class="toc-number">4.</span> <span class="toc-text">环境要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心概念"><span class="toc-number">5.</span> <span class="toc-text">核心概念</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#application-shell与content"><span class="toc-number">5.1.</span> <span class="toc-text">application shell与content</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键技术"><span class="toc-number">6.</span> <span class="toc-text">关键技术</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#service-worker的角色"><span class="toc-number">6.1.</span> <span class="toc-text">service worker的角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#service-worker的生命周期"><span class="toc-number">6.2.</span> <span class="toc-text">service worker的生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消息推送"><span class="toc-number">6.3.</span> <span class="toc-text">消息推送</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#案例体验"><span class="toc-number">7.</span> <span class="toc-text">案例体验</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设计App-Shell—由设计稿划分component组件"><span class="toc-number">7.1.</span> <span class="toc-text">设计App Shell—由设计稿划分component组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建app-shell对应的模版文件"><span class="toc-number">7.2.</span> <span class="toc-text">创建app shell对应的模版文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#完成相应逻辑-刷新天气，增加城市等"><span class="toc-number">7.3.</span> <span class="toc-text">完成相应逻辑-刷新天气，增加城市等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现首次快速加载"><span class="toc-number">7.4.</span> <span class="toc-text">实现首次快速加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用service-worker实现对app-shell的预缓存（功能的离线使用）"><span class="toc-number">7.5.</span> <span class="toc-text">使用service worker实现对app shell的预缓存（功能的离线使用）</span></a><ul class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注册service-worker"><span class="toc-number">7.5.1.</span> <span class="toc-text">注册service worker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缓存网页资源"><span class="toc-number">7.5.2.</span> <span class="toc-text">缓存网页资源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通过缓存提供app-shell的内容"><span class="toc-number">7.5.3.</span> <span class="toc-text">通过缓存提供app shell的内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试离线情况"><span class="toc-number">7.5.4.</span> <span class="toc-text">测试离线情况</span></a></li></ul></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用service-worker对data预缓存"><span class="toc-number">7.6.</span> <span class="toc-text">使用service worker对data预缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过manifest-json支持在设备home-screen添加icon"><span class="toc-number">7.7.</span> <span class="toc-text">通过manifest.json支持在设备home screen添加icon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#预览"><span class="toc-number">7.8.</span> <span class="toc-text">预览</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展话题"><span class="toc-number">8.</span> <span class="toc-text">扩展话题</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对Android-iOS平台原生能力的调用支持"><span class="toc-number">8.1.</span> <span class="toc-text">对Android/iOS平台原生能力的调用支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#页面质量检测"><span class="toc-number">8.2.</span> <span class="toc-text">页面质量检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#与前端框架的结合（Twitter-React-PWA）"><span class="toc-number">8.3.</span> <span class="toc-text">与前端框架的结合（Twitter React PWA）</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">9.</span> <span class="toc-text">参考资料</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PWA官方文档"><span class="toc-number">9.1.</span> <span class="toc-text">PWA官方文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Shell-模型"><span class="toc-number">9.2.</span> <span class="toc-text">App Shell 模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务工作线程Service-Worker"><span class="toc-number">9.3.</span> <span class="toc-text">服务工作线程Service Worker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PWA-在饿了么的实践经验"><span class="toc-number">9.4.</span> <span class="toc-text">PWA 在饿了么的实践经验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PWA-案例网站"><span class="toc-number">9.5.</span> <span class="toc-text">PWA 案例网站</span></a></li></ul></li></ul>
+            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg" alt=""></p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
+<p>Progressive Web Apps are experiences that combine the best of the web and the best of apps.<br>They are useful to users from the very first visit in a browser tab, no install required.<br>As the user progressively builds a relationship with the app over time, it becomes more and more powerful. </p>
+</blockquote>
+<ul>
+<li>融合了web和app的最佳使用体验</li>
+<li>首次访问通过浏览器tab页，无需安装</li>
+<li>随着用户多次使用，与应用建立了更明确的关系，体验逐步增强</li>
+</ul>
+<hr>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><h3 id="Progressive"><a href="#Progressive" class="headerlink" title="Progressive"></a>Progressive</h3><p>渐进增强-优雅降级。eq: 离线存储，Cache API  Local Storage</p>
+<h3 id="Responsive"><a href="#Responsive" class="headerlink" title="Responsive"></a>Responsive</h3><p>适配PC、移动端多种设备</p>
+<h3 id="Connectivity-Independent"><a href="#Connectivity-Independent" class="headerlink" title="Connectivity Independent"></a>Connectivity Independent</h3><p>通过service worker实现在低质量网络或者离线条件下使用</p>
+<h3 id="App-like"><a href="#App-like" class="headerlink" title="App-like"></a>App-like</h3><p>建立在app shell模型基础上，就像在使用原生app</p>
+<h3 id="Fresh"><a href="#Fresh" class="headerlink" title="Fresh"></a>Fresh</h3><p>通过service worker来保持资源更新</p>
+<h3 id="Safe"><a href="#Safe" class="headerlink" title="Safe"></a>Safe</h3><p>PWA服务的提供建立在 https 基础上</p>
+<h3 id="Discoverable"><a href="#Discoverable" class="headerlink" title="Discoverable"></a>Discoverable</h3><p>搜索引擎可抓取，得益于W3C manifest和service worker注册作用域</p>
+<h3 id="Re-engageable"><a href="#Re-engageable" class="headerlink" title="Re-engageable"></a>Re-engageable</h3><p>通过类似推送通知的方式实现应用再次唤起</p>
+<h3 id="Installable"><a href="#Installable" class="headerlink" title="Installable"></a>Installable</h3><p>可让用户不通过app store等应用商店“安装”应用（至桌面）</p>
+<h3 id="Linkable"><a href="#Linkable" class="headerlink" title="Linkable"></a>Linkable</h3><p>可简单地通过URl对应用进行分享</p>
+<hr>
+<h2 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h2><p>Google，首次出现于2015.06 Googler Alex Russell的博客文章<br>《Progressive Web Apps: Escaping Tabs Without Losing Our Soul》</p>
+<p>主要观点是：<strong> Web的发展方向应该是“在保留open web灵魂的基础上渐进增强” </strong>。</p>
+<hr>
+<h2 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h2><ul>
+<li>chrome 52及以上、opera</li>
+<li>https</li>
+</ul>
+<p>但因渐进式设计，所有设备都可以访问（包括iOS）</p>
+<hr>
+<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><h3 id="application-shell与content"><a href="#application-shell与content" class="headerlink" title="application shell与content"></a>application shell与content</h3><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-1.jpg" alt=""></p>
+<ul>
+<li>application shell </li>
+</ul>
+<p>类似于原生app开发中发布上线的“the bundle of code”<br>包括支持用户界面所需的最基础的 HTML、CSS 和 JavaScript<br>如果离线缓存，可确保用户重复访问时即时、可靠的良好性能<br>这意味着并不是每次用户访问时都要从网络加载 App Shell<br> 只需要从网络中加载必要的内容</p>
+<ul>
+<li>content</li>
+</ul>
+<p>动态获取的数据</p>
+<hr>
+<h2 id="关键技术"><a href="#关键技术" class="headerlink" title="关键技术"></a>关键技术</h2><h3 id="service-worker的角色"><a href="#service-worker的角色" class="headerlink" title="service worker的角色"></a>service worker的角色</h3><p>service-worker为浏览器启动单独后台运行线程，可以搭配Cache API做缓存、<br>可以拦截所有HTTP请求并使用Fetch API进行response，是一个完备的Proxy<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-2.png" alt=""></p>
+<h3 id="service-worker的生命周期"><a href="#service-worker的生命周期" class="headerlink" title="service worker的生命周期"></a>service worker的生命周期</h3><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-3.png" alt=""></p>
+<h3 id="消息推送"><a href="#消息推送" class="headerlink" title="消息推送"></a>消息推送</h3><p><strong><em> 一句话概述：Service Worker 的后台计算能力—Push API 推送—Notification API 通知 </em></strong></p>
+<ul>
+<li>推送（ Push API ）</li>
+</ul>
+<p>Push API 让推送服务具备了向 web 应用推送消息的能力；<br>它定义了 web 应用如何向推送服务发起订阅、如何响应推送消息、web 应用和服务器与推送服务之间的鉴权与加密机制；<br>由于 Push API 并不依赖 web 应用与浏览器 UI 存活，所以即使是在 web 应用与浏览器未被用户打开的时候，也可以通过后台进程接受推送消息并调用 Notification API 向用户发出通知</p>
+<ul>
+<li>通知（ Notification API ）</li>
+</ul>
+<p>负责所有与通知本身相关的机制，如通知权限管理、向操作系统发起通知、通知类型与音效，以及提供通知被点击或关闭时的回调等；<br>最早在 2010 年由 Chromium 提出，以 webkitNotifications 前缀方式实现；<br>2011 年进入标准化；<br>2012 年在 Safari 6（Mac OSX 10.8+）上获得支持；<br>2015 年 Notification API 成为 W3C Recommendation；<br>2016 年 Edge 的支持</p>
+<p>示例：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-4.png" alt=""></p>
+<hr>
+<h2 id="案例体验"><a href="#案例体验" class="headerlink" title="案例体验"></a>案例体验</h2><h3 id="设计App-Shell—由设计稿划分component组件"><a href="#设计App-Shell—由设计稿划分component组件" class="headerlink" title="设计App Shell—由设计稿划分component组件"></a>设计App Shell—由设计稿划分component组件</h3><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-5.png" alt=""></p>
+<h3 id="创建app-shell对应的模版文件"><a href="#创建app-shell对应的模版文件" class="headerlink" title="创建app shell对应的模版文件"></a>创建app shell对应的模版文件</h3><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-6.png" alt=""></p>
+<h3 id="完成相应逻辑-刷新天气，增加城市等"><a href="#完成相应逻辑-刷新天气，增加城市等" class="headerlink" title="完成相应逻辑-刷新天气，增加城市等"></a>完成相应逻辑-刷新天气，增加城市等</h3><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-7.png" alt=""></p>
+<h3 id="实现首次快速加载"><a href="#实现首次快速加载" class="headerlink" title="实现首次快速加载"></a>实现首次快速加载</h3><p>使用localStorage实现对用户已选城市列表的存储<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-8.png" alt=""><br>（实际使用场景中应该使用 IndexedDB 等快速存储机制）</p>
+<h3 id="使用service-worker实现对app-shell的预缓存（功能的离线使用）"><a href="#使用service-worker实现对app-shell的预缓存（功能的离线使用）" class="headerlink" title="使用service worker实现对app shell的预缓存（功能的离线使用）"></a>使用service worker实现对app shell的预缓存（功能的离线使用）</h3><h4 id="注册service-worker"><a href="#注册service-worker" class="headerlink" title="注册service worker"></a>注册service worker</h4><p>a.  创建一个包含service worker的js文件：service-worker.js<br>     (注意该文件位置在项目根目录，因为service worker的作用域由路径决定)<br>b.  通知浏览器注册该service worker<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-9.png" alt=""></p>
+<h4 id="缓存网页资源"><a href="#缓存网页资源" class="headerlink" title="缓存网页资源"></a>缓存网页资源</h4><p>当service worker注册完成，用户首次访问该应用时触发“install”事件，在回调函数中我们可以对应用所需要的静态资源进行缓存。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-10.png" alt=""></p>
+<ul>
+<li>caches.open()</li>
+</ul>
+<p>打开指定的缓存</p>
+<ul>
+<li>cache.addAll()</li>
+</ul>
+<p>接收一个URL列表，从服务端获取数据并添加到缓存<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-11.png" alt=""></p>
+<p>此时，在控制台可以看到已经注册的service worker<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-12.png" alt=""></p>
+<p>然后，再在service-worker.js中添加“active”事件绑定<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-13.png" alt=""></p>
+<p>此时，在控制台可以看到已经注册的service worker处于active状态<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-14.png" alt=""></p>
+<p>继续丰富“active”回调函数的内容：<br>确保任何app shell所需的任何静态文件有变化时，service worker都能及时更新<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-15.png" alt=""></p>
+<h4 id="通过缓存提供app-shell的内容"><a href="#通过缓存提供app-shell的内容" class="headerlink" title="通过缓存提供app shell的内容"></a>通过缓存提供app shell的内容</h4><p>service worker提供了拦截http请求并进行处理的能力，<br>这意味着可以在service worker内部使用缓存进行响应<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-16.png" alt=""></p>
+<h4 id="测试离线情况"><a href="#测试离线情况" class="headerlink" title="测试离线情况"></a>测试离线情况</h4><p>首先，点击选择“offline”，network出现黄色叹号标志标明已经处于离线状态<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-17.png" alt=""></p>
+<p>此时，查看已缓存的文件：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-18.png" alt=""></p>
+<h3 id="使用service-worker对data预缓存"><a href="#使用service-worker对data预缓存" class="headerlink" title="使用service worker对data预缓存"></a>使用service worker对data预缓存</h3><p><strong><em> 核心：静态资源离线优先；动态资源网络优先 </em></strong><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-19.png" alt=""></p>
+<h3 id="通过manifest-json支持在设备home-screen添加icon"><a href="#通过manifest-json支持在设备home-screen添加icon" class="headerlink" title="通过manifest.json支持在设备home screen添加icon"></a>通过manifest.json支持在设备home screen添加icon</h3><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-20.png" alt=""></p>
+<blockquote>
+<p>注：<br>提示添加的条件：</p>
+<ul>
+<li>注册了service worker</li>
+<li>有manifest文件</li>
+<li>5min内访问2次以上<br>（不同浏览器实现不同）</li>
+</ul>
+</blockquote>
+<h3 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h3><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-21.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-22.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/pwa-23.png" alt=""></p>
+<hr>
+<h2 id="扩展话题"><a href="#扩展话题" class="headerlink" title="扩展话题"></a>扩展话题</h2><h3 id="对Android-iOS平台原生能力的调用支持"><a href="#对Android-iOS平台原生能力的调用支持" class="headerlink" title="对Android/iOS平台原生能力的调用支持"></a>对Android/iOS平台原生能力的调用支持</h3><p><a href="https://whatwebcando.today/" target="_blank" rel="external">https://whatwebcando.today/</a></p>
+<p><a href="http://stackoverflow.com/questions/35504194/what-features-do-progressive-web-apps-have-vs-native-apps-and-vice-versa-on-an" target="_blank" rel="external">http://stackoverflow.com/questions/35504194/what-features-do-progressive-web-apps-have-vs-native-apps-and-vice-versa-on-an</a></p>
+<h3 id="页面质量检测"><a href="#页面质量检测" class="headerlink" title="页面质量检测"></a>页面质量检测</h3><p>Lighthouse—灯塔，PWA官方提供检测工具</p>
+<h3 id="与前端框架的结合（Twitter-React-PWA）"><a href="#与前端框架的结合（Twitter-React-PWA）" class="headerlink" title="与前端框架的结合（Twitter React PWA）"></a>与前端框架的结合（Twitter React PWA）</h3><p><a href="https://twitter.com/necolas/status/829128165314306048" target="_blank" rel="external">https://twitter.com/necolas/status/829128165314306048</a></p>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><h3 id="PWA官方文档"><a href="#PWA官方文档" class="headerlink" title="PWA官方文档"></a>PWA官方文档</h3><p>（<a href="https://developers.google.com/web/progressive-web-apps/）" target="_blank" rel="external">https://developers.google.com/web/progressive-web-apps/）</a></p>
+<h3 id="App-Shell-模型"><a href="#App-Shell-模型" class="headerlink" title="App Shell 模型"></a>App Shell 模型</h3><p>（<a href="https://developers.google.com/web/fundamentals/architecture/app-shell）" target="_blank" rel="external">https://developers.google.com/web/fundamentals/architecture/app-shell）</a></p>
+<h3 id="服务工作线程Service-Worker"><a href="#服务工作线程Service-Worker" class="headerlink" title="服务工作线程Service Worker"></a>服务工作线程Service Worker</h3><p>（<a href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers）" target="_blank" rel="external">https://developers.google.com/web/fundamentals/getting-started/primers/service-workers）</a></p>
+<h3 id="PWA-在饿了么的实践经验"><a href="#PWA-在饿了么的实践经验" class="headerlink" title="PWA 在饿了么的实践经验"></a>PWA 在饿了么的实践经验</h3><p>（<a href="https://zhuanlan.zhihu.com/p/25800461）" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/25800461）</a></p>
+<h3 id="PWA-案例网站"><a href="#PWA-案例网站" class="headerlink" title="PWA 案例网站"></a>PWA 案例网站</h3><p>（<a href="https://weatherpwa.baidu.com/）" target="_blank" rel="external">https://weatherpwa.baidu.com/）</a><br>（<a href="https://www.flipkart.com/）" target="_blank" rel="external">https://www.flipkart.com/）</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone">QQ空间</a>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_tqq">腾讯微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2017/05/01/pwa/" data-title="PWA-渐进式Web应用探究" data-url="http://www.gcidea.info/2017/05/01/pwa/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/gcidea" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/u/2180985772" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="envelope" href="/about/#联系方式" target="_blank">
+                        <i class="icon fa fa-envelope"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/01/25/mobile-flexible-solution/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">移动端HTML5响应式布局适配解决方案</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        <div class="widget-wrap widget-wechat">
+            <a href="javascript:;">
+                <img src="http://7xrz3r.com1.z0.glb.clouddn.com/wechat.jpg" width="280" alt="微信扫一扫 gaochang932372" title="微信扫一扫 gaochang932372">
+            </a>
+        </div>
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/05/01/pwa/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/05/01/pwa/" class="title">PWA-渐进式Web应用探究</a></p>
+                            <p class="item-date"><time datetime="2017-05-01T13:52:04.000Z" itemprop="datePublished">2017-05-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/25/mobile-flexible-solution/" class="title">移动端HTML5响应式布局适配解决方案</a></p>
+                            <p class="item-date"><time datetime="2017-01-25T05:22:04.000Z" itemprop="datePublished">2017-01-25</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/搭建部署/">搭建部署</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/搭建部署/环境统一/">环境统一</a></p>
+                            <p class="item-title"><a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="title">使用SwitchyOmega和Charles配置统一的开发和生产环境</a></p>
+                            <p class="item-date"><time datetime="2017-01-23T06:13:51.000Z" itemprop="datePublished">2017-01-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/前端工程化/">前端工程化</a></p>
+                            <p class="item-title"><a href="/2017/01/20/react-dva-structure/" class="title">React开发框架Dva.js项目结构简单小结</a></p>
+                            <p class="item-date"><time datetime="2017-01-20T05:54:23.000Z" itemprop="datePublished">2017-01-20</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/FE综合/">FE综合</a></p>
+                            <p class="item-title"><a href="/2017/01/17/git-merge-git-rebase/" class="title">git merge 与 git rebase 的对比分析</a></p>
+                            <p class="item-date"><time datetime="2017-01-17T13:45:08.000Z" itemprop="datePublished">2017-01-17</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AngularJs/">AngularJs</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS-CSS3/">CSS/CSS3</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FE综合/">FE综合</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML-HTML5/">HTML/HTML5</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/React/">React</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jQuery/">jQuery</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端工程化/">前端工程化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/">搭建部署</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/代理/">代理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/工程/">工程</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/环境统一/">环境统一</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搭建部署/阿里云/">阿里云</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">93</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">47</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">45</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularJs/">AngularJs</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS-CSS3/">CSS/CSS3</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Charles/">Charles</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cookie/">Cookie</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FE/">FE</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-HTML5/">HTML/HTML5</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">45</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LAMP/">LAMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Less/">Less</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVVM/">MVVM</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PWA/">PWA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/">React</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RestfulAPI/">RestfulAPI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Session/">Session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SwitchyOmega/">SwitchyOmega</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a><span class="tag-list-count">92</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss源订阅/">rss源订阅</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sitemap/">sitemap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/代理配置/">代理配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/兼容性/">兼容性</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端工程化/">前端工程化</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端框架/">前端框架</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化拖拽/">可视化拖拽</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/响应式/">响应式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习笔记/">学习笔记</a><span class="tag-list-count">76</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/实现-应用/">实现/应用</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/异步编程/">异步编程</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成CI/">持续集成CI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搭建部署/">搭建部署</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则/">正则</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/浏览器/">浏览器</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/渐进式web应用/">渐进式web应用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/版本控制/">版本控制</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闭包/">闭包</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/页面渲染/">页面渲染</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/AngularJs/" style="font-size: 13.64px;">AngularJs</a> <a href="/tags/CSS-CSS3/" style="font-size: 14.55px;">CSS/CSS3</a> <a href="/tags/Charles/" style="font-size: 10px;">Charles</a> <a href="/tags/Cookie/" style="font-size: 10px;">Cookie</a> <a href="/tags/FE/" style="font-size: 11.82px;">FE</a> <a href="/tags/HTML-HTML5/" style="font-size: 12.73px;">HTML/HTML5</a> <a href="/tags/HTTP/" style="font-size: 12.73px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 18.18px;">JavaScript</a> <a href="/tags/LAMP/" style="font-size: 10px;">LAMP</a> <a href="/tags/Less/" style="font-size: 10.91px;">Less</a> <a href="/tags/MVVM/" style="font-size: 13.64px;">MVVM</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/PWA/" style="font-size: 10px;">PWA</a> <a href="/tags/React/" style="font-size: 11.82px;">React</a> <a href="/tags/RestfulAPI/" style="font-size: 10px;">RestfulAPI</a> <a href="/tags/Session/" style="font-size: 10px;">Session</a> <a href="/tags/SwitchyOmega/" style="font-size: 10px;">SwitchyOmega</a> <a href="/tags/jQuery/" style="font-size: 10.91px;">jQuery</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/rss源订阅/" style="font-size: 10px;">rss源订阅</a> <a href="/tags/sitemap/" style="font-size: 10px;">sitemap</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/代理配置/" style="font-size: 10px;">代理配置</a> <a href="/tags/兼容性/" style="font-size: 10.91px;">兼容性</a> <a href="/tags/前端工程化/" style="font-size: 16.36px;">前端工程化</a> <a href="/tags/前端框架/" style="font-size: 15.45px;">前端框架</a> <a href="/tags/可视化拖拽/" style="font-size: 10.91px;">可视化拖拽</a> <a href="/tags/响应式/" style="font-size: 10px;">响应式</a> <a href="/tags/学习笔记/" style="font-size: 19.09px;">学习笔记</a> <a href="/tags/实现-应用/" style="font-size: 17.27px;">实现/应用</a> <a href="/tags/异步编程/" style="font-size: 10.91px;">异步编程</a> <a href="/tags/持续集成CI/" style="font-size: 10px;">持续集成CI</a> <a href="/tags/搭建部署/" style="font-size: 14.55px;">搭建部署</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器/" style="font-size: 10.91px;">浏览器</a> <a href="/tags/渐进式web应用/" style="font-size: 10px;">渐进式web应用</a> <a href="/tags/版本控制/" style="font-size: 11.82px;">版本控制</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/转载/" style="font-size: 11.82px;">转载</a> <a href="/tags/闭包/" style="font-size: 10.91px;">闭包</a> <a href="/tags/页面渲染/" style="font-size: 10px;">页面渲染</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://www.zn2studio.com" target="_blank">Zn2Studio 锌离子工作室</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.ebupt.com" target="_blank">东信北邮信息技术有限公司</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://bbs.byr.cn" target="_blank">北邮人论坛-北邮人的温馨家园</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <!--<a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>-->
+            <a id="back-to-top" href="javascript:;"><b>gcidea</b></a>
+            <div style="position: fixed;bottom: 195px;right: 26px;">
+                <a id="back-to-top2" href="javascript:;" title="回到顶部"><i class="icon fa fa-angle-up"></i></a>
+            </div>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 - 2017 Gao Chang</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>.</p>
+                <p><b>The relentless pursuit of perfection.</b></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gcidea'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

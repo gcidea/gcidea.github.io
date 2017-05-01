@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.gcidea.info/2017/05/01/pwa/</loc>
+    
+    <lastmod>2017-05-01T14:32:31.985Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.gcidea.info/2016/11/03/browser-rendering-engine/</loc>
+    
+    <lastmod>2017-05-01T13:57:10.583Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.gcidea.info/2017/01/07/js-common-dataformat-regexp/</loc>
+    
+    <lastmod>2017-02-26T11:46:43.973Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.gcidea.info/2016/12/09/css-center/</loc>
     
     <lastmod>2017-02-24T02:29:45.233Z</lastmod>
@@ -12,13 +33,6 @@
     <loc>http://www.gcidea.info/2016/03/19/2d-array-miss-a-comma/</loc>
     
     <lastmod>2017-02-16T17:03:31.836Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.gcidea.info/2016/11/03/browser-rendering-engine/</loc>
-    
-    <lastmod>2017-02-16T03:22:04.169Z</lastmod>
     
   </url>
   
@@ -537,13 +551,6 @@
     <loc>http://www.gcidea.info/2016/12/27/js-value-copy-reference-copy/</loc>
     
     <lastmod>2017-02-11T05:28:27.631Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.gcidea.info/2017/01/07/js-common-dataformat-regexp/</loc>
-    
-    <lastmod>2017-02-11T05:27:16.045Z</lastmod>
     
   </url>
   
