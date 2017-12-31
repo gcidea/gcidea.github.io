@@ -10,7 +10,7 @@
   
   <author>
     <name>Gao Chang</name>
-    <email>gaochang@ebupt.com</email>
+    <email>gaochang@gcidea.info</email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
@@ -184,9 +184,9 @@
     
       <category term="前端工程化" scheme="http://www.gcidea.info/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
     
-      <category term="CSS/CSS3" scheme="http://www.gcidea.info/tags/CSS-CSS3/"/>
-    
       <category term="HTML/HTML5" scheme="http://www.gcidea.info/tags/HTML-HTML5/"/>
+    
+      <category term="CSS/CSS3" scheme="http://www.gcidea.info/tags/CSS-CSS3/"/>
     
       <category term="Less" scheme="http://www.gcidea.info/tags/Less/"/>
     
@@ -199,7 +199,7 @@
     <link href="http://www.gcidea.info/2017/01/23/uniform-development-product-env-switchyomega-charles/"/>
     <id>http://www.gcidea.info/2017/01/23/uniform-development-product-env-switchyomega-charles/</id>
     <published>2017-01-23T06:13:51.000Z</published>
-    <updated>2017-02-11T06:17:42.791Z</updated>
+    <updated>2017-02-11T06:17:42.792Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg" alt=""></p>
 <blockquote>
@@ -304,7 +304,7 @@
     <link href="http://www.gcidea.info/2017/01/17/git-merge-git-rebase/"/>
     <id>http://www.gcidea.info/2017/01/17/git-merge-git-rebase/</id>
     <published>2017-01-17T13:45:08.000Z</published>
-    <updated>2017-02-11T05:25:34.061Z</updated>
+    <updated>2017-02-11T05:25:34.062Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg" alt=""></p>
 <h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><p>　　以下概念和示例参考<a href="http://blog.csdn.net/wh_19910525/article/details/7554489" target="_blank" rel="external">http://blog.csdn.net/wh_19910525/article/details/7554489</a></p>
@@ -364,7 +364,7 @@
     <link href="http://www.gcidea.info/2017/01/12/js-compare/"/>
     <id>http://www.gcidea.info/2017/01/12/js-compare/</id>
     <published>2017-01-12T14:11:06.000Z</published>
-    <updated>2017-02-11T05:25:56.758Z</updated>
+    <updated>2017-02-11T05:25:56.759Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p77.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　在javascript开发中，比较操作是十分常见的。由于显式/隐式强制类型转换机制的存在，我们在使用比较运算时显得过于随意，也许表面上看并没有什么错误（比如在if()语句中判断两值相等时顺手就写成 == ），但是这可能会埋下很多不易发现的隐患。对于比较操作（相等关系和不等关系），在javascript中其实是有一套完善的机制的。本文依据ES5规范<strong>《ECMAScript Language Specification ECMA-262<br>5.1 Edition / June 2011》</strong>的11.8节和11.9节：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/ecma-relational-equality-operator.png" alt=""></p>
@@ -828,7 +828,7 @@
     <link href="http://www.gcidea.info/2017/01/02/react-state-initialize/"/>
     <id>http://www.gcidea.info/2017/01/02/react-state-initialize/</id>
     <published>2017-01-02T05:54:23.000Z</published>
-    <updated>2017-02-11T06:25:32.664Z</updated>
+    <updated>2017-02-11T06:25:32.665Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-3.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　本篇结合在使用<a href="https://github.com/dvajs" target="_blank" rel="external">dva框架</a>进行React应用开发过程中遇到的问题，简要分析React中state的机制和Redux对state的状态管理。</p>
@@ -886,7 +886,7 @@
     <link href="http://www.gcidea.info/2016/12/31/js-constructor-prototype/"/>
     <id>http://www.gcidea.info/2016/12/31/js-constructor-prototype/</id>
     <published>2016-12-31T15:13:37.000Z</published>
-    <updated>2017-02-11T05:40:12.871Z</updated>
+    <updated>2017-02-11T05:40:12.872Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p78.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感觉。因为三者的关系并不是简单的“constructor和prototype是对象的两个属性”，并且“到底把constructor看作属性还是构造函数对象”，“到底把prototype看作属性还是原型对象”，这些问题并没有一个固定答案，它们有着互相渗透的关系。更多地我们应该关注这些名词到底想要描述怎样的问题。本文我就结合《JavaScript权威指南》和《JavaScript高级程序设计》两书进行总结和分析，可能有一些还不正确的理解，需要进一步探究。<br>　　另外，要说明的是，不可能只是干巴巴地描述这3个概念，因为它们本质上涉及的是JavaScript面向对象编程中的“类与对象”、“类的继承”等问题，因此本文是从这些方面进行组织的，constructor属性、prototype属性的分析包含其中。</p>
@@ -1099,7 +1099,7 @@
     <link href="http://www.gcidea.info/2016/12/20/js-7-create-object-solutions-6-inherit-solutions/"/>
     <id>http://www.gcidea.info/2016/12/20/js-7-create-object-solutions-6-inherit-solutions/</id>
     <published>2016-12-20T14:40:47.000Z</published>
-    <updated>2017-02-11T06:27:20.861Z</updated>
+    <updated>2017-02-11T06:27:20.862Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p64.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　JavaScript是一种面向对象（OO）的语言，但由于ECMAScript没有类的概念（ES6引入关键字class），所以在js中创建对象的方法也与其他基于类的语言有所不同。本篇总结在JavaScript中创建对象的7种方法；并在此基础上，总结实现继承的6种方式。</p>
@@ -1226,7 +1226,7 @@
     <link href="http://www.gcidea.info/2016/12/19/js-yield/"/>
     <id>http://www.gcidea.info/2016/12/19/js-yield/</id>
     <published>2016-12-19T13:07:31.000Z</published>
-    <updated>2017-02-16T03:21:00.114Z</updated>
+    <updated>2017-02-16T03:21:00.115Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p95.jpg" alt=""></p>
 <h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>　　Generator（生成器）函数是ES6提供的一种异步编程解决方案，而yield则是配合生成器函数使用的。</p>
@@ -1359,7 +1359,7 @@
     <link href="http://www.gcidea.info/2016/12/16/webpack-demos/"/>
     <id>http://www.gcidea.info/2016/12/16/webpack-demos/</id>
     <published>2016-12-16T15:33:51.000Z</published>
-    <updated>2017-02-16T03:19:51.034Z</updated>
+    <updated>2017-02-16T03:19:51.035Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p113.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：</p>
@@ -1561,7 +1561,7 @@
     <link href="http://www.gcidea.info/2016/12/12/js-proto-prototype/"/>
     <id>http://www.gcidea.info/2016/12/12/js-proto-prototype/</id>
     <published>2016-12-12T04:52:56.000Z</published>
-    <updated>2017-02-16T03:09:57.943Z</updated>
+    <updated>2017-02-16T03:09:57.944Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p91.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　<strong>proto</strong>、[[prototype]]和prototype三个概念及相关内容是javascript比较复杂且容易混淆的内容。本文尝试进行总结和分析。</p>
