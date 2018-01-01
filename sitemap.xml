@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.gcidea.info/2016/12/20/js-7-create-object-solutions-6-inherit-solutions/</loc>
+    
+    <lastmod>2018-01-01T10:00:36.746Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.gcidea.info/about/index.html</loc>
     
     <lastmod>2017-12-31T06:05:25.555Z</lastmod>
@@ -173,13 +180,6 @@
     <loc>http://www.gcidea.info/2016/12/17/base64/</loc>
     
     <lastmod>2017-02-11T06:28:43.673Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.gcidea.info/2016/12/20/js-7-create-object-solutions-6-inherit-solutions/</loc>
-    
-    <lastmod>2017-02-11T06:27:20.862Z</lastmod>
     
   </url>
   

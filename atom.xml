@@ -188,9 +188,9 @@
     
       <category term="CSS/CSS3" scheme="http://www.gcidea.info/tags/CSS-CSS3/"/>
     
-      <category term="响应式" scheme="http://www.gcidea.info/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/"/>
-    
       <category term="Less" scheme="http://www.gcidea.info/tags/Less/"/>
+    
+      <category term="响应式" scheme="http://www.gcidea.info/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/"/>
     
   </entry>
   
@@ -1099,14 +1099,16 @@
     <link href="http://www.gcidea.info/2016/12/20/js-7-create-object-solutions-6-inherit-solutions/"/>
     <id>http://www.gcidea.info/2016/12/20/js-7-create-object-solutions-6-inherit-solutions/</id>
     <published>2016-12-20T14:40:47.000Z</published>
-    <updated>2017-02-11T06:27:20.862Z</updated>
+    <updated>2018-01-01T10:00:36.746Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p64.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　JavaScript是一种面向对象（OO）的语言，但由于ECMAScript没有类的概念（ES6引入关键字class），所以在js中创建对象的方法也与其他基于类的语言有所不同。本篇总结在JavaScript中创建对象的7种方法；并在此基础上，总结实现继承的6种方式。</p>
 <hr>
 <h2 id="JavaScript中对象的基本概念"><a href="#JavaScript中对象的基本概念" class="headerlink" title="JavaScript中对象的基本概念"></a>JavaScript中对象的基本概念</h2><h3 id="创建对象的2种基本方法"><a href="#创建对象的2种基本方法" class="headerlink" title="创建对象的2种基本方法"></a>创建对象的2种基本方法</h3><hr>
-<h4 id="创建一个Object实例"><a href="#创建一个Object实例" class="headerlink" title="创建一个Object实例"></a>创建一个Object实例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">person.name = <span class="string">"Bob"</span>;</span><br><span class="line">person.age = <span class="number">24</span>;</span><br><span class="line">person.greet = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="string">``</span><span class="string">` </span><br><span class="line">　　通过上述方法，创建了一个对象，并为其添加了3个属性，属性值有字符串，数字，函数。</span><br><span class="line">#### 对象字面量</span><br><span class="line">`</span><span class="string">``</span> javascript</span><br><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	name: <span class="string">"Bob"</span>,</span><br><span class="line">	age: <span class="number">24</span>,</span><br><span class="line">	greet: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>　　 创建的对象与上述相同，只不过使用<code>{}</code>的字面量方式创建。</p>
+<h4 id="创建一个Object实例"><a href="#创建一个Object实例" class="headerlink" title="创建一个Object实例"></a>创建一个Object实例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">person.name = <span class="string">"Bob"</span>;</span><br><span class="line">person.age = <span class="number">24</span>;</span><br><span class="line">person.greet = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上述方法，创建了一个对象，并为其添加了3个属性，属性值有字符串，数字，函数。</p>
+<h4 id="对象字面量"><a href="#对象字面量" class="headerlink" title="对象字面量"></a>对象字面量</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">	name: <span class="string">"Bob"</span>,</span><br><span class="line">	age: <span class="number">24</span>,</span><br><span class="line">	greet: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		alert(<span class="keyword">this</span>.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建的对象与上述相同，只不过使用<code>{}</code>的字面量方式创建。</p>
 <h3 id="属性与特性"><a href="#属性与特性" class="headerlink" title="属性与特性"></a>属性与特性</h3><p>　　关于属性和特性的细节，可以参考<a href="http://www.gcidea.info/2016/05/10/js-attribute-property/">JavaScript中attribute(特性)和property(属性)的对比分析</a>。对象就是由众多的属性(property)构成的，而每个属性(property)又具有多个特性(attribute)。这些特性(attribute)是为了实现JavaScript引擎使用的，在JavaScript语言使用中不能直接访问它们。为了表示是内部值，将各个特性(attribute)放在两对方括号<code>[[]]</code>中表示。</p>
 <h4 id="数据属性的特性"><a href="#数据属性的特性" class="headerlink" title="数据属性的特性"></a>数据属性的特性</h4><p>1.<code>[[Configurable]]</code></p>
 <ul>
