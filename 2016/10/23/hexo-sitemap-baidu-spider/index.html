@@ -20,12 +20,12 @@
 <meta property="og:url" content="http://www.gcidea.info/2016/10/23/hexo-sitemap-baidu-spider/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　Sitemap 可方便网站管理员通知搜索引擎他们网站上有哪些可供抓取的网页。最简单的 Sitemap 形式，就是XML 文件，在其中列出网站中的网址以及关于每个网址的其他元数据（上次更新的时间、更改的频率以及相对于网站上其他网址的重要程度为何等），以便搜索引擎可以更加智能地抓取网站。　　　　简易信息聚合（也叫聚合内容）是一种RSS基于XML标准，在互联网上被广泛采用的内容包装和投递协议。">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p49.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:58:36.509Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p49.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:44.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客框架配置优化-网站sitemap和RSS源订阅">
 <meta name="twitter:description" content="前言　　Sitemap 可方便网站管理员通知搜索引擎他们网站上有哪些可供抓取的网页。最简单的 Sitemap 形式，就是XML 文件，在其中列出网站中的网址以及关于每个网址的其他元数据（上次更新的时间、更改的频率以及相对于网站上其他网址的重要程度为何等），以便搜索引擎可以更加智能地抓取网站。　　　　简易信息聚合（也叫聚合内容）是一种RSS基于XML标准，在互联网上被广泛采用的内容包装和投递协议。">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p49.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p49.jpg">
     
 
     
@@ -199,17 +199,17 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo的sitemap-配置和RSS-配置"><span class="toc-number">2.</span> <span class="toc-text">Hexo的sitemap 配置和RSS 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用百度站长工具提交sitemap并抓取"><span class="toc-number">3.</span> <span class="toc-text">使用百度站长工具提交sitemap并抓取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用AZ-Reader进行RSS订阅测试"><span class="toc-number">4.</span> <span class="toc-text">使用AZ Reader进行RSS订阅测试</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p49.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p49.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　Sitemap 可方便网站管理员通知搜索引擎他们网站上有哪些可供抓取的网页。最简单的 Sitemap 形式，就是XML 文件，在其中列出网站中的网址以及关于每个网址的其他元数据（上次更新的时间、更改的频率以及相对于网站上其他网址的重要程度为何等），以便搜索引擎可以更加智能地抓取网站。　　<br>　　简易信息聚合（也叫聚合内容）是一种RSS基于XML标准，在互联网上被广泛采用的内容包装和投递协议。RSS(Really Simple Syndication)是一种描述和同步网站内容的格式，是使用最广泛的XML应用。RSS搭建了信息迅速传播的一个技术平台，使得每个人都成为潜在的信息提供者。发布一个RSS文件后，这个RSS Feed中包含的信息就能直接被其他站点调用，而且由于这些数据都是标准的XML格式，所以也能在其他的终端和服务中使用，是一种描述和同步网站内容的格式。<br>　　可以看出，sitemap可以使得博客被搜索引擎抓取，增加博客受众；rss则提供了订阅博客的一种方式。为此，对本博客进行如下配置。</p>
 <hr>
-<h2 id="Hexo的sitemap-配置和RSS-配置"><a href="#Hexo的sitemap-配置和RSS-配置" class="headerlink" title="Hexo的sitemap 配置和RSS 配置"></a>Hexo的sitemap 配置和RSS 配置</h2><p>　　在hexo_config.yml中，做出如下配置：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/hexo-sitemap-rss.png" alt=""><br>配置后重启hexo server 进行测试，使用网站域名/sitemap.xml看是否正常。（下图为本地测试）<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/hexo-sitemap-rss-2.png" alt=""></p>
+<h2 id="Hexo的sitemap-配置和RSS-配置"><a href="#Hexo的sitemap-配置和RSS-配置" class="headerlink" title="Hexo的sitemap 配置和RSS 配置"></a>Hexo的sitemap 配置和RSS 配置</h2><p>　　在hexo_config.yml中，做出如下配置：<br><img src="http://cdn.gcidea.cn/hexo-sitemap-rss.png" alt=""><br>配置后重启hexo server 进行测试，使用网站域名/sitemap.xml看是否正常。（下图为本地测试）<br><img src="http://cdn.gcidea.cn/hexo-sitemap-rss-2.png" alt=""></p>
 <hr>
-<h2 id="使用百度站长工具提交sitemap并抓取"><a href="#使用百度站长工具提交sitemap并抓取" class="headerlink" title="使用百度站长工具提交sitemap并抓取"></a>使用百度站长工具提交sitemap并抓取</h2><p>1.登录站长平台，对网站进行CNAME验证<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/baidu-spider-6.png" alt=""><br>在个人域名的注册商系统做好如下配置<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/baidu-spider-2.png" alt=""></p>
-<p>2.提交链接<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/baidu-spider-3.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/baidu-spider-4.png" alt=""></p>
-<p>3.出现抓取失败的问题<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/baidu-spider-5.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/baidu-spider.png" alt=""></p>
+<h2 id="使用百度站长工具提交sitemap并抓取"><a href="#使用百度站长工具提交sitemap并抓取" class="headerlink" title="使用百度站长工具提交sitemap并抓取"></a>使用百度站长工具提交sitemap并抓取</h2><p>1.登录站长平台，对网站进行CNAME验证<br><img src="http://cdn.gcidea.cn/baidu-spider-6.png" alt=""><br>在个人域名的注册商系统做好如下配置<br><img src="http://cdn.gcidea.cn/baidu-spider-2.png" alt=""></p>
+<p>2.提交链接<br><img src="http://cdn.gcidea.cn/baidu-spider-3.png" alt=""><br><img src="http://cdn.gcidea.cn/baidu-spider-4.png" alt=""></p>
+<p>3.出现抓取失败的问题<br><img src="http://cdn.gcidea.cn/baidu-spider-5.png" alt=""><br><img src="http://cdn.gcidea.cn/baidu-spider.png" alt=""></p>
 <p>原因：博客是搭建在github服务器上的，github拒绝百度爬虫爬取。<br>相关解决方案：<a href="https://www.zhihu.com/question/30898326" target="_blank" rel="external">如何解决百度爬虫无法爬取搭建在Github上的个人博客的问题？</a></p>
 <hr>
-<h2 id="使用AZ-Reader进行RSS订阅测试"><a href="#使用AZ-Reader进行RSS订阅测试" class="headerlink" title="使用AZ Reader进行RSS订阅测试"></a>使用AZ Reader进行RSS订阅测试</h2><p><a href="http://azreader.net/About" target="_blank" rel="external">AZ Reader</a>是一款免费的rss阅读器，具备rss基本功能。<br>进行简单配置后，就可进行正常浏览：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/az-reader-rss-1.png" alt=""></p>
+<h2 id="使用AZ-Reader进行RSS订阅测试"><a href="#使用AZ-Reader进行RSS订阅测试" class="headerlink" title="使用AZ Reader进行RSS订阅测试"></a>使用AZ Reader进行RSS订阅测试</h2><p><a href="http://azreader.net/About" target="_blank" rel="external">AZ Reader</a>是一款免费的rss阅读器，具备rss基本功能。<br>进行简单配置后，就可进行正常浏览：<br><img src="http://cdn.gcidea.cn/az-reader-rss-1.png" alt=""></p>
 
         </div>
         <footer class="article-footer">
@@ -404,7 +404,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -424,7 +424,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -444,7 +444,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -464,7 +464,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -484,7 +484,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

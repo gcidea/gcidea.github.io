@@ -24,14 +24,14 @@ Chro">
 <meta property="og:description" content="前言　　以使用$.ajax()方法发出一个异步请求为例，探究当执行完发出异步请求的同步代码但尚未执行异步回调的函数的时候，关闭浏览器，不同浏览器对此有何处理。并且，这个问题是因为看到了一种不规范写法而发现的—场景是，执行完相关保存任务（异步请求）后关闭当前页面。这种写法把window.close()相关代码却写在了$ajax()的外面（后面）。违背了在成功保存的回调内关闭页面的做法。
 
 Chro">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p4.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:26:52.383Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p4.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:09:05.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【探究】当页面关闭时，不同浏览器对尚未完成的异步请求如何处理？">
 <meta name="twitter:description" content="前言　　以使用$.ajax()方法发出一个异步请求为例，探究当执行完发出异步请求的同步代码但尚未执行异步回调的函数的时候，关闭浏览器，不同浏览器对此有何处理。并且，这个问题是因为看到了一种不规范写法而发现的—场景是，执行完相关保存任务（异步请求）后关闭当前页面。这种写法把window.close()相关代码却写在了$ajax()的外面（后面）。违背了在成功保存的回调内关闭页面的做法。
 
 Chro">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p4.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p4.jpg">
     
 
     
@@ -205,14 +205,14 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chrome"><span class="toc-number">2.</span> <span class="toc-text">Chrome</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Firefox"><span class="toc-number">3.</span> <span class="toc-text">Firefox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IE"><span class="toc-number">4.</span> <span class="toc-text">IE</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p4.jpg" alt=""></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　以使用$.ajax()方法发出一个异步请求为例，探究当执行完发出异步请求的同步代码但尚未执行异步回调的函数的时候，关闭浏览器，不同浏览器对此有何处理。并且，这个问题是因为看到了一种不规范写法而发现的—场景是，执行完相关保存任务（异步请求）后关闭当前页面。这种写法把window.close()相关代码却写在了$ajax()的外面（后面）。违背了在成功保存的回调内关闭页面的做法。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/ajax-close-1.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p4.jpg" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　以使用$.ajax()方法发出一个异步请求为例，探究当执行完发出异步请求的同步代码但尚未执行异步回调的函数的时候，关闭浏览器，不同浏览器对此有何处理。并且，这个问题是因为看到了一种不规范写法而发现的—场景是，执行完相关保存任务（异步请求）后关闭当前页面。这种写法把window.close()相关代码却写在了$ajax()的外面（后面）。违背了在成功保存的回调内关闭页面的做法。<br><img src="http://cdn.gcidea.cn/ajax-close-1.jpg" alt=""></p>
 <hr>
 <h2 id="Chrome"><a href="#Chrome" class="headerlink" title="Chrome"></a>Chrome</h2><p>　　现有逻辑下（window.close写在外面）这个ajax请求会被丢弃，用fiddler抓包，没有”../mktools/customized-template-page!save.action?random=”+ new Date().getTime(),这个请求。</p>
 <hr>
-<h2 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox"></a>Firefox</h2><p>　　同chrome 。但是如果在$.ajax上打个断点，是可以看到请求发出去了的，也好理解，因为还没执行到window.close，未完成的请求不会被抛弃。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/ajax-close-2.png" alt=""></p>
+<h2 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox"></a>Firefox</h2><p>　　同chrome 。但是如果在$.ajax上打个断点，是可以看到请求发出去了的，也好理解，因为还没执行到window.close，未完成的请求不会被抛弃。<br><img src="http://cdn.gcidea.cn/ajax-close-2.png" alt=""></p>
 <hr>
-<h2 id="IE"><a href="#IE" class="headerlink" title="IE"></a>IE</h2><p>　　IE 即便不打断点，现有逻辑下（window.close写在外面），请求依然会发出去。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/ajax-close-3.png" alt=""></p>
+<h2 id="IE"><a href="#IE" class="headerlink" title="IE"></a>IE</h2><p>　　IE 即便不打断点，现有逻辑下（window.close写在外面），请求依然会发出去。<br><img src="http://cdn.gcidea.cn/ajax-close-3.png" alt=""></p>
 
         </div>
         <footer class="article-footer">
@@ -407,7 +407,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -427,7 +427,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -447,7 +447,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -467,7 +467,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -487,7 +487,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

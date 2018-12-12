@@ -20,12 +20,12 @@
 <meta property="og:url" content="http://www.gcidea.info/2016/04/03/js-getevent/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="实践123456789101112131415161718function getEvent() &amp;#123;    if (document.all) &amp;#123;        var iEevent = window.event;        iEevent.target = window.event.srcElement;        return iEevent;    &amp;#125">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p85.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:40:37.125Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p85.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:32.874Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript获取页面事件对象的getEvent函数兼容性写法">
 <meta name="twitter:description" content="实践123456789101112131415161718function getEvent() &amp;#123;    if (document.all) &amp;#123;        var iEevent = window.event;        iEevent.target = window.event.srcElement;        return iEevent;    &amp;#125">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p85.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p85.jpg">
     
 
     
@@ -199,7 +199,7 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实践"><span class="toc-number">1.</span> <span class="toc-text">实践</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p85.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p85.jpg" alt=""></p>
 <h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getEvent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">document</span>.all) &#123;</span><br><span class="line">        <span class="keyword">var</span> iEevent = <span class="built_in">window</span>.event;</span><br><span class="line">        iEevent.target = <span class="built_in">window</span>.event.srcElement;</span><br><span class="line">        <span class="keyword">return</span> iEevent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> func = getEvent.caller;</span><br><span class="line">    <span class="keyword">while</span> (func != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> arg0 = func.arguments[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">if</span> (arg0) &#123;</span><br><span class="line">            <span class="keyword">if</span> ((arg0.constructor == Event || arg0.constructor == MouseEvent) || (<span class="keyword">typeof</span>(arg0) == <span class="string">"object"</span> &amp;&amp; arg0.preventDefault &amp;&amp; arg0.stopPropagation)) &#123;</span><br><span class="line">                <span class="keyword">return</span> arg0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        func = func.caller;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         <footer class="article-footer">
@@ -394,7 +394,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -414,7 +414,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -434,7 +434,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -454,7 +454,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -474,7 +474,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

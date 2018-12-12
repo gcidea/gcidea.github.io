@@ -24,14 +24,14 @@
 <meta property="og:description" content="前言　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。
 
 核心　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p3.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:34:29.718Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p3.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:58.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jQuery的ajax()方法详细分析">
 <meta name="twitter:description" content="前言　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。
 
 核心　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p3.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p3.jpg">
     
 
     
@@ -205,7 +205,7 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心"><span class="toc-number">2.</span> <span class="toc-text">核心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分类"><span class="toc-number">3.</span> <span class="toc-text">分类</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#全局Ajax事件处理函数（Global-Ajax-Event-Handlers）"><span class="toc-number">3.1.</span> <span class="toc-text">全局Ajax事件处理函数（Global Ajax Event Handlers）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#辅助函数（Helper-Functions）"><span class="toc-number">3.2.</span> <span class="toc-text">辅助函数（Helper Functions）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基础接口（Low-Level-Interface）"><span class="toc-number">3.3.</span> <span class="toc-text">基础接口（Low-Level Interface）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速写函数（Shorthand-Methods）"><span class="toc-number">3.4.</span> <span class="toc-text">速写函数（Shorthand Methods）</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ajax-详细介绍"><span class="toc-number">4.</span> <span class="toc-text">$.ajax()详细介绍</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#描述：使用该方法可发起一个异步HTTP请求。"><span class="toc-number">4.1.</span> <span class="toc-text">描述：使用该方法可发起一个异步HTTP请求。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#version1-5-格式：jQuery-ajax-url-settings"><span class="toc-number">4.2.</span> <span class="toc-text">version1.5 格式：jQuery.ajax( url [, settings ] )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#version1-0-格式：jQuery-ajax-settings"><span class="toc-number">4.3.</span> <span class="toc-text">version1.0 格式：jQuery.ajax( [ settings ] )</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">5.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jqXHR对象"><span class="toc-number">6.</span> <span class="toc-text">jqXHR对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回调函数队列（Callback-Function-Queues）"><span class="toc-number">7.</span> <span class="toc-text">回调函数队列（Callback Function Queues）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型（Data-Types）"><span class="toc-number">8.</span> <span class="toc-text">数据类型（Data Types）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#向服务器发送数据（Sending-Data-to-the-Server）"><span class="toc-number">9.</span> <span class="toc-text">向服务器发送数据（Sending Data to the Server）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高级选项（Advanced-Options）"><span class="toc-number">10.</span> <span class="toc-text">高级选项（Advanced Options）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可扩展的Ajax（Extending-Ajax）"><span class="toc-number">11.</span> <span class="toc-text">可扩展的Ajax（Extending Ajax）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用转换器（Using-Converters）"><span class="toc-number">12.</span> <span class="toc-text">使用转换器（Using Converters）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附加提醒"><span class="toc-number">13.</span> <span class="toc-text">附加提醒</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">14.</span> <span class="toc-text">总结</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p3.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p3.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　ajax，即“Asynchronous Javascript And XML”（异步JavaScript和XML），是一种异步加载数据的Web交互方法，在网页开发中使用十分普遍，实现局部刷新以达到更好的交互效果是ajax的典型应用。</p>
 <hr>
 <h2 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h2><p>　　$.ajax(即jQuery.ajax),是jQuery库进行的一次封装。其核心实现是利用了JavaScript中的XMLHttpRequest对象。通过以下jQuery源码片段可以看出(jquery-2.2.0)：<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jQuery.ajaxSettings.xhr = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">window</span>.XMLHttpRequest();</span><br><span class="line">    &#125; <span class="keyword">catch</span> ( e ) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
@@ -556,7 +556,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -576,7 +576,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -596,7 +596,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -616,7 +616,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -636,7 +636,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

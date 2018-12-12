@@ -20,12 +20,12 @@
 <meta property="og:url" content="http://www.gcidea.info/2016/11/27/bootstrap-grid-principle/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="栅格系统基本使用方法基本原理　　Bootstrap 提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为最多12列。它包含了易于使用的预定义类，还有强大的mixin 用于生成更具语义的布局。　　栅格系统用于通过一系列的行（row）与列（column）的组合来创建页面布局，你的内容就可以放入这些创建好的布局中。下面就介绍一下 Bootstrap">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p14.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:33:46.553Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p14.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:54.728Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bootstrap等前端框架栅格系统的原理">
 <meta name="twitter:description" content="栅格系统基本使用方法基本原理　　Bootstrap 提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为最多12列。它包含了易于使用的预定义类，还有强大的mixin 用于生成更具语义的布局。　　栅格系统用于通过一系列的行（row）与列（column）的组合来创建页面布局，你的内容就可以放入这些创建好的布局中。下面就介绍一下 Bootstrap">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p14.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p14.jpg">
     
 
     
@@ -199,7 +199,7 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#栅格系统基本使用方法"><span class="toc-number">1.</span> <span class="toc-text">栅格系统基本使用方法</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本原理"><span class="toc-number">1.1.</span> <span class="toc-text">基本原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#媒体查询"><span class="toc-number">1.2.</span> <span class="toc-text">媒体查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-number">1.3.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#效果"><span class="toc-number">1.4.</span> <span class="toc-text">效果</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码简要分析"><span class="toc-number">2.</span> <span class="toc-text">源码简要分析</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p14.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p14.jpg" alt=""></p>
 <h2 id="栅格系统基本使用方法"><a href="#栅格系统基本使用方法" class="headerlink" title="栅格系统基本使用方法"></a>栅格系统基本使用方法</h2><h3 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h3><p>　　Bootstrap 提供了一套响应式、移动设备优先的流式栅格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为最多12列。它包含了易于使用的预定义类，还有强大的mixin 用于生成更具语义的布局。<br>　　栅格系统用于通过一系列的行（row）与列（column）的组合来创建页面布局，你的内容就可以放入这些创建好的布局中。下面就介绍一下 Bootstrap 栅格系统的工作原理：</p>
 <ul>
 <li>“行（row）”必须包含在 .container （固定宽度）或 .container-fluid （100% 宽度）中，以便为其赋予合适的排列（aligment）和内补（padding）。</li>
@@ -213,7 +213,7 @@ var _hmt = _hmt || [];
 </ul>
 <h3 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h3><p>　　在栅格系统中，使用媒体查询创建关键点分界阈值。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 超小屏幕（手机，小于 768px） */</span></span><br><span class="line"><span class="comment">/* 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的（还记得 Bootstrap 是移动设备优先的吗？） */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 小屏幕（平板，大于等于 768px） */</span></span><br><span class="line">@<span class="keyword">media</span> (min-width: @screen-sm-min) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 中等屏幕（桌面显示器，大于等于 992px） */</span></span><br><span class="line">@<span class="keyword">media</span> (min-width: @screen-md-min) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 大屏幕（大桌面显示器，大于等于 1200px） */</span></span><br><span class="line">@<span class="keyword">media</span> (min-width: @screen-lg-min) &#123; ... &#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-1"</span>&gt;</span>.col-md-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-1"</span>&gt;</span>.col-md-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-1"</span>&gt;</span>.col-md-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-1"</span>&gt;</span>.col-md-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-1"</span>&gt;</span>.col-md-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-1"</span>&gt;</span>.col-md-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-1"</span>&gt;</span>.col-md-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-1"</span>&gt;</span>.col-md-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-1"</span>&gt;</span>.col-md-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-1"</span>&gt;</span>.col-md-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-1"</span>&gt;</span>.col-md-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-1"</span>&gt;</span>.col-md-1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span>&gt;</span>.col-md-8<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-4"</span>&gt;</span>.col-md-4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-4"</span>&gt;</span>.col-md-4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-4"</span>&gt;</span>.col-md-4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-4"</span>&gt;</span>.col-md-4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-6"</span>&gt;</span>.col-md-6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-6"</span>&gt;</span>.col-md-6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/boostrap-1.png" alt=""></p>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="http://cdn.gcidea.cn/boostrap-1.png" alt=""></p>
 <hr>
 <h2 id="源码简要分析"><a href="#源码简要分析" class="headerlink" title="源码简要分析"></a>源码简要分析</h2><blockquote>
 <p>以下以bootstrap-3.3.5-dist中css/boostrap.css的1585行开始为准：</p>
@@ -417,7 +417,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -437,7 +437,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -457,7 +457,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -477,7 +477,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -497,7 +497,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

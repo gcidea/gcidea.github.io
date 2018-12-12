@@ -28,8 +28,8 @@ onclick=”btnSendMsgAgain();return false;”中的return false作用：验证�
 onclick=”btnSendMsgAgain();return false;”中的return false作用：验证码是位于form表单中的，点击该按钮的作用是发送验证码，而不是提交表单，return false为了彻底阻止元素的默认事件。
 
 123&amp;lt;div class=&quot;am-u-sm-">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p79.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:40:18.588Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p79.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:34.691Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用JavaScript实现短信重发倒计时">
 <meta name="twitter:description" content="主要html结构以下html片段表示了重发倒计时组件的文档结构，依赖Amaze UI样式框架。
@@ -37,7 +37,7 @@ onclick=”btnSendMsgAgain();return false;”中的return false作用：验证�
 onclick=”btnSendMsgAgain();return false;”中的return false作用：验证码是位于form表单中的，点击该按钮的作用是发送验证码，而不是提交表单，return false为了彻底阻止元素的默认事件。
 
 123&amp;lt;div class=&quot;am-u-sm-">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p79.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p79.jpg">
     
 
     
@@ -211,14 +211,14 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#主要html结构"><span class="toc-number">1.</span> <span class="toc-text">主要html结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果"><span class="toc-number">2.</span> <span class="toc-text">效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主要逻辑"><span class="toc-number">3.</span> <span class="toc-text">主要逻辑</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p79.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p79.jpg" alt=""></p>
 <h2 id="主要html结构"><a href="#主要html结构" class="headerlink" title="主要html结构"></a>主要html结构</h2><p>以下html片段表示了重发倒计时组件的文档结构，依赖<a href="http://amazeui.org/" target="_blank" rel="external">Amaze UI样式框架</a>。</p>
 <blockquote>
 <p>onclick=”btnSendMsgAgain();return false;”中的return false作用：<br>验证码是位于form表单中的，点击该按钮的作用是发送验证码，而不是提交表单，return false为了彻底阻止元素的默认事件。</p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"am-u-sm-4  am-margin-left-0 am-padding-left-0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"getVerifyCodeAgain"</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"am-btn am-margin-left-0"</span> <span class="attr">onclick</span>=<span class="string">"btnSendMsgAgain();return false;"</span>&gt;</span>发送验证码<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/countdown-1.png" alt=""></p>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="http://cdn.gcidea.cn/countdown-1.png" alt=""></p>
 <hr>
 <h2 id="主要逻辑"><a href="#主要逻辑" class="headerlink" title="主要逻辑"></a>主要逻辑</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//短信重置密码-发送短信验证码</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">btnSendMsg</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">         url: <span class="string">"&#123;:U('forgetPasswordBySMS')&#125;"</span>,</span><br><span class="line">         type: <span class="string">"GET"</span>,</span><br><span class="line">         <span class="keyword">async</span>: <span class="literal">true</span>,</span><br><span class="line">         data: &#123;username: $(<span class="string">"#hiddenUsername-readyToSendMsg"</span>).val()&#125;,</span><br><span class="line">         dataType: <span class="string">"json"</span>,</span><br><span class="line">         timeout: <span class="number">10000</span>,</span><br><span class="line">         success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(data.status==<span class="string">'success'</span>)&#123;</span><br><span class="line">             $(<span class="string">"#readyToSendMsg"</span>).modal(<span class="string">'close'</span>);</span><br><span class="line">             $(<span class="string">"#hiddenUsername-resetPasswordBySMSbtn"</span>).attr(<span class="string">'value'</span>,data.username);</span><br><span class="line">             $(<span class="string">"#phone-resetPasswordBySMSbtn"</span>).html(data.phone);</span><br><span class="line">             $(<span class="string">"#resetPasswordBySMSbtn"</span>).modal(&#123;</span><br><span class="line">                 width: <span class="number">500</span>,</span><br><span class="line">                 height:<span class="number">400</span>,</span><br><span class="line">                 closeViaDimmer: <span class="number">0</span></span><br><span class="line">             &#125;)</span><br><span class="line">             $(<span class="string">"#resetPasswordBySMSbtn"</span>).modal(<span class="string">'open'</span>);</span><br><span class="line">             timeCountDown();</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             alert(data.message);</span><br><span class="line">         &#125;</span><br><span class="line">         &#125;,</span><br><span class="line">         error: <span class="function"><span class="keyword">function</span>(<span class="params">XMLHttpRequest, textStatus, errorThrown</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">if</span>(textStatus==<span class="string">"timeout"</span>)&#123;</span><br><span class="line">         alert(<span class="string">"请求超时，请检查网络连接设置"</span>);</span><br><span class="line">         &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">btnSendMsgAgain</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    timeCountDown();</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url: <span class="string">"&#123;:U('forgetPasswordBySMS')&#125;"</span>,</span><br><span class="line">        type: <span class="string">"GET"</span>,</span><br><span class="line">        <span class="keyword">async</span>: <span class="literal">true</span>,</span><br><span class="line">        data: &#123;username: $(<span class="string">"#hiddenUsername-readyToSendMsg"</span>).val()&#125;,</span><br><span class="line">        dataType: <span class="string">"json"</span>,</span><br><span class="line">        timeout: <span class="number">10000</span>,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(data.status==<span class="string">'success'</span>)&#123;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                alert(data.message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        error: <span class="function"><span class="keyword">function</span>(<span class="params">XMLHttpRequest, textStatus, errorThrown</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(textStatus==<span class="string">"timeout"</span>)&#123;</span><br><span class="line">                alert(<span class="string">"请求超时，请检查网络连接设置"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> wait=<span class="number">60</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">timeCountDown</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (wait == <span class="number">0</span>) &#123;</span><br><span class="line">            $(<span class="string">"#getVerifyCodeAgain"</span>).removeAttr(<span class="string">"disabled"</span>);</span><br><span class="line">            $(<span class="string">"#getVerifyCodeAgain"</span>).html(<span class="string">"发送验证码"</span>);</span><br><span class="line">            wait = <span class="number">60</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $(<span class="string">"#getVerifyCodeAgain"</span>).attr(<span class="string">"disabled"</span>, <span class="literal">true</span>);</span><br><span class="line">            $(<span class="string">"#getVerifyCodeAgain"</span>).html(<span class="string">"重新发送("</span> + wait + <span class="string">")"</span>);</span><br><span class="line">            wait--;</span><br><span class="line">            setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                        timeCountDown();</span><br><span class="line">            &#125;,<span class="number">1000</span>)</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -415,7 +415,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -435,7 +435,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -455,7 +455,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -475,7 +475,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -495,7 +495,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

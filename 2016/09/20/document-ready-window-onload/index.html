@@ -26,15 +26,15 @@ window.onload执行时机　　必须等到页面内包括图片的所有元素�
 特点　　在同一个页面中可以写多次，会顺序执行，见下面测试。
 
 window.onload执行时机　　必须等到页面内包括图片的所有元素加载完">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p41.jpg">
-<meta property="og:updated_time" content="2017-02-09T15:04:26.892Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p41.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:47.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="$(document).ready与window.onload的区别">
 <meta name="twitter:description" content="document.ready执行时机　　只要页面DOM结构绘制完毕就执行，不必等到外部资源（图片，css等）加载完毕。 并且，在jquery中，$(function(){}) 和$(document).ready(function(){})两种写法是等价的。
 特点　　在同一个页面中可以写多次，会顺序执行，见下面测试。
 
 window.onload执行时机　　必须等到页面内包括图片的所有元素加载完">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p41.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p41.jpg">
     
 
     
@@ -208,15 +208,15 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#document-ready"><span class="toc-number">1.</span> <span class="toc-text">document.ready</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#执行时机"><span class="toc-number">1.1.</span> <span class="toc-text">执行时机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特点"><span class="toc-number">1.2.</span> <span class="toc-text">特点</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#window-onload"><span class="toc-number">2.</span> <span class="toc-text">window.onload</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#执行时机-1"><span class="toc-number">2.1.</span> <span class="toc-text">执行时机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特点-1"><span class="toc-number">2.2.</span> <span class="toc-text">特点</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证"><span class="toc-number">3.</span> <span class="toc-text">验证</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#测试代码"><span class="toc-number">3.1.</span> <span class="toc-text">测试代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打印输出结果"><span class="toc-number">3.2.</span> <span class="toc-text">打印输出结果</span></a></li></ul></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p41.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p41.jpg" alt=""></p>
 <h2 id="document-ready"><a href="#document-ready" class="headerlink" title="document.ready"></a>document.ready</h2><h3 id="执行时机"><a href="#执行时机" class="headerlink" title="执行时机"></a>执行时机</h3><p>　　只要页面DOM结构绘制完毕就执行，不必等到外部资源（图片，css等）加载完毕。 并且，在jquery中，$(function(){}) 和$(document).ready(function(){})两种写法是等价的。</p>
 <h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>　　在同一个页面中可以写多次，会顺序执行，见下面测试。</p>
 <hr>
 <h2 id="window-onload"><a href="#window-onload" class="headerlink" title="window.onload"></a>window.onload</h2><h3 id="执行时机-1"><a href="#执行时机-1" class="headerlink" title="执行时机"></a>执行时机</h3><p>　　必须等到页面内包括图片的所有元素加载完毕后才能执行。 </p>
 <h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><p>　　在同一个页面中可以写多次（但没有意义），只会有一个生效，后面的会覆盖前面的，见下面测试。</p>
 <hr>
-<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jquery-2.2.1.js"</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>document.ready与window.onload的区别<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://7xrz3r.com1.z0.glb.clouddn.com/p103.jpg"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"document.ready执行第1次"</span>);</span><br><span class="line">	&#125;)</span><br><span class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"document.ready执行第2次"</span>);</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"window.onload执行第1次"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"window.onload执行第2次"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="打印输出结果"><a href="#打印输出结果" class="headerlink" title="打印输出结果"></a>打印输出结果</h3><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/window-document-ready.png" alt=""></p>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jquery-2.2.1.js"</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>document.ready与window.onload的区别<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://cdn.gcidea.cn/p103.jpg"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"document.ready执行第1次"</span>);</span><br><span class="line">	&#125;)</span><br><span class="line">	$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"document.ready执行第2次"</span>);</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"window.onload执行第1次"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"window.onload执行第2次"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="打印输出结果"><a href="#打印输出结果" class="headerlink" title="打印输出结果"></a>打印输出结果</h3><p><img src="http://cdn.gcidea.cn/window-document-ready.png" alt=""></p>
 
         </div>
         <footer class="article-footer">
@@ -411,7 +411,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -431,7 +431,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -451,7 +451,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -471,7 +471,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -491,7 +491,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

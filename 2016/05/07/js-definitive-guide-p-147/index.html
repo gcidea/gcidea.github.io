@@ -34,8 +34,8 @@
 
 
 分析　　以下">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p83.jpg">
-<meta property="og:updated_time" content="2017-02-09T08:00:15.142Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p83.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:33.797Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《JavaScript 权威指南》P147的一处分析">
 <meta name="twitter:description" content="情景　　在《JavaScript权威指南 第六版 中文版》P147，讲到稀疏数组时，书中给出如下的分析和例子：　　读完后感觉第一个红框和第二个红框中的表述不是很清楚，有些矛盾。于是在chrome浏览器的控制台进行测试，结果如下：
@@ -46,7 +46,7 @@
 
 
 分析　　以下">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p83.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p83.jpg">
     
 
     
@@ -220,15 +220,15 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#情景"><span class="toc-number">1.</span> <span class="toc-text">情景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析"><span class="toc-number">2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">3.</span> <span class="toc-text">结论</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p83.jpg" alt=""></p>
-<h2 id="情景"><a href="#情景" class="headerlink" title="情景"></a>情景</h2><p>　　在《JavaScript权威指南 第六版 中文版》P147，讲到稀疏数组时，书中给出如下的分析和例子：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-147-cn.png" alt=""><br>　　读完后感觉第一个红框和第二个红框中的表述不是很清楚，有些矛盾。于是在chrome浏览器的控制台进行测试，结果如下：</p>
+            <p><img src="http://cdn.gcidea.cn/p83.jpg" alt=""></p>
+<h2 id="情景"><a href="#情景" class="headerlink" title="情景"></a>情景</h2><p>　　在《JavaScript权威指南 第六版 中文版》P147，讲到稀疏数组时，书中给出如下的分析和例子：<br><img src="http://cdn.gcidea.cn/js-147-cn.png" alt=""><br>　　读完后感觉第一个红框和第二个红框中的表述不是很清楚，有些矛盾。于是在chrome浏览器的控制台进行测试，结果如下：</p>
 <ol>
-<li>第一个红框对应结果<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/eq1.png" alt=""></li>
-<li>第二个红框对应结果<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/eq2.png" alt=""></li>
-<li>第三个红框对应结果<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/eq3.png" alt=""><br>也就是说实测结果与书中第一个红框中的蓝色小框表述相反：0 in a1输出的值是false。</li>
+<li>第一个红框对应结果<br><img src="http://cdn.gcidea.cn/eq1.png" alt=""></li>
+<li>第二个红框对应结果<br><img src="http://cdn.gcidea.cn/eq2.png" alt=""></li>
+<li>第三个红框对应结果<br><img src="http://cdn.gcidea.cn/eq3.png" alt=""><br>也就是说实测结果与书中第一个红框中的蓝色小框表述相反：0 in a1输出的值是false。</li>
 </ol>
 <hr>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>　　以下是《JavaScript: The Definitive Guide》原书第六版对应地方的原文：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-147-en.png" alt=""><br>由此可以看出，原书中只有中文版截图中的第一个红框中的内容，而中文版在翻译时译者加上了后面两段话。猜测可能译者在浏览器中得到的结果也与原书不同，因而补上了两段话加以说明。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>　　以下是《JavaScript: The Definitive Guide》原书第六版对应地方的原文：<br><img src="http://cdn.gcidea.cn/js-147-en.png" alt=""><br>由此可以看出，原书中只有中文版截图中的第一个红框中的内容，而中文版在翻译时译者加上了后面两段话。猜测可能译者在浏览器中得到的结果也与原书不同，因而补上了两段话加以说明。</p>
 <hr>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
 <li>中文版截图中，第二个红框中的运行结果是译者在新版浏览器环境中测试得出的。即对于最新的情况：当省略数组直接量中的值时，得到的数组也是稀疏数组，并且省略掉的值是不存在的。</li>
@@ -429,7 +429,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -449,7 +449,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -469,7 +469,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -489,7 +489,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -509,7 +509,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

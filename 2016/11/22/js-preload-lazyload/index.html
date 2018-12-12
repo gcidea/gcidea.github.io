@@ -20,12 +20,12 @@
 <meta property="og:url" content="http://www.gcidea.info/2016/11/22/js-preload-lazyload/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="预加载目的　　增强用户的体验，当用户需要查看时可直接从本地缓存中渲染。。否则，如果一个页面的内容过于庞大，没有使用预加载技术的页面就会长时间的展现为一片空白。但会加载服务器的负担。并且，如果不设置预加载，那么当需要渲染十分大的图片时，可能就会有“逐行扫描渲染”的感觉，用户体验不好。使用预加载的话，我们可以在图片完整渲染完成之前在页面上设置“loading”类的图标提示，而当图片数据完全获取后一次">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p90.jpg">
-<meta property="og:updated_time" content="2017-02-11T06:08:06.486Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p90.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:30.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript的预加载与懒加载">
 <meta name="twitter:description" content="预加载目的　　增强用户的体验，当用户需要查看时可直接从本地缓存中渲染。。否则，如果一个页面的内容过于庞大，没有使用预加载技术的页面就会长时间的展现为一片空白。但会加载服务器的负担。并且，如果不设置预加载，那么当需要渲染十分大的图片时，可能就会有“逐行扫描渲染”的感觉，用户体验不好。使用预加载的话，我们可以在图片完整渲染完成之前在页面上设置“loading”类的图标提示，而当图片数据完全获取后一次">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p90.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p90.jpg">
     
 
     
@@ -199,7 +199,7 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#预加载"><span class="toc-number">1.</span> <span class="toc-text">预加载</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目的"><span class="toc-number">1.1.</span> <span class="toc-text">目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#做法"><span class="toc-number">1.2.</span> <span class="toc-text">做法</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#懒加载"><span class="toc-number">2.</span> <span class="toc-text">懒加载</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目的-1"><span class="toc-number">2.1.</span> <span class="toc-text">目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#做法-1"><span class="toc-number">2.2.</span> <span class="toc-text">做法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例"><span class="toc-number">2.3.</span> <span class="toc-text">案例</span></a></li></ul></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p90.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p90.jpg" alt=""></p>
 <h2 id="预加载"><a href="#预加载" class="headerlink" title="预加载"></a>预加载</h2><h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>　　增强用户的体验，当用户需要查看时可直接从本地缓存中渲染。。否则，如果一个页面的内容过于庞大，没有使用预加载技术的页面就会长时间的展现为一片空白。但会加载服务器的负担。并且，如果不设置预加载，那么当需要渲染十分大的图片时，可能就会有“逐行扫描渲染”的感觉，用户体验不好。使用预加载的话，我们可以在图片完整渲染完成之前在页面上设置“loading”类的图标提示，而当图片数据完全获取后一次性直接将图片展现出来，提升用户体验。</p>
 <h3 id="做法"><a href="#做法" class="headerlink" title="做法"></a>做法</h3><p>典型方法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadImage</span>(<span class="params">url, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">    img.src = url;</span><br><span class="line">    <span class="keyword">if</span> (img.complete) &#123; <span class="comment">// 如果图片已经存在于浏览器缓存，直接调用回调函数 防止IE6不执行onload BUG</span></span><br><span class="line">        callback.call(img);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        callback.call(img);<span class="comment">//将回调函数的this替换为Image对象</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <hr>
@@ -207,7 +207,7 @@ var _hmt = _hmt || [];
 <h3 id="做法-1"><a href="#做法-1" class="headerlink" title="做法"></a>做法</h3><ul>
 <li>纯粹的延迟加载，使用setTimeOut或setInterval进行加载延迟.</li>
 <li>条件加载，符合某些条件，或触发了某些事件才开始异步下载。</li>
-<li>可视区加载，即仅加载用户可以看到的区域，这个主要由监控滚动条来实现，一般会在距用户看到某图片前一定距离遍开始加载，这样能保证用户拉下时正好能看到图片。<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3>　　参考网上一篇例子：<br>网页与设备（浏览器）可视区域的关系：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/lazyload-1.jpg" alt=""><br>当页面过长的时候就会出现滚动条，一旦滚动了一部分，上面的页面就会看不到，上图中绿色部分就是那被隐藏的部分页面。<br>那么，何时加载哪些图片，就是判断当前页面可视区域和图片位置的关系问题，判断是否在当前可视区域的顶部和底部的范围内，如果是就加载图，不是就不加载。</li>
+<li>可视区加载，即仅加载用户可以看到的区域，这个主要由监控滚动条来实现，一般会在距用户看到某图片前一定距离遍开始加载，这样能保证用户拉下时正好能看到图片。<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3>　　参考网上一篇例子：<br>网页与设备（浏览器）可视区域的关系：<br><img src="http://cdn.gcidea.cn/lazyload-1.jpg" alt=""><br>当页面过长的时候就会出现滚动条，一旦滚动了一部分，上面的页面就会看不到，上图中绿色部分就是那被隐藏的部分页面。<br>那么，何时加载哪些图片，就是判断当前页面可视区域和图片位置的关系问题，判断是否在当前可视区域的顶部和底部的范围内，如果是就加载图，不是就不加载。</li>
 <li>页面可视区域<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">viewTop = <span class="built_in">window</span>.scrollY || <span class="built_in">window</span>.pageYOffset;</span><br><span class="line">viewBottom = <span class="built_in">window</span>.innerHeight + viewTop;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -411,7 +411,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -431,7 +431,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -451,7 +451,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -471,7 +471,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -491,7 +491,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

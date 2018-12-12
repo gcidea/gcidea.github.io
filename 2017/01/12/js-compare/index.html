@@ -20,12 +20,12 @@
 <meta property="og:url" content="http://www.gcidea.info/2017/01/12/js-compare/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　在javascript开发中，比较操作是十分常见的。由于显式/隐式强制类型转换机制的存在，我们在使用比较运算时显得过于随意，也许表面上看并没有什么错误（比如在if()语句中判断两值相等时顺手就写成 == ），但是这可能会埋下很多不易发现的隐患。对于比较操作（相等关系和不等关系），在javascript中其实是有一套完善的机制的。本文依据ES5规范《ECMAScript Language">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p77.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:25:56.759Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p77.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:35.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中比较运算的详细总结">
 <meta name="twitter:description" content="前言　　在javascript开发中，比较操作是十分常见的。由于显式/隐式强制类型转换机制的存在，我们在使用比较运算时显得过于随意，也许表面上看并没有什么错误（比如在if()语句中判断两值相等时顺手就写成 == ），但是这可能会埋下很多不易发现的隐患。对于比较操作（相等关系和不等关系），在javascript中其实是有一套完善的机制的。本文依据ES5规范《ECMAScript Language">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p77.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p77.jpg">
     
 
     
@@ -199,8 +199,8 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相等比较"><span class="toc-number">2.</span> <span class="toc-text">相等比较</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#严格相等"><span class="toc-number">2.1.</span> <span class="toc-text">严格相等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#宽松相等"><span class="toc-number">2.2.</span> <span class="toc-text">宽松相等</span></a><ul class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#更改内置原生原型后的相等比较"><span class="toc-number">2.2.1.</span> <span class="toc-text">更改内置原生原型后的相等比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#假值的相等比较"><span class="toc-number">2.2.2.</span> <span class="toc-text">假值的相等比较</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#一些极端情况"><span class="toc-number">2.2.3.</span> <span class="toc-text">一些极端情况</span></a></li></ul></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一些选用的原则"><span class="toc-number">2.3.</span> <span class="toc-text">一些选用的原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#经典的相等比较关系图"><span class="toc-number">2.4.</span> <span class="toc-text">经典的相等比较关系图</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不等比较"><span class="toc-number">3.</span> <span class="toc-text">不等比较</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#和"><span class="toc-number">3.1.</span> <span class="toc-text">!= 和 !==</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gt-lt-gt-lt"><span class="toc-number">3.2.</span> <span class="toc-text">>  <  >=  <=</span></a><ul class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RelationalExpression-gt-ShiftExpression"><span class="toc-number">3.2.1.</span> <span class="toc-text">RelationalExpression > ShiftExpression</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RelationalExpression-lt-ShiftExpression"><span class="toc-number">3.2.2.</span> <span class="toc-text">RelationalExpression < ShiftExpression</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RelationalExpression-gt-ShiftExpression-1"><span class="toc-number">3.2.3.</span> <span class="toc-text">RelationalExpression >= ShiftExpression</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RelationalExpression-lt-ShiftExpression-1"><span class="toc-number">3.2.4.</span> <span class="toc-text">RelationalExpression <= ShiftExpression</span></a></li></ul></li></ul></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p77.jpg" alt=""></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　在javascript开发中，比较操作是十分常见的。由于显式/隐式强制类型转换机制的存在，我们在使用比较运算时显得过于随意，也许表面上看并没有什么错误（比如在if()语句中判断两值相等时顺手就写成 == ），但是这可能会埋下很多不易发现的隐患。对于比较操作（相等关系和不等关系），在javascript中其实是有一套完善的机制的。本文依据ES5规范<strong>《ECMAScript Language Specification ECMA-262<br>5.1 Edition / June 2011》</strong>的11.8节和11.9节：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/ecma-relational-equality-operator.png" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p77.jpg" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　在javascript开发中，比较操作是十分常见的。由于显式/隐式强制类型转换机制的存在，我们在使用比较运算时显得过于随意，也许表面上看并没有什么错误（比如在if()语句中判断两值相等时顺手就写成 == ），但是这可能会埋下很多不易发现的隐患。对于比较操作（相等关系和不等关系），在javascript中其实是有一套完善的机制的。本文依据ES5规范<strong>《ECMAScript Language Specification ECMA-262<br>5.1 Edition / June 2011》</strong>的11.8节和11.9节：<br><img src="http://cdn.gcidea.cn/ecma-relational-equality-operator.png" alt=""></p>
 <p>对javascript中比较操作相关内容进行系统总结。</p>
 <hr>
 <h2 id="相等比较"><a href="#相等比较" class="headerlink" title="相等比较"></a>相等比较</h2><h3 id="严格相等"><a href="#严格相等" class="headerlink" title="严格相等"></a>严格相等</h3><p>　　严格相等指“===”，它<strong>不允许比较双方进行强制类型转换</strong>。因此，问题考虑变得简单，对于<code>x === y</code>，javascript引擎在进行判断时所遵循的算法如下：</p>
@@ -255,9 +255,9 @@ var _hmt = _hmt || [];
 <li><code>typeof x == &quot;function&quot;</code>、<code>typeof x ！= &quot;undefined&quot;</code>这样的用法是完全正确且安全的，开发中也常用。</li>
 </ol>
 <hr>
-<h3 id="经典的相等比较关系图"><a href="#经典的相等比较关系图" class="headerlink" title="经典的相等比较关系图"></a>经典的相等比较关系图</h3><p>GitHub上有一个经典的比较关系图，<a href="http://dorey.github.io/JavaScript-Equality-Table/" target="_blank" rel="external">http://dorey.github.io/JavaScript-Equality-Table/</a>，以表格的形式系统总结了宽松相等==，严格相等===，if()条件语句中使用不同数据类型对应的结果，很有意义：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-equality-table-1.png" alt=""></p>
-<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-equality-table-2.png" alt=""></p>
-<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-equality-table-3.png" alt=""></p>
+<h3 id="经典的相等比较关系图"><a href="#经典的相等比较关系图" class="headerlink" title="经典的相等比较关系图"></a>经典的相等比较关系图</h3><p>GitHub上有一个经典的比较关系图，<a href="http://dorey.github.io/JavaScript-Equality-Table/" target="_blank" rel="external">http://dorey.github.io/JavaScript-Equality-Table/</a>，以表格的形式系统总结了宽松相等==，严格相等===，if()条件语句中使用不同数据类型对应的结果，很有意义：<br><img src="http://cdn.gcidea.cn/js-equality-table-1.png" alt=""></p>
+<p><img src="http://cdn.gcidea.cn/js-equality-table-2.png" alt=""></p>
+<p><img src="http://cdn.gcidea.cn/js-equality-table-3.png" alt=""></p>
 <hr>
 <h2 id="不等比较"><a href="#不等比较" class="headerlink" title="不等比较"></a>不等比较</h2><h3 id="和"><a href="#和" class="headerlink" title="!= 和 !=="></a>!= 和 !==</h3><p>　　只要搞清楚上面详细描述的==和===，对应取反即可。</p>
 <h3 id="gt-lt-gt-lt"><a href="#gt-lt-gt-lt" class="headerlink" title="&gt;  &lt;  &gt;=  &lt;="></a>&gt;  &lt;  &gt;=  &lt;=</h3><blockquote>
@@ -498,7 +498,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -518,7 +518,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -538,7 +538,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -558,7 +558,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -578,7 +578,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

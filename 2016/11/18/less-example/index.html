@@ -20,12 +20,12 @@
 <meta property="og:url" content="http://www.gcidea.info/2016/11/18/less-example/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言示例12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152@import &quot;../../assets/less/common&quot;;.countDownAd &amp;#123;  &amp;amp;:extend(.flexLayout);  padding: 30rem /">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p97.jpg">
-<meta property="og:updated_time" content="2017-02-11T06:37:49.309Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p97.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:07:50.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS预处理---Less使用案例">
 <meta name="twitter:description" content="前言示例12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152@import &quot;../../assets/less/common&quot;;.countDownAd &amp;#123;  &amp;amp;:extend(.flexLayout);  padding: 30rem /">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p97.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p97.jpg">
     
 
     
@@ -199,10 +199,10 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-number">2.</span> <span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对应效果"><span class="toc-number">3.</span> <span class="toc-text">对应效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解释"><span class="toc-number">4.</span> <span class="toc-text">解释</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p97.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p97.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">@import "../../assets/less/common";</span><br><span class="line"></span><br><span class="line">.countDownAd &#123;</span><br><span class="line">  &amp;:extend(.flexLayout);</span><br><span class="line">  padding: 30rem / @font-size-base;</span><br><span class="line">  box-sizing: border-box;</span><br><span class="line">  background-color: #fff;</span><br><span class="line"></span><br><span class="line">  .content &#123;</span><br><span class="line">    flex: 1;</span><br><span class="line"></span><br><span class="line">    .title &#123;</span><br><span class="line">      &amp;:extend(.oneLineFormatEllipsis);</span><br><span class="line">      width: 100%;</span><br><span class="line">      height: 40rem / @font-size-base;</span><br><span class="line">      margin: 10rem / @font-size-base 0 0 0;</span><br><span class="line">      color: #444;</span><br><span class="line">      font-family: @font-family-base;</span><br><span class="line">      font-weight: bold;</span><br><span class="line">      font-size: 20px;</span><br><span class="line">      [data-dpr="2"] &amp; &#123;</span><br><span class="line">        font-size: 40px;</span><br><span class="line">      &#125;</span><br><span class="line">      [data-dpr="3"] &amp; &#123;</span><br><span class="line">        font-size: 60px;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .subtitle &#123;</span><br><span class="line">      &amp;:extend(.oneLineFormatEllipsis);</span><br><span class="line">      width: 100%;</span><br><span class="line">      height: 26rem / @font-size-base;</span><br><span class="line">      margin: 14rem / @font-size-base 0 0 0;</span><br><span class="line">      color: #999;</span><br><span class="line">      font-family: @font-family-base;</span><br><span class="line">      font-size: 13px;</span><br><span class="line">      [data-dpr="2"] &amp; &#123;</span><br><span class="line">        font-size: 26px;</span><br><span class="line">      &#125;</span><br><span class="line">      [data-dpr="3"] &amp; &#123;</span><br><span class="line">        font-size: 39px;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  .thumb &#123;</span><br><span class="line">    display: block;</span><br><span class="line">    width: 240rem / @font-size-base;</span><br><span class="line">    height: 180rem / @font-size-base;</span><br><span class="line">    margin-left: 50rem / @font-size-base;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="对应效果"><a href="#对应效果" class="headerlink" title="对应效果"></a>对应效果</h2><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/less-1.png" alt=""></p>
+<h2 id="对应效果"><a href="#对应效果" class="headerlink" title="对应效果"></a>对应效果</h2><p><img src="http://cdn.gcidea.cn/less-1.png" alt=""></p>
 <hr>
 <h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><p>1.使用less可以依据DOM结构进行嵌套声明，如.countDownAd和.content的关系<br>2.@import “../../assets/less/common”;是ES6的写法，表明引入依赖的公共基础样式common.less<br>3.&amp;:extend(.flexLayout);表示继承，继承的是公共基础样式common.less的样式<br>4.@font-size-base表示变量，可以在多个地方使用，这样一旦要修改就可以只改动一个地方。</p>
 
@@ -399,7 +399,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -419,7 +419,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -439,7 +439,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -459,7 +459,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -479,7 +479,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

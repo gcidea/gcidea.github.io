@@ -26,15 +26,15 @@
 概述　　项目history相关文档主页：Histories。文档的讲解十分详细。本文只是通过在实际项目中history的状态变化进行简单小结。以dva应用为例，经过这样的配置后，容器组件可以在props中拿到history对象和相关参数。
 
 表现如上所示，history中包含了一">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p104.jpg">
-<meta property="og:updated_time" content="2017-02-11T06:12:05.871Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p104.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:07:46.795Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React Router的history探究">
 <meta name="twitter:description" content="前言　　路由是单页应用中十分重要的概念。具体在react中，react-router为我们提供了一套完整的路由机制。
 概述　　项目history相关文档主页：Histories。文档的讲解十分详细。本文只是通过在实际项目中history的状态变化进行简单小结。以dva应用为例，经过这样的配置后，容器组件可以在props中拿到history对象和相关参数。
 
 表现如上所示，history中包含了一">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p104.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p104.jpg">
     
 
     
@@ -208,11 +208,11 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">2.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表现"><span class="toc-number">3.</span> <span class="toc-text">表现</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p104.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p104.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　路由是单页应用中十分重要的概念。具体在react中，react-router为我们提供了一套完整的路由机制。</p>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>　　项目history相关文档主页：<a href="https://github.com/ReactTraining/react-router/blob/master/docs/guides/Histories.md" target="_blank" rel="external">Histories</a>。文档的讲解十分详细。本文只是通过在实际项目中history的状态变化进行简单小结。以<a href="https://github.com/dvajs/dva" target="_blank" rel="external">dva应用</a>为例，<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/react-router-history-1.png" alt=""><br>经过这样的配置后，容器组件可以在props中拿到history对象和相关参数。</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>　　项目history相关文档主页：<a href="https://github.com/ReactTraining/react-router/blob/master/docs/guides/Histories.md" target="_blank" rel="external">Histories</a>。文档的讲解十分详细。本文只是通过在实际项目中history的状态变化进行简单小结。以<a href="https://github.com/dvajs/dva" target="_blank" rel="external">dva应用</a>为例，<br><img src="http://cdn.gcidea.cn/react-router-history-1.png" alt=""><br>经过这样的配置后，容器组件可以在props中拿到history对象和相关参数。</p>
 <hr>
-<h2 id="表现"><a href="#表现" class="headerlink" title="表现"></a>表现</h2><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/react-router-history-2.png" alt=""><br>如上所示，history中包含了一系列方法，这里主要选择两个进行说明：</p>
+<h2 id="表现"><a href="#表现" class="headerlink" title="表现"></a>表现</h2><p><img src="http://cdn.gcidea.cn/react-router-history-2.png" alt=""><br>如上所示，history中包含了一系列方法，这里主要选择两个进行说明：</p>
 <ol>
 <li><code>history.listen()</code><br>　　利用这个函数可以对路由变化进行监听，从而触发其他事件：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">subscriptions: &#123;</span><br><span class="line">    setup(&#123; dispatch, history &#125;) &#123;</span><br><span class="line">      history.listen(location =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span>(location.pathname === <span class="string">'/home'</span>)&#123;</span><br><span class="line">          dispatch(&#123;type: <span class="string">'query'</span>&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
 </li>
@@ -412,7 +412,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -432,7 +432,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -452,7 +452,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -472,7 +472,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -492,7 +492,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

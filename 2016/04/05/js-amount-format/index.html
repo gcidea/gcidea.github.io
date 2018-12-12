@@ -24,14 +24,14 @@
 <meta property="og:description" content="前言　　实现金额数字的每三位打”,”，便于识别金额大小。
 
 实现12345678910111213//s: 希望转换的金额数字；n：希望保留的小数位数function formatMoney(s, n) &amp;#123;     n = n &amp;gt; 0 &amp;amp;&amp;amp; n &amp;lt;= 20 ? n : 2;     //正则/[^\d\.-]/g表示去除传入字符串中非数字，非小数点，非负号以">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p65.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:38:26.946Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p65.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:40.205Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用JavaScript实现金额格式化转换">
 <meta name="twitter:description" content="前言　　实现金额数字的每三位打”,”，便于识别金额大小。
 
 实现12345678910111213//s: 希望转换的金额数字；n：希望保留的小数位数function formatMoney(s, n) &amp;#123;     n = n &amp;gt; 0 &amp;amp;&amp;amp; n &amp;lt;= 20 ? n : 2;     //正则/[^\d\.-]/g表示去除传入字符串中非数字，非小数点，非负号以">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p65.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p65.jpg">
     
 
     
@@ -205,7 +205,7 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">2.</span> <span class="toc-text">实现</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p65.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p65.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　实现金额数字的每三位打”,”，便于识别金额大小。</p>
 <hr>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//s: 希望转换的金额数字；n：希望保留的小数位数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">formatMoney</span>(<span class="params">s, n</span>) </span>&#123; </span><br><span class="line">    n = n &gt; <span class="number">0</span> &amp;&amp; n &lt;= <span class="number">20</span> ? n : <span class="number">2</span>; </span><br><span class="line">    <span class="comment">//正则/[^\d\.-]/g表示去除传入字符串中非数字，非小数点，非负号以外的在金额中不应该出现的字符</span></span><br><span class="line">    s = <span class="built_in">parseFloat</span>((s + <span class="string">""</span>).replace(<span class="regexp">/[^\d\.-]/g</span>, <span class="string">""</span>)).toFixed(n) + <span class="string">""</span>; </span><br><span class="line">    <span class="keyword">var</span> l = s.split(<span class="string">"."</span>)[<span class="number">0</span>].split(<span class="string">""</span>).reverse();</span><br><span class="line">    <span class="keyword">var</span> r = s.split(<span class="string">"."</span>)[<span class="number">1</span>]; </span><br><span class="line">    <span class="keyword">var</span> t = <span class="string">""</span>; </span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; l.length; i ++ ) &#123; </span><br><span class="line">        t += l[i] + ((i + <span class="number">1</span>) % <span class="number">3</span> == <span class="number">0</span> &amp;&amp; (i + <span class="number">1</span>) != l.length ? <span class="string">","</span> : <span class="string">""</span>); </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> t.split(<span class="string">""</span>).reverse().join(<span class="string">""</span>) + <span class="string">"."</span> + r; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -403,7 +403,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -423,7 +423,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -443,7 +443,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -463,7 +463,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -483,7 +483,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

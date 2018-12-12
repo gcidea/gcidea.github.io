@@ -34,8 +34,8 @@ __proto__与[[prototype]]相关介绍　　待续。
 一张图分析三者的关系
 
 一系列案例分析12345function Foo()&amp;#123;  console.log(1);&amp;#125">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p91.jpg">
-<meta property="og:updated_time" content="2017-02-16T03:09:57.944Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p91.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:30.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中的__proto__、[[prototype]]和prototype">
 <meta name="twitter:description" content="前言　　proto、[[prototype]]和prototype三个概念及相关内容是javascript比较复杂且容易混淆的内容。本文尝试进行总结和分析。
@@ -46,7 +46,7 @@ __proto__与[[prototype]]相关介绍　　待续。
 一张图分析三者的关系
 
 一系列案例分析12345function Foo()&amp;#123;  console.log(1);&amp;#125">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p91.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p91.jpg">
     
 
     
@@ -220,13 +220,13 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prototype相关介绍"><span class="toc-number">2.</span> <span class="toc-text">prototype相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto-与-prototype-相关介绍"><span class="toc-number">3.</span> <span class="toc-text">__proto__与[[prototype]]相关介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一张图分析三者的关系"><span class="toc-number">4.</span> <span class="toc-text">一张图分析三者的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一系列案例分析"><span class="toc-number">5.</span> <span class="toc-text">一系列案例分析</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p91.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p91.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　<strong>proto</strong>、[[prototype]]和prototype三个概念及相关内容是javascript比较复杂且容易混淆的内容。本文尝试进行总结和分析。</p>
 <hr>
 <h2 id="prototype相关介绍"><a href="#prototype相关介绍" class="headerlink" title="prototype相关介绍"></a>prototype相关介绍</h2><p>　　待续。</p>
 <hr>
 <h2 id="proto-与-prototype-相关介绍"><a href="#proto-与-prototype-相关介绍" class="headerlink" title="__proto__与[[prototype]]相关介绍"></a>__proto__与[[prototype]]相关介绍</h2><p>　　待续。</p>
-<h2 id="一张图分析三者的关系"><a href="#一张图分析三者的关系" class="headerlink" title="一张图分析三者的关系"></a>一张图分析三者的关系</h2><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/prototype-proto.jpg" alt=""></p>
+<h2 id="一张图分析三者的关系"><a href="#一张图分析三者的关系" class="headerlink" title="一张图分析三者的关系"></a>一张图分析三者的关系</h2><p><img src="http://cdn.gcidea.cn/prototype-proto.jpg" alt=""></p>
 <hr>
 <h2 id="一系列案例分析"><a href="#一系列案例分析" class="headerlink" title="一系列案例分析"></a>一系列案例分析</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.prototype === Foo.prototype);       <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="built_in">console</span>.log(a.__proto__ === Foo.prototype);       <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
@@ -434,7 +434,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -454,7 +454,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -474,7 +474,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -494,7 +494,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -514,7 +514,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

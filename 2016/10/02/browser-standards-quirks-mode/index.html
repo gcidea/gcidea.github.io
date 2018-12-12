@@ -20,12 +20,12 @@
 <meta property="og:url" content="http://www.gcidea.info/2016/10/02/browser-standards-quirks-mode/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　所谓的标准模式是指，浏览器按W3C标准解析执行代码；怪异模式则是使用浏览器自己的方式解析执行代码，因为不同浏览器解析执行的方式不一样，所以我们称之为怪异模式。浏览器解析时到底使用标准模式还是怪异模式，与你网页中的DTD声明直接相关，DTD声明定义了标准文档的类型（标准模式解析）文档类型，会使浏览器使用相应的方式加载网页并显示，忽略DTD声明,将使网页进入怪异模式(quirks mode)">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p21.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:35:45.615Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p21.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:53.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器的文档模式-“标准模式”和“怪异模式”">
 <meta name="twitter:description" content="前言　　所谓的标准模式是指，浏览器按W3C标准解析执行代码；怪异模式则是使用浏览器自己的方式解析执行代码，因为不同浏览器解析执行的方式不一样，所以我们称之为怪异模式。浏览器解析时到底使用标准模式还是怪异模式，与你网页中的DTD声明直接相关，DTD声明定义了标准文档的类型（标准模式解析）文档类型，会使浏览器使用相应的方式加载网页并显示，忽略DTD声明,将使网页进入怪异模式(quirks mode)">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p21.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p21.jpg">
     
 
     
@@ -199,8 +199,8 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">2.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文档模式"><span class="toc-number">3.</span> <span class="toc-text">文档模式</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注意事项"><span class="toc-number">3.1.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用声明"><span class="toc-number">3.2.</span> <span class="toc-text">常用声明</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#典型区别"><span class="toc-number">4.</span> <span class="toc-text">典型区别</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#盒模型的处理差异"><span class="toc-number">4.1.</span> <span class="toc-text">盒模型的处理差异</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行内元素的垂直对齐"><span class="toc-number">4.2.</span> <span class="toc-text">行内元素的垂直对齐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#width"><span class="toc-number">4.3.</span> <span class="toc-text">width</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行内元素高度宽度"><span class="toc-number">4.4.</span> <span class="toc-text">行内元素高度宽度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#百分比高度"><span class="toc-number">4.5.</span> <span class="toc-text">百分比高度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#margin-0-auto设置水平居中"><span class="toc-number">4.6.</span> <span class="toc-text">margin:0 auto设置水平居中</span></a></li></ul></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p21.jpg" alt=""></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　所谓的标准模式是指，浏览器按W3C标准解析执行代码；怪异模式则是使用浏览器自己的方式解析执行代码，因为不同浏览器解析执行的方式不一样，所以我们称之为怪异模式。浏览器解析时到底使用标准模式还是怪异模式，与你网页中的DTD声明直接相关，DTD声明定义了标准文档的类型（标准模式解析）文档类型，会使浏览器使用相应的方式加载网页并显示，忽略DTD声明,将使网页进入怪异模式(quirks mode)。《JavaScript权威指南》对此描述如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/browser-quirk.png" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p21.jpg" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　所谓的标准模式是指，浏览器按W3C标准解析执行代码；怪异模式则是使用浏览器自己的方式解析执行代码，因为不同浏览器解析执行的方式不一样，所以我们称之为怪异模式。浏览器解析时到底使用标准模式还是怪异模式，与你网页中的DTD声明直接相关，DTD声明定义了标准文档的类型（标准模式解析）文档类型，会使浏览器使用相应的方式加载网页并显示，忽略DTD声明,将使网页进入怪异模式(quirks mode)。《JavaScript权威指南》对此描述如下：<br><img src="http://cdn.gcidea.cn/browser-quirk.png" alt=""></p>
 <hr>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>　　由于历史的原因，不同浏览器对页面的渲染是不同的，甚至同一浏览器的不同版本也是不同的。在W3C标准出台之前，不同的浏览器在页面的渲染上没有同一的规范，产生了差异，即Quirks mode(怪异模式或兼容模式)；当W3C标准出台之后，不同浏览器对页面的渲染有了统一的标准,即Strict mode（标准模式或严格模式）；这就是两者之间的区别。<br>　　W3C标准推出前，旧的页面都是根据旧的渲染方式对页面进行渲染的，因此在W3C标准推出后为了保证旧页面的正常显示，保持浏览器的兼容性，这样浏览器上就产生了能够兼容W3C标准渲染的严格模式和保证旧页面显示的怪异模式的标准兼容模式。<br>　　知道了这两种渲染模式的来由，那剩下的问题就是浏览器如何能够确定应该使用哪种模式了。其实归根结底就是，浏览器如何能将旧网页与新网页区分开来。平常编写网页的时候，一般都会见到HTML文档的头部会有文档类型声明：DOCTYPE。当浏览器遇到正确的文档声明时，浏览器就会启动标准模式，按照制定的文档类型标准解析和渲染文档。而对于旧有的网页，由于网页编写的当时标准还没有确定，所以一般是不会有文档类型声明的。所以，对于没有文档类型声明或者文档类型声明不正确的文档，浏览器就会认为它是一个旧的HTML文档，就会使用怪异模式解析和渲染该文档。<br>　　目前开发中，统一使用html5下的标准：<code>&lt;!DOCTYPE html&gt;</code></p>
 <hr>
@@ -414,7 +414,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -434,7 +434,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -454,7 +454,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -474,7 +474,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -494,7 +494,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

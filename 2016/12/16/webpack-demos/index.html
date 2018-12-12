@@ -32,8 +32,8 @@
 现代浏览器提供了更多的API接口。
 
 　　基于这样的情况，大量代码就需要能够被良好地管理起来，像webpack这样的模块系统就为我们将代码切分为若干模块提供了很好的选择">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p113.jpg">
-<meta property="og:updated_time" content="2017-02-16T03:19:51.035Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p113.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:09:31.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用WebStorm创建webpack工作流的前端项目">
 <meta name="twitter:description" content="前言　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：
@@ -43,7 +43,7 @@
 现代浏览器提供了更多的API接口。
 
 　　基于这样的情况，大量代码就需要能够被良好地管理起来，像webpack这样的模块系统就为我们将代码切分为若干模块提供了很好的选择">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p113.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p113.jpg">
     
 
     
@@ -217,7 +217,7 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JS模块化编程相关背景"><span class="toc-number">2.</span> <span class="toc-text">JS模块化编程相关背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是webpack？"><span class="toc-number">3.</span> <span class="toc-text">什么是webpack？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的安装"><span class="toc-number">4.</span> <span class="toc-text">webpack的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的使用"><span class="toc-number">5.</span> <span class="toc-text">webpack的使用</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单示例"><span class="toc-number">5.1.</span> <span class="toc-text">简单示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#规范使用"><span class="toc-number">5.2.</span> <span class="toc-text">规范使用</span></a><ul class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目结构"><span class="toc-number">5.2.1.</span> <span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件配置"><span class="toc-number">5.2.2.</span> <span class="toc-text">文件配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用loaders"><span class="toc-number">5.2.3.</span> <span class="toc-text">使用loaders</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装其他可能需要的库"><span class="toc-number">5.2.4.</span> <span class="toc-text">安装其他可能需要的库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改app-js文件（ES6语法-jquery库）"><span class="toc-number">5.2.5.</span> <span class="toc-text">修改app.js文件（ES6语法+jquery库）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编辑index-html文件"><span class="toc-number">5.2.6.</span> <span class="toc-text">编辑index.html文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重新打包"><span class="toc-number">5.2.7.</span> <span class="toc-text">重新打包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#访问index-html"><span class="toc-number">5.2.8.</span> <span class="toc-text">访问index.html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用plugins"><span class="toc-number">5.2.9.</span> <span class="toc-text">使用plugins</span></a></li></ul></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack中的重要工具：webpack-dev-server"><span class="toc-number">6.</span> <span class="toc-text">webpack中的重要工具：webpack-dev-server</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装webpack-dev-server"><span class="toc-number">6.1.</span> <span class="toc-text">安装webpack-dev-server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动webpack-dev-server"><span class="toc-number">6.2.</span> <span class="toc-text">启动webpack-dev-server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定content-base"><span class="toc-number">6.3.</span> <span class="toc-text">指定content base</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动刷新"><span class="toc-number">6.4.</span> <span class="toc-text">自动刷新</span></a><ul class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#iframe模式"><span class="toc-number">6.4.1.</span> <span class="toc-text">iframe模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inline模式"><span class="toc-number">6.4.2.</span> <span class="toc-text">inline模式</span></a></li></ul></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块热替换-Hot-Module-Replacement-的应用"><span class="toc-number">7.</span> <span class="toc-text">模块热替换 Hot Module Replacement 的应用</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p113.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p113.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　webpack是一款极为灵活的前端模块打包构建工具。其诞生和流行主要是由于以下这几个发展趋势：</p>
 <ul>
 <li>为了完成更加复杂的交互逻辑，一个网页中使用的js代码数量越来越多；</li>
@@ -250,7 +250,7 @@ var _hmt = _hmt || [];
 </li>
 </ul>
 <hr>
-<h2 id="什么是webpack？"><a href="#什么是webpack？" class="headerlink" title="什么是webpack？"></a>什么是webpack？</h2><p>一句话来概括：webpack能够将相互依赖的模块进行打包，并生成代表着这些模块的静态文件。<br>官网上给出的示意图如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack.png" alt=""></p>
+<h2 id="什么是webpack？"><a href="#什么是webpack？" class="headerlink" title="什么是webpack？"></a>什么是webpack？</h2><p>一句话来概括：webpack能够将相互依赖的模块进行打包，并生成代表着这些模块的静态文件。<br>官网上给出的示意图如下：<br><img src="http://cdn.gcidea.cn/webpack.png" alt=""></p>
 <p>　　市面上已经存在的模块管理和打包工具并不适合大型的项目，尤其单页面Web应用程序。最紧迫的原因是如何在一个大规模的代码库中，维护各种模块资源的分割和存放，维护它们之间的依赖关系，并且无缝的将它们整合到一起生成适合浏览器端请求加载的静态资源。这些已有的模块化工具并不能很好的完成如下的目标：</p>
 <ul>
 <li>将依赖树拆分成按需加载的块</li>
@@ -270,22 +270,22 @@ var _hmt = _hmt || [];
 </ol>
 <hr>
 <h2 id="webpack的安装"><a href="#webpack的安装" class="headerlink" title="webpack的安装"></a>webpack的安装</h2><p>1.安装Node.js<br>　　关于Node.js的安装有很多参考，在之前的文章<a href="http://localhost:4000/2016/03/16/2016-03-16-my-first-blog/#安装Node-js" target="_blank" rel="external">【首篇】记录本博客www.gcidea.info的搭建过程</a>也有提及。</p>
-<p>2.安装webpack<br>2.1 打开webstorm，创建一个新文件夹webpack-usage作为根目录，后续所有操作都在该项目中完成：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-2.png" alt=""></p>
-<p>2.2 Node.js安装完成后，会同时安装npm这个Node.js的包管理工具。我们使用这个工具全局安装webpack。打开Terminal窗口输入如下命令：<br><code>$ npm install webpack -g</code><br>可以看到安装过程正在进行：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-3.png" alt=""></p>
-<p>完成后，显示信息如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-4.png" alt=""></p>
-<p>3.在项目中添加webpack<br>　　根据最佳实践，最好也在具体的项目中添加webpack。这样的话你可以任意指定在该项目中使用的webpack版本，而不至于局限于使用全局的唯一版本。<br>3.1 为此，通过命令在项目根目录下创建package.json文件，将项目通过npm管理起来：<br><code>npm init</code><br>这个过程中需要填写一些信息，最终会写入package.json：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-5.png" alt=""></p>
-<p>之后，项目根目录下多了一个文件，正是package.json：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-6.png" alt=""></p>
+<p>2.安装webpack<br>2.1 打开webstorm，创建一个新文件夹webpack-usage作为根目录，后续所有操作都在该项目中完成：<br><img src="http://cdn.gcidea.cn/webpack-2.png" alt=""></p>
+<p>2.2 Node.js安装完成后，会同时安装npm这个Node.js的包管理工具。我们使用这个工具全局安装webpack。打开Terminal窗口输入如下命令：<br><code>$ npm install webpack -g</code><br>可以看到安装过程正在进行：<br><img src="http://cdn.gcidea.cn/webpack-3.png" alt=""></p>
+<p>完成后，显示信息如下：<br><img src="http://cdn.gcidea.cn/webpack-4.png" alt=""></p>
+<p>3.在项目中添加webpack<br>　　根据最佳实践，最好也在具体的项目中添加webpack。这样的话你可以任意指定在该项目中使用的webpack版本，而不至于局限于使用全局的唯一版本。<br>3.1 为此，通过命令在项目根目录下创建package.json文件，将项目通过npm管理起来：<br><code>npm init</code><br>这个过程中需要填写一些信息，最终会写入package.json：<br><img src="http://cdn.gcidea.cn/webpack-5.png" alt=""></p>
+<p>之后，项目根目录下多了一个文件，正是package.json：<br><img src="http://cdn.gcidea.cn/webpack-6.png" alt=""></p>
 <p>3.2 此时，再通过如下命令安装webpack，其中<code>--save-dev</code>表示会将webpack添加到package.json的devDependencies中：<br><code>npm install webpack --save-dev</code></p>
-<p>并且，该命令会自动检查安装webpack所需的全部依赖，执行该命令后，项目有3处变化：控制台打印出依赖结构树；根目录下生成node_modules文件夹用于存放所有依赖包；package.json中多出一个devDependencies属性。如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-7.png" alt=""></p>
+<p>并且，该命令会自动检查安装webpack所需的全部依赖，执行该命令后，项目有3处变化：控制台打印出依赖结构树；根目录下生成node_modules文件夹用于存放所有依赖包；package.json中多出一个devDependencies属性。如下图所示：<br><img src="http://cdn.gcidea.cn/webpack-7.png" alt=""></p>
 <p>4.安装webpack-dev-server<br>　　这是一个Node.js Express server，可以帮我们在本地建立一个服务器。此处仅安装，具体使用在下文描述。<br><code>npm install webpack-dev-server --save-dev</code></p>
 <p>可以预想，现在package.json文件的依赖项已经变为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"webpack"</span>: <span class="string">"^1.13.2"</span>,</span><br><span class="line">    <span class="string">"webpack-dev-server"</span>: <span class="string">"^1.16.2"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h2 id="webpack的使用"><a href="#webpack的使用" class="headerlink" title="webpack的使用"></a>webpack的使用</h2><h3 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h3><p>1.新建cats.js文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cats = [<span class="string">'dave'</span>, <span class="string">'henry'</span>, <span class="string">'martha'</span>];</span><br><span class="line"><span class="built_in">module</span>.exports = cats;</span><br></pre></td></tr></table></figure></p>
 <p>2.新建app.js文件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cats = <span class="built_in">require</span>(<span class="string">'./cats.js'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(cats);</span><br></pre></td></tr></table></figure></p>
-<p>3.使用webpack命令进行打包<br><code>webpack ./app.js app.bundle.js</code><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-8.png" alt=""></p>
-<p>结果如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-9.png" alt=""></p>
-<p>可以发现webpack已经帮我们将两个文件合并在一起并加入很多其他内容，这个过程在官方上详细描述如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-10.png" alt=""></p>
-<p>现在，假如我们要将项目部署上线，那么只需要打包后的静态文件即可，实验如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-11.png" alt=""></p>
+<p>3.使用webpack命令进行打包<br><code>webpack ./app.js app.bundle.js</code><br><img src="http://cdn.gcidea.cn/webpack-8.png" alt=""></p>
+<p>结果如下：<br><img src="http://cdn.gcidea.cn/webpack-9.png" alt=""></p>
+<p>可以发现webpack已经帮我们将两个文件合并在一起并加入很多其他内容，这个过程在官方上详细描述如下：<br><img src="http://cdn.gcidea.cn/webpack-10.png" alt=""></p>
+<p>现在，假如我们要将项目部署上线，那么只需要打包后的静态文件即可，实验如下：<br><img src="http://cdn.gcidea.cn/webpack-11.png" alt=""></p>
 <p>可以看出，在node环境下执行打包文件，可以正常输出源文件的执行结果。</p>
 <hr>
 <h3 id="规范使用"><a href="#规范使用" class="headerlink" title="规范使用"></a>规范使用</h3><hr>
@@ -297,7 +297,7 @@ var _hmt = _hmt || [];
 <li>webpack.config.js：webpack配置目录–使用命令行携带参数的方式不便于扩展，统一用此文件管理</li>
 <li>index.html: 项目入口页面</li>
 </ul>
-<p>修改后的项目结构如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-12.png" alt=""></p>
+<p>修改后的项目结构如下：<br><img src="http://cdn.gcidea.cn/webpack-12.png" alt=""></p>
 <hr>
 <h4 id="文件配置"><a href="#文件配置" class="headerlink" title="文件配置"></a>文件配置</h4><p><strong>配置webpack.config.js</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">'./src/app.js'</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: <span class="string">'./build'</span>,</span><br><span class="line">        filename: <span class="string">'app.bundle.js'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p> 　　以上简单的配置表示指定webpack打包入口为./src/app.js文件，打包结果为app.bundle.js，在./build目录下。</p>
@@ -322,44 +322,44 @@ var _hmt = _hmt || [];
 <hr>
 <h4 id="修改app-js文件（ES6语法-jquery库）"><a href="#修改app-js文件（ES6语法-jquery库）" class="headerlink" title="修改app.js文件（ES6语法+jquery库）"></a>修改app.js文件（ES6语法+jquery库）</h4> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'babel-polyfill'</span>;</span><br><span class="line"><span class="keyword">import</span> cats <span class="keyword">from</span> <span class="string">'./cats'</span>;</span><br><span class="line"><span class="keyword">import</span> $ <span class="keyword">from</span> <span class="string">'jquery'</span>;</span><br><span class="line"></span><br><span class="line">$(<span class="string">'&lt;h1&gt;Cats&lt;/h1&gt;'</span>).appendTo(<span class="string">'body'</span>);</span><br><span class="line"><span class="keyword">const</span> ul = $(<span class="string">'&lt;ul&gt;&lt;/ul&gt;'</span>).appendTo(<span class="string">'body'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> cat <span class="keyword">of</span> cats) &#123;</span><br><span class="line">    $(<span class="string">'&lt;li&gt;&lt;/li&gt;'</span>).text(cat).appendTo(ul);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>将以上代码写入后，编辑器会报错：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-13.png" alt=""></p>
-<p>原因是编辑器未能识别ES6语法，在webstorm的settings中做如下配置即可：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-14.png" alt=""></p>
+<p>将以上代码写入后，编辑器会报错：<br><img src="http://cdn.gcidea.cn/webpack-13.png" alt=""></p>
+<p>原因是编辑器未能识别ES6语法，在webstorm的settings中做如下配置即可：<br><img src="http://cdn.gcidea.cn/webpack-14.png" alt=""></p>
 </blockquote>
 <hr>
 <h4 id="编辑index-html文件"><a href="#编辑index-html文件" class="headerlink" title="编辑index.html文件"></a>编辑index.html文件</h4> <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"build/app.bundle.js"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h4 id="重新打包"><a href="#重新打包" class="headerlink" title="重新打包"></a>重新打包</h4><p> <code>webpack</code></p>
 <hr>
-<h4 id="访问index-html"><a href="#访问index-html" class="headerlink" title="访问index.html"></a>访问index.html</h4><p>可以看到正确结果<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-15.png" alt=""></p>
+<h4 id="访问index-html"><a href="#访问index-html" class="headerlink" title="访问index.html"></a>访问index.html</h4><p>可以看到正确结果<br><img src="http://cdn.gcidea.cn/webpack-15.png" alt=""></p>
 <hr>
 <h4 id="使用plugins"><a href="#使用plugins" class="headerlink" title="使用plugins"></a>使用plugins</h4><p>　　在打包的工作流中可能还会有一些其他的操作，会使用到不同的插件plugins，比较典型的就是uglify plugin这个压缩工具。为此，在webpack.config.js中增加配置项plugins：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: <span class="string">'./src/app.js'</span>,</span><br><span class="line">    output: &#123;</span><br><span class="line">        path: <span class="string">'./build'</span>,</span><br><span class="line">        filename: <span class="string">'app.bundle.js'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        loaders: [&#123;</span><br><span class="line">            test: <span class="regexp">/\.js$/</span>,</span><br><span class="line">            exclude: <span class="regexp">/node_modules/</span>,</span><br><span class="line">            loader: <span class="string">'babel-loader'</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [</span><br><span class="line">        <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">            compress: &#123;</span><br><span class="line">                warnings: <span class="literal">false</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            output: &#123;</span><br><span class="line">                comments: <span class="literal">false</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在执行命令<code>webpack</code>重新打包之前，我们先看看app.bundle.js的文件大小,为523KB：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-16.png" alt=""></p>
-<p>现在执行命令<code>webpack</code>重新打包，再看app.bundle.js的文件大小,为171KB：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-17.png" alt=""></p>
-<p>可以看到，压缩工具去掉了无用的空字符等：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-18.png" alt=""></p>
+<p>在执行命令<code>webpack</code>重新打包之前，我们先看看app.bundle.js的文件大小,为523KB：<br><img src="http://cdn.gcidea.cn/webpack-16.png" alt=""></p>
+<p>现在执行命令<code>webpack</code>重新打包，再看app.bundle.js的文件大小,为171KB：<br><img src="http://cdn.gcidea.cn/webpack-17.png" alt=""></p>
+<p>可以看到，压缩工具去掉了无用的空字符等：<br><img src="http://cdn.gcidea.cn/webpack-18.png" alt=""></p>
 <hr>
 <h2 id="webpack中的重要工具：webpack-dev-server"><a href="#webpack中的重要工具：webpack-dev-server" class="headerlink" title="webpack中的重要工具：webpack-dev-server"></a>webpack中的重要工具：webpack-dev-server</h2><p>　　webpack-dev-server本质上是一个小型的Node.js的Express服务器，使用webpack-dev-middleware作为中间件来支持webpack打包。</p>
 <h3 id="安装webpack-dev-server"><a href="#安装webpack-dev-server" class="headerlink" title="安装webpack-dev-server"></a>安装webpack-dev-server</h3><p><code>npm install webpack-dev-server</code><br>package.json变为如下形式：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"webpack-usage"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">"webpack-usage-demo"</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">"gaochang"</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"babel-core"</span>: <span class="string">"^6.17.0"</span>,</span><br><span class="line">    <span class="attr">"babel-loader"</span>: <span class="string">"^6.2.5"</span>,</span><br><span class="line">    <span class="attr">"babel-preset-es2015"</span>: <span class="string">"^6.16.0"</span>,</span><br><span class="line">    <span class="attr">"webpack"</span>: <span class="string">"^1.13.2"</span>,</span><br><span class="line">    <span class="attr">"webpack-dev-server"</span>: <span class="string">"^1.16.2"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"babel-polyfill"</span>: <span class="string">"^6.16.0"</span>,</span><br><span class="line">    <span class="attr">"jquery"</span>: <span class="string">"^3.1.1"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="启动webpack-dev-server"><a href="#启动webpack-dev-server" class="headerlink" title="启动webpack-dev-server"></a>启动webpack-dev-server</h3><p>　　安装完成后，在不指定任何参数的情况下，可以直接通过命令<code>webpack-dev-server</code>在本地8080端口运行一个服务器，访问<code>http://localhost:8080</code>可以看到效果：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-19.png" alt=""></p>
-<p>访问<code>http://localhost:8080/webpack-dev-server/</code> 可以显示webpack服务器状态条<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-20.png" alt=""></p>
-<h3 id="指定content-base"><a href="#指定content-base" class="headerlink" title="指定content base"></a>指定content base</h3><p>webpack-dev-server默认监控的是当前目录的文件，除非声明一个特殊的基本路径：<br><code>webpack-dev-server --content-base build/</code><br>这样的话，webpack就会只监控build文件夹下的静态文件。当你的文件在任何时候发生变化时，都会触发重新编译打包。验证如下：<br>1.使用上述命令启动server：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-21.png" alt=""></p>
-<p>控制台会显示打包过程日志，并最终提示打包完成已经可用：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-22.png" alt=""></p>
-<p>2.此时，访问<code>http://localhost:8080/webpack-dev-server/</code>可看到：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-23.png" alt=""></p>
-<p>即显示了build目录下的文件列表，此时只有app.bundle.js，点开内容如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-24.png" alt=""></p>
+<h3 id="启动webpack-dev-server"><a href="#启动webpack-dev-server" class="headerlink" title="启动webpack-dev-server"></a>启动webpack-dev-server</h3><p>　　安装完成后，在不指定任何参数的情况下，可以直接通过命令<code>webpack-dev-server</code>在本地8080端口运行一个服务器，访问<code>http://localhost:8080</code>可以看到效果：<br><img src="http://cdn.gcidea.cn/webpack-19.png" alt=""></p>
+<p>访问<code>http://localhost:8080/webpack-dev-server/</code> 可以显示webpack服务器状态条<br><img src="http://cdn.gcidea.cn/webpack-20.png" alt=""></p>
+<h3 id="指定content-base"><a href="#指定content-base" class="headerlink" title="指定content base"></a>指定content base</h3><p>webpack-dev-server默认监控的是当前目录的文件，除非声明一个特殊的基本路径：<br><code>webpack-dev-server --content-base build/</code><br>这样的话，webpack就会只监控build文件夹下的静态文件。当你的文件在任何时候发生变化时，都会触发重新编译打包。验证如下：<br>1.使用上述命令启动server：<br><img src="http://cdn.gcidea.cn/webpack-21.png" alt=""></p>
+<p>控制台会显示打包过程日志，并最终提示打包完成已经可用：<br><img src="http://cdn.gcidea.cn/webpack-22.png" alt=""></p>
+<p>2.此时，访问<code>http://localhost:8080/webpack-dev-server/</code>可看到：<br><img src="http://cdn.gcidea.cn/webpack-23.png" alt=""></p>
+<p>即显示了build目录下的文件列表，此时只有app.bundle.js，点开内容如下：<br><img src="http://cdn.gcidea.cn/webpack-24.png" alt=""></p>
 <p>红色框中是我们app.js中的部分源码。</p>
-<p>3.现在修改上述部分源码，观察控制台日志和<code>http://localhost:8080/webpack-dev-server/</code>目录下文件变化。<br>修改<code>&lt;h1&gt;</code>内容后，发现控制台日志在之前“bundle is now VALID”的基础上，自动开始重新编译，进入“bundle is now INVALID”的状态：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-25.png" alt=""></p>
-<p>同时，看到页面状态条变为：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-26.png" alt=""></p>
-<p>等待重编译完成后，发现页面文件内容确实变为我们修改后的内容：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-27.png" alt=""></p>
-<p>但是，<strong>值得注意的是，这个修改的内容是保存在内存中的</strong>，并没有写入我们在webpack.config.js的output中指定的文件：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-28.png" alt=""></p>
+<p>3.现在修改上述部分源码，观察控制台日志和<code>http://localhost:8080/webpack-dev-server/</code>目录下文件变化。<br>修改<code>&lt;h1&gt;</code>内容后，发现控制台日志在之前“bundle is now VALID”的基础上，自动开始重新编译，进入“bundle is now INVALID”的状态：<br><img src="http://cdn.gcidea.cn/webpack-25.png" alt=""></p>
+<p>同时，看到页面状态条变为：<br><img src="http://cdn.gcidea.cn/webpack-26.png" alt=""></p>
+<p>等待重编译完成后，发现页面文件内容确实变为我们修改后的内容：<br><img src="http://cdn.gcidea.cn/webpack-27.png" alt=""></p>
+<p>但是，<strong>值得注意的是，这个修改的内容是保存在内存中的</strong>，并没有写入我们在webpack.config.js的output中指定的文件：<br><img src="http://cdn.gcidea.cn/webpack-28.png" alt=""></p>
 <p>发现文件还是修改之前的内容。也就是说，当相同URL下已经有一个打包的文件时，默认情况下内存中的文件享有优先权。<strong>而如果想要让build目录下的输出文件的内容也跟随发生变化，则要使用<code>webpack</code>命令重新打包</strong>。</p>
 <hr>
 <p>除了以上分析，还有一点要注意，通过给webpack.config.js的output指定publicPath，可以定制浏览器中的项目访问路径。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">    path: <span class="string">'./build'</span>,</span><br><span class="line">    publicPath: <span class="string">"/assets/"</span>,</span><br><span class="line">    filename: <span class="string">'app.bundle.js'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>重新打包，可以在如下路径访问相应文件：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-29.png" alt=""></p>
+<p>重新打包，可以在如下路径访问相应文件：<br><img src="http://cdn.gcidea.cn/webpack-29.png" alt=""></p>
 <p>由于之前content-base指定了监控build目录，我们<strong>在该目录下</strong>创建一个index.html文件，用来加载并使用我们打包好的js文件，而原先在项目根目录webpack-usage下创建的index.html文件就不起作用了：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>在build目录下创建的index.html文件<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"assets/app.bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>访问<code>http://localhost:8080/</code>：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-30.png" alt=""></p>
-<p>访问<code>http://localhost:8080/webpack-dev-server</code>:<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-31.png" alt=""></p>
-<p>其中，第一个是打包文件app.bundle.js本身：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-32.png" alt=""><br>注意路径为<code>http://localhost:8080/assets/app.bundle.js</code>，符合publicPath的配置。</p>
-<p>第二个是根据打包文件生成的html文件，注意路径为<code>http://localhost:8080/assets/app.bundle</code>，符合publicPath的配置<br>点击“app.bundle”:<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-33.png" alt=""></p>
-<p>点击“webpack-dev-server”:<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-34.png" alt=""><br>（<font color="red">该html文件仅针对app.bundle.js，和直接访问<code>http://localhost:8080/</code>对应的index.html并不相同，以上两图中没有“在build目录下创建的index.html文件”这句话就说明了这一点。</font>）</p>
+<p>访问<code>http://localhost:8080/</code>：<br><img src="http://cdn.gcidea.cn/webpack-30.png" alt=""></p>
+<p>访问<code>http://localhost:8080/webpack-dev-server</code>:<br><img src="http://cdn.gcidea.cn/webpack-31.png" alt=""></p>
+<p>其中，第一个是打包文件app.bundle.js本身：<br><img src="http://cdn.gcidea.cn/webpack-32.png" alt=""><br>注意路径为<code>http://localhost:8080/assets/app.bundle.js</code>，符合publicPath的配置。</p>
+<p>第二个是根据打包文件生成的html文件，注意路径为<code>http://localhost:8080/assets/app.bundle</code>，符合publicPath的配置<br>点击“app.bundle”:<br><img src="http://cdn.gcidea.cn/webpack-33.png" alt=""></p>
+<p>点击“webpack-dev-server”:<br><img src="http://cdn.gcidea.cn/webpack-34.png" alt=""><br>（<font color="red">该html文件仅针对app.bundle.js，和直接访问<code>http://localhost:8080/</code>对应的index.html并不相同，以上两图中没有“在build目录下创建的index.html文件”这句话就说明了这一点。</font>）</p>
 <blockquote>
 <p>关于js文件引入的路径，经测试发现以下几种情况，应该与webpack的文件查找算法有关，具体待进一步探究：</p>
 <p>1.<code>src=&quot;assets/app.bundle.js&quot;</code> 由于publicPath指定了”/assets/“，因此这种方式肯定能找到app.bundle.js文件；</p>
@@ -385,13 +385,13 @@ var _hmt = _hmt || [];
 <p>该方式的特点是：</p>
 <ul>
 <li>需要改变配置</li>
-<li>编译信息通过浏览器的console体现：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-35.png" alt=""></li>
+<li>编译信息通过浏览器的console体现：<br><img src="http://cdn.gcidea.cn/webpack-35.png" alt=""></li>
 <li>浏览器地址栏会体现出地址的变化</li>
 </ul>
 <hr>
 <h2 id="模块热替换-Hot-Module-Replacement-的应用"><a href="#模块热替换-Hot-Module-Replacement-的应用" class="headerlink" title="模块热替换 Hot Module Replacement 的应用"></a>模块热替换 Hot Module Replacement 的应用</h2><p>　　在webpack-dev-server中使用模块热替换 Hot Module Replacement最简单的办法就是在inline模式中使用。我们只需要在参数中加上”–hot”即可。<br><code>webpack-dev-server --content-base build/ --inline --hot</code></p>
-<p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-36.png" alt=""></p>
-<p>这样，就进入了监听状态，当文件发生修改，看到console打出如下日志：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/webpack-37.png" alt=""></p>
+<p><img src="http://cdn.gcidea.cn/webpack-36.png" alt=""></p>
+<p>这样，就进入了监听状态，当文件发生修改，看到console打出如下日志：<br><img src="http://cdn.gcidea.cn/webpack-37.png" alt=""></p>
 <p>发现提示错误，热替换失败，整个页面进行了重载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[HMR] Cannot apply update. Need to do a full reload!</span><br><span class="line">[HMR] Error: Aborted because 77 is not accepted</span><br><span class="line">    at l (http://localhost:8080/assets/app.bundle.js:1:4169)</span><br><span class="line">    at f (http://localhost:8080/assets/app.bundle.js:1:3117)</span><br><span class="line">    at u (http://localhost:8080/assets/app.bundle.js:1:3017)</span><br><span class="line">    at webpackHotUpdate (http://localhost:8080/assets/app.bundle.js:1:5790)</span><br><span class="line">    at http://localhost:8080/assets/0.ae586ae503d4fe64ca9a.hot-update.js:1:1</span><br></pre></td></tr></table></figure></p>
 <p>查阅了很多资料，如<a href="https://github.com/webpack/webpack-dev-server/issues/395" target="_blank" rel="external">https://github.com/webpack/webpack-dev-server/issues/395</a>，但并没有找到准确原因，暂时搁置。</p>
 
@@ -588,7 +588,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -608,7 +608,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -628,7 +628,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -648,7 +648,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -668,7 +668,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

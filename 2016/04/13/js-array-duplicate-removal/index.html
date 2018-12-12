@@ -20,12 +20,12 @@
 <meta property="og:url" content="http://www.gcidea.info/2016/04/13/js-array-duplicate-removal/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="方法一思路：创建一个新的结果数组，遍历原数组，利用数组indexOf()方法，判断原数组当前值是否在结果数组中存在，如果存在则跳过，否则压入结果数组。12345678910 function removeDuplicatedItem(ar) &amp;#123;    var ret = [];     for (var i = 0, j = ar.length; i &amp;lt; j; i++) &amp;#12">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p66.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:38:42.187Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p66.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:39.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用JavaScript实现数组去重的4种方法及性能比较">
 <meta name="twitter:description" content="方法一思路：创建一个新的结果数组，遍历原数组，利用数组indexOf()方法，判断原数组当前值是否在结果数组中存在，如果存在则跳过，否则压入结果数组。12345678910 function removeDuplicatedItem(ar) &amp;#123;    var ret = [];     for (var i = 0, j = ar.length; i &amp;lt; j; i++) &amp;#12">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p66.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p66.jpg">
     
 
     
@@ -199,7 +199,7 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法一"><span class="toc-number">1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法二"><span class="toc-number">2.</span> <span class="toc-text">方法二</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法三"><span class="toc-number">3.</span> <span class="toc-text">方法三</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法四"><span class="toc-number">4.</span> <span class="toc-text">方法四</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">5.</span> <span class="toc-text">说明</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p66.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p66.jpg" alt=""></p>
 <h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><p>思路：创建一个新的结果数组，遍历原数组，利用数组indexOf()方法，判断原数组当前值是否在结果数组中存在，如果存在则跳过，否则压入结果数组。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">removeDuplicatedItem</span>(<span class="params">ar</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ret = [];</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, j = ar.length; i &lt; j; i++) &#123;</span><br><span class="line">       <span class="keyword">if</span> (ret.indexOf(ar[i]) === <span class="number">-1</span>) &#123;</span><br><span class="line">            ret.push(ar[i]);</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>利用数组下标判断。遍历该数组，使用indexOf()方法判断当前遍历的元素在整个数组中的下标是否等于当前下标。（因为indexOf()方法的原理是返回匹配中的第一个元素的下标，如果这个下标等于当前下标，说明这个元素在整个数组中第一次出现，就可以将其压入结果数组，否则说明是重复的，跳过。）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeDuplicatedItem</span>(<span class="params">ar</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ret = [];</span><br><span class="line"></span><br><span class="line">    ar.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">e, i, ar</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (ar.indexOf(e) === i) &#123;</span><br><span class="line">            ret.push(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -403,7 +403,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -423,7 +423,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -443,7 +443,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -463,7 +463,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -483,7 +483,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

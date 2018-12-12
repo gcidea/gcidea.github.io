@@ -20,12 +20,12 @@
 <meta property="og:url" content="http://www.gcidea.info/2016/12/17/base64/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="概念　　Base64编码是网络传输中的一种常见编码方式。可用于传输任意的8bit(字节Byte)数据，经过编码后的数据不是直接可读的，但也由此保证了一定的安全性和很好的可移植性。这种编解码的算法十分简单，编码后的数据大小仅增加三分之一左右(原因后续讲到)，因而不会对传输造成过大压力。　　我们需要明确的概念是，Base64编码本质上是将二进制数据编码为文本字符。而这些二进制数据的来源则可能有很多，">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p13.jpg">
-<meta property="og:updated_time" content="2017-02-11T06:28:43.673Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p13.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:55.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Base64编码探究">
 <meta name="twitter:description" content="概念　　Base64编码是网络传输中的一种常见编码方式。可用于传输任意的8bit(字节Byte)数据，经过编码后的数据不是直接可读的，但也由此保证了一定的安全性和很好的可移植性。这种编解码的算法十分简单，编码后的数据大小仅增加三分之一左右(原因后续讲到)，因而不会对传输造成过大压力。　　我们需要明确的概念是，Base64编码本质上是将二进制数据编码为文本字符。而这些二进制数据的来源则可能有很多，">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p13.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p13.jpg">
     
 
     
@@ -199,7 +199,7 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#官方规范"><span class="toc-number">2.</span> <span class="toc-text">官方规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Base64字母表"><span class="toc-number">3.</span> <span class="toc-text">Base64字母表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-number">4.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用"><span class="toc-number">5.</span> <span class="toc-text">应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript实现"><span class="toc-number">6.</span> <span class="toc-text">JavaScript实现</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p13.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p13.jpg" alt=""></p>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>　　Base64编码是网络传输中的一种常见编码方式。可用于传输任意的8bit(字节Byte)数据，经过编码后的数据不是直接可读的，但也由此保证了一定的安全性和很好的可移植性。这种编解码的算法十分简单，编码后的数据大小仅增加三分之一左右(原因后续讲到)，因而不会对传输造成过大压力。<br>　　我们需要明确的概念是，Base64编码<strong>本质上是将二进制数据编码为文本字符</strong>。而这些二进制数据的来源则可能有很多，比如：</p>
 <blockquote>
 <ul>
@@ -213,14 +213,14 @@ var _hmt = _hmt || [];
 <hr>
 <h2 id="官方规范"><a href="#官方规范" class="headerlink" title="官方规范"></a>官方规范</h2><p>　　Base64编码是作为MIME多用途互联网邮件扩展标准的一部分进行开发的。MIME RFC 2045的6.8节详细介绍了这种编码方式，参见<a href="http://www.ietf.org/rfc/rfc2045.txt.pdf" target="_blank" rel="external">http://www.ietf.org/rfc/rfc2045.txt.pdf</a>，这是Base64编码的官方规范。</p>
 <hr>
-<h2 id="Base64字母表"><a href="#Base64字母表" class="headerlink" title="Base64字母表"></a>Base64字母表</h2><p>由名字也可以看出，Base64编码将任意字符转换为用下表64个字符(中的某些)进行表示(具体原理稍候分析)。<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/base64-alphabet.png" alt=""></p>
+<h2 id="Base64字母表"><a href="#Base64字母表" class="headerlink" title="Base64字母表"></a>Base64字母表</h2><p>由名字也可以看出，Base64编码将任意字符转换为用下表64个字符(中的某些)进行表示(具体原理稍候分析)。<br>  <img src="http://cdn.gcidea.cn/base64-alphabet.png" alt=""></p>
 <p>图中最后的<code>(pad) =</code>是Base64编码中使用的填充字符，用于补足，在后面的原理分析中会看到。 </p>
 <hr>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>　　之前已经提到过Base64编码是对“字节数据”做处理。一个字节是8bit，也就是8个二进制位。假设现在有一个英文字符串，每个字符由1个字节（8bit）构成，则对应了一个字节序列。Base64编码将这些8位的字节序列拆分成多个6位的片段，计算这个6位二进制数对应的十进制值，根据该十进制值查Base64字母表，使用表中的字符指代该片段。（2^6=64,64种符号刚好可以表示6位二进制数的全部情况。）下面展示了一个具体的例子：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/base64-example.png" alt=""></p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>　　之前已经提到过Base64编码是对“字节数据”做处理。一个字节是8bit，也就是8个二进制位。假设现在有一个英文字符串，每个字符由1个字节（8bit）构成，则对应了一个字节序列。Base64编码将这些8位的字节序列拆分成多个6位的片段，计算这个6位二进制数对应的十进制值，根据该十进制值查Base64字母表，使用表中的字符指代该片段。（2^6=64,64种符号刚好可以表示6位二进制数的全部情况。）下面展示了一个具体的例子：<br>  <img src="http://cdn.gcidea.cn/base64-example.png" alt=""></p>
 <p>　　通过这样的分析，我们也就可以知道为什么Base64编码字符串比原始字符串扩大约三分之一：原来一个字符用8位表示，现在6位就代表一个字符，所以扩大(8-6)/6=1/3。<br>　　<br>　　还有一个问题需要考虑：8位的字节序列不一定总能分割成整数个6位的片段。这时候，为了正常编码，就要在原序列末尾补足，使得序列长度成为24的倍数（6,8的最小公倍数）：</p>
 <ul>
 <li>如果要进行补足的6位片段中包含原序列的位，则使用0补足，构成的6位二进制数按照正常情况进行查表得出对应的编码字符。</li>
-<li>如果要进行补足的6位片段中包含原序列的位（即这个片段的6位都是用来补足的，并不含原数据），则这个片段编码为填充字符<code>=</code><br>如下示例：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/base64-example2.png" alt=""></li>
+<li>如果要进行补足的6位片段中包含原序列的位（即这个片段的6位都是用来补足的，并不含原数据），则这个片段编码为填充字符<code>=</code><br>如下示例：<br><img src="http://cdn.gcidea.cn/base64-example2.png" alt=""></li>
 </ul>
 <hr>
 <h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>Base64编码有很广泛的应用：</p>
@@ -433,7 +433,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -453,7 +453,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -473,7 +473,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -493,7 +493,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -513,7 +513,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

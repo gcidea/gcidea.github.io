@@ -20,12 +20,12 @@
 <meta property="og:url" content="http://www.gcidea.info/2016/11/02/angular-$q-service/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　$q服务的实现与ES6(ES2015)中的promise十分相似，这种方式改变了传统长期使用的JavaScript异步编程方式-处理回调函数。试想一下，如果有这样的业务逻辑：我们需要根据某个异步ajax请求的结果是否符合要求，再发起一个异步请求，在回调函数中对响应数据进行请求后再发起异步请求… …当出现这样的异步嵌套逻辑，代码结构就会变得很差。promise正是改变了这种情况，以一种流式">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p5.jpg">
-<meta property="og:updated_time" content="2017-02-11T06:40:41.634Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p5.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:09:36.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AngularJs中$q服务(service)的使用">
 <meta name="twitter:description" content="前言　　$q服务的实现与ES6(ES2015)中的promise十分相似，这种方式改变了传统长期使用的JavaScript异步编程方式-处理回调函数。试想一下，如果有这样的业务逻辑：我们需要根据某个异步ajax请求的结果是否符合要求，再发起一个异步请求，在回调函数中对响应数据进行请求后再发起异步请求… …当出现这样的异步嵌套逻辑，代码结构就会变得很差。promise正是改变了这种情况，以一种流式">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p5.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p5.jpg">
     
 
     
@@ -199,7 +199,7 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#综述"><span class="toc-number">2.</span> <span class="toc-text">综述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#q构造函数"><span class="toc-number">3.</span> <span class="toc-text">$q构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deferred-API"><span class="toc-number">4.</span> <span class="toc-text">Deferred API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-API"><span class="toc-number">5.</span> <span class="toc-text">Promise API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链式promises"><span class="toc-number">6.</span> <span class="toc-text">链式promises</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kris-Kowal’s-Q和-q的区别"><span class="toc-number">7.</span> <span class="toc-text">Kris Kowal’s Q和$q的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用格式"><span class="toc-number">8.</span> <span class="toc-text">使用格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提供的方法"><span class="toc-number">9.</span> <span class="toc-text">提供的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用案例一"><span class="toc-number">10.</span> <span class="toc-text">使用案例一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用案例二"><span class="toc-number">11.</span> <span class="toc-text">使用案例二</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p5.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p5.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　$q服务的实现与ES6(ES2015)中的promise十分相似，这种方式改变了传统长期使用的JavaScript异步编程方式-处理回调函数。试想一下，如果有这样的业务逻辑：我们需要根据某个异步ajax请求的结果是否符合要求，再发起一个异步请求，在回调函数中对响应数据进行请求后再发起异步请求… …当出现这样的异步嵌套逻辑，代码结构就会变得很差。promise正是改变了这种情况，以一种流式的方式对异步请求进行声明和处理，表现出顺序的编码结构。本篇对$q服务的常用内容进行总结，而对于promise的学习，推荐<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">阮一峰的ES6标准入门</a>。</p>
 <hr>
 <h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>　　$q是AngularJs中的一个服务，可以用来异步执行函数，并在异步请求执行完成时使用返回的结果。$q是对<a href="https://github.com/kriskowal/q" target="_blank" rel="external">Kris Kowal提出的Kris Kowal’s Q中的promises/deferred对象</a>的一种实现。$q有两种使用风格，一种和Kris Kowal’s Q或者jQuery中的defer实现类似，另一种实现与ES6(ES2015)中的promise十分相似。</p>
@@ -471,7 +471,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -491,7 +491,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -511,7 +511,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -531,7 +531,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -551,7 +551,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

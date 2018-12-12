@@ -28,8 +28,8 @@ setInterval可能会存在的问题">
 setTimeout和setInterval对比
 另外，根据网上一张关于此问题比较流行的图：1234567function click() &amp;#123; // code block1... setInterval(function() &amp;#123; // process ... &amp;#125;, 200); // code block2 &amp;#125;
 setInterval可能会存在的问题">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p109.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:49:44.237Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p109.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:00:25.728Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="setTimeout与setInterval的对比与互相实现">
 <meta name="twitter:description" content="案例
@@ -37,7 +37,7 @@ setInterval可能会存在的问题">
 setTimeout和setInterval对比
 另外，根据网上一张关于此问题比较流行的图：1234567function click() &amp;#123; // code block1... setInterval(function() &amp;#123; // process ... &amp;#125;, 200); // code block2 &amp;#125;
 setInterval可能会存在的问题">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p109.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p109.jpg">
     
 
     
@@ -211,17 +211,17 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#案例"><span class="toc-number">1.</span> <span class="toc-text">案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setTimeout和setInterval对比"><span class="toc-number">2.</span> <span class="toc-text">setTimeout和setInterval对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#互相实现"><span class="toc-number">3.</span> <span class="toc-text">互相实现</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#利用setTimeout实现setInterval"><span class="toc-number">3.1.</span> <span class="toc-text">利用setTimeout实现setInterval</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用setInterval实现setTimeout"><span class="toc-number">3.2.</span> <span class="toc-text">利用setInterval实现setTimeout</span></a></li></ul></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p109.jpg" alt=""></p>
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/settimeout-setinterval.png" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p109.jpg" alt=""></p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p><img src="http://cdn.gcidea.cn/settimeout-setinterval.png" alt=""></p>
 <hr>
-<h2 id="setTimeout和setInterval对比"><a href="#setTimeout和setInterval对比" class="headerlink" title="setTimeout和setInterval对比"></a>setTimeout和setInterval对比</h2><p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/settimeout-setinterval-2.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/settimeout-setinterval-3.png" alt=""></p>
-<p>另外，根据网上一张关于此问题比较流行的图：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/settimeout-setinterval-4.jpg" alt=""><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">click</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line"><span class="comment">// code block1... </span></span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line"><span class="comment">// process ... </span></span><br><span class="line">&#125;, <span class="number">200</span>); </span><br><span class="line"><span class="comment">// code block2 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="setTimeout和setInterval对比"><a href="#setTimeout和setInterval对比" class="headerlink" title="setTimeout和setInterval对比"></a>setTimeout和setInterval对比</h2><p><img src="http://cdn.gcidea.cn/settimeout-setinterval-2.png" alt=""><br><img src="http://cdn.gcidea.cn/settimeout-setinterval-3.png" alt=""></p>
+<p>另外，根据网上一张关于此问题比较流行的图：<br><img src="http://cdn.gcidea.cn/settimeout-setinterval-4.jpg" alt=""><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">click</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line"><span class="comment">// code block1... </span></span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line"><span class="comment">// process ... </span></span><br><span class="line">&#125;, <span class="number">200</span>); </span><br><span class="line"><span class="comment">// code block2 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>setInterval可能会存在的问题是：<br>假设onclick回调函数一共要300ms执行完, block1代码执行完花了5ms, 在5ms时执行setInterval, 以此为一个时间点, 在205ms时插入process代码。当onclick回调函数顺利结束, process代码开始执行(即图中的timer code), 然而process代码也执行了一个比较长的时间, 超过了接下来一个插入时间点405ms, 这样代码队列后又插入了一份process代码, process继续执行着, 而且超过了605ms这个插入时间点，下面问题来了，可能你还会认为代码队列后面又会继续插入一份process代码，但真实的情况是,由于代码队列中已经有了一份未执行的process代码(405ms的), 所以605ms这个插入时间点将会被跳过, 因为js引擎只允许有一份未执行的process代码。</p>
 <hr>
 <h2 id="互相实现"><a href="#互相实现" class="headerlink" title="互相实现"></a>互相实现</h2><h3 id="利用setTimeout实现setInterval"><a href="#利用setTimeout实现setInterval" class="headerlink" title="利用setTimeout实现setInterval"></a>利用setTimeout实现setInterval</h3><p>　　这个本文刚开始的案例就是一个例子，下面再给出一个：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'setTimeout模拟setInterval，每秒钟打印一次'</span>);</span><br><span class="line">   setTimeout(f, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(f, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure></p>
-<p>可以看到控制台每秒钟打印一次：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/settimeout-setinterval-5.png" alt=""></p>
+<p>可以看到控制台每秒钟打印一次：<br><img src="http://cdn.gcidea.cn/settimeout-setinterval-5.png" alt=""></p>
 <h3 id="利用setInterval实现setTimeout"><a href="#利用setInterval实现setTimeout" class="headerlink" title="利用setInterval实现setTimeout"></a>利用setInterval实现setTimeout</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'setInterval模拟setTimeout，只会打印一次，清除timer后停止'</span>);</span><br><span class="line">   clearInterval(timer);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> timer = setInterval(f, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
-<p>可以看到控制台只打印一次：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/settimeout-setinterval-6.png" alt=""></p>
+<p>可以看到控制台只打印一次：<br><img src="http://cdn.gcidea.cn/settimeout-setinterval-6.png" alt=""></p>
 
         </div>
         <footer class="article-footer">
@@ -416,7 +416,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -436,7 +436,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -456,7 +456,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -476,7 +476,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -496,7 +496,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

@@ -24,14 +24,14 @@
 <meta property="og:description" content="nginx概述
 来源　　Nginx (“engine x”) 是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。Nginx是由Igor Sysoev为俄罗斯访问量第二的Rambler.ru站点开发的，第一个公开版本0.1.0发布于2004年10月4日。2011年6月1日，nginx 1.0.4发布。
 特点　　占有内存少，并发能力强。Nginx可以在大多数Unix">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p99.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:57:44.073Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p99.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:07:48.639Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nginx服务器基本配置及在模块化项目中的转发应用">
 <meta name="twitter:description" content="nginx概述
 来源　　Nginx (“engine x”) 是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。Nginx是由Igor Sysoev为俄罗斯访问量第二的Rambler.ru站点开发的，第一个公开版本0.1.0发布于2004年10月4日。2011年6月1日，nginx 1.0.4发布。
 特点　　占有内存少，并发能力强。Nginx可以在大多数Unix">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p99.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p99.jpg">
     
 
     
@@ -205,7 +205,7 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx概述"><span class="toc-number">1.</span> <span class="toc-text">nginx概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本目录结构"><span class="toc-number">2.</span> <span class="toc-text">基本目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置文件nginx-conf"><span class="toc-number">3.</span> <span class="toc-text">配置文件nginx.conf</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本介绍"><span class="toc-number">3.1.</span> <span class="toc-text">基本介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一个实际使用的nginx-conf"><span class="toc-number">3.2.</span> <span class="toc-text">一个实际使用的nginx.conf</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用案例"><span class="toc-number">4.</span> <span class="toc-text">应用案例</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p99.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p99.jpg" alt=""></p>
 <h2 id="nginx概述"><a href="#nginx概述" class="headerlink" title="nginx概述"></a>nginx概述</h2><ul>
 <li>来源<br>　　Nginx (“engine x”) 是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。Nginx是由Igor Sysoev为俄罗斯访问量第二的Rambler.ru站点开发的，第一个公开版本0.1.0发布于2004年10月4日。2011年6月1日，nginx 1.0.4发布。</li>
 <li>特点<br>　　占有内存少，并发能力强。Nginx可以在大多数Unix like OS上编译运行，并有Windows移植版。windows下的nginx使用的是native Win32 API编写的，使用select处理连接，所以windows下的nginx性能不会太高且伸缩性(scalability，意思是通过数量上的扩展满足系统业务的增长）也差些。另外windows下的nginx缺少一些模块：XSLT filter, image filter, GeoIP module, 和 embedded Perl language。同时需要注意的是：</li>
@@ -217,7 +217,7 @@ var _hmt = _hmt || [];
 <li>widows下的nginx支持最大1024个并发连接</li>
 </ol>
 <hr>
-<h2 id="基本目录结构"><a href="#基本目录结构" class="headerlink" title="基本目录结构"></a>基本目录结构</h2><p>在window系统中，nginx目录结构如下（本文以nginx-1.11.5为例）：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure.png" alt=""><br>其中：<br><strong>conf</strong><br>存放默认配置文件。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-conf.png" alt=""><br><strong>contrib</strong><br>存放一些实用工具，如geo配置生成工具（geo2nginx.pl）。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-contrib.png" alt=""><br><strong>docs</strong><br>存放一些说明文档。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-docs.png" alt=""><br><strong>html</strong><br>存放默认的网页文件。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-html1.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-html2.png" alt=""><br><strong>logs</strong><br>存放nginx运行的访问接入日志和错误日志。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-logs.png" alt=""><br><strong>temp</strong><br>存放一些静态缓存数据，用户访问的时候，如果有就直接从缓存里取。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-structure-temp.png" alt=""><br><strong>nginx.exe</strong><br>nginx启动方式：双击nginx.exe或者在当前目录打开cmd窗口，使用命令<code>nginx</code>即可：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-start.png" alt=""><br>如果要关闭nginx，则需要再打开一个cmd窗口，使用命令<code>nginx -s stop</code>:<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/nginx-stop.png" alt=""></p>
+<h2 id="基本目录结构"><a href="#基本目录结构" class="headerlink" title="基本目录结构"></a>基本目录结构</h2><p>在window系统中，nginx目录结构如下（本文以nginx-1.11.5为例）：<br><img src="http://cdn.gcidea.cn/nginx-structure.png" alt=""><br>其中：<br><strong>conf</strong><br>存放默认配置文件。<br><img src="http://cdn.gcidea.cn/nginx-structure-conf.png" alt=""><br><strong>contrib</strong><br>存放一些实用工具，如geo配置生成工具（geo2nginx.pl）。<br><img src="http://cdn.gcidea.cn/nginx-structure-contrib.png" alt=""><br><strong>docs</strong><br>存放一些说明文档。<br><img src="http://cdn.gcidea.cn/nginx-structure-docs.png" alt=""><br><strong>html</strong><br>存放默认的网页文件。<br><img src="http://cdn.gcidea.cn/nginx-structure-html1.png" alt=""><br><img src="http://cdn.gcidea.cn/nginx-structure-html2.png" alt=""><br><strong>logs</strong><br>存放nginx运行的访问接入日志和错误日志。<br><img src="http://cdn.gcidea.cn/nginx-structure-logs.png" alt=""><br><strong>temp</strong><br>存放一些静态缓存数据，用户访问的时候，如果有就直接从缓存里取。<br><img src="http://cdn.gcidea.cn/nginx-structure-temp.png" alt=""><br><strong>nginx.exe</strong><br>nginx启动方式：双击nginx.exe或者在当前目录打开cmd窗口，使用命令<code>nginx</code>即可：<br><img src="http://cdn.gcidea.cn/nginx-start.png" alt=""><br>如果要关闭nginx，则需要再打开一个cmd窗口，使用命令<code>nginx -s stop</code>:<br><img src="http://cdn.gcidea.cn/nginx-stop.png" alt=""></p>
 <hr>
 <h2 id="配置文件nginx-conf"><a href="#配置文件nginx-conf" class="headerlink" title="配置文件nginx.conf"></a>配置文件nginx.conf</h2><h3 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h3><p>Nginx配置文件主要分为4部分：main（全局设置）、server（主机设置）、upstream（负载均衡服务器设置）和location（URL匹配特定位置的设置）。<br>nginx.conf中的配置信息，根据其逻辑上的意义，对它们进行了分类，也就是分成了多个作用域，或者称之为配置指令上下文。不同的作用域含有一个或者多个配置项。</p>
 <p>当前nginx支持的几个指令上下文：<br><strong>main</strong><br>nginx在运行时与具体业务功能（比如http服务或者email服务代理）无关的一些参数，比如工作进程数，运行的身份等。<br><strong>http</strong><br>与提供http服务相关的一些配置参数。例如：是否使用keepalive，是否使用gzip进行压缩等。<br><strong>server</strong><br>http服务上支持若干虚拟主机。每个虚拟主机一个对应的server配置项，配置项里面包含该虚拟主机相关的配置。在提供mail服务的代理时，也可以建立若干server.每个server通过监听的地址来区分。<br><strong>location</strong><br>http服务中，某些特定的URL对应的一系列配置项。<br><strong>mail</strong><br>实现email相关的SMTP/IMAP/POP3代理时，共享的一些配置项（因为可能实现多个代理，工作在多个监听地址上）。</p>
@@ -423,7 +423,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -443,7 +443,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -463,7 +463,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -483,7 +483,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -503,7 +503,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

@@ -20,12 +20,12 @@
 <meta property="og:url" content="http://www.gcidea.info/2016/12/31/js-constructor-prototype/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p78.jpg">
-<meta property="og:updated_time" content="2017-02-11T05:40:12.872Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p78.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:35.114Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript中的对象、constructor属性、prototype属性对比分析">
 <meta name="twitter:description" content="前言　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p78.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p78.jpg">
     
 
     
@@ -199,7 +199,7 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对象简述"><span class="toc-number">2.</span> <span class="toc-text">JavaScript对象简述　</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性类型"><span class="toc-number">2.2.</span> <span class="toc-text">属性类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象共有的“特性”"><span class="toc-number">2.3.</span> <span class="toc-text">对象共有的“特性”</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript对象创建方式"><span class="toc-number">3.</span> <span class="toc-text">JavaScript对象创建方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象-构造函数模式（constructor属性相关）"><span class="toc-number">4.</span> <span class="toc-text">创建对象-构造函数模式（constructor属性相关）</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工厂模式与构造函数模式的对比"><span class="toc-number">4.1.</span> <span class="toc-text">工厂模式与构造函数模式的对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象的constructor属性"><span class="toc-number">4.2.</span> <span class="toc-text">对象的constructor属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数模式存在的缺陷"><span class="toc-number">4.3.</span> <span class="toc-text">构造函数模式存在的缺陷</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建对象-原型模式（prototype属性相关）"><span class="toc-number">5.</span> <span class="toc-text">创建对象-原型模式（prototype属性相关）</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原型模式的案例"><span class="toc-number">5.1.</span> <span class="toc-text">原型模式的案例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解原型对象（prototype属性）"><span class="toc-number">5.2.</span> <span class="toc-text">理解原型对象（prototype属性）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型链操作"><span class="toc-number">5.3.</span> <span class="toc-text">原型链操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#某个属性属于谁？（实例-or-原型？）"><span class="toc-number">5.4.</span> <span class="toc-text">某个属性属于谁？（实例 or 原型？）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型对象的重写"><span class="toc-number">5.5.</span> <span class="toc-text">原型对象的重写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原型对象的动态性"><span class="toc-number">5.6.</span> <span class="toc-text">原型对象的动态性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原生对象的原型"><span class="toc-number">5.7.</span> <span class="toc-text">原生对象的原型</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p78.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p78.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　首先想说的是，这篇文章的题目准确怎么定我就考虑了不少时间。想过“JavaScript中的对象及其constructor属性和prototype属性”，想过“JavaScript中的对象、构造函数对象(constructor)和原型对象(prototype)”等等，但总觉得不够清楚。说实话现有的这个题目也不一定是很好的，只是相比较之下，选择一个“三者相对独立”的说法，这样就不会有先入为主的感觉。因为三者的关系并不是简单的“constructor和prototype是对象的两个属性”，并且“到底把constructor看作属性还是构造函数对象”，“到底把prototype看作属性还是原型对象”，这些问题并没有一个固定答案，它们有着互相渗透的关系。更多地我们应该关注这些名词到底想要描述怎样的问题。本文我就结合《JavaScript权威指南》和《JavaScript高级程序设计》两书进行总结和分析，可能有一些还不正确的理解，需要进一步探究。<br>　　另外，要说明的是，不可能只是干巴巴地描述这3个概念，因为它们本质上涉及的是JavaScript面向对象编程中的“类与对象”、“类的继承”等问题，因此本文是从这些方面进行组织的，constructor属性、prototype属性的分析包含其中。</p>
 <hr>
 <h2 id="JavaScript对象简述"><a href="#JavaScript对象简述" class="headerlink" title="JavaScript对象简述　"></a>JavaScript对象简述　</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>　　在之前关于null和undefined的讨论中提到过，JavaScript中的数据类型分为两类：原始类型和对象类型。本篇主要要总结的就是对象类型。对象是JavaScript中十分重要且常用的概念。<br>　　对象是一种复合值：是多个属性的集合，每个属性都以键/值对的形式体现。其中对于属性值为函数的属性，一般将其称作方法。函数、数组等数据组织形式都是对象的一种特殊表现形式。</p>
@@ -272,16 +272,16 @@ var _hmt = _hmt || [];
 <li>得到初始化好的新对象</li>
 </ul>
 <p>　　</p>
-<h3 id="对象的constructor属性"><a href="#对象的constructor属性" class="headerlink" title="对象的constructor属性"></a>对象的constructor属性</h3><p>　　以上构造函数模式代码中的firstNews和secondNews两个对象分别保存着News的一个实例（是不同的）。<font color="red">这里就要提到constructor了。firstNews和secondNews两个对象各自有一个constructor属性-构造函数属性。</font>如下所示：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-1.png" alt=""></p>
-<p>　　换句话说，<strong>由构造函数创建的对象</strong>，它有一个constructor属性，属性值为构造函数本身（指向构造函数），如下所示：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-2.png" alt=""></p>
-<p>　　而对于<strong>使用工厂模式创建的对象</strong>，也具有constructor属性，只不过直接指向“最高层”的对象Object，如下所示：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-3.png" alt=""></p>
-<p>　　对于<strong>字面量直接创建的对象</strong>，也具有constructor属性，也是直接指向“最高层”的对象Object，如下所示：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-4.png" alt=""></p>
-<p>　　对于<strong><code>Object.create()</code>方法创建的对象</strong>，也具有constructor属性，也是直接指向“最高层”的对象Object，如下所示：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-5.png" alt=""></p>
+<h3 id="对象的constructor属性"><a href="#对象的constructor属性" class="headerlink" title="对象的constructor属性"></a>对象的constructor属性</h3><p>　　以上构造函数模式代码中的firstNews和secondNews两个对象分别保存着News的一个实例（是不同的）。<font color="red">这里就要提到constructor了。firstNews和secondNews两个对象各自有一个constructor属性-构造函数属性。</font>如下所示：<br>  <img src="http://cdn.gcidea.cn/js-constructor-1.png" alt=""></p>
+<p>　　换句话说，<strong>由构造函数创建的对象</strong>，它有一个constructor属性，属性值为构造函数本身（指向构造函数），如下所示：<br>  <img src="http://cdn.gcidea.cn/js-constructor-2.png" alt=""></p>
+<p>　　而对于<strong>使用工厂模式创建的对象</strong>，也具有constructor属性，只不过直接指向“最高层”的对象Object，如下所示：<br>  <img src="http://cdn.gcidea.cn/js-constructor-3.png" alt=""></p>
+<p>　　对于<strong>字面量直接创建的对象</strong>，也具有constructor属性，也是直接指向“最高层”的对象Object，如下所示：<br>  <img src="http://cdn.gcidea.cn/js-constructor-4.png" alt=""></p>
+<p>　　对于<strong><code>Object.create()</code>方法创建的对象</strong>，也具有constructor属性，也是直接指向“最高层”的对象Object，如下所示：<br>  <img src="http://cdn.gcidea.cn/js-constructor-5.png" alt=""></p>
 <p>　　以上内容可总结如下：</p>
 <ol>
 <li><p>任何对象都具有constructor属性。</p>
 <blockquote>
-<p>注意，这里顺便说一下，即便是原始类型的数据，也可以调用constructor属性，原因应该是，JavaScript自动将其转换为对应的包装类型（对象），再调用相应包装类型的constructor属性（对象），如下图所示：（当然，null和undefined没有属性和方法，也就不用讨论了）<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-constructor-6.png" alt=""></p>
+<p>注意，这里顺便说一下，即便是原始类型的数据，也可以调用constructor属性，原因应该是，JavaScript自动将其转换为对应的包装类型（对象），再调用相应包装类型的constructor属性（对象），如下图所示：（当然，null和undefined没有属性和方法，也就不用讨论了）<br><img src="http://cdn.gcidea.cn/js-constructor-6.png" alt=""></p>
 </blockquote>
 </li>
 <li><p>使用构造函数模式创建的对象，其constructor指向创建该对象的构造函数</p>
@@ -294,8 +294,8 @@ var _hmt = _hmt || [];
 <p>使用原型模式模式创建对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">News</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">News.prototype.title = <span class="string">"important news"</span>;</span><br><span class="line">News.prototype.subtitle = <span class="string">"strategy"</span>;</span><br><span class="line">News.prototype.release = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="keyword">this</span>.title + <span class="string">"--"</span> + <span class="keyword">this</span>.subtitle);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> firstNews = <span class="keyword">new</span> News();</span><br><span class="line">firstNews.title;        <span class="comment">//"important news"</span></span><br><span class="line"><span class="keyword">var</span> secondNews = <span class="keyword">new</span> News();</span><br><span class="line">secondNews.subtitle;    <span class="comment">//"strategy"</span></span><br><span class="line"></span><br><span class="line">firstNews.title = <span class="string">"interesting news"</span>;</span><br><span class="line">firstNews.title;        <span class="comment">//"interesting news"</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <p>　　每个函数其实都有一个prototype（原型）属性，这个属性是一个指针，指向一个对象-原型对象，而这个对象的作用是包含好可以由特定类型的实例所共享的属性和方法。因此，如上所示，构造函数是空的也可以（但必须有这个构造函数），需要共享的内容写在prototype对象上就好了。</p>
-<h3 id="理解原型对象（prototype属性）"><a href="#理解原型对象（prototype属性）" class="headerlink" title="理解原型对象（prototype属性）"></a>理解原型对象（prototype属性）</h3><p>　　到底什么是原型对象呢？<br>　　首先，我们看看上述例子中通过原型模式创建的对象实例firstNews的原型对象是什么：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-1.png" alt=""></p>
-<p>　　这里发现显示的结果是<code>undefined</code>？原型对象没有定义吗？不是这样的。是因为在JavaScript中，prototype是一个内部属性，没有提供标准的直接访问方式，但是在各个主流浏览器的实现中，为我们提供了<code>__proto__</code>属性，可以帮我们“窥探”一个对象的原型对象。如下所示：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-2.png" alt=""></p>
+<h3 id="理解原型对象（prototype属性）"><a href="#理解原型对象（prototype属性）" class="headerlink" title="理解原型对象（prototype属性）"></a>理解原型对象（prototype属性）</h3><p>　　到底什么是原型对象呢？<br>　　首先，我们看看上述例子中通过原型模式创建的对象实例firstNews的原型对象是什么：<br>  <img src="http://cdn.gcidea.cn/js-prototype-1.png" alt=""></p>
+<p>　　这里发现显示的结果是<code>undefined</code>？原型对象没有定义吗？不是这样的。是因为在JavaScript中，prototype是一个内部属性，没有提供标准的直接访问方式，但是在各个主流浏览器的实现中，为我们提供了<code>__proto__</code>属性，可以帮我们“窥探”一个对象的原型对象。如下所示：<br>  <img src="http://cdn.gcidea.cn/js-prototype-2.png" alt=""></p>
 <p>  从上图我们能清楚地看到firstNews的原型对象的结构，<font color="red">并且和constructor联系起来了</font>：</p>
 <ol>
 <li>原型对象有一个constructor属性，它反过来指向了创建该实例的构造函数</li>
@@ -304,19 +304,19 @@ var _hmt = _hmt || [];
 <p>其次，上述是创建了函数对象，那么对于其他几种方式创建的对象呢？我们来看看：</p>
 </li>
 </ol>
-<p><strong>通过字面量直接创建对象</strong><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-3.png" alt=""></p>
+<p><strong>通过字面量直接创建对象</strong><br><img src="http://cdn.gcidea.cn/js-prototype-3.png" alt=""></p>
 <p>可以看出，对象的prototype属性时存在的，并且由于没有构造函数，它的constructor属性直接指向了Object,也就是说字面量对象是由Object()直接创建的。</p>
-<p><strong>通过<code>Object.create()</code>创建对象</strong><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-4.png" alt=""></p>
+<p><strong>通过<code>Object.create()</code>创建对象</strong><br><img src="http://cdn.gcidea.cn/js-prototype-4.png" alt=""></p>
 <p>可以看出，实例对象o的原型对象是{x:1, y:2}，并且不带任何诸如constructor之类的属性。原因是，根据API<code>Object.create((proto [, propertiesObject ]))</code>，传入的参数就是要创建的对象的原型proto。传入的是{x:1, y:2}，因此<code>__proto__</code>的结果自然也就是{x:1, y:2}。</p>
-<p>通过以上分析，可作总结：<br>1.任何时候，只要创建一个对象，就会有prototype属性，并且大多数情况通过<code>__proto__</code>进行展现<br>2.在此基础上，通过构造函数创建对象稍有特殊（因为constructor不会直接指向Object）。只要创建了一个新的函数对象，就会根据一组特定规则为函数创建一个prototype属性，这个属性指向函数的原型对象。并且，默认的这个原型对象又会自动获取一个constructor属性，反过来指向prototype属性所在的函数（也就是构造函数）。通过以下实验可以很好理解这一点：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-5.png" alt=""></p>
+<p>通过以上分析，可作总结：<br>1.任何时候，只要创建一个对象，就会有prototype属性，并且大多数情况通过<code>__proto__</code>进行展现<br>2.在此基础上，通过构造函数创建对象稍有特殊（因为constructor不会直接指向Object）。只要创建了一个新的函数对象，就会根据一组特定规则为函数创建一个prototype属性，这个属性指向函数的原型对象。并且，默认的这个原型对象又会自动获取一个constructor属性，反过来指向prototype属性所在的函数（也就是构造函数）。通过以下实验可以很好理解这一点：<br><img src="http://cdn.gcidea.cn/js-prototype-5.png" alt=""></p>
 <p>　　值得说明的是，根据之前提到的，prototype是内部属性不能直接访问（否则会报错），用<code>__proto__</code>可以间接访问，所以上图是通过<code>firstNews.__proto__.constructor</code>来测试的。但实际上我们要讨论的是<code>firstNews.prototype.constructor</code>，即prototype和constructor的关系，要特别注意这一点。</p>
-<p>3.<font color="red"><strong>但是，要特别注意</strong>,以上所说的<code>prototype</code>是内部属性无法访问，是针对创建的实例对象。而对于函数对象，是可以直接访问<code>prototype</code>属性的</font>，如下所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-14.png" alt=""></p>
+<p>3.<font color="red"><strong>但是，要特别注意</strong>,以上所说的<code>prototype</code>是内部属性无法访问，是针对创建的实例对象。而对于函数对象，是可以直接访问<code>prototype</code>属性的</font>，如下所示：<br><img src="http://cdn.gcidea.cn/js-prototype-14.png" alt=""></p>
 <blockquote>
 <p><code>prototype</code>和<code>__proto__</code>还有更多区别，详见这篇文章<a href="http://gcidea.info/2016/06/12/js-proto-prototype/" target="_blank" rel="external">JavaScript中<code>__proto__</code>和<code>prototype</code>的对比分析</a></p>
 </blockquote>
-<p>4.可以通过下图更好地理解prototype和constructor的关系。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-6.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-7.png" alt="">
+<p>4.可以通过下图更好地理解prototype和constructor的关系。<br><img src="http://cdn.gcidea.cn/js-prototype-6.png" alt=""><br><img src="http://cdn.gcidea.cn/js-prototype-7.png" alt="">
 　　</p>
-<h3 id="原型链操作"><a href="#原型链操作" class="headerlink" title="原型链操作"></a>原型链操作</h3><p>　　每次执行对象属性的读取操作时，其实就是执行了一次搜索。搜索会从实例对象本身开始，如果找到了该属性，则返回该属性的值；如果没有找到，则会根据实例对象的prototype指针找到该实例对象的原型对象，在原型对象上执行搜索。如果找到了，则返回该属性的值；如果没找到，则继续向上，根据原型对象的prototype指针向上查找… …，这样就形成了“链式结构”，也就是原型链。<br>　　关于原型链操作必须明确的是：<font color="red">只有在查询属性值的操作中才会感觉到原型链的存在，在修改属性值的过程中是没有原型链的概念的，也就是说修改属性值只会在实例对象中对原有属性进行覆盖，但并不会影响原型链上上层对象中的属性。</font>通过如下过程可以理解：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-8.png" alt=""></p>
+<h3 id="原型链操作"><a href="#原型链操作" class="headerlink" title="原型链操作"></a>原型链操作</h3><p>　　每次执行对象属性的读取操作时，其实就是执行了一次搜索。搜索会从实例对象本身开始，如果找到了该属性，则返回该属性的值；如果没有找到，则会根据实例对象的prototype指针找到该实例对象的原型对象，在原型对象上执行搜索。如果找到了，则返回该属性的值；如果没找到，则继续向上，根据原型对象的prototype指针向上查找… …，这样就形成了“链式结构”，也就是原型链。<br>　　关于原型链操作必须明确的是：<font color="red">只有在查询属性值的操作中才会感觉到原型链的存在，在修改属性值的过程中是没有原型链的概念的，也就是说修改属性值只会在实例对象中对原有属性进行覆盖，但并不会影响原型链上上层对象中的属性。</font>通过如下过程可以理解：<br>  <img src="http://cdn.gcidea.cn/js-prototype-8.png" alt=""></p>
 <h3 id="某个属性属于谁？（实例-or-原型？）"><a href="#某个属性属于谁？（实例-or-原型？）" class="headerlink" title="某个属性属于谁？（实例 or 原型？）"></a>某个属性属于谁？（实例 or 原型？）</h3><p>　　根据原型链操作的分析，对象属性在实例中和原型中的表现可能是不一样的，但自然就产生了这样的需求：某个属性是属于实例还是原型？<br>　　JavaScript主要提供了以下几种方式来解决这个问题：</p>
 <ol>
 <li><p>单独使用<code>in</code>操作符<br>　　格式：<code>&quot;title&quot; in firstNews;</code></p>
@@ -341,9 +341,9 @@ var _hmt = _hmt || [];
 </li>
 </ol>
 <h3 id="原型对象的重写"><a href="#原型对象的重写" class="headerlink" title="原型对象的重写"></a>原型对象的重写</h3><p>　　写法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">News</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">News.prototype = &#123;</span><br><span class="line">    title: <span class="string">"important news"</span>,</span><br><span class="line">    subtitle: <span class="string">"strategy"</span>,</span><br><span class="line">    release: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span>.title + <span class="string">"--"</span> + <span class="keyword">this</span>.subtitle);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> firstNews = <span class="keyword">new</span> News();</span><br></pre></td></tr></table></figure></p>
-<p>　　这样的写法不是另一种模式，只是为了说明一个问题。根据之前的分析，我们知道<code>firstNews.constructor</code>会指向构造函数本身，也就是<code>function News(){}</code>。那么在现在这样的写法中，<code>firstNews.constructor</code>还是指向<code>function News(){}</code>吗？答案是否定的，如下：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-9.png" alt=""><br>　　可以发现现在指向了<code>function Object()</code>，为什么呢？<br>　　原因是，在这种写法中，直接将一个”{}”对象赋给了<code>News.prototype</code>，本质上是完全重写了<code>News.prototype</code>，而不是像之前只是给<code>News.prototype</code>添加属性，比如<code>News.prototype.title</code>。因此，<code>News.prototype</code>的constructor属性也就发生了变化，变成了新的”{}”对象的constructor属性，而新对象”{}”是字面量直接对象，根据之前的分析知道它的constructor属性指向<code>function Object()</code>，所以现在的<code>firstNews.constructor</code>指向了<code>function Object()</code>。<br>　　如果想恢复到原来的状态，可以显式声明prototype对象的constructor属性：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-10.png" alt=""></p>
-<h3 id="原型对象的动态性"><a href="#原型对象的动态性" class="headerlink" title="原型对象的动态性"></a>原型对象的动态性</h3><p>　　根据原型链操作的分析，每一次属性获取都是一次查询，因此可以动态向原型中添加属性，并且可以立即反映出来。<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-11.png" alt=""></p>
-<p>　　但是，如果是重写整个原型对象，情况就不同了：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-12.png" alt=""><br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/js-prototype-13.png" alt=""></p>
+<p>　　这样的写法不是另一种模式，只是为了说明一个问题。根据之前的分析，我们知道<code>firstNews.constructor</code>会指向构造函数本身，也就是<code>function News(){}</code>。那么在现在这样的写法中，<code>firstNews.constructor</code>还是指向<code>function News(){}</code>吗？答案是否定的，如下：<br>  <img src="http://cdn.gcidea.cn/js-prototype-9.png" alt=""><br>　　可以发现现在指向了<code>function Object()</code>，为什么呢？<br>　　原因是，在这种写法中，直接将一个”{}”对象赋给了<code>News.prototype</code>，本质上是完全重写了<code>News.prototype</code>，而不是像之前只是给<code>News.prototype</code>添加属性，比如<code>News.prototype.title</code>。因此，<code>News.prototype</code>的constructor属性也就发生了变化，变成了新的”{}”对象的constructor属性，而新对象”{}”是字面量直接对象，根据之前的分析知道它的constructor属性指向<code>function Object()</code>，所以现在的<code>firstNews.constructor</code>指向了<code>function Object()</code>。<br>　　如果想恢复到原来的状态，可以显式声明prototype对象的constructor属性：<br><img src="http://cdn.gcidea.cn/js-prototype-10.png" alt=""></p>
+<h3 id="原型对象的动态性"><a href="#原型对象的动态性" class="headerlink" title="原型对象的动态性"></a>原型对象的动态性</h3><p>　　根据原型链操作的分析，每一次属性获取都是一次查询，因此可以动态向原型中添加属性，并且可以立即反映出来。<br>  <img src="http://cdn.gcidea.cn/js-prototype-11.png" alt=""></p>
+<p>　　但是，如果是重写整个原型对象，情况就不同了：<br>  <img src="http://cdn.gcidea.cn/js-prototype-12.png" alt=""><br>  <img src="http://cdn.gcidea.cn/js-prototype-13.png" alt=""></p>
 <h3 id="原生对象的原型"><a href="#原生对象的原型" class="headerlink" title="原生对象的原型"></a>原生对象的原型</h3><p>　　原生对象是指String()、Number()、Boolean()等包装类型产生的对象，它们的原型对象也是可以自定义的。但是，并不应该直接去修改这些内置类型的原型，因为可能会产生命名空间冲突，移植性差。</p>
 <hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>　　通过上述过程，详细分析了JavaScript中对象创建的相关方法和极其重要的两个属性constructor和prototype。关于JavaScript中的“类的继承”将会在后续单独讨论（以此篇为基础）。</p>
@@ -541,7 +541,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -561,7 +561,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -581,7 +581,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -601,7 +601,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -621,7 +621,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

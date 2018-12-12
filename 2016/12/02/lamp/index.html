@@ -20,12 +20,12 @@
 <meta property="og:url" content="http://www.gcidea.info/2016/12/02/lamp/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　为了顺利进行web开发，一套完整易用的开发环境是十分必要的，这可以大大提高团队的合作和开发效率。这里说的开发环境包括IDE，数据库，开发语言组件，版本控制工具等一系列内容。最近在使用的是比较流行的php开发架构，在windows下，无疑推荐WAMP + MySQL-Front + phpStorm，WAMP集成了Apache、MySQL、PHP，可以免除许多安装配置的问题。这样的环境在具">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p96.jpg">
-<meta property="og:updated_time" content="2017-02-11T06:30:39.580Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p96.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:28.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【阿里云ECS】LAMP开发环境的完整搭建配置过程">
 <meta name="twitter:description" content="前言　　为了顺利进行web开发，一套完整易用的开发环境是十分必要的，这可以大大提高团队的合作和开发效率。这里说的开发环境包括IDE，数据库，开发语言组件，版本控制工具等一系列内容。最近在使用的是比较流行的php开发架构，在windows下，无疑推荐WAMP + MySQL-Front + phpStorm，WAMP集成了Apache、MySQL、PHP，可以免除许多安装配置的问题。这样的环境在具">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p96.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p96.jpg">
     
 
     
@@ -199,7 +199,7 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关键词"><span class="toc-number">2.</span> <span class="toc-text">关键词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工具"><span class="toc-number">3.</span> <span class="toc-text">准备工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#阿里云ECS（Centos7）基本文件目录结构"><span class="toc-number">4.</span> <span class="toc-text">阿里云ECS（Centos7）基本文件目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache的安装与配置"><span class="toc-number">5.</span> <span class="toc-text">Apache的安装与配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MariaDB的安装与配置"><span class="toc-number">6.</span> <span class="toc-text">MariaDB的安装与配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP的安装与配置"><span class="toc-number">7.</span> <span class="toc-text">PHP的安装与配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#phpMyAdmin的安装与配置"><span class="toc-number">8.</span> <span class="toc-text">phpMyAdmin的安装与配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小结"><span class="toc-number">9.</span> <span class="toc-text">小结</span></a></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p96.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p96.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　为了顺利进行web开发，一套完整易用的开发环境是十分必要的，这可以大大提高团队的合作和开发效率。这里说的开发环境包括IDE，数据库，开发语言组件，版本控制工具等一系列内容。最近在使用的是比较流行的php开发架构，在windows下，无疑推荐WAMP + MySQL-Front + phpStorm，WAMP集成了Apache、MySQL、PHP，可以免除许多安装配置的问题。这样的环境在具体开发中是没有什么问题的，但是当项目上线并且需要版本维护时，我们还是要在Linux系统上进行部署。<br>　　基于这样的需求，最近搭建了一套完整的LAMP环境并测试通过，可以实现代码版本控制，APP端API测试调用，项目自动化部署持续集成(CI)。包括的主要内容有：<br>  <a id="more"></a><br>　　<strong>1.Apache组件；<br>　　2.MariaDB组件（Centos7中替换掉了MySQL）；<br>　　3.phpMyAdmin数据库管理组件；<br>　　4.PHP组件；<br>　　5.GitLab搭建；<br>　　6.GitLab-CI的配置与使用。</strong></p>
 <p>　　为了完整实现上述过程，自然还需要一些其他组件的安装配置，比如node环境，git环境等等。<br>　　<font color="blue">本文将详细记录整个LAMP开发环境的搭建过程</font>，这个过程中确实遇到了不少问题，通过官方文档，一些论坛，博客等基本得到了解决或找到了其它的解决方式。<br>　　<font color="blue">对于版本控制和持续集成部分，即GitLab相关的内容，会在下一篇文章中单独详细讲述。</font></p>
 <hr>
@@ -207,14 +207,14 @@ var _hmt = _hmt || [];
 <hr>
 <h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><p>　　部署环境：阿里云ECS Centos7.0 64bit　<br>　　远程连接：Xshell 5<br>　　文件传输：Xftp 5</p>
 <hr>
-<h2 id="阿里云ECS（Centos7）基本文件目录结构"><a href="#阿里云ECS（Centos7）基本文件目录结构" class="headerlink" title="阿里云ECS（Centos7）基本文件目录结构"></a>阿里云ECS（Centos7）基本文件目录结构</h2><p>阿里云上的centos包含了基本的Linux系统的必需目录。具体如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/centos-dir.png" alt=""><br>其中各个目录的主要作用有很多资料可以查阅，参考<a href="http://vbird.dic.ksu.edu.tw/" target="_blank" rel="external">《鸟哥的Linux私房菜》</a>。</p>
+<h2 id="阿里云ECS（Centos7）基本文件目录结构"><a href="#阿里云ECS（Centos7）基本文件目录结构" class="headerlink" title="阿里云ECS（Centos7）基本文件目录结构"></a>阿里云ECS（Centos7）基本文件目录结构</h2><p>阿里云上的centos包含了基本的Linux系统的必需目录。具体如下：<br><img src="http://cdn.gcidea.cn/centos-dir.png" alt=""><br>其中各个目录的主要作用有很多资料可以查阅，参考<a href="http://vbird.dic.ksu.edu.tw/" target="_blank" rel="external">《鸟哥的Linux私房菜》</a>。</p>
 <hr>
 <h2 id="Apache的安装与配置"><a href="#Apache的安装与配置" class="headerlink" title="Apache的安装与配置"></a>Apache的安装与配置</h2><p>1.Centos7默认已经安装httpd服务，只是没有启动。可以通过如下命令安装<br><code># yum install httpd</code></p>
 <blockquote>
 <p>注：httpd是Apache超文本传输协议(HTTP)服务器的主程序。被设计为一个独立运行的后台进程，它会建立一个处理请求的子进程或线程池。</p>
 </blockquote>
-<p>具体安装过程如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/1.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/2.png" alt=""><br>2.成功安装后，启动apache,并且设置系统让 Apache 开机自动启动。这里本来使用的是这两条命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># service httpd start    //启动Apache</span><br><span class="line"># chkconfig httpd on     //设置开机自启</span><br></pre></td></tr></table></figure></p>
-<p>但是系统给出了如下的提示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/3.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/4.png" alt=""><br>出现这个提示的原因是CentOS7已经切换到systemd，系统指令也有所变化。之前用于启动、重启、停止各种服务的service作为向后兼容的指令还能使用，但是系统会自动重定向该指令到新的指令/bin/systemctl 来执行，并给出提示。因此，这里也就顺便对常用命令的变化做以对比和总结（以对httpd服务的操作为例）：</p>
+<p>具体安装过程如下：<br><img src="http://cdn.gcidea.cn/1.png" alt=""><br><img src="http://cdn.gcidea.cn/2.png" alt=""><br>2.成功安装后，启动apache,并且设置系统让 Apache 开机自动启动。这里本来使用的是这两条命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># service httpd start    //启动Apache</span><br><span class="line"># chkconfig httpd on     //设置开机自启</span><br></pre></td></tr></table></figure></p>
+<p>但是系统给出了如下的提示：<br><img src="http://cdn.gcidea.cn/3.png" alt=""><br><img src="http://cdn.gcidea.cn/4.png" alt=""><br>出现这个提示的原因是CentOS7已经切换到systemd，系统指令也有所变化。之前用于启动、重启、停止各种服务的service作为向后兼容的指令还能使用，但是系统会自动重定向该指令到新的指令/bin/systemctl 来执行，并给出提示。因此，这里也就顺便对常用命令的变化做以对比和总结（以对httpd服务的操作为例）：</p>
 <blockquote>
 <p>【启动服务】<br>旧：<code># service http start</code><br>新：<code># systemctl start httpd</code></p>
 <p>【停止服务】<br>旧：<code># service http stop</code><br>新：<code># systemctl stop httpd</code></p>
@@ -231,15 +231,15 @@ var _hmt = _hmt || [];
 <p>注：SELinux(Security-Enhanced Linux) 是美国国家安全局（NSA）对于强制访问控制的实现，在这种访问控制体系的限制下，进程只能访问那些在他的任务中所需要文件。但是由于一般情况下没有对SELinux进行细致研究，不懂其中原理，可能还会对其他服务的使用造成影响，因此这里将其关闭。</p>
 </blockquote>
 <p>3.1 关闭内核防火墙。使用命令：<code># vi /etc/selinux/config</code>将SELINUX=enforcing 改成SELINUX=disabled<br>3.2 在iptables防火墙策略里设置网站运行的80端口和数据库的3306端口，使用命令：<code># vi /etc/sysconfig/iptables</code>添加以下2个记录：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-A INPUT -p tcp -m tcp --sport 1024:65534 --dport 3306 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m tcp --sport 1024:65534 --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure></p>
-<p>具体过程如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/5-0.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/5.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/6.png" alt=""></p>
+<p>具体过程如下图所示：<br><img src="http://cdn.gcidea.cn/5-0.png" alt=""><br><img src="http://cdn.gcidea.cn/5.png" alt=""><br><img src="http://cdn.gcidea.cn/6.png" alt=""></p>
 <hr>
 <h2 id="MariaDB的安装与配置"><a href="#MariaDB的安装与配置" class="headerlink" title="MariaDB的安装与配置"></a>MariaDB的安装与配置</h2><blockquote>
 <p>注：MariaDB数据库管理系统是MySQL的一个分支，主要由开源社区在维护，采用GPL授权许可 MariaDB的目的是完全兼容MySQL，包括API和命令行，使之能轻松成为MySQL的代替品。在存储引擎方面，使用XtraDB（英语：XtraDB）来代替MySQL的InnoDB。 MariaDB由MySQL的创始人Michael Widenius（英语：Michael Widenius）主导开发，他早前曾以10亿美元的价格，将自己创建的公司MySQL AB卖给了SUN，此后，随着SUN被甲骨文收购，MySQL的所有权也落入Oracle的手中。MariaDB名称来自Michael Widenius的女儿Maria的名字。<br>　　Centos6或早期的版本中提供的是MySQL的服务器/客户端安装包，但Centos7已使用了MariaDB替代了默认的MySQL。因此本文后续给出的是MariaDB的安装与配置过程。</p>
 </blockquote>
 <ol>
-<li>使用如下命令安装MariaDB及相关组件：<br><code>yum install mariadb mariadb-server mariadb-libs</code><br>具体过程如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/7.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/9.png" alt=""></li>
-<li>设置MariaDB开机自启动并重启MariaDB服务<br><code># systemctl enable mariadb</code><br><code># systemctl restart mariadb</code><br>如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/13.png" alt=""></li>
-<li>配置MariaDB服务(主要是设置密码，用户账户等)<br><code># mysql_secure_installation</code><br>如下图所示：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/10.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/11.png" alt=""><br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/12.png" alt=""></li>
+<li>使用如下命令安装MariaDB及相关组件：<br><code>yum install mariadb mariadb-server mariadb-libs</code><br>具体过程如下：<br><img src="http://cdn.gcidea.cn/7.png" alt=""><br><img src="http://cdn.gcidea.cn/9.png" alt=""></li>
+<li>设置MariaDB开机自启动并重启MariaDB服务<br><code># systemctl enable mariadb</code><br><code># systemctl restart mariadb</code><br>如下图所示：<br><img src="http://cdn.gcidea.cn/13.png" alt=""></li>
+<li>配置MariaDB服务(主要是设置密码，用户账户等)<br><code># mysql_secure_installation</code><br>如下图所示：<br><img src="http://cdn.gcidea.cn/10.png" alt=""><br><img src="http://cdn.gcidea.cn/11.png" alt=""><br><img src="http://cdn.gcidea.cn/12.png" alt=""></li>
 </ol>
 <hr>
 <h2 id="PHP的安装与配置"><a href="#PHP的安装与配置" class="headerlink" title="PHP的安装与配置"></a>PHP的安装与配置</h2><ol>
@@ -252,10 +252,10 @@ var _hmt = _hmt || [];
 </li>
 </ol>
 <p>内容如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>4.在浏览器地址栏中输入<code>http://阿里云ECS主机ip/index.php</code>可以看到如下页面，说明安装配置成功。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/14.png" alt=""></p>
-<p>5.【可选】PHP的版本升级<br>　　如上图我们可以看到，PHP的版本是5.4.16。我在使用过程中，前期没有遇到什么问题。直到写图片上传服务之类的功能，在本地WAMPServer测试正常的代码部署到ECS后就会报错，错误如下：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/curlFile.png" alt=""><br>　　网上也查了一些解决方案，问题主要就是缺失curl这个类文件。提供的一些解决方案有单独编译安装这个类，再在php的配置文件中做extension，或者直接源码编译安装其他版本的PHP。感觉步骤较多，比较麻烦。因此选择了更换yum源直接升级高版本php(大于等于php5.5)：<br>  1.配置yum源:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># yum install epel-release</span><br><span class="line"># rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm</span><br></pre></td></tr></table></figure></p>
+<p>4.在浏览器地址栏中输入<code>http://阿里云ECS主机ip/index.php</code>可以看到如下页面，说明安装配置成功。<br><img src="http://cdn.gcidea.cn/14.png" alt=""></p>
+<p>5.【可选】PHP的版本升级<br>　　如上图我们可以看到，PHP的版本是5.4.16。我在使用过程中，前期没有遇到什么问题。直到写图片上传服务之类的功能，在本地WAMPServer测试正常的代码部署到ECS后就会报错，错误如下：<br><img src="http://cdn.gcidea.cn/curlFile.png" alt=""><br>　　网上也查了一些解决方案，问题主要就是缺失curl这个类文件。提供的一些解决方案有单独编译安装这个类，再在php的配置文件中做extension，或者直接源码编译安装其他版本的PHP。感觉步骤较多，比较麻烦。因此选择了更换yum源直接升级高版本php(大于等于php5.5)：<br>  1.配置yum源:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># yum install epel-release</span><br><span class="line"># rpm -ivh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm</span><br></pre></td></tr></table></figure></p>
 <p>  2.安装php5.6:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># yum install --enablerepo=remi --enablerepo=remi-php56 php php-opcache php-devel php-mbstring php-mcrypt php-mysqlnd php-phpunit-PHPUnit php-pecl-xdebug php-pecl-xhprof</span><br></pre></td></tr></table></figure></p>
-<p>  3.查看php版本，看是否安装成功：<br>  <code># php -v</code><br>  结果如下图：<br>  <img src="http://7xrz3r.com1.z0.glb.clouddn.com/php5-6.png" alt=""><br>  此时再在线上环境进行测试，图片服务已经可以正常使用。</p>
+<p>  3.查看php版本，看是否安装成功：<br>  <code># php -v</code><br>  结果如下图：<br>  <img src="http://cdn.gcidea.cn/php5-6.png" alt=""><br>  此时再在线上环境进行测试，图片服务已经可以正常使用。</p>
 <hr>
 <h2 id="phpMyAdmin的安装与配置"><a href="#phpMyAdmin的安装与配置" class="headerlink" title="phpMyAdmin的安装与配置"></a>phpMyAdmin的安装与配置</h2><p>　　至此，我们已经具备了一套基本的LAMP环境，通过在“L”上进行部署，“A”提供http服务，运行“P”的php后台代码，使用“M”提供数据存储，基本实现一个网站的功能。这里还有一个小问题，使用mariadb的命令行进行数据管理十分不便，我们可以安装phpMyAdmin进行可视化管理。</p>
 <ol>
@@ -263,7 +263,7 @@ var _hmt = _hmt || [];
 <li><p>配置<br>使用命令：<br><code># vi /etc/httpd/conf.d/phpMyAdmin.conf</code><br>默认情况下，Centos7上的phpMyAdmin只允许从回环地址(127.0.0.1)访问。为了能远程连接，需要改动它的配置。我们要做的是<font color="red">找出并注释掉带有”Require ip XXXX”字样的4处代码，用”Require all granted”取而代之。</font>内容如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"># phpMyAdmin - Web based MySQL browser written in php</span><br><span class="line">#</span><br><span class="line"># Allows only localhost by default</span><br><span class="line">#</span><br><span class="line"># But allowing phpMyAdmin to anyone other than localhost should be considered</span><br><span class="line"># dangerous unless properly secured by SSL</span><br><span class="line"></span><br><span class="line">Alias /phpMyAdmin /usr/share/phpMyAdmin</span><br><span class="line">Alias /phpmyadmin /usr/share/phpMyAdmin</span><br><span class="line"></span><br><span class="line">&lt;Directory /usr/share/phpMyAdmin/&gt;</span><br><span class="line">   AddDefaultCharset UTF-8</span><br><span class="line"></span><br><span class="line">   &lt;IfModule mod_authz_core.c&gt;</span><br><span class="line">     # Apache 2.4</span><br><span class="line">     &lt;RequireAny&gt;</span><br><span class="line">#       Require ip 127.0.0.1</span><br><span class="line">#       Require ip ::1</span><br><span class="line">        Require all granted</span><br><span class="line">     &lt;/RequireAny&gt;</span><br><span class="line">   &lt;/IfModule&gt;</span><br><span class="line">   &lt;IfModule !mod_authz_core.c&gt;</span><br><span class="line">     # Apache 2.2</span><br><span class="line">     Order Deny,Allow</span><br><span class="line">     Deny from All</span><br><span class="line">     Allow from 127.0.0.1</span><br><span class="line">     Allow from ::1</span><br><span class="line">   &lt;/IfModule&gt;</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">&lt;Directory /usr/share/phpMyAdmin/setup/&gt;</span><br><span class="line">   &lt;IfModule mod_authz_core.c&gt;</span><br><span class="line">     # Apache 2.4</span><br><span class="line">     &lt;RequireAny&gt;</span><br><span class="line">#       Require ip 127.0.0.1</span><br><span class="line">#       Require ip ::1</span><br><span class="line">        Require all granted</span><br><span class="line">     &lt;/RequireAny&gt;</span><br><span class="line">   &lt;/IfModule&gt;</span><br><span class="line">   &lt;IfModule !mod_authz_core.c&gt;</span><br><span class="line">     # Apache 2.2</span><br><span class="line">     Order Deny,Allow</span><br><span class="line">     Deny from All</span><br><span class="line">     Allow from 127.0.0.1</span><br><span class="line">     Allow from ::1</span><br><span class="line">   &lt;/IfModule&gt;</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line"># These directories do not require access over HTTP - taken from the original</span><br><span class="line"># phpMyAdmin upstream tarball</span><br><span class="line">#</span><br><span class="line">&lt;Directory /usr/share/phpMyAdmin/libraries/&gt;</span><br><span class="line">    Order Deny,Allow</span><br><span class="line">    Deny from All</span><br><span class="line">    Allow from None</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">&lt;Directory /usr/share/phpMyAdmin/setup/lib/&gt;</span><br><span class="line">    Order Deny,Allow</span><br><span class="line">    Deny from All</span><br><span class="line">    Allow from None</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line">&lt;Directory /usr/share/phpMyAdmin/setup/frames/&gt;</span><br><span class="line">    Order Deny,Allow</span><br><span class="line">    Deny from All</span><br><span class="line">    Allow from None</span><br><span class="line">&lt;/Directory&gt;</span><br><span class="line"></span><br><span class="line"># This configuration prevents mod_security at phpMyAdmin directories from</span><br><span class="line"># filtering SQL etc.  This may break your mod_security implementation.</span><br><span class="line">#</span><br><span class="line">#&lt;IfModule mod_security.c&gt;</span><br><span class="line">#    &lt;Directory /usr/share/phpMyAdmin/&gt;</span><br><span class="line">#        SecRuleInheritance Off</span><br><span class="line">#    &lt;/Directory&gt;</span><br><span class="line">#&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>测试<br>安装完成后，我们可以通过<code>http://阿里云ECS主机ip/phpmyadmin</code>进行访问（注：这里默认使用的是主机ip默认端口，但当后续搭建了GitLab服务后，会产生端口冲突，需要修改Apache的默认端口，这在下一篇文章中遇到时会详细阐述。）<br>登录界面如下(注：用户名和密码就是上文配置MariaDB时设置的)：<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/phpmyadmin.png" alt=""><br>主控制面板如下，在这里我们可以方便的新建数据库，数据表，查询，导入导出sql文件等等。<br><img src="http://7xrz3r.com1.z0.glb.clouddn.com/phpmyadmin-panel.png" alt=""></p>
+<li><p>测试<br>安装完成后，我们可以通过<code>http://阿里云ECS主机ip/phpmyadmin</code>进行访问（注：这里默认使用的是主机ip默认端口，但当后续搭建了GitLab服务后，会产生端口冲突，需要修改Apache的默认端口，这在下一篇文章中遇到时会详细阐述。）<br>登录界面如下(注：用户名和密码就是上文配置MariaDB时设置的)：<br><img src="http://cdn.gcidea.cn/phpmyadmin.png" alt=""><br>主控制面板如下，在这里我们可以方便的新建数据库，数据表，查询，导入导出sql文件等等。<br><img src="http://cdn.gcidea.cn/phpmyadmin-panel.png" alt=""></p>
 </li>
 </ol>
 <hr>
@@ -471,7 +471,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -491,7 +491,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -511,7 +511,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -531,7 +531,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -551,7 +551,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>

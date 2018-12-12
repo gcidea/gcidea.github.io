@@ -20,12 +20,12 @@
 <meta property="og:url" content="http://www.gcidea.info/2016/11/12/angular-error-interceptor/index.html">
 <meta property="og:site_name" content="GCidea's blog">
 <meta property="og:description" content="前言　　在web开发的各种业务场景中，http请求无疑是家常便饭，任何前后端交互数据都需要通过http请求进行传输。同时我们知道，HTTP响应有很多状态码，对应着很多种不同的服务处理结果。在这种情况下，如果项目中每一处http请求中我们都要对各种响应结果做以判断的话，那么整个工程中就会出现大量重复代码，这样做会带来不少问题，比如：重复劳动，代码结构不清晰、核心逻辑不明确，一旦对错误处理的需求变更">
-<meta property="og:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p9.jpg">
-<meta property="og:updated_time" content="2017-02-11T06:06:46.340Z">
+<meta property="og:image" content="http://cdn.gcidea.cn/p9.jpg">
+<meta property="og:updated_time" content="2018-12-12T16:08:56.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AngularJs中使用拦截器interceptor对全局HTTP错误进行统一处理">
 <meta name="twitter:description" content="前言　　在web开发的各种业务场景中，http请求无疑是家常便饭，任何前后端交互数据都需要通过http请求进行传输。同时我们知道，HTTP响应有很多状态码，对应着很多种不同的服务处理结果。在这种情况下，如果项目中每一处http请求中我们都要对各种响应结果做以判断的话，那么整个工程中就会出现大量重复代码，这样做会带来不少问题，比如：重复劳动，代码结构不清晰、核心逻辑不明确，一旦对错误处理的需求变更">
-<meta name="twitter:image" content="http://7xrz3r.com1.z0.glb.clouddn.com/p9.jpg">
+<meta name="twitter:image" content="http://cdn.gcidea.cn/p9.jpg">
     
 
     
@@ -199,7 +199,7 @@ var _hmt = _hmt || [];
                 <strong>目录</strong>
             </div>
             <ul class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关背景知识"><span class="toc-number">2.</span> <span class="toc-text">相关背景知识</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJs的拦截器interceptor"><span class="toc-number">2.1.</span> <span class="toc-text">AngularJs的拦截器interceptor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJs的-httpProvider"><span class="toc-number">2.2.</span> <span class="toc-text">AngularJs的$httpProvider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJs模块加载前的配置config"><span class="toc-number">2.3.</span> <span class="toc-text">AngularJs模块加载前的配置config()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJs的-q服务"><span class="toc-number">2.4.</span> <span class="toc-text">AngularJs的$q服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJs的-on服务"><span class="toc-number">2.5.</span> <span class="toc-text">AngularJs的$on服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AngularJs的运行块run-方法"><span class="toc-number">2.6.</span> <span class="toc-text">AngularJs的运行块run()方法</span></a></li></ul></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP错误拦截器的实现"><span class="toc-number">3.</span> <span class="toc-text">HTTP错误拦截器的实现</span></a><ul class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建错误拦截服务工厂"><span class="toc-number">3.1.</span> <span class="toc-text">创建错误拦截服务工厂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#向-httpProvider配置错误拦截器"><span class="toc-number">3.2.</span> <span class="toc-text">向$httpProvider配置错误拦截器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注册运行块run，监听错误结果进行回调处理"><span class="toc-number">3.3.</span> <span class="toc-text">注册运行块run，监听错误结果进行回调处理</span></a></li></ul></li></ul>
-            <p><img src="http://7xrz3r.com1.z0.glb.clouddn.com/p9.jpg" alt=""></p>
+            <p><img src="http://cdn.gcidea.cn/p9.jpg" alt=""></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　在web开发的各种业务场景中，http请求无疑是家常便饭，任何前后端交互数据都需要通过http请求进行传输。同时我们知道，HTTP响应有很多状态码，对应着很多种不同的服务处理结果。在这种情况下，如果项目中每一处http请求中我们都要对各种响应结果做以判断的话，那么整个工程中就会出现大量重复代码，这样做会带来不少问题，比如：重复劳动，代码结构不清晰、核心逻辑不明确，一旦对错误处理的需求变更就要对每一处进行修改、费时费力且容易遗漏。<br>　　针对这样的情况，在以AngularJs为前端框架的项目中，我们可以使用拦截器interceptor对全局HTTP错误进行统一处理。</p>
 <hr>
 <h2 id="相关背景知识"><a href="#相关背景知识" class="headerlink" title="相关背景知识"></a>相关背景知识</h2><h3 id="AngularJs的拦截器interceptor"><a href="#AngularJs的拦截器interceptor" class="headerlink" title="AngularJs的拦截器interceptor"></a>AngularJs的拦截器interceptor</h3><ul>
@@ -429,7 +429,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/05/01/pwa/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p70.jpg)" alt="PWA-渐进式Web应用探究" class="thumbnail-image"></span>
     
     
 </a>
@@ -449,7 +449,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/25/mobile-flexible-solution/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/blog-illustration-1.jpg)" alt="移动端HTML5响应式布局适配解决方案" class="thumbnail-image"></span>
     
     
 </a>
@@ -469,7 +469,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/23/uniform-development-product-env-switchyomega-charles/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p111.jpg)" alt="使用SwitchyOmega和Charles配置统一的开发和生产环境" class="thumbnail-image"></span>
     
     
 </a>
@@ -489,7 +489,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/20/react-dva-structure/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p101.jpg)" alt="React开发框架Dva.js项目结构简单小结" class="thumbnail-image"></span>
     
     
 </a>
@@ -509,7 +509,7 @@ var _hmt = _hmt || [];
                             <a href="/2017/01/17/git-merge-git-rebase/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrz3r.com1.z0.glb.clouddn.com/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
+        <span style="background-image:url(http://cdn.gcidea.cn/p46.jpg)" alt="git merge 与 git rebase 的对比分析" class="thumbnail-image"></span>
     
     
 </a>
